@@ -19,17 +19,15 @@ import javax.swing.JTable;
 import javax.swing.table.*;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
+import com.itextpdf.text.pdf.draw.LineSeparator;
+import com.itextpdf.text.pdf.BarcodeQRCode;
 import java.awt.Component;
-import java.awt.Graphics2D;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.image.BufferedImage;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import jbarcodebean.JBarcodeBean;
-import net.sourceforge.jbarcodebean.model.AbstractBarcodeStrategy;
-import net.sourceforge.jbarcodebean.model.Code128;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FORM_FACTURAR extends javax.swing.JPanel {
 
@@ -295,6 +293,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             txtApellidosCliente.setText((String) dtmClientes.getValueAt(fila, 1) + " " + (String) dtmClientes.getValueAt(fila, 2));
             txtCedula.setText((String) dtmClientes.getValueAt(fila, 3));
             txtRuc.setText((String) dtmClientes.getValueAt(fila, 4));
+            txtTelefono.setText((String) dtmClientes.getValueAt(fila, 5));
             txtDireccion.setText((String) dtmClientes.getValueAt(fila, 6));
         }
     }
@@ -496,11 +495,11 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         desFac.setDET_PRECIO(precio);
         desFac.setDET_TOTAL(total);
         if (desFacDao.add(desFac) == "La factura fue creada con exito!") {
-            panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Producto agregado con exito!!");
+            panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.TOP_CENTER, "Producto agregado con exito!!");
             panel.showNotification();
             tablaProductos();
         } else if (desFacDao.add(desFac) == "La factura no fue creada!") {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo agregar el producto!!");
+            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.TOP_CENTER, "No se pudo agregar el producto!!");
             panel.showNotification();
             tablaProductos();
         }
@@ -704,6 +703,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         lblIdProducto = new javax.swing.JLabel();
         lblPdf = new javax.swing.JLabel();
         lblCantidadTabla = new javax.swing.JLabel();
+        txtTelefono = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(22, 23, 23));
 
@@ -1145,14 +1145,14 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                             .addGroup(panelFormProductosLayout.createSequentialGroup()
                                 .addComponent(txtCodPrinc, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCodAux, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+                                .addComponent(txtCodAux, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
                             .addComponent(txtNombreProd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFormProductosLayout.createSequentialGroup()
                                 .addComponent(txtPVP, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtStock, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                .addComponent(txtStock, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtCantidadProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
                             .addComponent(txtDetalleExtra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1497,7 +1497,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(roundPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTotalPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
+                    .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
                 .addContainerGap())
         );
         roundPanel20Layout.setVerticalGroup(
@@ -1546,7 +1546,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                                 .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
+                .addGap(8, 8, 8))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1604,6 +1604,8 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addComponent(lblPdf, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCantidadTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtTelefono)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(spPanel)
         );
@@ -1615,7 +1617,10 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                     .addComponent(lblIdProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblPdf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblCantidadTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblCantidadTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spPanel))
         );
@@ -1808,9 +1813,10 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         if (switchCliente.isSelected()) {
             lblIdCliente.setText("1");
             txtApellidosCliente.setText("CONSUMIDOR FINAL");
-            txtCedula.setText("N / A");
+            txtCedula.setText("0000000001");
             txtRuc.setText("N / A");
             txtDireccion.setText("N / A");
+            txtTelefono.setText("N / A");
             txtApellidosCliente.setEditable(false);
             txtCedula.setEditable(false);
             txtRuc.setEditable(false);
@@ -2038,10 +2044,10 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         facTotalidad.setFAC_IVA_12(Double.parseDouble(iva12.toString()));
         facTotalidad.setFAC_TOTAL_PAGAR(Double.parseDouble(totalPagar.toString()));
         if (facTotDao.add(facTotalidad).equals("La factura fue creada con exito!")) {
-            panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Factura guardada con exito!!");
+            panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.TOP_CENTER, "Factura guardada con exito!!");
             panel.showNotification();
         } else if (facTotDao.add(facTotalidad).equals("La factura no fue creada!")) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo guardar la factura!!");
+            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.TOP_CENTER, "No se pudo guardar la factura!!");
             panel.showNotification();
         }
         btnGuardar.setVisible(false);
@@ -2051,8 +2057,15 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-        reportepdf();
+        try {
+//            reportepdf();
+            facturaPdf();
 //        enviarEmail();
+        } catch (DocumentException ex) {
+            Logger.getLogger(FORM_FACTURAR.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(FORM_FACTURAR.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnImprimirActionPerformed
 
 
@@ -2132,6 +2145,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
     private textfield.TextField txtRuc;
     private textfield.TextField txtStock;
     private javax.swing.JLabel txtSubtotal;
+    private javax.swing.JLabel txtTelefono;
     private javax.swing.JLabel txtTotal;
     // End of variables declaration//GEN-END:variables
 
@@ -2183,6 +2197,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         try {
 
             String numeroFactura = "";
+            emp = (EMPRESA) empDao.list();
             FileOutputStream archivo;
             String cedula = txtCedula.getText();
             String ruta = "C:\\FACTURING_V1\\/" + year + "/" + MES + "/FACTURAS/" + cedula + "-" + usu.getUSU_USUARIO() + " " + daoFac.fechaNormal() + "S" + usu.getFK_SUCURSAL() + ".pdf";
@@ -2198,13 +2213,12 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             Paragraph fechaParagraph = new Paragraph("Fecha de emisión: "
                     + daoFac.fechaNormal() + "\n"
                     + "Factura número: ");
-            PdfPTable codigoBarras = new PdfPTable(1);            
+            PdfPTable codigoBarras = new PdfPTable(1);
             codigoBarras.setHorizontalAlignment(Element.ALIGN_RIGHT);
             Barcode128 b = new Barcode128();
-            b.setCode(lblClaveAcceso.getText()); 
+            b.setCode(lblClaveAcceso.getText());
             PdfPCell barCodeCell = new PdfPCell();
             barCodeCell.setBorder(0);
-            
             barCodeCell.addElement(b.createImageWithBarcode(p.getDirectContent(), BaseColor.BLACK, BaseColor.BLACK));
             codigoBarras.setWidthPercentage(40f);
             codigoBarras.addCell(barCodeCell);
@@ -2232,14 +2246,17 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             Encabezado.setHorizontalAlignment(Element.ALIGN_LEFT);
 
             //Logo de la empresa para la factura
-            Encabezado.addCell(img);
             String ruc = "1723382592";
             String correo = "correo@empresa.com";
             String tel = "0980868422";
             String dir = "Quito - Ecuador";
             String slogan = "";
 
-            Encabezado.addCell(" R.U.C.: " + ruc + "\n Telefono: " + tel + "\n Dirección: " + dir + "\n Email: " + correo);
+            Encabezado.addCell(img);
+            Encabezado.addCell(" R.U.C.: " + ruc + "\n"
+                    + " Telefono: " + tel + "\n"
+                    + "Dirección: " + dir + "\n"
+                    + " Email: " + correo);
             Encabezado.addCell(slogan);
             Encabezado.addCell(fechaParagraph);
 
@@ -2249,7 +2266,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
 
             //------------------------------------------------------------------Tabla de los datos del Cliente
             //Datos de los Clientes 
-            Paragraph cliente = new Paragraph("\n" + "Datos del cliente: " + "\n", negrita1);            
+            Paragraph cliente = new Paragraph("\n" + "Datos del cliente: " + "\n", negrita1);
 
             //Nombre
             PdfPTable tablaClienteNombre = new PdfPTable(2);
@@ -2523,7 +2540,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             archivo.close();
             Desktop.getDesktop().open(file);
             System.out.println("Documento Abierto");
-            //------------------------------------------------------------------Fin del documento
+            //---------------------------------Fin del documento
 
         } catch (Exception e) {
             System.out.println("Error en la parte de generar el reporte pdf" + "\n" + e.toString());
@@ -2532,6 +2549,442 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
 
     private void enviarEmail() {
 
+    }
+
+    private void facturaPdf() throws FileNotFoundException, DocumentException, BadElementException, IOException {
+        /* ============================
+        DATOS PRINCIPALES FECHAS
+        ============================ */
+        Calendar fecha = Calendar.getInstance();
+        int year = fecha.get(Calendar.YEAR);
+        int mes = fecha.get(Calendar.MONTH) + 1;
+        String MES = "";
+        switch (mes) {
+            case 1:
+                MES = "ENERO";
+                break;
+            case 2:
+                MES = "FEBRERO";
+                break;
+            case 3:
+                MES = "MARZO";
+                break;
+            case 4:
+                MES = "ABRIL";
+                break;
+            case 5:
+                MES = "MAYO";
+                break;
+            case 6:
+                MES = "JUNIO";
+                break;
+            case 7:
+                MES = "JULIO";
+                break;
+            case 8:
+                MES = "AGOSTO";
+                break;
+            case 9:
+                MES = "SEPTIEMRBRE";
+                break;
+            case 10:
+                MES = "OCTUBRE";
+                break;
+            case 11:
+                MES = "NOVIEMBRE";
+                break;
+            case 12:
+                MES = "DICIEMBRE";
+                break;
+            default:
+                throw new AssertionError();
+        }
+        /* ============================
+        DATOS PRINCIPALES DEL DOCUMENTO
+        ============================ */
+        FileOutputStream archivo;
+        String cedula = txtCedula.getText();
+        String ruta = "C:\\FACTURING_V1\\/" + year + "/" + MES + "/FACTURAS/" + cedula + "-" + usu.getUSU_USUARIO() + " " + daoFac.fechaNormal() + " (" + daoFac.hora() + ") S" + usu.getFK_SUCURSAL() + ".pdf";
+        File file = new File(ruta);//Ruta donde se guarda el archivo:   C:\Facturing\pdfFacturas 
+        archivo = new FileOutputStream(file);
+        Document doc = new Document();
+        PdfWriter p = PdfWriter.getInstance(doc, archivo);
+        doc.open();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDateTime now = LocalDateTime.now();
+
+        /* ============================
+        FUENTES Y TIPOS
+        ============================ */
+        Font negrita = new Font(Font.FontFamily.HELVETICA, 8, Font.NORMAL, BaseColor.BLACK);
+        Font negritaSmall = new Font(Font.FontFamily.HELVETICA, 6, Font.NORMAL, BaseColor.BLACK);
+        Font negritaSmallBold = new Font(Font.FontFamily.HELVETICA, 6, Font.BOLD, BaseColor.BLACK);
+        Font negritaMediuamBold = new Font(Font.FontFamily.HELVETICA, 7, Font.BOLD, BaseColor.BLACK);
+        Font normalBold = new Font(Font.FontFamily.HELVETICA, 9, Font.BOLD, BaseColor.BLACK);
+        Font normal = new Font(Font.FontFamily.HELVETICA, 9, Font.NORMAL, BaseColor.BLACK);
+        //Espacio 
+        Paragraph espacio = new Paragraph();
+        espacio.add("\n");
+        LineSeparator separator = new LineSeparator();
+        separator.setPercentage(59500f / 523f);
+        Chunk linebreak = new Chunk(separator);
+        /* ============================
+        PARTE ENCABEZADO
+        ============================ */
+        PdfPTable encabezado = new PdfPTable(4);
+        encabezado.setWidthPercentage(100);
+        encabezado.getDefaultCell().setBorder(0);
+        float[] ColumnaEncabezado = new float[]{10f, 70f, 10f, 60f};
+        encabezado.setWidths(ColumnaEncabezado);
+        encabezado.setHorizontalAlignment(Element.ALIGN_LEFT);
+        //VARIABLES EMPRESA
+        Image img = Image.getInstance("src/com/anthony/icons/logo_empresa.png");
+        emp = empDao.list();
+        String datosEmpresa = emp.getEMP_NOMBRE_COMERCIAL() + "\n"
+                + "Matriz: " + emp.getEMP_MATRIZ() + "\n"
+                + "Telf: " + "0980868422 - 02-3089-081" + "\n"
+                + "Contribuyente Especial: " + emp.getEMP_RESOLUCION_CONTRIB_ESPECIAL() + "\n"
+                + "Obligado a llevar contabilidad: " + emp.getEMP_LLEVAR_CONTABILIDAD();
+        /* ============================
+        AGREGAR TABLA DATOS FACTURA
+        ============================ */
+        Paragraph parrafoEmpresa = new Paragraph(datosEmpresa, negrita);
+        PdfPTable datosFactura = new PdfPTable(1);
+        datosFactura.setWidthPercentage(100);
+        datosFactura.getDefaultCell().setBorder(0);
+        String datosFacturaCelda = "R.U.C.  " + emp.getEMP_RUC() + "\n"
+                + "FACTURA N.-  " + "001-001-002905538" + "\n"
+                + "NUMERO DE AUTORIZACION  " + lblClaveAcceso.getText() + "\n"
+                + "FECHA DE AUTORIZACION  " + "\n" + daoFac.fechaNormal() + "  " + daoFac.horaNormal() + "\n"
+                + "AMBIENTE:  " + "PRUEBAS" + "\n"
+                + "EMISION:  " + "NORMAL";
+        datosFactura.addCell(datosFacturaCelda);
+        Paragraph parrafoFactura = new Paragraph(datosFacturaCelda, negritaSmall);
+        //ENVIO DATOS A LA TABLA
+        encabezado.addCell(img);//img empresa
+        encabezado.addCell(parrafoEmpresa);//datos empresa
+        encabezado.addCell("");//espacio
+        encabezado.addCell(parrafoFactura);//datos factura
+        /* ============================
+        AGREGAR CLAVE DE ACCESO
+        ============================ */
+        PdfPTable claveAccesoTable = new PdfPTable(1);
+        Paragraph claveAcceso = new Paragraph("CLAVE DE ACCESO", negritaSmallBold);
+        claveAccesoTable.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        PdfPCell claveAccesoCell = new PdfPCell();
+        claveAccesoCell.setBorder(0);
+        claveAccesoTable.setWidthPercentage(40f);
+        claveAccesoCell.addElement(claveAcceso);
+        claveAccesoTable.addCell(claveAccesoCell);
+        /* ============================
+        AGREGAR CODIGO DE BARRAS
+        ============================ */
+        PdfPTable codigoBarras = new PdfPTable(1);
+        codigoBarras.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        Barcode128 b = new Barcode128();
+        b.setCode(lblClaveAcceso.getText());
+        PdfPCell barCodeCell = new PdfPCell();
+        barCodeCell.setBorder(0);
+        barCodeCell.addElement(b.createImageWithBarcode(p.getDirectContent(), BaseColor.BLACK, BaseColor.BLACK));
+        codigoBarras.setWidthPercentage(40f);
+        codigoBarras.addCell(barCodeCell);
+        codigoBarras.getDefaultCell().setBorder(0);
+
+        /* ============================
+        AGREGAR CODIGO DE BARRAS
+        ============================ */
+        PdfPTable datosClientesMain = new PdfPTable(1);
+        datosClientesMain.setWidthPercentage(100);
+        PdfPTable datosClientes = new PdfPTable(4);
+        float[] columnaCliente = new float[]{30f, 70f, 30f, 40f};
+        datosClientes.setWidths(columnaCliente);
+        datosClientes.getDefaultCell().setBorder(0);
+        Paragraph razonSocial = new Paragraph("Razon Social", normalBold);
+        Paragraph cliNombres = new Paragraph(txtApellidosCliente.getText(), normal);
+        Paragraph identificacion = new Paragraph("Identificacion", normalBold);
+        Paragraph cliCedula = new Paragraph(txtCedula.getText(), normal);
+        Paragraph fechaEmsision = new Paragraph("Fecha de emision", normalBold);
+        Paragraph fechaEmsis = new Paragraph(dtf.format(now), normal);
+        Paragraph guiaRemision = new Paragraph("Guia de remision", normalBold);
+        Paragraph guia = new Paragraph("001-001-001541862", normal);
+        datosClientes.addCell(razonSocial);
+        datosClientes.addCell(cliNombres);
+        datosClientes.addCell(identificacion);
+        datosClientes.addCell(cliCedula);
+        datosClientes.addCell(fechaEmsision);
+        datosClientes.addCell(fechaEmsis);
+        datosClientes.addCell(guiaRemision);
+        datosClientes.addCell(guia);
+
+        //agregarmos a la tabladatosClientesMain
+        datosClientesMain.addCell(datosClientes);
+
+        /* ============================
+        DATOS PRODUCTO
+        ============================ */
+        PdfPTable tablaProductos = new PdfPTable(6);
+        //tablaProductos.setHorizontalAlignment(Element.ALIGN_CENTER);
+        tablaProductos.setWidthPercentage(100);
+        tablaProductos.getDefaultCell();
+        float[] columnaProductos = new float[]{17f, 17f, 65f, 10f, 11f, 12f};
+        tablaProductos.setWidths(columnaProductos);
+        tablaProductos.setHorizontalAlignment(Element.ALIGN_CENTER);
+        PdfPCell pro1 = new PdfPCell(new Phrase("Codigo", normalBold));
+        PdfPCell pro2 = new PdfPCell(new Phrase("Cod. Aux", normalBold));
+        PdfPCell pro3 = new PdfPCell(new Phrase("Descripsión", normalBold));
+        PdfPCell pro4 = new PdfPCell(new Phrase("Cant.", normalBold));
+        PdfPCell pro5 = new PdfPCell(new Phrase("P.V.P", normalBold));
+        PdfPCell pro6 = new PdfPCell(new Phrase("P. Total", normalBold));
+        pro1.setHorizontalAlignment(Element.ALIGN_CENTER);
+        pro2.setHorizontalAlignment(Element.ALIGN_CENTER);
+        pro3.setHorizontalAlignment(Element.ALIGN_CENTER);
+        pro4.setHorizontalAlignment(Element.ALIGN_CENTER);
+        pro5.setHorizontalAlignment(Element.ALIGN_CENTER);
+        pro6.setHorizontalAlignment(Element.ALIGN_CENTER);
+        tablaProductos.addCell(pro1);
+        tablaProductos.addCell(pro2);
+        tablaProductos.addCell(pro3);
+        tablaProductos.addCell(pro4);
+        tablaProductos.addCell(pro5);
+        tablaProductos.addCell(pro6);
+        for (int i = 0; i < tDatosFactura.getRowCount(); i++) {
+            String codigoPrin = tDatosFactura.getValueAt(i, 0).toString();
+            String codigoAux = tDatosFactura.getValueAt(i, 1).toString();
+            String producto = tDatosFactura.getValueAt(i, 3).toString();
+            String prodDetExtra = tDatosFactura.getValueAt(i, 4).toString();
+            String cantidadFact = tDatosFactura.getValueAt(i, 2).toString();
+            String precioFact = tDatosFactura.getValueAt(i, 5).toString();
+            String totalFact = tDatosFactura.getValueAt(i, 6).toString();
+            PdfPCell codigoPrinCell = new PdfPCell(new Phrase(codigoPrin, negrita));
+            PdfPCell codigoAuxCell = new PdfPCell(new Phrase(codigoAux, negrita));
+            PdfPCell productoCell = new PdfPCell(new Phrase(producto + " - " + prodDetExtra, negrita));
+            PdfPCell cantidadCell = new PdfPCell(new Phrase(cantidadFact, negrita));
+            PdfPCell precioCell = new PdfPCell(new Phrase(precioFact, negrita));
+            PdfPCell totalCell = new PdfPCell(new Phrase(totalFact, negrita));
+            codigoPrinCell.setHorizontalAlignment(Element.ALIGN_JUSTIFIED);
+            codigoAuxCell.setHorizontalAlignment(Element.ALIGN_JUSTIFIED);
+            productoCell.setHorizontalAlignment(Element.ALIGN_JUSTIFIED);
+            cantidadCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            precioCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            totalCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            tablaProductos.addCell(codigoPrinCell);
+            tablaProductos.addCell(codigoAuxCell);
+            tablaProductos.addCell(productoCell);
+            tablaProductos.addCell(cantidadCell);
+            tablaProductos.addCell(precioCell);
+            tablaProductos.addCell(totalCell);
+        }
+
+        /* ============================
+        AGREGAR DATOS AL DOCUMENTO
+        ============================ */
+        PdfPTable datosExtraMain = new PdfPTable(3);
+        datosExtraMain.setWidthPercentage(100);
+        float[] columnaTablaDatosExtra = new float[]{50f, 2f, 30f};
+        datosExtraMain.setWidths(columnaTablaDatosExtra);
+        datosExtraMain.getDefaultCell().setBorder(0);
+        // Tabla datosAdicionales
+        PdfPTable datosAdicionales = new PdfPTable(2);
+        float[] columnaTablaDatosExtraAdi = new float[]{20f, 30f};
+        datosAdicionales.setWidths(columnaTablaDatosExtraAdi);
+
+        //Datos adicionales
+        Paragraph infoAdi = new Paragraph("Informacion adicional:", normal);
+        Paragraph infoAdiEspacio = new Paragraph("", normal);
+        Paragraph nombreCliente = new Paragraph("Nombre comercial cliente", normalBold);
+        Paragraph cliNombresAdi = new Paragraph(txtApellidosCliente.getText(), normal);
+        Paragraph cliDir = new Paragraph("Direccion", normalBold);
+        Paragraph cliDirAdi = new Paragraph(txtDireccion.getText(), normal);
+        Paragraph codCliente = new Paragraph("Codigo cliente", normalBold);
+        Paragraph codClienteAdi = new Paragraph("1234567890123", normal);
+        Paragraph cliTelefono = new Paragraph("Telefono", normalBold);
+        Paragraph cliTelefonoAdi = new Paragraph(txtTelefono.getText(), normal);
+        Paragraph terminoPago = new Paragraph("Tipo de pago", normalBold);
+        Paragraph terminoPagoAdi = new Paragraph("Efectivo", normal);
+        Paragraph fechaVencimiento = new Paragraph("Fecha de vencimiento", normalBold);
+        Paragraph fechaVencimientoAdi = new Paragraph(dtf.format(now), normal);
+        //
+        PdfPCell infoAdiCell = new PdfPCell(infoAdi);
+        PdfPCell infoAdiEspacioCell = new PdfPCell(infoAdiEspacio);
+        PdfPCell nombreClienteCell = new PdfPCell(nombreCliente);
+        PdfPCell cliNombresAdiCell = new PdfPCell(cliNombresAdi);
+        PdfPCell cliDirCell = new PdfPCell(cliDir);
+        PdfPCell cliDirAdiCell = new PdfPCell(cliDirAdi);
+        PdfPCell codClienteCell = new PdfPCell(codCliente);
+        PdfPCell codClienteAdiCell = new PdfPCell(codClienteAdi);
+        PdfPCell cliTelefonoCell = new PdfPCell(cliTelefono);
+        PdfPCell cliTelefonoAdiCell = new PdfPCell(cliTelefonoAdi);
+        PdfPCell terminoPagoCell = new PdfPCell(terminoPago);
+        PdfPCell terminoPagoAdiCell = new PdfPCell(terminoPagoAdi);
+        PdfPCell fechaVencimientoCell = new PdfPCell(fechaVencimiento);
+        PdfPCell fechaVencimientoAdiCell = new PdfPCell(fechaVencimientoAdi);
+
+        infoAdiCell.setBorder(0);
+        infoAdiEspacioCell.setBorder(0);
+//        nombreClienteCell.setBorder(0);
+//        cliNombresAdiCell.setBorder(0);
+//        cliDirCell.setBorder(0);
+//        cliDirAdiCell.setBorder(0);
+//        codClienteCell.setBorder(0);
+//        codClienteAdiCell.setBorder(0);
+//        cliTelefonoCell.setBorder(0);
+//        cliTelefonoAdiCell.setBorder(0);
+//        terminoPagoCell.setBorder(0);
+//        terminoPagoAdiCell.setBorder(0);
+//        fechaVencimientoCell.setBorder(0);
+//        fechaVencimientoAdiCell.setBorder(0);
+        //Envio a la tabla datosAdicionales
+        datosAdicionales.addCell(infoAdiCell);
+        datosAdicionales.addCell(infoAdiEspacioCell);
+        datosAdicionales.addCell(nombreClienteCell);
+        datosAdicionales.addCell(cliNombresAdiCell);
+        datosAdicionales.addCell(cliDirCell);
+        datosAdicionales.addCell(cliDirAdiCell);
+        datosAdicionales.addCell(codClienteCell);
+        datosAdicionales.addCell(codClienteAdiCell);
+        datosAdicionales.addCell(cliTelefonoCell);
+        datosAdicionales.addCell(cliTelefonoAdiCell);
+        datosAdicionales.addCell(terminoPagoCell);
+        datosAdicionales.addCell(terminoPagoAdiCell);
+        datosAdicionales.addCell(fechaVencimientoCell);
+        datosAdicionales.addCell(fechaVencimientoAdiCell);
+
+        /* ============================
+        AGREGAR DATOS AL DOCUMENTO
+        ============================ */
+        PdfPTable calculosMain = new PdfPTable(2);
+        calculosMain.setWidthPercentage(100);
+        float[] columnaaCalculosMain = new float[]{50f, 50f};
+        calculosMain.setWidths(columnaaCalculosMain);
+        //
+        Paragraph subTotal12Cell = new Paragraph("Subtotal 12%", negritaMediuamBold);
+        Paragraph subTotal12InfoCell = new Paragraph(txtSubtotal.getText(), normal);
+        Paragraph sub0Cell = new Paragraph("Subtotal 0%", negritaMediuamBold);
+        Paragraph sub0InfoCell = new Paragraph("0.00", normal);
+        Paragraph subObjCell = new Paragraph("Subtotal no sujeto de IVA", negritaMediuamBold);
+        Paragraph subObjInfoCell = new Paragraph("0.00", normal);
+        subObjInfoCell.setAlignment(Element.ALIGN_CENTER);
+        Paragraph subImpCell = new Paragraph("Subtotal sin impuestos", negritaMediuamBold);
+        Paragraph subImpInfoCell = new Paragraph(txtSubtotal.getText(), normal);
+        Paragraph desCell = new Paragraph("Descuento", negritaMediuamBold);
+        Paragraph desInfoCell = new Paragraph("0.00", normal);
+        Paragraph ivaCell = new Paragraph("IVA 12%", negritaMediuamBold);
+        Paragraph ivaInfoCell = new Paragraph(txtIva.getText(), normal);
+        Paragraph totalCell = new Paragraph("VALOR A PAGAR", normalBold);
+        Paragraph totalInfoCell = new Paragraph(txtTotal.getText(), normalBold);
+
+        //
+        calculosMain.addCell(subTotal12Cell);
+        calculosMain.addCell(subTotal12InfoCell);
+        calculosMain.addCell(sub0Cell);
+        calculosMain.addCell(sub0InfoCell);
+        calculosMain.addCell(subObjCell);
+        calculosMain.addCell(subObjInfoCell);
+        calculosMain.addCell(subImpCell);
+        calculosMain.addCell(subImpInfoCell);
+        calculosMain.addCell(desCell);
+        calculosMain.addCell(desInfoCell);
+        calculosMain.addCell(ivaCell);
+        calculosMain.addCell(ivaInfoCell);
+        calculosMain.addCell(totalCell);
+        calculosMain.addCell(totalInfoCell);
+
+        //Envio a la otra tabla
+        datosExtraMain.addCell(datosAdicionales);
+        datosExtraMain.addCell(espacio);
+        datosExtraMain.addCell(calculosMain);
+
+        /* ============================
+        AGREGAR DATOS AL DOCUMENTO
+        ============================ */
+        PdfPTable formaFago = new PdfPTable(3);
+        formaFago.setWidthPercentage(100);
+        float[] columnaformaFago = new float[]{42f, 20f, 7f};
+        formaFago.setWidths(columnaformaFago);
+        formaFago.getDefaultCell().setBorder(0);
+        //
+        PdfPTable formaFagoMain = new PdfPTable(4);
+        formaFagoMain.setWidthPercentage(100);
+        float[] formaPagoMain = new float[]{50f, 20f, 20f, 20f};
+        formaFagoMain.setWidths(formaPagoMain);
+        //
+        Paragraph formaPagoText = new Paragraph("Informacion adicional:", normalBold);
+        Paragraph formaValorText = new Paragraph("Valor", normalBold);
+        Paragraph formaPlazoText = new Paragraph("Plazo", normalBold);
+        Paragraph formaTiempoText = new Paragraph("Tiempo", normalBold);
+        Paragraph formaPagoInfo = new Paragraph("Sin utilizar sistema financiero", normal);
+        Paragraph formaValorInfo = new Paragraph(txtTotal.getText(), normal);
+        Paragraph formaPlazoInfo = new Paragraph("0", normal);
+        Paragraph formaTiempoInfo = new Paragraph("dias", normal);
+        //
+        PdfPCell formaPagoCell = new PdfPCell(formaPagoText);
+        PdfPCell formaValorCell = new PdfPCell(formaValorText);
+        PdfPCell formaPlazoCell = new PdfPCell(formaPlazoText);
+        PdfPCell formaTiempoCell = new PdfPCell(formaTiempoText);
+        PdfPCell formaPagoInfoCell = new PdfPCell(formaPagoInfo);
+        PdfPCell formaValorInfoCell = new PdfPCell(formaValorInfo);
+        PdfPCell formaPlazoInfoCell = new PdfPCell(formaPlazoInfo);
+        PdfPCell formaTiempoInfoCell = new PdfPCell(formaTiempoInfo);
+        //
+        formaPagoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        formaValorCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        formaPlazoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        formaTiempoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        formaValorInfoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        formaPlazoInfoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        formaTiempoInfoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        //
+        formaFagoMain.addCell(formaPagoCell);
+        formaFagoMain.addCell(formaValorCell);
+        formaFagoMain.addCell(formaPlazoCell);
+        formaFagoMain.addCell(formaTiempoCell);
+        formaFagoMain.addCell(formaPagoInfoCell);
+        formaFagoMain.addCell(formaValorInfoCell);
+        formaFagoMain.addCell(formaPlazoInfoCell);
+        formaFagoMain.addCell(formaTiempoInfoCell);
+        formaFagoMain.addCell(formaPagoInfoCell);
+        formaFagoMain.addCell(formaValorInfoCell);
+        formaFagoMain.addCell(formaPlazoInfoCell);
+        formaFagoMain.addCell(formaTiempoInfoCell);
+        
+
+        //
+        PdfPTable codigoQr = new PdfPTable(1);
+        codigoQr.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        BarcodeQRCode my_code = new BarcodeQRCode("Example QR Code Creation in Itext", 1, 1, null);
+        //Step-6: Get Image corresponding to the input string
+        Image qr_image = my_code.getImage();
+        qr_image.setBorderWidth(0);
+        qr_image.scaleAbsoluteHeight(20f);
+        qr_image.setWidthPercentage(100);
+        PdfPCell qrCodeCell = new PdfPCell();
+        qrCodeCell.setBorder(0);
+        codigoQr.getDefaultCell().setBorder(0);
+        qrCodeCell.addElement(b.createImageWithBarcode(p.getDirectContent(), BaseColor.BLACK, BaseColor.BLACK));
+//        codigoQr.setWidthPercentage(40f);
+        codigoQr.addCell(qr_image);
+        codigoQr.getDefaultCell().setBorder(0);
+
+        formaFago.addCell(formaFagoMain);
+        formaFago.addCell(espacio);
+        formaFago.addCell(codigoQr);
+        /* ============================
+        AGREGAR DATOS AL DOCUMENTO
+        ============================ */
+        doc.add(encabezado);
+        doc.add(claveAccesoTable);
+        doc.add(codigoBarras);
+        doc.add(espacio);
+        doc.add(datosClientesMain);
+        doc.add(espacio);
+        doc.add(tablaProductos);
+        doc.add(espacio);
+        doc.add(datosExtraMain);
+        doc.add(espacio);
+        doc.add(formaFago);
+        doc.close();
+        archivo.close();
+        Desktop.getDesktop().open(file);
     }
 
 }

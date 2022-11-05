@@ -1,12 +1,10 @@
 package com.anthony.ViewsLight;
 
-
 import VO.ArchivosVO;
-import com.anthony.MainDark.MainAdministradorDark;
 import com.anthony.MainLight.MainAdministrador;
 import com.anthony.Models.USUARIO;
 import com.anthony.VisorPdf.JnaFileChooser;
-import com.anthony.swing.scrollbar.ScrollBarCustom;
+import com.anthony.swing.scrollbar.ScrollBarCustomClaro;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -14,11 +12,12 @@ import mivisorpdf.MiVisorPDF;
 
 public class FORM_REV_DEBITO extends javax.swing.JPanel {
 
+    MainAdministrador admin;
     RoundBorder border = new RoundBorder(0);
     //Contador de paginas
     private int numImg;
-    Color activo = new Color(39, 43, 50);
-    Color inactivo = new Color(32, 32, 32);
+    Color activo = new Color(200, 221, 242);
+    Color inactivo = new Color(255, 255, 255);
 
     //Contiene el archivo PDF en bytes de imagenes
     private ArrayList<ArchivosVO> ListaComponente;
@@ -38,34 +37,29 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
 
     public FORM_REV_DEBITO() {
         initComponents();
-        scroll();
-        tabClientes.setBackground(activo);
-        btnClientes.setVisible(true);
-    }
-
-    public FORM_REV_DEBITO(USUARIO usu, MainAdministradorDark admin) {
-        initComponents();
+        this.admin = admin;
         scroll();
         tabClientes.setBackground(activo);
         btnClientes.setVisible(true);
     }
 
     public FORM_REV_DEBITO(USUARIO usu, MainAdministrador admin) {
-         initComponents();
+        initComponents();
+        this.admin = admin;
         scroll();
         tabClientes.setBackground(activo);
         btnClientes.setVisible(true);
     }
 
     private void scroll() {
-        sc.setVerticalScrollBar(new ScrollBarCustom());
+        sc.setVerticalScrollBar(new ScrollBarCustomClaro());
         sc.setHorizontalScrollBar(scrollBarCustom1);
         sc.getViewport().setOpaque(false);
         lblNombreArchivo.setText("Sin documento");
-        spClientes.setVerticalScrollBar(new ScrollBarCustom());
-        spEmpleados.setVerticalScrollBar(new ScrollBarCustom());
-        spSucursal.setVerticalScrollBar(new ScrollBarCustom());
-        spGeneral.setVerticalScrollBar(new ScrollBarCustom());
+        spClientes.setVerticalScrollBar(new ScrollBarCustomClaro());
+        spEmpleados.setVerticalScrollBar(new ScrollBarCustomClaro());
+        spSucursal.setVerticalScrollBar(new ScrollBarCustomClaro());
+        spGeneral.setVerticalScrollBar(new ScrollBarCustomClaro());
         sc.getViewport().setOpaque(false);
         spClientes.getViewport().setOpaque(false);
         spEmpleados.getViewport().setOpaque(false);
@@ -74,16 +68,13 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
         bordes();
     }
 
-    
-
     public void bordes() {
-        sc.setVerticalScrollBar(new ScrollBarCustom());
+        sc.setVerticalScrollBar(new ScrollBarCustomClaro());
         spClientes.setBorder(border);
         spEmpleados.setBorder(border);
         spSucursal.setBorder(border);
         spGeneral.setBorder(border);
     }
-    
 
     //Metodo abrir documento PDF
     public void abrir_pdf(String url) {
@@ -185,10 +176,10 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
         tabGenerales = new com.anthony.swing.RoundPanel();
         btnGeneral = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(22, 23, 23));
+        setBackground(new java.awt.Color(234, 241, 251));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(63, 81, 102));
+        jLabel1.setForeground(new java.awt.Color(102, 153, 255));
         jLabel1.setText("REVISION NOTA DE DEBITO");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -196,41 +187,41 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
             }
         });
 
-        roundPanel1.setBackground(new java.awt.Color(32, 32, 32));
+        roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(32, 32, 32));
         jPanel1.setLayout(new java.awt.CardLayout());
 
-        panelClientes.setBackground(new java.awt.Color(32, 32, 32));
+        panelClientes.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtNombres.setBackground(new java.awt.Color(32, 32, 32));
+        txtNombres.setBackground(new java.awt.Color(255, 255, 255));
         txtNombres.setForeground(new java.awt.Color(0, 153, 204));
         txtNombres.setLabelText("Nombres");
 
-        rdtbApellidos.setBackground(new java.awt.Color(32, 32, 32));
+        rdtbApellidos.setBackground(new java.awt.Color(255, 255, 255));
         rdtbApellidos.setForeground(new java.awt.Color(63, 81, 102));
         rdtbApellidos.setText("Apellidos");
         rdtbApellidos.setFocusPainted(false);
         rdtbApellidos.setOpaque(true);
         rdtbApellidos.setRequestFocusEnabled(false);
 
-        rdtbCedula.setBackground(new java.awt.Color(32, 32, 32));
+        rdtbCedula.setBackground(new java.awt.Color(255, 255, 255));
         rdtbCedula.setForeground(new java.awt.Color(63, 81, 102));
         rdtbCedula.setText("Cedula");
         rdtbCedula.setFocusPainted(false);
         rdtbCedula.setOpaque(true);
         rdtbCedula.setRequestFocusEnabled(false);
 
-        rdtbRuc.setBackground(new java.awt.Color(32, 32, 32));
+        rdtbRuc.setBackground(new java.awt.Color(255, 255, 255));
         rdtbRuc.setForeground(new java.awt.Color(63, 81, 102));
         rdtbRuc.setText("RUC");
         rdtbRuc.setFocusPainted(false);
         rdtbRuc.setOpaque(true);
         rdtbRuc.setRequestFocusEnabled(false);
 
-        spClientes.setBackground(new java.awt.Color(32, 32, 32));
+        spClientes.setBackground(new java.awt.Color(255, 255, 255));
         spClientes.setBorder(null);
-        spClientes.setForeground(new java.awt.Color(32, 32, 32));
+        spClientes.setForeground(new java.awt.Color(255, 255, 255));
         spClientes.setFocusable(false);
         spClientes.setOpaque(false);
 
@@ -239,8 +230,8 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
                 return false;
             }
         };
-        tDatosClientes.setBackground(new java.awt.Color(32, 32, 32));
-        tDatosClientes.setForeground(new java.awt.Color(32, 32, 32));
+        tDatosClientes.setBackground(new java.awt.Color(255, 255, 255));
+        tDatosClientes.setForeground(new java.awt.Color(255, 255, 255));
         tDatosClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -251,12 +242,12 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
         ));
         tDatosClientes.setAltoHead(30);
         tDatosClientes.setAutoscrolls(false);
-        tDatosClientes.setColorBackgoundHead(new java.awt.Color(23, 25, 27));
-        tDatosClientes.setColorBordeHead(new java.awt.Color(102, 102, 102));
-        tDatosClientes.setColorFilasBackgound1(new java.awt.Color(32, 32, 32));
-        tDatosClientes.setColorFilasBackgound2(new java.awt.Color(22, 23, 23));
-        tDatosClientes.setColorFilasForeground1(new java.awt.Color(102, 102, 102));
-        tDatosClientes.setColorFilasForeground2(new java.awt.Color(102, 102, 102));
+        tDatosClientes.setColorBackgoundHead(new java.awt.Color(243, 248, 255));
+        tDatosClientes.setColorBordeFilas(new java.awt.Color(255, 255, 255));
+        tDatosClientes.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        tDatosClientes.setColorFilasBackgound2(new java.awt.Color(248, 248, 248));
+        tDatosClientes.setColorFilasForeground1(new java.awt.Color(123, 123, 123));
+        tDatosClientes.setColorFilasForeground2(new java.awt.Color(123, 123, 123));
         tDatosClientes.setColorForegroundHead(new java.awt.Color(130, 119, 96));
         tDatosClientes.setColorSelBackgound(new java.awt.Color(61, 61, 61));
         tDatosClientes.setFocusable(false);
@@ -305,35 +296,35 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
                     .addComponent(rdtbCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rdtbRuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                .addComponent(spClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel1.add(panelClientes, "card2");
 
-        panelEmpleados.setBackground(new java.awt.Color(32, 32, 32));
+        panelEmpleados.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtNombres1.setBackground(new java.awt.Color(32, 32, 32));
+        txtNombres1.setBackground(new java.awt.Color(255, 255, 255));
         txtNombres1.setForeground(new java.awt.Color(0, 153, 204));
         txtNombres1.setLabelText("Nombres");
 
-        rdtbApellidos1.setBackground(new java.awt.Color(32, 32, 32));
+        rdtbApellidos1.setBackground(new java.awt.Color(255, 255, 255));
         rdtbApellidos1.setForeground(new java.awt.Color(63, 81, 102));
         rdtbApellidos1.setText("Apellidos");
         rdtbApellidos1.setFocusPainted(false);
         rdtbApellidos1.setOpaque(true);
         rdtbApellidos1.setRequestFocusEnabled(false);
 
-        rdtbCedula1.setBackground(new java.awt.Color(32, 32, 32));
+        rdtbCedula1.setBackground(new java.awt.Color(255, 255, 255));
         rdtbCedula1.setForeground(new java.awt.Color(63, 81, 102));
         rdtbCedula1.setText("Cedula");
         rdtbCedula1.setFocusPainted(false);
         rdtbCedula1.setOpaque(true);
         rdtbCedula1.setRequestFocusEnabled(false);
 
-        spEmpleados.setBackground(new java.awt.Color(32, 32, 32));
+        spEmpleados.setBackground(new java.awt.Color(255, 255, 255));
         spEmpleados.setBorder(null);
-        spEmpleados.setForeground(new java.awt.Color(32, 32, 32));
+        spEmpleados.setForeground(new java.awt.Color(255, 255, 255));
         spEmpleados.setFocusable(false);
         spEmpleados.setOpaque(false);
 
@@ -342,7 +333,7 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
                 return false;
             }
         };
-        tDatosEmpleados.setBackground(new java.awt.Color(32, 32, 32));
+        tDatosEmpleados.setBackground(new java.awt.Color(255, 255, 255));
         tDatosEmpleados.setForeground(new java.awt.Color(32, 32, 32));
         tDatosEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -354,12 +345,12 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
         ));
         tDatosEmpleados.setAltoHead(30);
         tDatosEmpleados.setAutoscrolls(false);
-        tDatosEmpleados.setColorBackgoundHead(new java.awt.Color(23, 25, 27));
-        tDatosEmpleados.setColorBordeHead(new java.awt.Color(102, 102, 102));
-        tDatosEmpleados.setColorFilasBackgound1(new java.awt.Color(32, 32, 32));
-        tDatosEmpleados.setColorFilasBackgound2(new java.awt.Color(22, 23, 23));
-        tDatosEmpleados.setColorFilasForeground1(new java.awt.Color(102, 102, 102));
-        tDatosEmpleados.setColorFilasForeground2(new java.awt.Color(102, 102, 102));
+        tDatosEmpleados.setColorBackgoundHead(new java.awt.Color(243, 248, 255));
+        tDatosEmpleados.setColorBordeFilas(new java.awt.Color(255, 255, 255));
+        tDatosEmpleados.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        tDatosEmpleados.setColorFilasBackgound2(new java.awt.Color(248, 248, 248));
+        tDatosEmpleados.setColorFilasForeground1(new java.awt.Color(123, 123, 123));
+        tDatosEmpleados.setColorFilasForeground2(new java.awt.Color(123, 123, 123));
         tDatosEmpleados.setColorForegroundHead(new java.awt.Color(130, 119, 96));
         tDatosEmpleados.setColorSelBackgound(new java.awt.Color(61, 61, 61));
         tDatosEmpleados.setFocusable(false);
@@ -407,28 +398,28 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
                     .addComponent(rdtbApellidos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rdtbCedula1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                .addComponent(spEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel1.add(panelEmpleados, "card2");
 
-        panelSucursales.setBackground(new java.awt.Color(32, 32, 32));
+        panelSucursales.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtNombres2.setBackground(new java.awt.Color(32, 32, 32));
+        txtNombres2.setBackground(new java.awt.Color(255, 255, 255));
         txtNombres2.setForeground(new java.awt.Color(0, 153, 204));
         txtNombres2.setLabelText("Nombres");
 
-        rdtbApellidos2.setBackground(new java.awt.Color(32, 32, 32));
+        rdtbApellidos2.setBackground(new java.awt.Color(255, 255, 255));
         rdtbApellidos2.setForeground(new java.awt.Color(63, 81, 102));
         rdtbApellidos2.setText("Sucursal");
         rdtbApellidos2.setFocusPainted(false);
         rdtbApellidos2.setOpaque(true);
         rdtbApellidos2.setRequestFocusEnabled(false);
 
-        spSucursal.setBackground(new java.awt.Color(32, 32, 32));
+        spSucursal.setBackground(new java.awt.Color(255, 255, 255));
         spSucursal.setBorder(null);
-        spSucursal.setForeground(new java.awt.Color(32, 32, 32));
+        spSucursal.setForeground(new java.awt.Color(255, 255, 255));
         spSucursal.setFocusable(false);
         spSucursal.setOpaque(false);
 
@@ -437,7 +428,7 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
                 return false;
             }
         };
-        tDatosSucusal.setBackground(new java.awt.Color(32, 32, 32));
+        tDatosSucusal.setBackground(new java.awt.Color(255, 255, 255));
         tDatosSucusal.setForeground(new java.awt.Color(32, 32, 32));
         tDatosSucusal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -449,12 +440,12 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
         ));
         tDatosSucusal.setAltoHead(30);
         tDatosSucusal.setAutoscrolls(false);
-        tDatosSucusal.setColorBackgoundHead(new java.awt.Color(23, 25, 27));
-        tDatosSucusal.setColorBordeHead(new java.awt.Color(102, 102, 102));
-        tDatosSucusal.setColorFilasBackgound1(new java.awt.Color(32, 32, 32));
-        tDatosSucusal.setColorFilasBackgound2(new java.awt.Color(22, 23, 23));
-        tDatosSucusal.setColorFilasForeground1(new java.awt.Color(102, 102, 102));
-        tDatosSucusal.setColorFilasForeground2(new java.awt.Color(102, 102, 102));
+        tDatosSucusal.setColorBackgoundHead(new java.awt.Color(243, 248, 255));
+        tDatosSucusal.setColorBordeFilas(new java.awt.Color(255, 255, 255));
+        tDatosSucusal.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        tDatosSucusal.setColorFilasBackgound2(new java.awt.Color(248, 248, 248));
+        tDatosSucusal.setColorFilasForeground1(new java.awt.Color(123, 123, 123));
+        tDatosSucusal.setColorFilasForeground2(new java.awt.Color(123, 123, 123));
         tDatosSucusal.setColorForegroundHead(new java.awt.Color(130, 119, 96));
         tDatosSucusal.setColorSelBackgound(new java.awt.Color(61, 61, 61));
         tDatosSucusal.setFocusable(false);
@@ -496,15 +487,15 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rdtbApellidos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spSucursal, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                .addComponent(spSucursal, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel1.add(panelSucursales, "card2");
 
-        panelGeneral.setBackground(new java.awt.Color(32, 32, 32));
+        panelGeneral.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtRuc.setBackground(new java.awt.Color(32, 32, 32));
+        txtRuc.setBackground(new java.awt.Color(255, 255, 255));
         txtRuc.setForeground(new java.awt.Color(0, 153, 204));
         txtRuc.setLabelText("R.U.C");
         txtRuc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -521,9 +512,9 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
             }
         });
 
-        spGeneral.setBackground(new java.awt.Color(32, 32, 32));
+        spGeneral.setBackground(new java.awt.Color(255, 255, 255));
         spGeneral.setBorder(null);
-        spGeneral.setForeground(new java.awt.Color(32, 32, 32));
+        spGeneral.setForeground(new java.awt.Color(255, 255, 255));
         spGeneral.setFocusable(false);
         spGeneral.setOpaque(false);
 
@@ -532,7 +523,7 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
                 return false;
             }
         };
-        tDatosGeneral.setBackground(new java.awt.Color(32, 32, 32));
+        tDatosGeneral.setBackground(new java.awt.Color(255, 255, 255));
         tDatosGeneral.setForeground(new java.awt.Color(32, 32, 32));
         tDatosGeneral.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -544,12 +535,12 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
         ));
         tDatosGeneral.setAltoHead(30);
         tDatosGeneral.setAutoscrolls(false);
-        tDatosGeneral.setColorBackgoundHead(new java.awt.Color(23, 25, 27));
-        tDatosGeneral.setColorBordeHead(new java.awt.Color(102, 102, 102));
-        tDatosGeneral.setColorFilasBackgound1(new java.awt.Color(32, 32, 32));
-        tDatosGeneral.setColorFilasBackgound2(new java.awt.Color(22, 23, 23));
-        tDatosGeneral.setColorFilasForeground1(new java.awt.Color(102, 102, 102));
-        tDatosGeneral.setColorFilasForeground2(new java.awt.Color(102, 102, 102));
+        tDatosGeneral.setColorBackgoundHead(new java.awt.Color(243, 248, 255));
+        tDatosGeneral.setColorBordeFilas(new java.awt.Color(255, 255, 255));
+        tDatosGeneral.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        tDatosGeneral.setColorFilasBackgound2(new java.awt.Color(248, 248, 248));
+        tDatosGeneral.setColorFilasForeground1(new java.awt.Color(123, 123, 123));
+        tDatosGeneral.setColorFilasForeground2(new java.awt.Color(123, 123, 123));
         tDatosGeneral.setColorForegroundHead(new java.awt.Color(130, 119, 96));
         tDatosGeneral.setColorSelBackgound(new java.awt.Color(61, 61, 61));
         tDatosGeneral.setFocusable(false);
@@ -569,14 +560,14 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
         });
         spGeneral.setViewportView(tDatosGeneral);
 
-        rdtbApellidos3.setBackground(new java.awt.Color(32, 32, 32));
+        rdtbApellidos3.setBackground(new java.awt.Color(255, 255, 255));
         rdtbApellidos3.setForeground(new java.awt.Color(63, 81, 102));
         rdtbApellidos3.setText("Sucursal");
         rdtbApellidos3.setFocusPainted(false);
         rdtbApellidos3.setOpaque(true);
         rdtbApellidos3.setRequestFocusEnabled(false);
 
-        rdtbApellidos4.setBackground(new java.awt.Color(32, 32, 32));
+        rdtbApellidos4.setBackground(new java.awt.Color(255, 255, 255));
         rdtbApellidos4.setForeground(new java.awt.Color(63, 81, 102));
         rdtbApellidos4.setText("Sucursal");
         rdtbApellidos4.setFocusPainted(false);
@@ -609,7 +600,7 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
                     .addComponent(rdtbApellidos3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rdtbApellidos4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                .addComponent(spGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -632,13 +623,13 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        roundPanel2.setBackground(new java.awt.Color(32, 32, 32));
+        roundPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        sc.setBackground(new java.awt.Color(32, 32, 32));
+        sc.setBackground(new java.awt.Color(255, 255, 255));
         sc.setBorder(null);
         sc.setHorizontalScrollBar(scrollBarCustom1);
 
-        img.setBackground(new java.awt.Color(32, 32, 32));
+        img.setBackground(new java.awt.Color(255, 255, 255));
         img.setOpaque(false);
         img.setPreferredSize(new java.awt.Dimension(210, 297));
 
@@ -646,42 +637,44 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
         img.setLayout(imgLayout);
         imgLayout.setHorizontalGroup(
             imgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 399, Short.MAX_VALUE)
+            .addGap(0, 411, Short.MAX_VALUE)
         );
         imgLayout.setVerticalGroup(
             imgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 382, Short.MAX_VALUE)
+            .addGap(0, 396, Short.MAX_VALUE)
         );
 
         sc.setViewportView(img);
 
+        scrollBarCustom1.setBackground(new java.awt.Color(255, 255, 255));
+        scrollBarCustom1.setForeground(new java.awt.Color(0, 192, 200));
         scrollBarCustom1.setOrientation(javax.swing.JScrollBar.HORIZONTAL);
 
         javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
         roundPanel2.setLayout(roundPanel2Layout);
         roundPanel2Layout.setHorizontalGroup(
             roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrollBarCustom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(sc, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGroup(roundPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+                    .addComponent(scrollBarCustom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
         roundPanel2Layout.setVerticalGroup(
             roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(sc)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(scrollBarCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3))
         );
 
-        roundPanel3.setBackground(new java.awt.Color(32, 32, 32));
+        roundPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         p.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        p.setForeground(new java.awt.Color(130, 119, 96));
+        p.setForeground(new java.awt.Color(96, 96, 96));
         p.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         p.setText("0 paginas");
 
@@ -699,7 +692,7 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
             .addComponent(p, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
-        roundPanel5.setBackground(new java.awt.Color(32, 32, 32));
+        roundPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         p1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         p1.setForeground(new java.awt.Color(63, 81, 102));
@@ -722,7 +715,7 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
             .addComponent(p1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
-        roundPanel6.setBackground(new java.awt.Color(32, 32, 32));
+        roundPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
         p2.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         p2.setForeground(new java.awt.Color(63, 81, 102));
@@ -745,7 +738,7 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
             .addComponent(p2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
-        roundPanel8.setBackground(new java.awt.Color(32, 32, 32));
+        roundPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
         p4.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         p4.setForeground(new java.awt.Color(63, 81, 102));
@@ -768,10 +761,10 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
             .addComponent(p4, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
-        roundPanel9.setBackground(new java.awt.Color(32, 32, 32));
+        roundPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
         lblArchivo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblArchivo.setForeground(new java.awt.Color(130, 119, 96));
+        lblArchivo.setForeground(new java.awt.Color(96, 96, 96));
         lblArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoArchivo.png"))); // NOI18N
         lblArchivo.setText("Abrir archivo");
         lblArchivo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -794,7 +787,7 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
             .addComponent(lblArchivo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
-        roundPanel7.setBackground(new java.awt.Color(32, 32, 32));
+        roundPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
         p3.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         p3.setForeground(new java.awt.Color(63, 81, 102));
@@ -817,7 +810,7 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
             .addComponent(p3, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
-        roundPanel10.setBackground(new java.awt.Color(32, 32, 32));
+        roundPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
         lblNombreArchivo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombreArchivo.setForeground(new java.awt.Color(102, 153, 255));
@@ -842,10 +835,10 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
             .addComponent(lblNombreArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
-        tabClientes.setBackground(new java.awt.Color(32, 32, 32));
+        tabClientes.setBackground(new java.awt.Color(255, 255, 255));
 
         btnClientes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnClientes.setForeground(new java.awt.Color(130, 119, 96));
+        btnClientes.setForeground(new java.awt.Color(96, 96, 96));
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoArchivo.png"))); // NOI18N
         btnClientes.setText("Clientes");
         btnClientes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -868,10 +861,10 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
             .addComponent(btnClientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
-        tabEmpleados.setBackground(new java.awt.Color(32, 32, 32));
+        tabEmpleados.setBackground(new java.awt.Color(255, 255, 255));
 
         btnEmpleados.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnEmpleados.setForeground(new java.awt.Color(130, 119, 96));
+        btnEmpleados.setForeground(new java.awt.Color(96, 96, 96));
         btnEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoArchivo.png"))); // NOI18N
         btnEmpleados.setText("Empleado");
         btnEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -894,10 +887,10 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
             .addComponent(btnEmpleados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
-        tabSucursales.setBackground(new java.awt.Color(32, 32, 32));
+        tabSucursales.setBackground(new java.awt.Color(255, 255, 255));
 
         btnSucursal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnSucursal.setForeground(new java.awt.Color(130, 119, 96));
+        btnSucursal.setForeground(new java.awt.Color(96, 96, 96));
         btnSucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoArchivo.png"))); // NOI18N
         btnSucursal.setText("Sucursal");
         btnSucursal.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -920,10 +913,10 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
             .addComponent(btnSucursal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
-        tabGenerales.setBackground(new java.awt.Color(32, 32, 32));
+        tabGenerales.setBackground(new java.awt.Color(255, 255, 255));
 
         btnGeneral.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnGeneral.setForeground(new java.awt.Color(130, 119, 96));
+        btnGeneral.setForeground(new java.awt.Color(96, 96, 96));
         btnGeneral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoArchivo.png"))); // NOI18N
         btnGeneral.setText("Generales");
         btnGeneral.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1194,7 +1187,7 @@ public class FORM_REV_DEBITO extends javax.swing.JPanel {
     }//GEN-LAST:event_txtRucKeyTyped
 
     private void tDatosClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tDatosClientesMouseClicked
-        
+
     }//GEN-LAST:event_tDatosClientesMouseClicked
 
     private void tDatosEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tDatosEmpleadosMouseClicked

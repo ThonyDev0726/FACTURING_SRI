@@ -460,10 +460,10 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         lblIdProveedor = new javax.swing.JLabel();
         lblIdProducto = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(246, 247, 251));
+        setBackground(new java.awt.Color(233, 241, 251));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(247, 122, 108));
+        jLabel1.setForeground(new java.awt.Color(102, 153, 255));
         jLabel1.setText("PRODUCTOS");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -509,7 +509,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         roundPanel1.setLayout(new java.awt.BorderLayout());
 
         tabbedPane.setBackground(new java.awt.Color(255, 255, 255));
-        tabbedPane.setForeground(new java.awt.Color(7, 6, 17));
+        tabbedPane.setForeground(new java.awt.Color(102, 153, 255));
 
         panelProductos.setBackground(new java.awt.Color(32, 32, 32));
         panelProductos.setLayout(new java.awt.BorderLayout());
@@ -547,7 +547,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         tDatosProductos.setFocusable(false);
         tDatosProductos.setFuenteFilas(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         tDatosProductos.setFuenteFilasSelect(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        tDatosProductos.setFuenteHead(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tDatosProductos.setFuenteHead(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tDatosProductos.setGridColor(new java.awt.Color(248, 248, 248));
         tDatosProductos.setGrosorBordeFilas(0);
         tDatosProductos.setGrosorBordeHead(0);
@@ -600,7 +600,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         tDatosProveedores.setFocusable(false);
         tDatosProveedores.setFuenteFilas(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         tDatosProveedores.setFuenteFilasSelect(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        tDatosProveedores.setFuenteHead(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tDatosProveedores.setFuenteHead(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tDatosProveedores.setGridColor(new java.awt.Color(255, 255, 255));
         tDatosProveedores.setGrosorBordeFilas(0);
         tDatosProveedores.setGrosorBordeHead(0);
@@ -615,7 +615,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
 
         roundPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setForeground(new java.awt.Color(7, 16, 17));
+        jLabel5.setForeground(new java.awt.Color(96, 96, 96));
         jLabel5.setText("Buscar por:");
 
         txtBusquedaProveedor.setBackground(new java.awt.Color(255, 255, 255));
@@ -632,43 +632,43 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
             }
         });
 
-        rdtbContacto.setBackground(new java.awt.Color(255, 255, 255));
+        rdtbContacto.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup2.add(rdtbContacto);
-        rdtbContacto.setForeground(new java.awt.Color(7, 16, 17));
+        rdtbContacto.setForeground(new java.awt.Color(90, 122, 144));
         rdtbContacto.setText("Contacto");
         rdtbContacto.setFocusPainted(false);
         rdtbContacto.setRequestFocusEnabled(false);
 
-        rdtbEmpresa.setBackground(new java.awt.Color(255, 255, 255));
+        rdtbEmpresa.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup2.add(rdtbEmpresa);
-        rdtbEmpresa.setForeground(new java.awt.Color(7, 16, 17));
+        rdtbEmpresa.setForeground(new java.awt.Color(90, 122, 144));
         rdtbEmpresa.setText("Empresa");
         rdtbEmpresa.setFocusPainted(false);
         rdtbEmpresa.setRequestFocusEnabled(false);
 
-        rdtnRuc.setBackground(new java.awt.Color(255, 255, 255));
+        rdtnRuc.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup2.add(rdtnRuc);
-        rdtnRuc.setForeground(new java.awt.Color(7, 16, 17));
+        rdtnRuc.setForeground(new java.awt.Color(90, 122, 144));
         rdtnRuc.setText("RUC");
         rdtnRuc.setFocusPainted(false);
         rdtnRuc.setRequestFocusEnabled(false);
 
-        rdtbDireccion.setBackground(new java.awt.Color(255, 255, 255));
+        rdtbDireccion.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup2.add(rdtbDireccion);
-        rdtbDireccion.setForeground(new java.awt.Color(7, 16, 17));
+        rdtbDireccion.setForeground(new java.awt.Color(90, 122, 144));
         rdtbDireccion.setText("Direccion");
         rdtbDireccion.setFocusPainted(false);
         rdtbDireccion.setRequestFocusEnabled(false);
 
-        rdtbEstado.setBackground(new java.awt.Color(255, 255, 255));
+        rdtbEstado.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup2.add(rdtbEstado);
-        rdtbEstado.setForeground(new java.awt.Color(7, 16, 17));
+        rdtbEstado.setForeground(new java.awt.Color(90, 122, 144));
         rdtbEstado.setText("Estado");
         rdtbEstado.setFocusPainted(false);
         rdtbEstado.setRequestFocusEnabled(false);
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(7, 16, 17));
+        jLabel12.setForeground(new java.awt.Color(96, 96, 96));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("TOTAL DE REGISTROS:");
 
@@ -757,33 +757,33 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
             }
         });
 
-        jLabel17.setForeground(new java.awt.Color(7, 6, 17));
+        jLabel17.setForeground(new java.awt.Color(96, 96, 96));
         jLabel17.setText("Buscar por:");
 
-        rdbtnProducto.setBackground(new java.awt.Color(255, 255, 255));
+        rdbtnProducto.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdbtnProducto);
-        rdbtnProducto.setForeground(new java.awt.Color(7, 6, 17));
+        rdbtnProducto.setForeground(new java.awt.Color(90, 122, 144));
         rdbtnProducto.setText("Producto");
         rdbtnProducto.setFocusPainted(false);
         rdbtnProducto.setRequestFocusEnabled(false);
 
-        rdbtnCodPrinc.setBackground(new java.awt.Color(255, 255, 255));
+        rdbtnCodPrinc.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdbtnCodPrinc);
-        rdbtnCodPrinc.setForeground(new java.awt.Color(7, 6, 17));
+        rdbtnCodPrinc.setForeground(new java.awt.Color(90, 122, 144));
         rdbtnCodPrinc.setText("Cod. princ");
         rdbtnCodPrinc.setFocusPainted(false);
         rdbtnCodPrinc.setRequestFocusEnabled(false);
 
-        rdbtnCodAux.setBackground(new java.awt.Color(255, 255, 255));
+        rdbtnCodAux.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdbtnCodAux);
-        rdbtnCodAux.setForeground(new java.awt.Color(7, 6, 17));
+        rdbtnCodAux.setForeground(new java.awt.Color(90, 122, 144));
         rdbtnCodAux.setText("Cod. Aux");
         rdbtnCodAux.setFocusPainted(false);
         rdbtnCodAux.setRequestFocusEnabled(false);
 
-        rdbtnPVP.setBackground(new java.awt.Color(255, 255, 255));
+        rdbtnPVP.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdbtnPVP);
-        rdbtnPVP.setForeground(new java.awt.Color(7, 6, 17));
+        rdbtnPVP.setForeground(new java.awt.Color(90, 122, 144));
         rdbtnPVP.setText("P.V.P");
         rdbtnPVP.setFocusPainted(false);
         rdbtnPVP.setRequestFocusEnabled(false);
@@ -793,20 +793,20 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         lblTotalRegistros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(7, 6, 17));
+        jLabel13.setForeground(new java.awt.Color(96, 96, 96));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("TOTAL DE REGISTROS:");
 
-        rdtbEstadoProd.setBackground(new java.awt.Color(255, 255, 255));
+        rdtbEstadoProd.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtbEstadoProd);
-        rdtbEstadoProd.setForeground(new java.awt.Color(7, 6, 17));
+        rdtbEstadoProd.setForeground(new java.awt.Color(90, 122, 144));
         rdtbEstadoProd.setText("Estado");
         rdtbEstadoProd.setFocusPainted(false);
         rdtbEstadoProd.setRequestFocusEnabled(false);
 
-        rdtbCategoria.setBackground(new java.awt.Color(255, 255, 255));
+        rdtbCategoria.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtbCategoria);
-        rdtbCategoria.setForeground(new java.awt.Color(7, 6, 17));
+        rdtbCategoria.setForeground(new java.awt.Color(90, 122, 144));
         rdtbCategoria.setText("Categoria");
         rdtbCategoria.setFocusPainted(false);
         rdtbCategoria.setRequestFocusEnabled(false);
@@ -885,7 +885,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         txtCodPrinc.setLabelText("Codigo principal");
 
         btnGuardar.setBackground(new java.awt.Color(46, 189, 141));
-        btnGuardar.setForeground(new java.awt.Color(7, 6, 17));
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("GUARDAR");
         btnGuardar.setBorderPainted(false);
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -896,7 +896,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         });
 
         btnActualizar.setBackground(new java.awt.Color(235, 190, 25));
-        btnActualizar.setForeground(new java.awt.Color(7, 6, 17));
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("ACTUALIZAR");
         btnActualizar.setBorderPainted(false);
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -907,7 +907,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         });
 
         btnCancelarSuc1.setBackground(new java.awt.Color(250, 104, 8));
-        btnCancelarSuc1.setForeground(new java.awt.Color(7, 6, 17));
+        btnCancelarSuc1.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelarSuc1.setText("CANCELAR");
         btnCancelarSuc1.setBorderPainted(false);
         btnCancelarSuc1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1093,7 +1093,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblIdProducto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1069, Short.MAX_VALUE)
+                .addComponent(spPanel)
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents

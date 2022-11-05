@@ -12,6 +12,7 @@ import mivisorpdf.MiVisorPDF;
 
 public class FORM_REV_CREDITO extends javax.swing.JPanel {
 
+    
     RoundBorder border = new RoundBorder(0);
     //Contador de paginas
     private int numImg;

@@ -9,7 +9,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="fb" green="f7" red="f6" type="rgb"/>
+      <Color blue="fb" green="f1" red="e9" type="rgb"/>
     </Property>
   </Properties>
   <AuxValues>
@@ -60,7 +60,7 @@
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="spPanel" pref="1069" max="32767" attributes="0"/>
+              <Component id="spPanel" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -73,7 +73,7 @@
           <Font name="Segoe UI" size="30" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="6c" green="7a" red="f7" type="rgb"/>
+          <Color blue="ff" green="99" red="66" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="PRODUCTOS"/>
       </Properties>
@@ -188,7 +188,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="11" green="6" red="7" type="rgb"/>
+                      <Color blue="ff" green="99" red="66" type="rgb"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -313,7 +313,7 @@
                                   <Font name="Segoe UI" size="12" style="0"/>
                                 </Property>
                                 <Property name="fuenteHead" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="14" style="0"/>
+                                  <Font name="Segoe UI" size="14" style="1"/>
                                 </Property>
                                 <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="f8" green="f8" red="f8" type="rgb"/>
@@ -468,7 +468,7 @@
                                   <Font name="Segoe UI" size="12" style="0"/>
                                 </Property>
                                 <Property name="fuenteHead" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="14" style="0"/>
+                                  <Font name="Segoe UI" size="14" style="1"/>
                                 </Property>
                                 <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -557,7 +557,7 @@
                             <Component class="javax.swing.JLabel" name="jLabel5">
                               <Properties>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="11" green="10" red="7" type="rgb"/>
+                                  <Color blue="60" green="60" red="60" type="rgb"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Buscar por:"/>
                               </Properties>
@@ -580,13 +580,13 @@
                             <Component class="com.anthony.swing.RadioButton" name="rdtbContacto">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                  <Color blue="fa" green="aa" red="8" type="rgb"/>
                                 </Property>
                                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                   <ComponentRef name="buttonGroup2"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="11" green="10" red="7" type="rgb"/>
+                                  <Color blue="90" green="7a" red="5a" type="rgb"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Contacto"/>
                                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -596,13 +596,13 @@
                             <Component class="com.anthony.swing.RadioButton" name="rdtbEmpresa">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                  <Color blue="fa" green="aa" red="8" type="rgb"/>
                                 </Property>
                                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                   <ComponentRef name="buttonGroup2"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="11" green="10" red="7" type="rgb"/>
+                                  <Color blue="90" green="7a" red="5a" type="rgb"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Empresa"/>
                                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -612,13 +612,13 @@
                             <Component class="com.anthony.swing.RadioButton" name="rdtnRuc">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                  <Color blue="fa" green="aa" red="8" type="rgb"/>
                                 </Property>
                                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                   <ComponentRef name="buttonGroup2"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="11" green="10" red="7" type="rgb"/>
+                                  <Color blue="90" green="7a" red="5a" type="rgb"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="RUC"/>
                                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -628,13 +628,13 @@
                             <Component class="com.anthony.swing.RadioButton" name="rdtbDireccion">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                  <Color blue="fa" green="aa" red="8" type="rgb"/>
                                 </Property>
                                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                   <ComponentRef name="buttonGroup2"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="11" green="10" red="7" type="rgb"/>
+                                  <Color blue="90" green="7a" red="5a" type="rgb"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Direccion"/>
                                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -644,13 +644,13 @@
                             <Component class="com.anthony.swing.RadioButton" name="rdtbEstado">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                  <Color blue="fa" green="aa" red="8" type="rgb"/>
                                 </Property>
                                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                   <ComponentRef name="buttonGroup2"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="11" green="10" red="7" type="rgb"/>
+                                  <Color blue="90" green="7a" red="5a" type="rgb"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Estado"/>
                                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -663,7 +663,7 @@
                                   <Font name="Segoe UI" size="14" style="1"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="11" green="10" red="7" type="rgb"/>
+                                  <Color blue="60" green="60" red="60" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="TOTAL DE REGISTROS:"/>
@@ -775,7 +775,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel17">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="11" green="6" red="7" type="rgb"/>
+                      <Color blue="60" green="60" red="60" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Buscar por:"/>
                   </Properties>
@@ -783,13 +783,13 @@
                 <Component class="com.anthony.swing.RadioButton" name="rdbtnProducto">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                      <Color blue="fa" green="aa" red="8" type="rgb"/>
                     </Property>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="11" green="6" red="7" type="rgb"/>
+                      <Color blue="90" green="7a" red="5a" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Producto"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
@@ -799,13 +799,13 @@
                 <Component class="com.anthony.swing.RadioButton" name="rdbtnCodPrinc">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                      <Color blue="fa" green="aa" red="8" type="rgb"/>
                     </Property>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="11" green="6" red="7" type="rgb"/>
+                      <Color blue="90" green="7a" red="5a" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cod. princ"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
@@ -815,13 +815,13 @@
                 <Component class="com.anthony.swing.RadioButton" name="rdbtnCodAux">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                      <Color blue="fa" green="aa" red="8" type="rgb"/>
                     </Property>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="11" green="6" red="7" type="rgb"/>
+                      <Color blue="90" green="7a" red="5a" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cod. Aux"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
@@ -831,13 +831,13 @@
                 <Component class="com.anthony.swing.RadioButton" name="rdbtnPVP">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                      <Color blue="fa" green="aa" red="8" type="rgb"/>
                     </Property>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="11" green="6" red="7" type="rgb"/>
+                      <Color blue="90" green="7a" red="5a" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="P.V.P"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
@@ -861,7 +861,7 @@
                       <Font name="Segoe UI" size="14" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="11" green="6" red="7" type="rgb"/>
+                      <Color blue="60" green="60" red="60" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="TOTAL DE REGISTROS:"/>
@@ -870,13 +870,13 @@
                 <Component class="com.anthony.swing.RadioButton" name="rdtbEstadoProd">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                      <Color blue="fa" green="aa" red="8" type="rgb"/>
                     </Property>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="11" green="6" red="7" type="rgb"/>
+                      <Color blue="90" green="7a" red="5a" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Estado"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
@@ -886,13 +886,13 @@
                 <Component class="com.anthony.swing.RadioButton" name="rdtbCategoria">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                      <Color blue="fa" green="aa" red="8" type="rgb"/>
                     </Property>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="11" green="6" red="7" type="rgb"/>
+                      <Color blue="90" green="7a" red="5a" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Categoria"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
@@ -1058,7 +1058,7 @@
                       <Color blue="8d" green="bd" red="2e" type="rgb"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="11" green="6" red="7" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="GUARDAR"/>
                     <Property name="borderPainted" type="boolean" value="false"/>
@@ -1076,7 +1076,7 @@
                       <Color blue="19" green="be" red="eb" type="rgb"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="11" green="6" red="7" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="ACTUALIZAR"/>
                     <Property name="borderPainted" type="boolean" value="false"/>
@@ -1094,7 +1094,7 @@
                       <Color blue="8" green="68" red="fa" type="rgb"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="11" green="6" red="7" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="CANCELAR"/>
                     <Property name="borderPainted" type="boolean" value="false"/>

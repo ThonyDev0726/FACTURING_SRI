@@ -6,6 +6,7 @@ import com.anthony.MainDark.MainAdministradorDark;
 import com.anthony.Models.USUARIO;
 import com.anthony.VisorPdf.JnaFileChooser;
 import com.anthony.swing.scrollbar.ScrollBarCustom;
+import com.anthony.swing.scrollbar.ScrollBarCustomClaro;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import mivisorpdf.MiVisorPDF;
@@ -43,15 +44,15 @@ public class FORM_MANUAL extends javax.swing.JPanel {
     }
 
     private void scroll() {
-        spItems.setVerticalScrollBar(new ScrollBarCustom());
-        sc.setVerticalScrollBar(new ScrollBarCustom());
+        spItems.setVerticalScrollBar(new ScrollBarCustomClaro());
+        sc.setVerticalScrollBar(new ScrollBarCustomClaro());
         sc.setHorizontalScrollBar(scrollBarCustom1);
         sc.getViewport().setOpaque(false);
         lblNombreArchivo.setText("Sin documento");
     }
 
     public void bordes() {
-        sc.setVerticalScrollBar(new ScrollBarCustom());
+        sc.setVerticalScrollBar(new ScrollBarCustomClaro());
         sc.setBorder(border);
     }
 
@@ -252,7 +253,7 @@ public class FORM_MANUAL extends javax.swing.JPanel {
         setBackground(new java.awt.Color(234, 241, 251));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(63, 81, 102));
+        jLabel1.setForeground(new java.awt.Color(102, 153, 255));
         jLabel1.setText("MANUAL DE USUARIO");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

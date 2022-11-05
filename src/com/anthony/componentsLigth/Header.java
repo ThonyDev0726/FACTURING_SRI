@@ -140,7 +140,7 @@ public class Header extends javax.swing.JPanel {
         cmdMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/menu.png"))); // NOI18N
         cmdMenu.setFocusable(false);
 
-        btnCerrar.setBackground(new java.awt.Color(255, 155, 155));
+        btnCerrar.setBackground(new java.awt.Color(240, 61, 61));
         btnCerrar.setToolTipText("Cerrar");
         btnCerrar.setEffectColor(new java.awt.Color(255, 255, 255));
         btnCerrar.setFocusPainted(false);
@@ -151,13 +151,13 @@ public class Header extends javax.swing.JPanel {
             }
         });
 
-        btnMinimizar.setBackground(new java.awt.Color(226, 170, 0));
+        btnMinimizar.setBackground(new java.awt.Color(227, 217, 140));
         btnMinimizar.setToolTipText("minimizar");
         btnMinimizar.setEffectColor(new java.awt.Color(255, 255, 255));
         btnMinimizar.setFocusPainted(false);
         btnMinimizar.setFocusable(false);
 
-        btnNormaizar.setBackground(new java.awt.Color(155, 255, 159));
+        btnNormaizar.setBackground(new java.awt.Color(67, 199, 51));
         btnNormaizar.setEffectColor(new java.awt.Color(255, 255, 255));
         btnNormaizar.setFocusPainted(false);
         btnNormaizar.setFocusable(false);

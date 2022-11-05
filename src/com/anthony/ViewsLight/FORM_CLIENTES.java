@@ -318,10 +318,10 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
         txtEmail = new textfield.TextField();
         lblIdCliente = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(22, 23, 23));
+        setBackground(new java.awt.Color(233, 241, 251));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(63, 81, 102));
+        jLabel1.setForeground(new java.awt.Color(102, 153, 255));
         jLabel1.setText("CLIENTES");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -329,11 +329,11 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
             }
         });
 
-        roundPanel1.setBackground(new java.awt.Color(32, 32, 32));
+        roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        spClientes.setBackground(new java.awt.Color(32, 32, 32));
+        spClientes.setBackground(new java.awt.Color(255, 255, 255));
         spClientes.setBorder(null);
-        spClientes.setForeground(new java.awt.Color(32, 32, 32));
+        spClientes.setForeground(new java.awt.Color(255, 255, 255));
         spClientes.setFocusable(false);
         spClientes.setOpaque(false);
 
@@ -342,61 +342,31 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
                 return false;
             }
         };
-        tDatosClientes.setBackground(new java.awt.Color(32, 32, 32));
-        tDatosClientes.setForeground(new java.awt.Color(32, 32, 32));
+        tDatosClientes.setBackground(new java.awt.Color(255, 255, 255));
+        tDatosClientes.setForeground(new java.awt.Color(255, 255, 255));
         tDatosClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Ejemplo 1", "Ejemplo 2", "Ejemplo 3", "Ejemplo 4"},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {"fila 31", null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
         tDatosClientes.setAltoHead(30);
-        tDatosClientes.setAutoscrolls(false);
-        tDatosClientes.setColorBackgoundHead(new java.awt.Color(23, 25, 27));
-        tDatosClientes.setColorBordeHead(new java.awt.Color(102, 102, 102));
-        tDatosClientes.setColorFilasBackgound1(new java.awt.Color(32, 32, 32));
-        tDatosClientes.setColorFilasBackgound2(new java.awt.Color(22, 23, 23));
-        tDatosClientes.setColorFilasForeground1(new java.awt.Color(102, 102, 102));
-        tDatosClientes.setColorFilasForeground2(new java.awt.Color(102, 102, 102));
-        tDatosClientes.setColorForegroundHead(new java.awt.Color(130, 119, 96));
-        tDatosClientes.setColorSelBackgound(new java.awt.Color(61, 61, 61));
+        tDatosClientes.setColorBackgoundHead(new java.awt.Color(243, 248, 255));
+        tDatosClientes.setColorBordeFilas(new java.awt.Color(255, 255, 255));
+        tDatosClientes.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        tDatosClientes.setColorFilasBackgound2(new java.awt.Color(248, 248, 248));
+        tDatosClientes.setColorFilasForeground1(new java.awt.Color(123, 123, 123));
+        tDatosClientes.setColorFilasForeground2(new java.awt.Color(123, 123, 123));
+        tDatosClientes.setColorForegroundHead(new java.awt.Color(7, 6, 17));
+        tDatosClientes.setColorSelBackgound(new java.awt.Color(224, 237, 255));
+        tDatosClientes.setColorSelForeground(new java.awt.Color(102, 102, 102));
         tDatosClientes.setFocusable(false);
         tDatosClientes.setFuenteFilas(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         tDatosClientes.setFuenteFilasSelect(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        tDatosClientes.setFuenteHead(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tDatosClientes.setGridColor(new java.awt.Color(32, 32, 32));
+        tDatosClientes.setFuenteHead(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tDatosClientes.setGridColor(new java.awt.Color(255, 255, 255));
         tDatosClientes.setGrosorBordeFilas(0);
         tDatosClientes.setGrosorBordeHead(0);
         tDatosClientes.setOpaque(false);
@@ -422,11 +392,11 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addGap(3, 3, 3)
-                .addComponent(spClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                .addGap(4, 4, 4))
+                .addComponent(spClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                .addGap(3, 3, 3))
         );
 
-        btnEliminar.setBackground(new java.awt.Color(55, 29, 29));
+        btnEliminar.setBackground(new java.awt.Color(250, 104, 8));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoEliminar.png"))); // NOI18N
         btnEliminar.setFocusPainted(false);
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -435,7 +405,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
             }
         });
 
-        btnNuevoRegistro.setBackground(new java.awt.Color(37, 47, 33));
+        btnNuevoRegistro.setBackground(new java.awt.Color(46, 189, 141));
         btnNuevoRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoAgregar.png"))); // NOI18N
         btnNuevoRegistro.setFocusPainted(false);
         btnNuevoRegistro.addActionListener(new java.awt.event.ActionListener() {
@@ -444,7 +414,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
             }
         });
 
-        btnBuscar1.setBackground(new java.awt.Color(0, 102, 153));
+        btnBuscar1.setBackground(new java.awt.Color(8, 170, 250));
         btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoBuscar.png"))); // NOI18N
         btnBuscar1.setFocusPainted(false);
         btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
@@ -453,9 +423,9 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
             }
         });
 
-        panelBuscar.setBackground(new java.awt.Color(32, 32, 32));
+        panelBuscar.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtBusqueda.setBackground(new java.awt.Color(32, 32, 32));
+        txtBusqueda.setBackground(new java.awt.Color(255, 255, 255));
         txtBusqueda.setForeground(new java.awt.Color(0, 153, 204));
         txtBusqueda.setLabelText("Escribe al cliente que deseas buscar....");
         txtBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -467,56 +437,50 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
         jLabel17.setForeground(new java.awt.Color(96, 96, 96));
         jLabel17.setText("Buscar por:");
 
-        rdtbApellidos.setBackground(new java.awt.Color(32, 32, 32));
+        rdtbApellidos.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtbApellidos);
-        rdtbApellidos.setForeground(new java.awt.Color(63, 81, 102));
+        rdtbApellidos.setForeground(new java.awt.Color(90, 122, 144));
         rdtbApellidos.setText("Apellidos");
         rdtbApellidos.setFocusPainted(false);
-        rdtbApellidos.setOpaque(true);
         rdtbApellidos.setRequestFocusEnabled(false);
 
-        rdtbNombres.setBackground(new java.awt.Color(32, 32, 32));
+        rdtbNombres.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtbNombres);
-        rdtbNombres.setForeground(new java.awt.Color(63, 81, 102));
+        rdtbNombres.setForeground(new java.awt.Color(90, 122, 144));
         rdtbNombres.setText("Nombres");
         rdtbNombres.setFocusPainted(false);
-        rdtbNombres.setOpaque(true);
         rdtbNombres.setRequestFocusEnabled(false);
 
-        rdtbCedula.setBackground(new java.awt.Color(32, 32, 32));
+        rdtbCedula.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtbCedula);
-        rdtbCedula.setForeground(new java.awt.Color(63, 81, 102));
+        rdtbCedula.setForeground(new java.awt.Color(90, 122, 144));
         rdtbCedula.setText("Cedula");
         rdtbCedula.setFocusPainted(false);
-        rdtbCedula.setOpaque(true);
         rdtbCedula.setRequestFocusEnabled(false);
 
-        rdtbRuc.setBackground(new java.awt.Color(32, 32, 32));
+        rdtbRuc.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtbRuc);
-        rdtbRuc.setForeground(new java.awt.Color(63, 81, 102));
+        rdtbRuc.setForeground(new java.awt.Color(90, 122, 144));
         rdtbRuc.setText("RUC");
         rdtbRuc.setFocusPainted(false);
-        rdtbRuc.setOpaque(true);
         rdtbRuc.setRequestFocusEnabled(false);
 
-        rdtbDireccion.setBackground(new java.awt.Color(32, 32, 32));
+        rdtbDireccion.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtbDireccion);
-        rdtbDireccion.setForeground(new java.awt.Color(63, 81, 102));
+        rdtbDireccion.setForeground(new java.awt.Color(90, 122, 144));
         rdtbDireccion.setText("Direccion");
         rdtbDireccion.setFocusPainted(false);
-        rdtbDireccion.setOpaque(true);
         rdtbDireccion.setRequestFocusEnabled(false);
 
         lblTotalRegistros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTotalRegistros.setForeground(new java.awt.Color(63, 81, 102));
         lblTotalRegistros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
-        rdtbEstado.setBackground(new java.awt.Color(32, 32, 32));
+        rdtbEstado.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtbEstado);
-        rdtbEstado.setForeground(new java.awt.Color(63, 81, 102));
+        rdtbEstado.setForeground(new java.awt.Color(90, 122, 144));
         rdtbEstado.setText("Estado");
         rdtbEstado.setFocusPainted(false);
-        rdtbEstado.setOpaque(true);
         rdtbEstado.setRequestFocusEnabled(false);
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -575,17 +539,17 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        panelForm.setBackground(new java.awt.Color(32, 32, 32));
+        panelForm.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtNombres.setBackground(new java.awt.Color(32, 32, 32));
+        txtNombres.setBackground(new java.awt.Color(255, 255, 255));
         txtNombres.setForeground(new java.awt.Color(0, 153, 204));
         txtNombres.setLabelText("Nombres");
 
-        txtApellidos.setBackground(new java.awt.Color(32, 32, 32));
+        txtApellidos.setBackground(new java.awt.Color(255, 255, 255));
         txtApellidos.setForeground(new java.awt.Color(0, 153, 204));
         txtApellidos.setLabelText("Apellidos");
 
-        txtRuc.setBackground(new java.awt.Color(32, 32, 32));
+        txtRuc.setBackground(new java.awt.Color(255, 255, 255));
         txtRuc.setForeground(new java.awt.Color(0, 153, 204));
         txtRuc.setLabelText("R.U.C");
         txtRuc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -602,7 +566,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
             }
         });
 
-        txtCedula.setBackground(new java.awt.Color(32, 32, 32));
+        txtCedula.setBackground(new java.awt.Color(255, 255, 255));
         txtCedula.setForeground(new java.awt.Color(0, 153, 204));
         txtCedula.setLabelText("Cedula");
         txtCedula.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -619,7 +583,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
             }
         });
 
-        txtTelefono.setBackground(new java.awt.Color(32, 32, 32));
+        txtTelefono.setBackground(new java.awt.Color(255, 255, 255));
         txtTelefono.setForeground(new java.awt.Color(0, 153, 204));
         txtTelefono.setLabelText("Telefono");
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -628,8 +592,8 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
             }
         });
 
-        btnGuardarCli.setBackground(new java.awt.Color(37, 47, 33));
-        btnGuardarCli.setForeground(new java.awt.Color(204, 204, 204));
+        btnGuardarCli.setBackground(new java.awt.Color(46, 189, 141));
+        btnGuardarCli.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardarCli.setText("GUARDAR");
         btnGuardarCli.setFocusPainted(false);
         btnGuardarCli.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -639,8 +603,8 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
             }
         });
 
-        btnActualizar.setBackground(new java.awt.Color(55, 50, 40));
-        btnActualizar.setForeground(new java.awt.Color(204, 204, 204));
+        btnActualizar.setBackground(new java.awt.Color(235, 190, 25));
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("ACTUALIZAR");
         btnActualizar.setFocusPainted(false);
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -650,8 +614,8 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
             }
         });
 
-        btnCancelarSuc1.setBackground(new java.awt.Color(55, 29, 29));
-        btnCancelarSuc1.setForeground(new java.awt.Color(204, 204, 204));
+        btnCancelarSuc1.setBackground(new java.awt.Color(250, 104, 8));
+        btnCancelarSuc1.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelarSuc1.setText("CANCELAR");
         btnCancelarSuc1.setFocusPainted(false);
         btnCancelarSuc1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -661,15 +625,14 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
             }
         });
 
-        cbxEstadoCli.setBackground(new java.awt.Color(32, 32, 32));
         cbxEstadoCli.setForeground(new java.awt.Color(0, 153, 204));
         cbxEstadoCli.setLabeText("Estado");
 
-        txtDireccion.setBackground(new java.awt.Color(32, 32, 32));
+        txtDireccion.setBackground(new java.awt.Color(255, 255, 255));
         txtDireccion.setForeground(new java.awt.Color(0, 153, 204));
         txtDireccion.setLabelText("Direccion");
 
-        txtEmail.setBackground(new java.awt.Color(32, 32, 32));
+        txtEmail.setBackground(new java.awt.Color(255, 255, 255));
         txtEmail.setForeground(new java.awt.Color(0, 153, 204));
         txtEmail.setLabelText("Email");
 
@@ -778,18 +741,6 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
 
     }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void tDatosClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tDatosClientesMouseClicked
-        cargarDatosClientes();
-        btnGuardarCli.setVisible(false);
-        btnEliminar.setVisible(true);
-        if (evt.getClickCount() == 2) {
-            panelForm.setVisible(true);
-            panelBuscar.setVisible(false);
-            btnActualizar.setVisible(true);
-            cbxEstadoCli.setVisible(true);
-        }
-    }//GEN-LAST:event_tDatosClientesMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         ID_CLIENTE = Integer.parseInt(lblIdCliente.getText());
@@ -1004,6 +955,18 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
             System.out.println("Hubo un error al procesar tu peticion, favor corregirlos!!" + ex);
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void tDatosClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tDatosClientesMouseClicked
+        cargarDatosClientes();
+        btnGuardarCli.setVisible(false);
+        btnEliminar.setVisible(true);
+        if (evt.getClickCount() == 2) {
+            panelForm.setVisible(true);
+            panelBuscar.setVisible(false);
+            btnActualizar.setVisible(true);
+            cbxEstadoCli.setVisible(true);
+        }
+    }//GEN-LAST:event_tDatosClientesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

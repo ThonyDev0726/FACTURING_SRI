@@ -666,7 +666,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
         idUsuario = usu.getID_USUARIO();
         permiso = perDao.ESTADO_NOT_CREDITO(idUsuario);
         if (permiso.equals("CON PERMISO")) {
-//            main.showForm(new FORM_NOT_CREDITO(usu, admin));
+            main.showForm(new FORM_REV_DEBITO(usu, admin));
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Nota credito!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
@@ -679,7 +679,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
         idUsuario = usu.getID_USUARIO();
         permiso = perDao.ESTADO_NOT_DEBITO(idUsuario);
         if (permiso.equals("CON PERMISO")) {
-//            main.showForm(new FORM_NOT_CREDITO(usu, admin));
+            main.showForm(new FORM_REV_DEBITO(usu, admin));
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Nota debito!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {

@@ -3,7 +3,6 @@ package com.anthony.MainLight;
 import com.anthony.MainDark.MainAdministradorDark;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
-import com.anthony.ViewsDark.FORM_HOME;
 import com.anthony.ViewsLight.*;
 import com.anthony.event.*;
 import com.anthony.componentsLigth.*;
@@ -196,40 +195,6 @@ public class MainAdministrador extends javax.swing.JFrame {
                         System.out.println("ACCEDIMOS A GENERAR FACTURA");
                         facturacion();
                         System.out.println("========================================");
-                        header.addMenuEvent(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                if (!animator.isRunning()) {
-                                    animator.start();
-                                }
-                                menu.setEnableMenu(false);
-                                if (menu.isShowMenu()) {
-                                    menu.hideallMenu();//Ocultar menu----------
-                                }
-                            }
-                        });
-                        menu.hideallMenu();
-                    } else if (subMenuIndex == 1) {
-                        System.out.println("ACCEDIMOS A GENERAR NOTA DE CREDITo");
-                        System.out.println("========================================");
-                        notaCredito();
-                        header.addMenuEvent(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                if (!animator.isRunning()) {
-                                    animator.start();
-                                }
-                                menu.setEnableMenu(false);
-                                if (menu.isShowMenu()) {
-                                    menu.hideallMenu();//Ocultar menu----------
-                                }
-                            }
-                        });
-                        menu.hideallMenu();
-                    } else if (subMenuIndex == 2) {
-                        System.out.println("ACCEDIMOS A GENERAR NOTA DE DEBITO");
-                        System.out.println("========================================");
-                        notaDebito();
                         header.addMenuEvent(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -646,7 +611,7 @@ public class MainAdministrador extends javax.swing.JFrame {
         idUsuario = usu.getID_USUARIO();
         permiso = perDao.ESTADO_FACTURACION(idUsuario);
         if (permiso.equals("CON PERMISO")) {
-            main.showForm(new FORM_FACTURACION(usu, admin));
+            main.showForm(new FORM_FACTURAR(usu, admin));
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Facturacion!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
@@ -659,7 +624,7 @@ public class MainAdministrador extends javax.swing.JFrame {
         idUsuario = usu.getID_USUARIO();
         permiso = perDao.ESTADO_NOT_CREDITO(idUsuario);
         if (permiso.equals("CON PERMISO")) {
-//            main.showForm(new FORM_NOT_CREDITO(usu, admin));
+            main.showForm(new FORM_REV_CREDITO(usu, admin));
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Nota credito!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
@@ -672,8 +637,8 @@ public class MainAdministrador extends javax.swing.JFrame {
         idUsuario = usu.getID_USUARIO();
         permiso = perDao.ESTADO_NOT_DEBITO(idUsuario);
         if (permiso.equals("CON PERMISO")) {
-//            main.showForm(new FORM_NOT_CREDITO(usu, admin));
-            toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Nota debito!!");
+            main.showForm(new FORM_REV_DEBITO(usu, admin));
+            toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Nota credito!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
             toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
@@ -724,7 +689,7 @@ public class MainAdministrador extends javax.swing.JFrame {
         idUsuario = usu.getID_USUARIO();
         permiso = perDao.ESTADO_REV_NOT_CREDITO(idUsuario);
         if (permiso.equals("CON PERMISO")) {
-//            main.showForm(new FORM_NOT_CREDITO(usu, admin));
+            main.showForm(new FORM_REV_CREDITO(usu, admin));
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en Rept. Nota credito!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {

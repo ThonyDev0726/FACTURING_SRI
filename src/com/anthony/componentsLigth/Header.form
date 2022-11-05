@@ -80,7 +80,7 @@
     <Component class="com.anthony.swing.Button" name="btnCerrar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="9b" green="9b" red="ff" type="rgb"/>
+          <Color blue="3d" green="3d" red="f0" type="rgb"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Cerrar"/>
         <Property name="effectColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -96,7 +96,7 @@
     <Component class="com.anthony.swing.Button" name="btnMinimizar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="aa" red="e2" type="rgb"/>
+          <Color blue="8c" green="d9" red="e3" type="rgb"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="minimizar"/>
         <Property name="effectColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -109,7 +109,7 @@
     <Component class="com.anthony.swing.Button" name="btnNormaizar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="9f" green="ff" red="9b" type="rgb"/>
+          <Color blue="33" green="c7" red="43" type="rgb"/>
         </Property>
         <Property name="effectColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>

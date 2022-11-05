@@ -4,6 +4,7 @@ import com.anthony.MainLight.MainAdministrador;
 import com.anthony.Models.USUARIO;
 import com.anthony.ModelsDAO.USUARIO_DAO;
 import com.anthony.toast.Toast;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +22,8 @@ public class FORM_CLAVE extends javax.swing.JPanel {
         initComponents();
         btnCambiar.setVisible(false);
         txtCambiar.setVisible(false);
+        txtCambiar.setBackground(new java.awt.Color(234, 241, 251));
+        txtConfirmar.setBackground(new java.awt.Color(234, 241, 251));
     }
 
     public FORM_CLAVE(USUARIO usu, MainAdministrador admin) {
@@ -29,6 +32,8 @@ public class FORM_CLAVE extends javax.swing.JPanel {
         initComponents();
         btnCambiar.setVisible(false);
         txtCambiar.setVisible(false);
+        txtCambiar.setBackground(new java.awt.Color(234, 241, 251));
+        txtConfirmar.setBackground(new java.awt.Color(234, 241, 251));
     }
 
     public Boolean confirmarClave() throws SQLException {

@@ -286,7 +286,7 @@ public class FORM_EMPLEADOS extends javax.swing.JPanel {
         cbxSucursal = new com.anthony.swing.Combobox();
         lblIdEmpleado = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(246, 247, 251));
+        setBackground(new java.awt.Color(233, 241, 251));
         setToolTipText("");
 
         lblRecargar.setBackground(new java.awt.Color(102, 153, 255));
@@ -334,7 +334,7 @@ public class FORM_EMPLEADOS extends javax.swing.JPanel {
         tDatosEmpleados.setFocusable(false);
         tDatosEmpleados.setFuenteFilas(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         tDatosEmpleados.setFuenteFilasSelect(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        tDatosEmpleados.setFuenteHead(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tDatosEmpleados.setFuenteHead(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tDatosEmpleados.setGridColor(new java.awt.Color(255, 255, 255));
         tDatosEmpleados.setGrosorBordeFilas(0);
         tDatosEmpleados.setGrosorBordeHead(0);
@@ -405,40 +405,40 @@ public class FORM_EMPLEADOS extends javax.swing.JPanel {
             }
         });
 
-        jLabel17.setForeground(new java.awt.Color(7, 6, 17));
+        jLabel17.setForeground(new java.awt.Color(96, 96, 96));
         jLabel17.setText("Buscar por:");
 
-        rdtbNombres.setBackground(new java.awt.Color(255, 255, 255));
+        rdtbNombres.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtbNombres);
-        rdtbNombres.setForeground(new java.awt.Color(7, 6, 17));
+        rdtbNombres.setForeground(new java.awt.Color(90, 122, 144));
         rdtbNombres.setText("Nombres");
         rdtbNombres.setFocusPainted(false);
         rdtbNombres.setRequestFocusEnabled(false);
 
-        rdtbApellidos.setBackground(new java.awt.Color(255, 255, 255));
+        rdtbApellidos.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtbApellidos);
-        rdtbApellidos.setForeground(new java.awt.Color(7, 6, 17));
+        rdtbApellidos.setForeground(new java.awt.Color(90, 122, 144));
         rdtbApellidos.setText("Apellidos");
         rdtbApellidos.setFocusPainted(false);
         rdtbApellidos.setRequestFocusEnabled(false);
 
-        rdtbCedula.setBackground(new java.awt.Color(255, 255, 255));
+        rdtbCedula.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtbCedula);
-        rdtbCedula.setForeground(new java.awt.Color(7, 6, 17));
+        rdtbCedula.setForeground(new java.awt.Color(90, 122, 144));
         rdtbCedula.setText("Cedula");
         rdtbCedula.setFocusPainted(false);
         rdtbCedula.setRequestFocusEnabled(false);
 
-        rdtbDireccion.setBackground(new java.awt.Color(255, 255, 255));
+        rdtbDireccion.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtbDireccion);
-        rdtbDireccion.setForeground(new java.awt.Color(7, 6, 17));
+        rdtbDireccion.setForeground(new java.awt.Color(90, 122, 144));
         rdtbDireccion.setText("Direccion");
         rdtbDireccion.setFocusPainted(false);
         rdtbDireccion.setRequestFocusEnabled(false);
 
-        rdtbEstado.setBackground(new java.awt.Color(255, 255, 255));
+        rdtbEstado.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtbEstado);
-        rdtbEstado.setForeground(new java.awt.Color(7, 6, 17));
+        rdtbEstado.setForeground(new java.awt.Color(90, 122, 144));
         rdtbEstado.setText("Estado");
         rdtbEstado.setFocusPainted(false);
         rdtbEstado.setRequestFocusEnabled(false);
@@ -448,7 +448,7 @@ public class FORM_EMPLEADOS extends javax.swing.JPanel {
         lblTotalRegistros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(7, 6, 17));
+        jLabel12.setForeground(new java.awt.Color(96, 96, 96));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("TOTAL DE REGISTROS:");
 
@@ -498,7 +498,7 @@ public class FORM_EMPLEADOS extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        panelForm.setBackground(new java.awt.Color(234, 241, 251));
+        panelForm.setBackground(new java.awt.Color(255, 255, 255));
 
         btnGuardarEmp.setBackground(new java.awt.Color(46, 189, 141));
         btnGuardarEmp.setForeground(new java.awt.Color(255, 255, 255));

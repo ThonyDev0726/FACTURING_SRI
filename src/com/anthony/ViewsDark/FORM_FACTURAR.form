@@ -32,6 +32,8 @@
               <Component id="lblPdf" min="-2" pref="0" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblCantidadTabla" min="-2" pref="0" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="txtTelefono" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Component id="spPanel" alignment="0" max="32767" attributes="0"/>
@@ -46,6 +48,10 @@
                   <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
                   <Component id="lblPdf" max="32767" attributes="0"/>
                   <Component id="lblCantidadTabla" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtTelefono" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="spPanel" max="32767" attributes="0"/>
@@ -127,7 +133,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -930,7 +936,7 @@
                                       <Group type="102" attributes="0">
                                           <Component id="txtCodPrinc" pref="107" max="32767" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="txtCodAux" pref="107" max="32767" attributes="0"/>
+                                          <Component id="txtCodAux" pref="108" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="txtNombreProd" alignment="0" max="32767" attributes="0"/>
                                   </Group>
@@ -939,7 +945,7 @@
                                       <Group type="102" attributes="0">
                                           <Component id="txtPVP" min="-2" pref="175" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="txtStock" pref="107" max="32767" attributes="0"/>
+                                          <Component id="txtStock" pref="108" max="32767" attributes="0"/>
                                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtCantidadProducto" pref="108" max="32767" attributes="0"/>
                                       </Group>
@@ -1628,7 +1634,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lblTotalPagar" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtTotal" alignment="0" pref="63" max="32767" attributes="0"/>
+                              <Component id="txtTotal" alignment="0" pref="65" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1696,6 +1702,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCantidadTabla">
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtTelefono">
     </Component>
   </SubComponents>
 </Form>

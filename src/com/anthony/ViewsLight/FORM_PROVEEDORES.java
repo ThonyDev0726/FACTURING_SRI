@@ -300,10 +300,11 @@ public class FORM_PROVEEDORES extends javax.swing.JPanel {
         cbxSucursal = new com.anthony.swing.Combobox();
         lblIdProveedor = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(246, 247, 251));
+        setBackground(new java.awt.Color(233, 241, 251));
 
+        jLabel1.setBackground(new java.awt.Color(102, 153, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(247, 122, 108));
+        jLabel1.setForeground(new java.awt.Color(102, 153, 255));
         jLabel1.setText("PROVEEDORES");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -347,7 +348,7 @@ public class FORM_PROVEEDORES extends javax.swing.JPanel {
         tDatosProveedores.setFocusable(false);
         tDatosProveedores.setFuenteFilas(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         tDatosProveedores.setFuenteFilasSelect(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        tDatosProveedores.setFuenteHead(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tDatosProveedores.setFuenteHead(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tDatosProveedores.setGridColor(new java.awt.Color(255, 255, 255));
         tDatosProveedores.setGrosorBordeFilas(0);
         tDatosProveedores.setGrosorBordeHead(0);
@@ -416,41 +417,41 @@ public class FORM_PROVEEDORES extends javax.swing.JPanel {
             }
         });
 
-        jLabel17.setForeground(new java.awt.Color(7, 6, 17));
+        jLabel17.setForeground(new java.awt.Color(96, 96, 96));
         jLabel17.setText("Buscar por:");
 
-        rdtbContacto.setBackground(new java.awt.Color(255, 255, 255));
+        rdtbContacto.setBackground(new java.awt.Color(8, 170, 250));
         rdtbContacto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(7, 6, 17)));
         buttonGroup1.add(rdtbContacto);
-        rdtbContacto.setForeground(new java.awt.Color(7, 6, 17));
+        rdtbContacto.setForeground(new java.awt.Color(90, 122, 144));
         rdtbContacto.setText("Contacto");
         rdtbContacto.setFocusPainted(false);
         rdtbContacto.setRequestFocusEnabled(false);
 
-        rdtbEmpresa.setBackground(new java.awt.Color(255, 255, 255));
+        rdtbEmpresa.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtbEmpresa);
-        rdtbEmpresa.setForeground(new java.awt.Color(7, 6, 17));
+        rdtbEmpresa.setForeground(new java.awt.Color(90, 122, 144));
         rdtbEmpresa.setText("Empresa");
         rdtbEmpresa.setFocusPainted(false);
         rdtbEmpresa.setRequestFocusEnabled(false);
 
-        rdtnRuc.setBackground(new java.awt.Color(255, 255, 255));
+        rdtnRuc.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtnRuc);
-        rdtnRuc.setForeground(new java.awt.Color(7, 6, 17));
+        rdtnRuc.setForeground(new java.awt.Color(90, 122, 144));
         rdtnRuc.setText("RUC");
         rdtnRuc.setFocusPainted(false);
         rdtnRuc.setRequestFocusEnabled(false);
 
-        rdtbDireccion.setBackground(new java.awt.Color(255, 255, 255));
+        rdtbDireccion.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtbDireccion);
-        rdtbDireccion.setForeground(new java.awt.Color(7, 6, 17));
+        rdtbDireccion.setForeground(new java.awt.Color(90, 122, 144));
         rdtbDireccion.setText("Direccion");
         rdtbDireccion.setFocusPainted(false);
         rdtbDireccion.setRequestFocusEnabled(false);
 
-        rdtbEstado.setBackground(new java.awt.Color(255, 255, 255));
+        rdtbEstado.setBackground(new java.awt.Color(8, 170, 250));
         buttonGroup1.add(rdtbEstado);
-        rdtbEstado.setForeground(new java.awt.Color(7, 6, 17));
+        rdtbEstado.setForeground(new java.awt.Color(90, 122, 144));
         rdtbEstado.setText("Estado");
         rdtbEstado.setFocusPainted(false);
         rdtbEstado.setRequestFocusEnabled(false);
@@ -460,7 +461,7 @@ public class FORM_PROVEEDORES extends javax.swing.JPanel {
         lblTotalRegistros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(7, 6, 17));
+        jLabel12.setForeground(new java.awt.Color(96, 96, 96));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("TOTAL DE REGISTROS:");
 
@@ -537,7 +538,7 @@ public class FORM_PROVEEDORES extends javax.swing.JPanel {
         txtTelefono.setLabelText("Telefono");
 
         btnGuardar.setBackground(new java.awt.Color(46, 189, 141));
-        btnGuardar.setForeground(new java.awt.Color(7, 6, 17));
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("GUARDAR");
         btnGuardar.setFocusPainted(false);
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -548,7 +549,7 @@ public class FORM_PROVEEDORES extends javax.swing.JPanel {
         });
 
         btnActualizar.setBackground(new java.awt.Color(235, 190, 25));
-        btnActualizar.setForeground(new java.awt.Color(7, 6, 17));
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("ACTUALIZAR");
         btnActualizar.setFocusPainted(false);
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -559,7 +560,7 @@ public class FORM_PROVEEDORES extends javax.swing.JPanel {
         });
 
         btnCancelarSuc1.setBackground(new java.awt.Color(250, 104, 8));
-        btnCancelarSuc1.setForeground(new java.awt.Color(7, 6, 17));
+        btnCancelarSuc1.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelarSuc1.setText("CANCELAR");
         btnCancelarSuc1.setFocusPainted(false);
         btnCancelarSuc1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
