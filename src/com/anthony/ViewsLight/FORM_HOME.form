@@ -126,7 +126,7 @@
             <Container class="com.anthony.swing.RoundPanel" name="roundPanel2">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="fb" green="f1" red="e9" type="rgb"/>
+                  <Color blue="f7" green="e3" red="d4" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -205,7 +205,7 @@
             <Container class="com.anthony.swing.RoundPanel" name="roundPanel4">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="fb" green="f1" red="e9" type="rgb"/>
+                  <Color blue="f7" green="e3" red="d4" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -263,7 +263,7 @@
                       <Font name="Segoe UI" size="32" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="97" green="c9" red="20" type="rgb"/>
+                      <Color blue="7d" green="b1" red="0" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="15"/>
                   </Properties>
@@ -274,7 +274,7 @@
                       <Font name="Segoe UI" size="14" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="97" green="c9" red="20" type="rgb"/>
+                      <Color blue="7d" green="b1" red="0" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="EMPLEADOS"/>
                   </Properties>
@@ -284,7 +284,7 @@
             <Container class="com.anthony.swing.RoundPanel" name="roundPanel5">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="fb" green="f1" red="e9" type="rgb"/>
+                  <Color blue="f7" green="e3" red="d4" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -364,7 +364,7 @@
             <Container class="com.anthony.swing.RoundPanel" name="roundPanel6">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="fb" green="f1" red="e9" type="rgb"/>
+                  <Color blue="f7" green="e3" red="d4" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -396,7 +396,7 @@
             <Container class="com.anthony.swing.RoundPanel" name="roundPanel8">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="fb" green="f1" red="e9" type="rgb"/>
+                  <Color blue="f7" green="e3" red="d4" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -428,7 +428,7 @@
             <Container class="com.anthony.swing.RoundPanel" name="roundPanel15">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="fb" green="f1" red="e9" type="rgb"/>
+                  <Color blue="f7" green="e3" red="d4" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -527,7 +527,7 @@
             <Container class="com.anthony.swing.RoundPanel" name="roundPanel16">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="fb" green="f1" red="e9" type="rgb"/>
+                  <Color blue="f7" green="e3" red="d4" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -589,7 +589,7 @@
             <Container class="com.anthony.swing.RoundPanel" name="roundPanel17">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="fb" green="f1" red="e9" type="rgb"/>
+                  <Color blue="f7" green="e3" red="d4" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -651,7 +651,7 @@
             <Container class="com.anthony.swing.RoundPanel" name="roundPanel11">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="fb" green="f1" red="e9" type="rgb"/>
+                  <Color blue="f7" green="e3" red="d4" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -869,12 +869,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="pictureBox4" min="-2" pref="300" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="button4" min="-2" pref="186" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="pictureBox4" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
+                              <Component id="button4" alignment="0" min="-2" pref="186" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>

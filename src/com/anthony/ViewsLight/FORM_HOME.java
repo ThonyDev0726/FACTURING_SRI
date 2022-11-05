@@ -112,7 +112,7 @@ public class FORM_HOME extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(246, 247, 251));
 
-        roundPanel2.setBackground(new java.awt.Color(233, 241, 251));
+        roundPanel2.setBackground(new java.awt.Color(212, 227, 247));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(102, 153, 255));
@@ -155,18 +155,18 @@ public class FORM_HOME extends javax.swing.JPanel {
                         .addContainerGap())))
         );
 
-        roundPanel4.setBackground(new java.awt.Color(233, 241, 251));
+        roundPanel4.setBackground(new java.awt.Color(212, 227, 247));
 
         progress2.setBorder(null);
         progress2.setForeground(new java.awt.Color(32, 201, 151));
         progress2.setValue(15);
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(32, 201, 151));
+        jLabel16.setForeground(new java.awt.Color(0, 177, 125));
         jLabel16.setText("15");
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(32, 201, 151));
+        jLabel17.setForeground(new java.awt.Color(0, 177, 125));
         jLabel17.setText("EMPLEADOS");
 
         javax.swing.GroupLayout roundPanel4Layout = new javax.swing.GroupLayout(roundPanel4);
@@ -198,7 +198,7 @@ public class FORM_HOME extends javax.swing.JPanel {
                         .addContainerGap())))
         );
 
-        roundPanel5.setBackground(new java.awt.Color(233, 241, 251));
+        roundPanel5.setBackground(new java.awt.Color(212, 227, 247));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(136, 108, 192));
@@ -242,7 +242,7 @@ public class FORM_HOME extends javax.swing.JPanel {
                         .addContainerGap())))
         );
 
-        roundPanel6.setBackground(new java.awt.Color(233, 241, 251));
+        roundPanel6.setBackground(new java.awt.Color(212, 227, 247));
 
         javax.swing.GroupLayout roundPanel6Layout = new javax.swing.GroupLayout(roundPanel6);
         roundPanel6.setLayout(roundPanel6Layout);
@@ -261,7 +261,7 @@ public class FORM_HOME extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        roundPanel8.setBackground(new java.awt.Color(233, 241, 251));
+        roundPanel8.setBackground(new java.awt.Color(212, 227, 247));
 
         javax.swing.GroupLayout roundPanel8Layout = new javax.swing.GroupLayout(roundPanel8);
         roundPanel8.setLayout(roundPanel8Layout);
@@ -280,7 +280,7 @@ public class FORM_HOME extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        roundPanel15.setBackground(new java.awt.Color(233, 241, 251));
+        roundPanel15.setBackground(new java.awt.Color(212, 227, 247));
 
         pictureBox2.setImage(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/img/imgEstadoCaja.png"))); // NOI18N
 
@@ -331,7 +331,7 @@ public class FORM_HOME extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        roundPanel16.setBackground(new java.awt.Color(233, 241, 251));
+        roundPanel16.setBackground(new java.awt.Color(212, 227, 247));
 
         jLabel7.setBackground(new java.awt.Color(102, 102, 102));
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -365,7 +365,7 @@ public class FORM_HOME extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        roundPanel17.setBackground(new java.awt.Color(233, 241, 251));
+        roundPanel17.setBackground(new java.awt.Color(212, 227, 247));
 
         jLabel9.setBackground(new java.awt.Color(102, 102, 102));
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -399,7 +399,7 @@ public class FORM_HOME extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        roundPanel11.setBackground(new java.awt.Color(233, 241, 251));
+        roundPanel11.setBackground(new java.awt.Color(212, 227, 247));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(153, 102, 0));
@@ -528,11 +528,9 @@ public class FORM_HOME extends javax.swing.JPanel {
             panelPricingRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPricingRound1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pictureBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelPricingRound1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelPricingRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pictureBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelPricingRound1Layout.setVerticalGroup(
