@@ -964,6 +964,10 @@ public class FORM_USUARIOS extends javax.swing.JPanel {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         ocultar();
+        tablaEmpleados();
+        tablaUsuarios();
+        panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Se actualizo la base de datos!!");
+        panel.showNotification();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed

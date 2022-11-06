@@ -18,7 +18,7 @@ public class PanelPopup extends JPanel {
     protected void paintComponent(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
 //        GradientPaint gra = new GradientPaint(0, 0, new Color(130, 188, 253), getWidth(), 0, new Color(93, 58, 196));
-        GradientPaint gra = new GradientPaint(0, 0, new Color(161, 197, 245), getWidth(), 0, new Color(161, 197, 245));
+        GradientPaint gra = new GradientPaint(0, 0, new Color(161, 197, 245,150), getWidth(), 0, new Color(161, 197, 245,150));
         g2.setPaint(gra);
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.fillRect(8, 0, getSize().width - 8, getSize().height);

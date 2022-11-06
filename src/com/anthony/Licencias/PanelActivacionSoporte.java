@@ -1,11 +1,6 @@
-package com.anthony.login;
+package com.anthony.Licencias;
 
-//import com.anthony.Modelos.usuarios;
-//import ds.desktop.notify.DesktopNotify;
 import java.awt.event.ActionListener;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 //import javax.mail.Message;
 //import javax.mail.MessagingException;
 //import javax.mail.Session;
@@ -14,26 +9,22 @@ import java.util.logging.Logger;
 //import javax.mail.internet.InternetAddress;
 //import javax.mail.internet.MimeMessage;
 
-public class PanelLoginSoporte extends javax.swing.JLayeredPane {
+public class PanelActivacionSoporte extends javax.swing.JLayeredPane {
 
-//    usuarios usu = new usuarios();
-    String idUsuario = "";
-    Boolean conClave = null;
-    String cargo;
 
-    public PanelLoginSoporte() {
+    public PanelActivacionSoporte() {
         initComponents();
-        login.setVisible(false);
-        register.setVisible(true);
+        Contacto.setVisible(false);
+        Activar.setVisible(true);
     }
 
     public void showRegister(boolean show) {
         if (show) {
-            register.setVisible(true);
-            login.setVisible(false);
+            Activar.setVisible(true);
+            Contacto.setVisible(false);
         } else {
-            register.setVisible(false);
-            login.setVisible(true);
+            Activar.setVisible(false);
+            Contacto.setVisible(true);
         }
     }
 
@@ -41,43 +32,24 @@ public class PanelLoginSoporte extends javax.swing.JLayeredPane {
         btnIngresar.addActionListener(event);
     }
 
-    public void limpiarFormulario() {
-        txtUsuario.setText("");
-        txtContrasenia.setText("");
-    }
-
-    public String addObtenerUsu() {
-        String usu = txtUsuario.getText();
+    public String addObtenerClave() {
+        String usu = txtClaveProducto.getText();
         return usu;
     }
 
-    public void activarBoton() {
-        btnIngresar.setEnabled(true);
-    }
-
-    public void desactivarBoton() {
-        btnIngresar.setEnabled(false);
-    }
-
-    public String addObtenerClave() {
-        String clave = txtContrasenia.getText();
-        return clave;
-    }
-
-    public void limpiarContra() {
-        txtContrasenia.setText("");
+    public void limpiarClave() {
+        txtClaveProducto.setText("");
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        register = new javax.swing.JPanel();
+        Activar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnIngresar = new com.anthony.swing.Button();
-        txtContrasenia = new textfield.PasswordField();
-        txtUsuario = new textfield.TextField();
-        login = new javax.swing.JPanel();
+        txtClaveProducto = new textfield.TextField();
+        Contacto = new javax.swing.JPanel();
         txtNombre = new rojeru_san.rsfield.RSTextFullRound();
         txtAsunto = new rojeru_san.rsfield.RSTextFullRound();
         jLabel2 = new javax.swing.JLabel();
@@ -90,69 +62,55 @@ public class PanelLoginSoporte extends javax.swing.JLayeredPane {
 
         setLayout(new java.awt.CardLayout());
 
-        register.setBackground(new java.awt.Color(255, 255, 255));
+        Activar.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(3, 179, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("INICIO DE SESIÓN");
+        jLabel1.setText("ACTIVAR PRODUCTO");
 
         btnIngresar.setBackground(new java.awt.Color(3, 179, 255));
         btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
-        btnIngresar.setText("INGRESAR");
+        btnIngresar.setText("ACTIVAR");
         btnIngresar.setEffectColor(new java.awt.Color(255, 255, 255));
         btnIngresar.setFocusPainted(false);
         btnIngresar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
 
-        txtContrasenia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtContrasenia.setLabelText("Contraseña");
-        txtContrasenia.setShowAndHide(true);
-        txtContrasenia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContraseniaActionPerformed(evt);
-            }
-        });
+        txtClaveProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtClaveProducto.setLabelText("Ingresa la clave de producto");
 
-        txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtUsuario.setLabelText("Usuario");
-
-        javax.swing.GroupLayout registerLayout = new javax.swing.GroupLayout(register);
-        register.setLayout(registerLayout);
-        registerLayout.setHorizontalGroup(
-            registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(registerLayout.createSequentialGroup()
+        javax.swing.GroupLayout ActivarLayout = new javax.swing.GroupLayout(Activar);
+        Activar.setLayout(ActivarLayout);
+        ActivarLayout.setHorizontalGroup(
+            ActivarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ActivarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ActivarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
-                    .addGroup(registerLayout.createSequentialGroup()
+                    .addGroup(ActivarLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(ActivarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
-                            .addComponent(txtContrasenia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtClaveProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        registerLayout.setVerticalGroup(
-            registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(registerLayout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
+        ActivarLayout.setVerticalGroup(
+            ActivarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ActivarLayout.createSequentialGroup()
+                .addContainerGap(156, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(18, 81, Short.MAX_VALUE)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(146, 146, 146)
+                .addGap(41, 41, 41)
+                .addComponent(txtClaveProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(214, 214, 214)
                 .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
 
-        registerLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtContrasenia, txtUsuario});
+        add(Activar, "card2");
 
-        add(register, "card2");
-
-        login.setBackground(new java.awt.Color(255, 255, 255));
-        login.setPreferredSize(new java.awt.Dimension(550, 0));
+        Contacto.setBackground(new java.awt.Color(255, 255, 255));
+        Contacto.setPreferredSize(new java.awt.Dimension(550, 0));
 
         txtNombre.setBackground(new java.awt.Color(210, 228, 245));
         txtNombre.setBorderColor(new java.awt.Color(210, 228, 245));
@@ -218,18 +176,18 @@ public class PanelLoginSoporte extends javax.swing.JLayeredPane {
             }
         });
 
-        javax.swing.GroupLayout loginLayout = new javax.swing.GroupLayout(login);
-        login.setLayout(loginLayout);
-        loginLayout.setHorizontalGroup(
-            loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout ContactoLayout = new javax.swing.GroupLayout(Contacto);
+        Contacto.setLayout(ContactoLayout);
+        ContactoLayout.setHorizontalGroup(
+            ContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(loginLayout.createSequentialGroup()
+            .addGroup(ContactoLayout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(ContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel3)
                         .addComponent(txtAsunto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContactoLayout.createSequentialGroup()
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -237,13 +195,13 @@ public class PanelLoginSoporte extends javax.swing.JLayeredPane {
                     .addComponent(btnEnviarMail, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
-        loginLayout.setVerticalGroup(
-            loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
+        ContactoLayout.setVerticalGroup(
+            ContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContactoLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(jLabel2)
                 .addGap(60, 60, 60)
-                .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(ContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -257,7 +215,7 @@ public class PanelLoginSoporte extends javax.swing.JLayeredPane {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        add(login, "card3");
+        add(Contacto, "card3");
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
@@ -344,25 +302,20 @@ public class PanelLoginSoporte extends javax.swing.JLayeredPane {
 //        }
     }//GEN-LAST:event_btnEnviarMailActionPerformed
 
-    private void txtContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseniaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtContraseniaActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Activar;
+    private javax.swing.JPanel Contacto;
     private com.anthony.swing.Button btnEnviarMail;
     private com.anthony.swing.Button btnIngresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel login;
-    private javax.swing.JPanel register;
     private com.anthony.swing.RoundPanel roundPanel1;
     private rojeru_san.rsfield.RSTextFullRound txtAsunto;
-    private textfield.PasswordField txtContrasenia;
+    private textfield.TextField txtClaveProducto;
     private javax.swing.JTextArea txtMensaje;
     private rojeru_san.rsfield.RSTextFullRound txtNombre;
     private rojeru_san.rsfield.RSTextFullRound txtTelefono;
-    private textfield.TextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

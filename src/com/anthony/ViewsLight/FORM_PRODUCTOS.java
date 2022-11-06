@@ -5,9 +5,7 @@ import com.anthony.MainLight.MainAdministrador;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
 import com.anthony.ModelsDAO.SUCURSAL_DAO;
-import com.anthony.dialog.MessageDialogDark;
 import com.anthony.dialog.MessageDialogLight;
-import com.anthony.swing.scrollbar.ScrollBarCustom;
 import com.anthony.swing.scrollbar.ScrollBarCustomClaro;
 import com.anthony.toast.Toast;
 import java.awt.Component;
@@ -1102,7 +1100,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         ocultar();
         tablaProductos();
         tablaProveedores();
-        panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Se actualizao la base de datos!!");
+        panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Se actualizo la base de datos!!");
         panel.showNotification();
     }//GEN-LAST:event_jLabel1MouseClicked
 
@@ -1159,7 +1157,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
             calculo();
-            MessageDialogDark obj = new MessageDialogDark(admin);
+            MessageDialogLight obj = new MessageDialogLight(admin);
             obj.showMessage("¿ Deseas crear el Producto ?", "");
             FK_SUCURSAL_TEXT = cbxSucursal.getSelectedItem().toString();
             FK_SUCURSAL = convertidor.obtenerNumero(FK_SUCURSAL_TEXT.toString());
@@ -1177,7 +1175,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
             PRO_PVP = Double.parseDouble(txtPVP.getText());
             PRO_CREACION = fecha;
             PRO_ESTADO = "EN LINEA";
-            if (obj.getMessageType() == MessageDialogDark.MessageType.OK) {
+            if (obj.getMessageType() == MessageDialogLight.MessageType.OK) {
                 pro.setFK_SUCURSAL(FK_SUCURSAL);
                 pro.setFK_PROVEEDOR(FK_PROVEEDOR);
                 pro.setPRO_NOMBRE(PRO_NOMBRE);
@@ -1207,7 +1205,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                     limpiarFormulario();
                     ocultar();
                 }
-            } else if (obj.getMessageType() == MessageDialogDark.MessageType.CANCEL) {
+            } else if (obj.getMessageType() == MessageDialogLight.MessageType.CANCEL) {
                 panel = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se cancelo el proceso!!");
                 panel.showNotification();
                 limpiarFormulario();

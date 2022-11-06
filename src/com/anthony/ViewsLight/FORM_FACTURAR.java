@@ -1,15 +1,12 @@
 package com.anthony.ViewsLight;
 
-import com.anthony.MainDark.MainAdministradorDark;
 import com.anthony.MainLight.MainAdministrador;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
-import com.anthony.dialog.MessageDialogDark;
+import com.anthony.dialog.MessageDialogLight;
 import com.anthony.swing.scrollbar.ScrollBarCustomClaro;
 import com.anthony.toast.Toast;
-import java.awt.Color;
 import java.awt.Desktop;
-import java.awt.event.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
@@ -99,7 +96,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         emp = empDao.list();
         lblClaveAcceso.setText(daoFac.generadorNumeroFactura(emp.getEMP_RUC(), txtCedula.getText()));
         try {
-            MessageDialogDark obj = new MessageDialogDark(admin);
+            MessageDialogLight obj = new MessageDialogLight(admin);
             obj.showMessage("GENERAR VENTA", "¿ Deseas generar la venta al cliente ?");
             fac.setFK_EMPLEADO(usu.getFK_EMPLEADO());
             fac.setFK_CLIENTE(Integer.parseInt(lblIdCliente.getText()));
@@ -111,7 +108,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             fac.setFAC_RUTA("C:\\FACTURING_V1\\2022\\NOVIEMBRE\\FACTURAS\\APROBADAS/" + txtCedula.getText() + "(" + daoFac.fecha() + "-" + daoFac.hora() + ").pdf");
             lblPdf.setText(txtCedula.getText() + "(" + daoFac.fecha() + "-" + daoFac.hora() + ").pdf");
             fac.setFAC_ESTADO("PENDIENTE");
-            if (obj.getMessageType() == MessageDialogDark.MessageType.OK) {
+            if (obj.getMessageType() == MessageDialogLight.MessageType.OK) {
                 if (daoFac.add(fac) == "La factura fue creada con exito!") {
                     panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "La factura fue creada con exito!!");
                     panel.showNotification();
@@ -121,7 +118,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                     panel.showNotification();
                     tablaClientes();
                 }
-            } else if (obj.getMessageType() == MessageDialogDark.MessageType.CANCEL) {
+            } else if (obj.getMessageType() == MessageDialogLight.MessageType.CANCEL) {
                 panel = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se cancelo el proceso!!");
                 panel.showNotification();
             }
@@ -136,7 +133,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         emp = empDao.list();
         lblClaveAcceso.setText(daoFac.generadorNumeroFacturaCosumidor(emp.getEMP_RUC(), "0000000000"));
         try {
-            MessageDialogDark obj = new MessageDialogDark(admin);
+            MessageDialogLight obj = new MessageDialogLight(admin);
             obj.showMessage("GENERAR VENTA", "¿ Deseas generar la venta al cliente ?");
             fac.setFK_EMPLEADO(usu.getFK_EMPLEADO());
             if (txtCedula.getText().equals("N / A")) {
@@ -151,7 +148,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             fac.setFAC_RUTA("C:\\FACTURING_V1\\2022\\NOVIEMBRE\\FACTURAS\\APROBADAS/" + "0000000001" + "(" + daoFac.fecha() + "-" + daoFac.hora() + ").pdf");
             lblPdf.setText("0000000001" + "(" + daoFac.fecha() + "-" + daoFac.hora() + ").pdf");
             fac.setFAC_ESTADO("PENDIENTE");
-            if (obj.getMessageType() == MessageDialogDark.MessageType.OK) {
+            if (obj.getMessageType() == MessageDialogLight.MessageType.OK) {
                 if (daoFac.add(fac) == "La factura fue creada con exito!") {
                     panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "La factura fue creada con exito!!");
                     panel.showNotification();
@@ -161,7 +158,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                     panel.showNotification();
                     tablaClientes();
                 }
-            } else if (obj.getMessageType() == MessageDialogDark.MessageType.CANCEL) {
+            } else if (obj.getMessageType() == MessageDialogLight.MessageType.CANCEL) {
                 panel = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se cancelo el proceso!!");
                 panel.showNotification();
             }

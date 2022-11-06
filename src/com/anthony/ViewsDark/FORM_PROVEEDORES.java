@@ -680,7 +680,11 @@ public class FORM_PROVEEDORES extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-
+        limpiarFormulario();
+        ocultar();
+        tablaProveedores();
+        panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Se actualizo la base de datos!!");
+        panel.showNotification();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void tDatosProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tDatosProveedoresMouseClicked

@@ -71,7 +71,7 @@
           <Font name="Segoe UI" size="30" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="6c" green="7a" red="f7" type="rgb"/>
+          <Color blue="ff" green="99" red="66" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="USUARIOS"/>
       </Properties>
@@ -1027,7 +1027,7 @@
                       <Color blue="8d" green="bd" red="2e" type="rgb"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="11" green="6" red="7" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="GUARDAR"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
@@ -1045,7 +1045,7 @@
                       <Color blue="19" green="be" red="eb" type="rgb"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="11" green="6" red="7" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="ACTUALIZAR"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
@@ -1063,7 +1063,7 @@
                       <Color blue="8" green="68" red="fa" type="rgb"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="11" green="6" red="7" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="CANCELAR"/>
                     <Property name="focusPainted" type="boolean" value="false"/>

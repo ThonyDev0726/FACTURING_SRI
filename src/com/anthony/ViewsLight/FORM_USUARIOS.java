@@ -406,7 +406,7 @@ public class FORM_USUARIOS extends javax.swing.JPanel {
         setBackground(new java.awt.Color(234, 241, 251));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(247, 122, 108));
+        jLabel1.setForeground(new java.awt.Color(102, 153, 255));
         jLabel1.setText("USUARIOS");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -798,7 +798,7 @@ public class FORM_USUARIOS extends javax.swing.JPanel {
         txtUsuario.setLabelText("Usuario");
 
         btnGuardarUsu.setBackground(new java.awt.Color(46, 189, 141));
-        btnGuardarUsu.setForeground(new java.awt.Color(7, 6, 17));
+        btnGuardarUsu.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardarUsu.setText("GUARDAR");
         btnGuardarUsu.setFocusPainted(false);
         btnGuardarUsu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -809,7 +809,7 @@ public class FORM_USUARIOS extends javax.swing.JPanel {
         });
 
         btnActualizar.setBackground(new java.awt.Color(235, 190, 25));
-        btnActualizar.setForeground(new java.awt.Color(7, 6, 17));
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("ACTUALIZAR");
         btnActualizar.setFocusPainted(false);
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -820,7 +820,7 @@ public class FORM_USUARIOS extends javax.swing.JPanel {
         });
 
         btnCancelarSuc1.setBackground(new java.awt.Color(250, 104, 8));
-        btnCancelarSuc1.setForeground(new java.awt.Color(7, 6, 17));
+        btnCancelarSuc1.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelarSuc1.setText("CANCELAR");
         btnCancelarSuc1.setFocusPainted(false);
         btnCancelarSuc1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N

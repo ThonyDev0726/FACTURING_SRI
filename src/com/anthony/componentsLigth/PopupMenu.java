@@ -26,7 +26,7 @@ public class PopupMenu extends javax.swing.JDialog {
         int subMenuIndex = -1;
         for (String st : subMenu) {
             MenuButton item = new MenuButton(st, true);
-            item.setForeground(new Color(255, 255, 255));
+            item.setForeground(new Color(204, 204, 0));
             item.setCursor(new Cursor(Cursor.HAND_CURSOR));
             item.setIndex(++subMenuIndex);
             item.addActionListener(new ActionListener() {

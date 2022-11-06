@@ -28,10 +28,10 @@ public class Profile extends javax.swing.JPanel {
         separator.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         lblUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        lblUsuario.setForeground(new java.awt.Color(7, 6, 17));
+        lblUsuario.setForeground(new java.awt.Color(0, 102, 204));
         lblUsuario.setText("Richard Pérez Palacios");
 
-        lblCargo.setForeground(new java.awt.Color(247, 122, 108));
+        lblCargo.setForeground(new java.awt.Color(0, 204, 163));
         lblCargo.setText("Administrador");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

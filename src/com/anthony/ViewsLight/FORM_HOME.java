@@ -102,15 +102,15 @@ public class FORM_HOME extends javax.swing.JPanel {
         pictureBox4 = new com.anthony.swing.PictureBox();
         button4 = new com.anthony.swing.Button();
 
-        setBackground(new java.awt.Color(246, 247, 251));
+        setBackground(new java.awt.Color(233, 241, 251));
         setLayout(new java.awt.BorderLayout());
 
-        sp.setBackground(new java.awt.Color(246, 247, 251));
+        sp.setBackground(new java.awt.Color(233, 241, 251));
         sp.setBorder(null);
         sp.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         sp.setOpaque(false);
 
-        jPanel1.setBackground(new java.awt.Color(246, 247, 251));
+        jPanel1.setBackground(new java.awt.Color(233, 241, 251));
 
         roundPanel2.setBackground(new java.awt.Color(212, 227, 247));
 
@@ -527,10 +527,12 @@ public class FORM_HOME extends javax.swing.JPanel {
         panelPricingRound1Layout.setHorizontalGroup(
             panelPricingRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPricingRound1Layout.createSequentialGroup()
+                .addContainerGap(58, Short.MAX_VALUE)
+                .addComponent(pictureBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPricingRound1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelPricingRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pictureBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelPricingRound1Layout.setVerticalGroup(

@@ -5,20 +5,16 @@ import com.anthony.MainLight.MainAdministrador;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
 import com.anthony.ModelsDAO.SUCURSAL_DAO;
-import com.anthony.dialog.MessageDialogDark;
 import com.anthony.dialog.MessageDialogLight;
 import com.anthony.swing.scrollbar.ScrollBarCustom;
 import com.anthony.swing.scrollbar.ScrollBarCustomClaro;
 import com.anthony.toast.Toast;
 import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Insets;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JTable;
-import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
@@ -692,7 +688,7 @@ public class FORM_PROVEEDORES extends javax.swing.JPanel {
         ocultar();
         tablaProveedores();
         datosSucursal();
-        panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Se actualizao la base de datos!!");
+        panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Se actualizo la base de datos!!");
         panel.showNotification();
     }//GEN-LAST:event_jLabel1MouseClicked
 

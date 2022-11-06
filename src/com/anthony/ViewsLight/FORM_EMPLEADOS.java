@@ -4,7 +4,6 @@ import com.anthony.Controller.*;
 import com.anthony.MainLight.MainAdministrador;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
-import com.anthony.dialog.MessageDialogDark;
 import com.anthony.dialog.MessageDialogLight;
 import com.anthony.swing.scrollbar.ScrollBarCustomClaro;
 import com.anthony.toast.Toast;
@@ -675,7 +674,7 @@ public class FORM_EMPLEADOS extends javax.swing.JPanel {
     private void lblRecargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRecargarMouseClicked
         ocultar();
         tablaEmpleados();
-        panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Se actualizao la base de datos!!");
+        panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Se actualizo la base de datos!!");
         panel.showNotification();
     }//GEN-LAST:event_lblRecargarMouseClicked
 
@@ -694,9 +693,9 @@ public class FORM_EMPLEADOS extends javax.swing.JPanel {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         ID_EMPLEADO = Integer.parseInt(lblIdEmpleado.getText());
         try {
-            MessageDialogDark obj = new MessageDialogDark(admin);
+            MessageDialogLight obj = new MessageDialogLight(admin);
             obj.showMessage("¡¡ELIMINAR REGISTRO!!", "¿ Desea eliminar al empleado ?");
-            if (obj.getMessageType() == MessageDialogDark.MessageType.OK) {
+            if (obj.getMessageType() == MessageDialogLight.MessageType.OK) {
                 if (daoEmp.delete(ID_EMPLEADO) == "El empleado fue eliminado con exito!") {
                     panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "El empleado fue eliminado con exito!!");
                     panel.showNotification();
@@ -708,7 +707,7 @@ public class FORM_EMPLEADOS extends javax.swing.JPanel {
                     tablaEmpleados();
                     limpiarFormulario();
                 }
-            } else if (obj.getMessageType() == MessageDialogDark.MessageType.CANCEL) {
+            } else if (obj.getMessageType() == MessageDialogLight.MessageType.CANCEL) {
                 panel = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se cancelo el proceso!!");
                 panel.showNotification();
                 limpiarFormulario();

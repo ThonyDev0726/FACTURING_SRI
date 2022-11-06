@@ -674,6 +674,8 @@ public class FORM_EMPLEADOS extends javax.swing.JPanel {
     private void lblRecargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRecargarMouseClicked
         ocultar();
         tablaEmpleados();
+        panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Se actualizo la base de datos!!");
+        panel.showNotification();
     }//GEN-LAST:event_lblRecargarMouseClicked
 
     private void tDatosEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tDatosEmpleadosMouseClicked

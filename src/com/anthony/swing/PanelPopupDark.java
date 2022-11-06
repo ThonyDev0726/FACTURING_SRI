@@ -17,7 +17,7 @@ public class PanelPopupDark extends JPanel {
     @Override
     protected void paintComponent(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
-        GradientPaint gra = new GradientPaint(0, 0, new Color(36, 43, 53), getWidth(), 0, new Color(36, 43, 53));
+        GradientPaint gra = new GradientPaint(0, 0, new Color(36, 43, 53, 150), getWidth(), 0, new Color(36, 43, 53, 150));
         g2.setPaint(gra);
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.fillRect(8, 0, getSize().width - 8, getSize().height);

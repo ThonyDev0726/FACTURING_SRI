@@ -369,7 +369,7 @@ public class FORM_PERMISOS extends javax.swing.JPanel {
         setBackground(new java.awt.Color(234, 241, 251));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(247, 122, 108));
+        jLabel1.setForeground(new java.awt.Color(102, 153, 255));
         jLabel1.setText("PERMISOS DE USUARIO EN EL SISTEMA");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -385,7 +385,7 @@ public class FORM_PERMISOS extends javax.swing.JPanel {
         panelPermisos.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(247, 122, 108));
+        jLabel2.setForeground(new java.awt.Color(247, 185, 107));
         jLabel2.setText("USUARIO:");
 
         usuNombres.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -401,7 +401,7 @@ public class FORM_PERMISOS extends javax.swing.JPanel {
         jLabel4.setText("• Cuando el switch esta en color azul tiene autorizacion el usuario elegido.");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(247, 122, 108));
+        jLabel3.setForeground(new java.awt.Color(247, 185, 107));
         jLabel3.setText("OBSERVACION:");
 
         usuCedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -469,7 +469,7 @@ public class FORM_PERMISOS extends javax.swing.JPanel {
         jLabel20.setText("Ajustes de la empresa");
 
         btnActualizar.setBackground(new java.awt.Color(235, 190, 25));
-        btnActualizar.setForeground(new java.awt.Color(7, 6, 17));
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("ACTUALIZAR");
         btnActualizar.setFocusPainted(false);
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -480,7 +480,7 @@ public class FORM_PERMISOS extends javax.swing.JPanel {
         });
 
         btnCancelarSuc1.setBackground(new java.awt.Color(250, 104, 8));
-        btnCancelarSuc1.setForeground(new java.awt.Color(7, 6, 17));
+        btnCancelarSuc1.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelarSuc1.setText("CANCELAR");
         btnCancelarSuc1.setFocusPainted(false);
         btnCancelarSuc1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -910,7 +910,7 @@ public class FORM_PERMISOS extends javax.swing.JPanel {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         ocultar();
         tablaUsuarios();
-        panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Se actualizao la base de datos!!");
+        panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Se actualizo la base de datos!!");
         panel.showNotification();
     }//GEN-LAST:event_jLabel1MouseClicked
 

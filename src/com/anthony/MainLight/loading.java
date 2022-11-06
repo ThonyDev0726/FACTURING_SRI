@@ -1,5 +1,7 @@
 package com.anthony.MainLight;
 
+import com.anthony.Licencias.MainActivacionProducto;
+import com.anthony.ModelsDAO.LICENCIA_DAO;
 import com.anthony.login.Login;
 import java.awt.Toolkit;
 import java.io.File;
@@ -18,6 +20,8 @@ public class loading extends javax.swing.JFrame implements Runnable {
     int year = fecha.get(Calendar.YEAR);
     int mes = fecha.get(Calendar.MONTH) + 1;
     String MES = "";
+    LICENCIA_DAO licencia_dao = new LICENCIA_DAO();
+    String estado;
 
     public loading() {
         initComponents();
@@ -495,13 +499,13 @@ public class loading extends javax.swing.JFrame implements Runnable {
                         lblInfo.setText("Conectando con la nube...");
                     }
                     if (i == 35) {
-                        lblInfo.setText("Iniciando módulos.");
+                        lblInfo.setText("Verificando estado del producto.");
                     }
                     if (i == 40) {
-                        lblInfo.setText("Iniciando módulos..");
+                        lblInfo.setText("Verificando estado del producto..");
                     }
                     if (i == 45) {
-                        lblInfo.setText("Iniciando módulos...");
+                        lblInfo.setText("Verificando estado del producto...");
                     }
                     if (i == 50) {
                         lblInfo.setText("Iniciando módulos.");
@@ -525,16 +529,24 @@ public class loading extends javax.swing.JFrame implements Runnable {
                         lblInfo.setText("Cargando...");
                     }
                     if (i == 90) {
-                        lblInfo.setText("Abriendo Facturing V1.2.");
+                        lblInfo.setText("Abriendo Facturing.");
                     }
                     if (i == 95) {
-                        lblInfo.setText("Abriendo Facturing V1.2..");
+                        lblInfo.setText("Abriendo Facturing..");
                     }
                     if (i == 100) {
-                        lblInfo.setText("Abriendo Facturing V1.2...");
+                        lblInfo.setText("Abriendo Facturing...");
                         this.dispose();
-                        Login login = new Login();
-                        login.setVisible(true);
+                        estado = licencia_dao.consultarEstado();
+                        if (estado.equals("SIN ACTIVAR")) {
+                            MainActivacionProducto m = new MainActivacionProducto();
+                            m.setVisible(true);
+
+                        } else if (estado.equals("EN LINEA")) {
+                            Login login = new Login();
+                            login.setVisible(true);
+
+                        }
                     }
                     jProgressBar.setValue(i);
                 }

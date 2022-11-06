@@ -1,12 +1,10 @@
 package com.anthony.ViewsLight;
 
-import com.anthony.ViewsDark.*;
 import com.anthony.Controller.Convertidor;
-import com.anthony.MainDark.MainAdministradorDark;
 import com.anthony.MainLight.MainAdministrador;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
-import com.anthony.dialog.MessageDialogDark;
+import com.anthony.dialog.MessageDialogLight;
 import com.anthony.swing.scrollbar.ScrollBarCustom;
 import com.anthony.toast.Toast;
 import java.awt.Component;
@@ -72,7 +70,6 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
         tablaClientes();
     }
 
-   
     public FORM_CLIENTES(USUARIO usu, MainAdministrador admin) {
         initComponents();
         this.admin = admin;
@@ -739,15 +736,18 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-
+        ocultar();
+        limpiarFormulario();
+        panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Se actualizo la base de datos!!");
+        panel.showNotification();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         ID_CLIENTE = Integer.parseInt(lblIdCliente.getText());
         try {
-            MessageDialogDark obj = new MessageDialogDark(admin);
+            MessageDialogLight obj = new MessageDialogLight(admin);
             obj.showMessage("¡¡ELIMINAR REGISTRO!!", "¿ Desea eliminar al cliente ?");
-            if (obj.getMessageType() == MessageDialogDark.MessageType.OK) {
+            if (obj.getMessageType() == MessageDialogLight.MessageType.OK) {
                 if (daoCli.delete(ID_CLIENTE) == "El cliente fue eliminado con exito!") {
                     panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "El cliente fue eliminado con exito!!");
                     panel.showNotification();
@@ -761,7 +761,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
                     limpiarFormulario();
                     ocultar();
                 }
-            } else if (obj.getMessageType() == MessageDialogDark.MessageType.CANCEL) {
+            } else if (obj.getMessageType() == MessageDialogLight.MessageType.CANCEL) {
                 panel = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se cancelo el proceso!!");
                 panel.showNotification();
                 limpiarFormulario();
@@ -800,7 +800,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
         CLI_ESTADO = "EN LINEA";
         CLI_CREACION = fecha;
         try {
-            MessageDialogDark obj = new MessageDialogDark(admin);
+            MessageDialogLight obj = new MessageDialogLight(admin);
             obj.showMessage("¿ Deseas crear al cliente ?", "");
             cli.setCLI_NOMBRES(CLI_NOMBRES);
             cli.setCLI_APELLIDOS(CLI_APELLIDOS);
@@ -811,7 +811,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
             cli.setCLI_EMAIL(CLI_EMAIL);
             cli.setCLI_ESTADO(CLI_ESTADO);
             cli.setCLI_CREACION(CLI_CREACION);
-            if (obj.getMessageType() == MessageDialogDark.MessageType.OK) {
+            if (obj.getMessageType() == MessageDialogLight.MessageType.OK) {
                 if (daoCli.add(cli) == "El cliente fue creado con exito!") {
                     panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "El cliente fue creado con exito!!");
                     panel.showNotification();
@@ -825,7 +825,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
                     limpiarFormulario();
                     ocultar();
                 }
-            } else if (obj.getMessageType() == MessageDialogDark.MessageType.CANCEL) {
+            } else if (obj.getMessageType() == MessageDialogLight.MessageType.CANCEL) {
                 panel = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se cancelo el proceso!!");
                 panel.showNotification();
                 limpiarFormulario();
@@ -916,7 +916,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
         CLI_EMAIL = txtEmail.getText();
         CLI_ESTADO = cbxEstadoCli.getSelectedItem().toString();
         try {
-            MessageDialogDark obj = new MessageDialogDark(admin);
+            MessageDialogLight obj = new MessageDialogLight(admin);
             obj.showMessage("¿ Deseas actualizar al cliente ?", "");
             cli.setID_CLIENTE(ID_CLIENTE);
             cli.setCLI_NOMBRES(CLI_NOMBRES);
@@ -927,7 +927,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
             cli.setCLI_DIRECCION(CLI_DIRECCION);
             cli.setCLI_EMAIL(CLI_EMAIL);
             cli.setCLI_ESTADO(CLI_ESTADO);
-            if (obj.getMessageType() == MessageDialogDark.MessageType.OK) {
+            if (obj.getMessageType() == MessageDialogLight.MessageType.OK) {
                 if (daoCli.update(cli) == "El cliente fue actualizado con exito!") {
                     panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "El cliente fue actualizado con exito!!");
                     panel.showNotification();
@@ -941,7 +941,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
                     limpiarFormulario();
                     ocultar();
                 }
-            } else if (obj.getMessageType() == MessageDialogDark.MessageType.CANCEL) {
+            } else if (obj.getMessageType() == MessageDialogLight.MessageType.CANCEL) {
                 panel = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se cancelo el proceso!!");
                 panel.showNotification();
                 limpiarFormulario();

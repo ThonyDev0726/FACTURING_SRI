@@ -18,6 +18,7 @@ public class Glass_notification extends JComponent {
     }
 
     public Glass_notification() {
+        setOpaque(false);
     }
 
     private float alpha = 0f;
@@ -26,7 +27,7 @@ public class Glass_notification extends JComponent {
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
-        g2.setColor(new Color(0, 0, 0));
+        g2.setColor(new Color(0, 0, 0, 170));
         g2.fillRect(0, 0, getWidth(), getHeight());
         g2.dispose();
         super.paintComponent(g);

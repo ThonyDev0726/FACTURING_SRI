@@ -1120,6 +1120,9 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         ocultar();
         tablaProductos();
         tablaProveedores();
+        limpiarFormulario();
+        panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Se actualizo la base de datos!!");
+        panel.showNotification();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed

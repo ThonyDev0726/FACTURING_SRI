@@ -28,6 +28,7 @@ public class PopupMenuDark extends javax.swing.JDialog {
         for (String st : subMenu) {
             MenuButton item = new MenuButton(st, true);
             item.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            item.setForeground(new Color(155, 186, 248));
             item.setIndex(++subMenuIndex);
             item.addActionListener(new ActionListener() {
                 @Override
