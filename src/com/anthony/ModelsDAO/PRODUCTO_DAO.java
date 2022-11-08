@@ -29,6 +29,7 @@ public class PRODUCTO_DAO implements crud_producto {
     /* ============== VARIABLES PARA PROCEDIMIENTOS ALMACENADOS ==============*/
     String LISTAR_EN_LINEA = "CALL SELECT_PRODUCTOS_LINEA()";
     String LISTAR = "CALL SELECT_PRODUCTOS_ALL()";
+    String LISTAR_FACTURACION = "CALL SELECT_PRODUCTOS_FACTURACION()";
     String LISTAR_ID = "CALL SELECT_PRODUCTO_ID(?)";
     String LISTAR_ID_COD = "CALL SELECT_PRODUCTO_ID_CODIGO(?)";
     String CREAR = "CALL INSERT_PRODUCTO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -36,7 +37,8 @@ public class PRODUCTO_DAO implements crud_producto {
     String ELIMINAR = "CALL DELETE_PRODUCTO(?)";
     String ACTUALIZAR_ESTADO = "CALL UPDATE_PRODUCTO_ESTADO(?,?)";
     String ACTUALIZAR_STOCK = "CALL UPDATE_STOCK_PRODUCTO(?,?)";
-    String BUSCAR_PROVEEDOR = "CALL SELECT_PRODUCTO_BUSCAR(?,?)";
+    String BUSCAR_PRODUCTO = "CALL SELECT_PRODUCTO_BUSCAR(?,?)";
+    String BUSCAR_PRODUCTO_FACTURACION = "CALL SELECT_PRODUCTO_BUSCAR_FACTURACION(?,?)";
 
     @Override
     public List listar() {
@@ -61,12 +63,37 @@ public class PRODUCTO_DAO implements crud_producto {
                 pro.setPRO_GANANCIA(rs.getInt(12));
                 pro.setPRO_PVP(rs.getDouble(13));
                 pro.setPRO_ESTADO(rs.getString(14));
-                pro.setPRO_TIPO_IVA(rs.getInt(15));
+                pro.setPRO_TIPO_IVA(rs.getString(15));
                 lista.add(pro);
             }
             System.out.println("SE ESTAN LISTANDO TODOS LOS PRODUCTOS");
         } catch (SQLException ex) {
             System.out.println("ERROR AL LISTAR LOS PRODUCTOS" + ex);
+        }
+        return lista;
+    }
+
+    public List listarFacturacion() {
+        ArrayList<PRODUCTO> lista = new ArrayList<>();
+        try {
+            con = (Connection) cn.getConexion();
+            cs = con.prepareCall(LISTAR_FACTURACION);
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                PRODUCTO pro = new PRODUCTO();
+                pro.setID_PRODUCTO(rs.getInt(1));
+                pro.setPRO_NOMBRE(rs.getString(2));
+                pro.setPRO_COD_PRINC(rs.getString(3));
+                pro.setPRO_COD_AUX(rs.getString(4));
+                pro.setPRO_DETALLE_EXTRA(rs.getString(5));
+                pro.setPRO_STOCK(rs.getInt(6));
+                pro.setPRO_PVP(rs.getDouble(7));
+                pro.setPRO_TIPO_IVA(rs.getString(8));
+                lista.add(pro);
+            }
+            System.out.println("SE ESTAN LISTANDO TODOS LOS PRODUCTOS FACTURACION");
+        } catch (SQLException ex) {
+            System.out.println("ERROR AL LISTAR LOS PRODUCTOS DE FACTURACION " + ex);
         }
         return lista;
     }
@@ -160,7 +187,7 @@ public class PRODUCTO_DAO implements crud_producto {
             cs.setDouble(12, producto.getPRO_PVP());
             cs.setString(13, producto.getPRO_CREACION());
             cs.setString(14, producto.getPRO_ESTADO());
-            cs.setInt(15, producto.getPRO_TIPO_IVA());
+            cs.setString(15, producto.getPRO_TIPO_IVA());
             cs.execute();
             System.out.println(CREAR);
         } catch (SQLException ex) {
@@ -190,7 +217,7 @@ public class PRODUCTO_DAO implements crud_producto {
             cs.setInt(12, pro.getPRO_GANANCIA());
             cs.setDouble(13, pro.getPRO_PVP());
             cs.setString(14, pro.getPRO_ESTADO());
-            cs.setInt(15, pro.getPRO_TIPO_IVA());
+            cs.setString(15, pro.getPRO_TIPO_IVA());
             cs.execute();
             System.out.println(ACTUALIZAR);
         } catch (SQLException ex) {
@@ -258,7 +285,21 @@ public class PRODUCTO_DAO implements crud_producto {
         con = (Connection) cn.getConexion();
         ResultSet rs = null;
         try {
-            CallableStatement st = con.prepareCall(BUSCAR_PROVEEDOR);
+            CallableStatement st = con.prepareCall(BUSCAR_PRODUCTO);
+            st.setString("pcriterio", criterio);
+            st.setString("pbusqueda", busqueda);
+            rs = st.executeQuery();
+            return rs;
+        } catch (SQLException SQLex) {
+            System.out.println("ERROR AL BUSCAR EL EMPLEADO: " + SQLex);
+        }
+        return rs;
+    }
+    public ResultSet BUSCAR_PRODUCTO_FACTURACION(String criterio, String busqueda) throws Exception {
+        con = (Connection) cn.getConexion();
+        ResultSet rs = null;
+        try {
+            CallableStatement st = con.prepareCall(BUSCAR_PRODUCTO_FACTURACION);
             st.setString("pcriterio", criterio);
             st.setString("pbusqueda", busqueda);
             rs = st.executeQuery();

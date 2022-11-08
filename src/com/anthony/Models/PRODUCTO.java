@@ -21,7 +21,7 @@ public class PRODUCTO extends PROVEEDOR {
     private Double PRO_PVP;
     private String PRO_CREACION;
     private String PRO_ESTADO;
-    private Integer PRO_TIPO_IVA;
+    private String PRO_TIPO_IVA;
 
     public PRODUCTO() {
     }
@@ -146,12 +146,14 @@ public class PRODUCTO extends PROVEEDOR {
         this.PRO_ESTADO = PRO_ESTADO;
     }
 
-    public Integer getPRO_TIPO_IVA() {
+    public String getPRO_TIPO_IVA() {
         return PRO_TIPO_IVA;
     }
 
-    public void setPRO_TIPO_IVA(Integer PRO_TIPO_IVA) {
+    public void setPRO_TIPO_IVA(String PRO_TIPO_IVA) {
         this.PRO_TIPO_IVA = PRO_TIPO_IVA;
     }
+
+    
 
 }

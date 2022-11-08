@@ -4,6 +4,7 @@ import com.anthony.MainLight.MainAdministrador;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
 import com.anthony.dialog.MessageDialogLight;
+import com.anthony.email.ENVIO_MAIL;
 import com.anthony.swing.scrollbar.ScrollBarCustomClaro;
 import com.anthony.toast.Toast;
 import java.awt.Desktop;
@@ -50,7 +51,8 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
     FACTURA_DESCRIPCION_DAO desFacDao = new FACTURA_DESCRIPCION_DAO();
     FACTURA_TOTALIDAD facTotalidad = new FACTURA_TOTALIDAD();
     FACTURA_TOTALIDAD_DAO facTotDao = new FACTURA_TOTALIDAD_DAO();
-
+    ENVIO_MAIL mail = new ENVIO_MAIL();
+    
     MainAdministrador admin;
     static ResultSet rs = null;
     String criterio, busqueda;
@@ -2053,6 +2055,13 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         btnGuardar.setVisible(false);
         btnCancelar.setVisible(false);
         btnImprimir.setVisible(true);
+        try {
+            facturaPdf();
+        } catch (DocumentException ex) {
+            Logger.getLogger(FORM_FACTURAR.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(FORM_FACTURAR.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -2983,7 +2992,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         doc.add(formaFago);
         doc.close();
         archivo.close();
-        Desktop.getDesktop().open(file);
+        mail.sendMail(criterio, criterio, datosEmpresa, criterio, criterio, ruta, datosEmpresa, datosEmpresa, ruta, ruta, criterio);
     }
 
 }

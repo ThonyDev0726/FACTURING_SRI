@@ -27,7 +27,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
     /* ==============================
     OBJETOS PRINCIPALES
     ============================== */
-    String[] titulosProductos = {"#", "Producto", "Empresa", "Sucursal", "Detalle", "Categoria", "Cod. Princ.", "Cod. Aux", "Det. Extra", "Stock", "Precio Fabrica", "% Ganancia", "P.V.P.", "Estado","Tipo Iva"};
+    String[] titulosProductos = {"#", "Producto", "Empresa", "Sucursal", "Detalle", "Categoria", "Cod. Princ.", "Cod. Aux", "Det. Extra", "Stock", "Precio Fabrica", "% Ganancia", "P.V.P.", "Estado", "Tipo Iva"};
     DefaultTableModel dtmProductos = new DefaultTableModel(null, titulosProductos);
     String[] titulosProveedores = {"#", "Sucursal", "Empresa", "Contacto", "Ruc", "Telefono", "Email", "Direccion", "Web", "Estado"};
     DefaultTableModel dtmProveedores = new DefaultTableModel(null, titulosProveedores);
@@ -71,7 +71,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
     private Double PRO_PVP;
     private String PRO_CREACION;
     private String PRO_ESTADO;
-    private Integer PRO_TIPO_IVA;
+    private String PRO_TIPO_IVA;
     private String PRO_TIPO_IVA_TEXT;
 
 
@@ -155,7 +155,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         cbxEstado.setSelectedIndex(-1);
         cbxGanancia.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"0%", "5%", "10%", "15%", "20%", "25%", "30%", "35%", "40%", "45%", "50%", "55%", "60%"}));
         cbxGanancia.setSelectedIndex(1);
-        cbxTipoIva.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"12% (Objeto de iva)", "0% (Excento de iva)"}));
+        cbxTipoIva.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Objeto de iva", "Excento de iva"}));
         cbxTipoIva.setSelectedIndex(1);
     }
 
@@ -392,10 +392,10 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
             cbxEstado.setSelectedItem((String) dtmProductos.getValueAt(fila, 13));
             PRO_TIPO_IVA_TEXT = (String) dtmProductos.getValueAt(fila, 14);
             if (PRO_TIPO_IVA_TEXT.equals("12")) {
-                cbxTipoIva.setSelectedItem((String) dtmProductos.getValueAt(fila, 14)+"% (Objeto de iva)");
+                cbxTipoIva.setSelectedItem((String) dtmProductos.getValueAt(fila, 14) + "% (Objeto de iva)");
             }
             if (PRO_TIPO_IVA_TEXT.equals("0")) {
-                cbxTipoIva.setSelectedItem((String) dtmProductos.getValueAt(fila, 14)+"% (Excento de iva)");                
+                cbxTipoIva.setSelectedItem((String) dtmProductos.getValueAt(fila, 14) + "% (Excento de iva)");
             }
         }
     }
@@ -404,9 +404,8 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         PRO_GANANCIA_TEXT = cbxGanancia.getSelectedItem().toString();
         PRO_GANANCIA = convertidor.obtenerNumero(PRO_GANANCIA_TEXT.toString());
         PRO_TIPO_IVA_TEXT = cbxTipoIva.getSelectedItem().toString();
-        PRO_TIPO_IVA = convertidor.obtenerNumero(PRO_TIPO_IVA_TEXT.toString());
         PRO_PRECIO_FABRICA = Double.parseDouble(txtValorFabrica.getText());
-        PRO_PVP = ((PRO_GANANCIA * PRO_PRECIO_FABRICA) / 100) + PRO_PRECIO_FABRICA + ((PRO_TIPO_IVA * PRO_PRECIO_FABRICA) / 100);
+        PRO_PVP = ((PRO_GANANCIA * PRO_PRECIO_FABRICA) / 100) + PRO_PRECIO_FABRICA;
         txtPVP.setText("" + PRO_PVP);
     }
 
@@ -1197,7 +1196,11 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
             PRO_CREACION = fecha;
             PRO_ESTADO = "EN LINEA";
             PRO_TIPO_IVA_TEXT = cbxTipoIva.getSelectedItem().toString();
-            PRO_TIPO_IVA = convertidor.obtenerNumero(PRO_TIPO_IVA_TEXT.toString());
+            if (PRO_TIPO_IVA_TEXT.equals("Objeto de iva")) {
+                PRO_TIPO_IVA_TEXT = "Objeto de iva";
+            } else if (PRO_TIPO_IVA_TEXT.equals("Excento de iva")) {
+                PRO_TIPO_IVA_TEXT = "Excento de iva";
+            }
             if (obj.getMessageType() == MessageDialogDark.MessageType.OK) {
                 pro.setFK_SUCURSAL(FK_SUCURSAL);
                 pro.setFK_PROVEEDOR(FK_PROVEEDOR);
@@ -1213,7 +1216,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                 pro.setPRO_PVP(PRO_PVP);
                 pro.setPRO_CREACION(PRO_CREACION);
                 pro.setPRO_ESTADO(PRO_ESTADO);
-                pro.setPRO_TIPO_IVA(PRO_TIPO_IVA);
+                pro.setPRO_TIPO_IVA(PRO_TIPO_IVA_TEXT);
                 if (daoPro.add(pro) == "El producto fue creado con exito!") {
                     panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "El producto fue creado con exito!!");
                     panel.showNotification();
@@ -1279,7 +1282,11 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
             PRO_PVP = Double.parseDouble(txtPVP.getText());
             PRO_ESTADO = cbxEstado.getSelectedItem().toString();
             PRO_TIPO_IVA_TEXT = cbxTipoIva.getSelectedItem().toString();
-            PRO_TIPO_IVA = convertidor.obtenerNumero(PRO_TIPO_IVA_TEXT.toString());
+            if (PRO_TIPO_IVA_TEXT.equals("Objeto de iva")) {
+                PRO_TIPO_IVA_TEXT = "Objeto de iva";
+            } else if (PRO_TIPO_IVA_TEXT.equals("Excento de iva")) {
+                PRO_TIPO_IVA_TEXT = "Excento de iva";
+            }
             if (obj.getMessageType() == MessageDialogDark.MessageType.OK) {
                 pro.setID_PRODUCTO(ID_PRODUCTO);
                 pro.setFK_SUCURSAL(FK_SUCURSAL);
@@ -1296,7 +1303,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                 pro.setPRO_PVP(PRO_PVP);
                 pro.setPRO_CREACION(PRO_CREACION);
                 pro.setPRO_ESTADO(PRO_ESTADO);
-                pro.setPRO_TIPO_IVA(PRO_TIPO_IVA);
+                pro.setPRO_TIPO_IVA(PRO_TIPO_IVA_TEXT);
                 if (daoPro.update(pro) == "El producto fue actualizado con exito!") {
                     panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "El producto fue actualizado con exito!!");
                     panel.showNotification();

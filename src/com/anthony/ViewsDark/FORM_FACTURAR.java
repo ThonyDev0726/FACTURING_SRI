@@ -5,10 +5,9 @@ import com.anthony.swing.scrollbar.ScrollBarCustom;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
 import com.anthony.dialog.MessageDialogDark;
+import com.anthony.email.ENVIO_MAIL;
 import com.anthony.toast.Toast;
-import java.awt.Color;
 import java.awt.Desktop;
-import java.awt.event.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
@@ -34,7 +33,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
     /* ================================== 
      INSTANCIAS NECESARIAS 
     ================================== */
-    String[] titulosProductos = {"#", "Producto", "Empresa", "Sucursal", "Detalle", "Categoria", "Cod. Princ.", "Cod. Aux", "Det. Extra", "Stock", "Precio Fabrica", "% Ganancia", "P.V.P.", "Estado"};
+    String[] titulosProductos = {"#", "Producto", "Cod. Principal.", "Cod. Auxiliar", "Det. Extra", "Stock", "P.V.P.", "Tipo IVA"};
     DefaultTableModel dtmProductos = new DefaultTableModel(null, titulosProductos);
     String[] titulosClientes = {"#", "Nombres", "Apellidos", "Cedula", "RUC", "Telefono", "Direccion", "Email", "Estado"};
     DefaultTableModel dtmClientes = new DefaultTableModel(null, titulosClientes);
@@ -52,6 +51,10 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
     FACTURA_DESCRIPCION_DAO desFacDao = new FACTURA_DESCRIPCION_DAO();
     FACTURA_TOTALIDAD facTotalidad = new FACTURA_TOTALIDAD();
     FACTURA_TOTALIDAD_DAO facTotDao = new FACTURA_TOTALIDAD_DAO();
+    ENVIO_MAIL mail = new ENVIO_MAIL();
+    Calendar fecha = Calendar.getInstance();
+    int year = fecha.get(Calendar.YEAR);
+    int mes = fecha.get(Calendar.MONTH) + 1;
 
     MainAdministradorDark admin;
     static ResultSet rs = null;
@@ -255,26 +258,20 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
 
     public void tablaProductos() {
         dtmProductos = new DefaultTableModel(null, titulosProductos);
-        String fila[] = new String[14];
-        List<PRODUCTO> listCh = daoPro.listar();
+        String fila[] = new String[8];
+        List<PRODUCTO> listCh = daoPro.listarFacturacion();
         Iterator<PRODUCTO> iterCh = listCh.iterator();
         pro = null;
         while (iterCh.hasNext()) {
             pro = iterCh.next();
             fila[0] = String.valueOf(pro.getID_PRODUCTO());
             fila[1] = pro.getPRO_NOMBRE();
-            fila[2] = pro.getSUC_NOMBRE();
-            fila[3] = pro.getPRO_EMPRESA();
-            fila[4] = pro.getPRO_DETALLE();
-            fila[5] = pro.getPRO_CATEGORIA();
-            fila[6] = pro.getPRO_COD_PRINC();
-            fila[7] = pro.getPRO_COD_AUX();
-            fila[8] = pro.getPRO_DETALLE_EXTRA();
-            fila[9] = String.valueOf(pro.getPRO_STOCK());
-            fila[10] = String.valueOf(pro.getPRO_PRECIO_FABRICA());
-            fila[11] = String.valueOf(pro.getPRO_GANANCIA());
-            fila[12] = String.valueOf(pro.getPRO_PVP());
-            fila[13] = pro.getPRO_ESTADO();
+            fila[2] = pro.getPRO_COD_PRINC();
+            fila[3] = pro.getPRO_COD_AUX();
+            fila[4] = pro.getPRO_DETALLE_EXTRA();
+            fila[5] = String.valueOf(pro.getPRO_STOCK());
+            fila[6] = String.valueOf(pro.getPRO_PVP());
+            fila[7] = pro.getPRO_TIPO_IVA();
             dtmProductos.addRow(fila);
         }
         tDatosProductos.setModel(dtmProductos);
@@ -295,6 +292,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             txtRuc.setText((String) dtmClientes.getValueAt(fila, 4));
             txtTelefono.setText((String) dtmClientes.getValueAt(fila, 5));
             txtDireccion.setText((String) dtmClientes.getValueAt(fila, 6));
+            txtEmail.setText((String) dtmClientes.getValueAt(fila, 7));
         }
     }
 
@@ -368,9 +366,9 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         busqueda = txtNombreProd.getText();
         criterio = "PRO_NOMBRE";
         try {
-            rs = daoPro.BUSCAR_PRODUCTO(criterio, busqueda);
+            rs = daoPro.BUSCAR_PRODUCTO_FACTURACION(criterio, busqueda);
             boolean encuentra = false;
-            String Datos[] = new String[14];
+            String Datos[] = new String[8];
             //Eliminar los datos que se encuentran en la tabla
             int f, i;
             f = dtmProductos.getRowCount();
@@ -383,19 +381,13 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             try {
                 while (rs.next()) {
                     Datos[0] = (String) rs.getString(1);
-                    Datos[1] = (String) rs.getString(4);
-                    Datos[2] = (String) rs.getString(2);
-                    Datos[3] = (String) rs.getString(3);
+                    Datos[1] = (String) rs.getString(2);
+                    Datos[2] = (String) rs.getString(3);
+                    Datos[3] = (String) rs.getString(4);
                     Datos[4] = (String) rs.getString(5);
                     Datos[5] = (String) rs.getString(6);
                     Datos[6] = (String) rs.getString(7);
                     Datos[7] = (String) rs.getString(8);
-                    Datos[8] = (String) rs.getString(9);
-                    Datos[9] = (String) rs.getString(10);
-                    Datos[10] = (String) rs.getString(11);
-                    Datos[11] = (String) rs.getString(12);
-                    Datos[12] = (String) rs.getString(13);
-                    Datos[13] = (String) rs.getString(14);
                     dtmProductos.addRow(Datos);
                     encuentra = true;
                 }
@@ -403,7 +395,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 System.out.println(e);
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Producto no encontrado!!");
+                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Producto no registrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -433,13 +425,14 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             panel.showNotification();
         } else {
             dtmProductos = (DefaultTableModel) tDatosProductos.getModel();
-            lblIdProducto.setText((String) dtmProductos.getValueAt(fila, 0));
-            txtNombreProd.setText((String) dtmProductos.getValueAt(fila, 1));
-            txtCodPrinc.setText((String) dtmProductos.getValueAt(fila, 6));
-            txtCodAux.setText((String) dtmProductos.getValueAt(fila, 7));
-            txtDetalleExtra.setText((String) dtmProductos.getValueAt(fila, 8));
-            txtStock.setText((String) dtmProductos.getValueAt(fila, 9));
-            txtPVP.setText((String) dtmProductos.getValueAt(fila, 12));
+            lblIdProducto.setText((String) dtmProductos.getValueAt(0, 0));
+            txtNombreProd.setText((String) dtmProductos.getValueAt(0, 1));
+            txtCodPrinc.setText((String) dtmProductos.getValueAt(0, 2));
+            txtCodAux.setText((String) dtmProductos.getValueAt(0, 3));
+            txtDetalleExtra.setText((String) dtmProductos.getValueAt(0, 4));
+            txtStock.setText((String) dtmProductos.getValueAt(0, 5));
+            txtPVP.setText((String) dtmProductos.getValueAt(0, 6));
+            txtTipoIva.setText((String) dtmProductos.getValueAt(0, 7));
         }
     }
 
@@ -668,6 +661,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         txtStock = new textfield.TextField();
         txtNombreProd = new textfield.TextField();
         txtDetalleExtra = new textfield.TextField();
+        txtTipoIva = new javax.swing.JLabel();
         btnCancelar = new com.anthony.swing.Button();
         btnGuardar = new com.anthony.swing.Button();
         btnImprimir = new com.anthony.swing.Button();
@@ -699,11 +693,21 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         roundPanel20 = new com.anthony.swing.RoundPanel();
         txtTotal = new javax.swing.JLabel();
         lblTotalPagar = new javax.swing.JLabel();
+        roundPanel21 = new com.anthony.swing.RoundPanel();
+        txtDescuento1 = new javax.swing.JLabel();
+        lblDescuento1 = new javax.swing.JLabel();
+        roundPanel22 = new com.anthony.swing.RoundPanel();
+        txtIva1 = new javax.swing.JLabel();
+        lblIva1 = new javax.swing.JLabel();
+        roundPanel23 = new com.anthony.swing.RoundPanel();
+        txtIva2 = new javax.swing.JLabel();
+        lblIva2 = new javax.swing.JLabel();
         lblIdCliente = new javax.swing.JLabel();
         lblIdProducto = new javax.swing.JLabel();
         lblPdf = new javax.swing.JLabel();
         lblCantidadTabla = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(22, 23, 23));
 
@@ -1130,6 +1134,8 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         txtDetalleExtra.setFocusable(false);
         txtDetalleExtra.setLabelText("Detalle extra");
 
+        txtTipoIva.setForeground(new java.awt.Color(32, 32, 32));
+
         javax.swing.GroupLayout panelFormProductosLayout = new javax.swing.GroupLayout(panelFormProductos);
         panelFormProductos.setLayout(panelFormProductosLayout);
         panelFormProductosLayout.setHorizontalGroup(
@@ -1139,22 +1145,24 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelFormProductosLayout.createSequentialGroup()
                         .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTipoIva, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelFormProductosLayout.createSequentialGroup()
                         .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panelFormProductosLayout.createSequentialGroup()
-                                .addComponent(txtCodPrinc, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                .addComponent(txtCodPrinc, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCodAux, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
+                                .addComponent(txtCodAux, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
                             .addComponent(txtNombreProd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFormProductosLayout.createSequentialGroup()
                                 .addComponent(txtPVP, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtStock, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                                .addComponent(txtStock, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCantidadProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
+                                .addComponent(txtCantidadProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
                             .addComponent(txtDetalleExtra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnNuevoDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1164,7 +1172,9 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFormProductosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTipoIva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnNuevoDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1240,23 +1250,23 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         roundPanel2Layout.setHorizontalGroup(
             roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel2Layout.createSequentialGroup()
-                .addGap(3, 3, 3)
+                .addGap(6, 6, 6)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
                     .addComponent(progress3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(3, 3, 3))
+                .addGap(6, 6, 6))
         );
         roundPanel2Layout.setVerticalGroup(
             roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(progress3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(progress3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
-                .addGap(19, 19, 19))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         roundPanel3.setBackground(new java.awt.Color(32, 32, 32));
@@ -1281,18 +1291,18 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         roundPanel3Layout.setHorizontalGroup(
             roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel3Layout.createSequentialGroup()
-                .addGap(3, 3, 3)
+                .addGap(6, 6, 6)
                 .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
                     .addComponent(progress6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(3, 3, 3))
+                .addGap(6, 6, 6))
         );
         roundPanel3Layout.setVerticalGroup(
             roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(progress6, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(progress6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1322,18 +1332,18 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         roundPanel6Layout.setHorizontalGroup(
             roundPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel6Layout.createSequentialGroup()
-                .addGap(3, 3, 3)
+                .addGap(6, 6, 6)
                 .addGroup(roundPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
                     .addComponent(progress8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(3, 3, 3))
+                .addGap(6, 6, 6))
         );
         roundPanel6Layout.setVerticalGroup(
             roundPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(progress8, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(progress8, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel38)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1360,7 +1370,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(roundPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
+                    .addComponent(txtSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         roundPanel17Layout.setVerticalGroup(
@@ -1392,7 +1402,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(roundPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtIva, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
+                    .addComponent(txtIva, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
                 .addContainerGap())
         );
         roundPanel18Layout.setVerticalGroup(
@@ -1424,7 +1434,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(roundPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
+                    .addComponent(txtDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
                 .addContainerGap())
         );
         roundPanel19Layout.setVerticalGroup(
@@ -1459,18 +1469,18 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         roundPanel4Layout.setHorizontalGroup(
             roundPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel4Layout.createSequentialGroup()
-                .addGap(3, 3, 3)
+                .addGap(6, 6, 6)
                 .addGroup(roundPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
                     .addComponent(progress7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(3, 3, 3))
+                .addGap(6, 6, 6))
         );
         roundPanel4Layout.setVerticalGroup(
             roundPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(progress7, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(progress7, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1497,7 +1507,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(roundPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTotalPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
+                    .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         roundPanel20Layout.setVerticalGroup(
@@ -1507,6 +1517,102 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addComponent(lblTotalPagar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        roundPanel21.setBackground(new java.awt.Color(32, 32, 32));
+
+        txtDescuento1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtDescuento1.setForeground(new java.awt.Color(63, 81, 102));
+        txtDescuento1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtDescuento1.setText("-- --");
+
+        lblDescuento1.setForeground(new java.awt.Color(144, 124, 85));
+        lblDescuento1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDescuento1.setText("iva");
+
+        javax.swing.GroupLayout roundPanel21Layout = new javax.swing.GroupLayout(roundPanel21);
+        roundPanel21.setLayout(roundPanel21Layout);
+        roundPanel21Layout.setHorizontalGroup(
+            roundPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundPanel21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(roundPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDescuento1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtDescuento1, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        roundPanel21Layout.setVerticalGroup(
+            roundPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundPanel21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblDescuento1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDescuento1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        roundPanel22.setBackground(new java.awt.Color(32, 32, 32));
+
+        txtIva1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtIva1.setForeground(new java.awt.Color(63, 81, 102));
+        txtIva1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtIva1.setText("-- --");
+
+        lblIva1.setForeground(new java.awt.Color(144, 124, 85));
+        lblIva1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIva1.setText("iva");
+
+        javax.swing.GroupLayout roundPanel22Layout = new javax.swing.GroupLayout(roundPanel22);
+        roundPanel22.setLayout(roundPanel22Layout);
+        roundPanel22Layout.setHorizontalGroup(
+            roundPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundPanel22Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(roundPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblIva1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtIva1, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        roundPanel22Layout.setVerticalGroup(
+            roundPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundPanel22Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblIva1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtIva1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        roundPanel23.setBackground(new java.awt.Color(32, 32, 32));
+
+        txtIva2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtIva2.setForeground(new java.awt.Color(63, 81, 102));
+        txtIva2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtIva2.setText("-- --");
+
+        lblIva2.setForeground(new java.awt.Color(144, 124, 85));
+        lblIva2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIva2.setText("iva");
+
+        javax.swing.GroupLayout roundPanel23Layout = new javax.swing.GroupLayout(roundPanel23);
+        roundPanel23.setLayout(roundPanel23Layout);
+        roundPanel23Layout.setHorizontalGroup(
+            roundPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundPanel23Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(roundPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblIva2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtIva2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        roundPanel23Layout.setVerticalGroup(
+            roundPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundPanel23Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblIva2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtIva2, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1536,18 +1642,27 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(roundPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(roundPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(roundPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(roundPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(roundPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(roundPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(8, 8, 8))
+                                .addComponent(roundPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {roundPanel2, roundPanel3, roundPanel4, roundPanel6});
+
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -1561,21 +1676,26 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(roundPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(roundPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(roundPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roundPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(roundPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(roundPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(roundPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(roundPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(roundPanel23, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(roundPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(roundPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1588,6 +1708,12 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         lblIdProducto.setForeground(new java.awt.Color(22, 23, 23));
 
         lblPdf.setForeground(new java.awt.Color(22, 23, 23));
+
+        lblCantidadTabla.setForeground(new java.awt.Color(22, 23, 23));
+
+        txtTelefono.setForeground(new java.awt.Color(22, 23, 23));
+
+        txtEmail.setForeground(new java.awt.Color(22, 23, 23));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -1603,6 +1729,8 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPdf, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtEmail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCantidadTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTelefono)
@@ -1615,12 +1743,15 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIdCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblIdProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                     .addComponent(lblPdf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblCantidadTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spPanel))
         );
@@ -1854,9 +1985,9 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         busqueda = txtCodPrinc.getText();
         criterio = "PRO_COD_PRINC";
         try {
-            rs = daoPro.BUSCAR_PRODUCTO(criterio, busqueda);
+            rs = daoPro.BUSCAR_PRODUCTO_FACTURACION(criterio, busqueda);
             boolean encuentra = false;
-            String Datos[] = new String[14];
+            String Datos[] = new String[8];
             //Eliminar los datos que se encuentran en la tabla
             int f, i;
             f = dtmProductos.getRowCount();
@@ -1868,19 +1999,13 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             //Llenar la tabla con la informacion de acuerdo al criterio y el texto de la busqueda
             while (rs.next()) {
                 Datos[0] = (String) rs.getString(1);
-                Datos[1] = (String) rs.getString(4);
-                Datos[2] = (String) rs.getString(2);
-                Datos[3] = (String) rs.getString(3);
+                Datos[1] = (String) rs.getString(2);
+                Datos[2] = (String) rs.getString(3);
+                Datos[3] = (String) rs.getString(4);
                 Datos[4] = (String) rs.getString(5);
                 Datos[5] = (String) rs.getString(6);
                 Datos[6] = (String) rs.getString(7);
                 Datos[7] = (String) rs.getString(8);
-                Datos[8] = (String) rs.getString(9);
-                Datos[9] = (String) rs.getString(10);
-                Datos[10] = (String) rs.getString(11);
-                Datos[11] = (String) rs.getString(12);
-                Datos[12] = (String) rs.getString(13);
-                Datos[13] = (String) rs.getString(14);
                 dtmProductos.addRow(Datos);
                 encuentra = true;
                 if (encuentra == true) {
@@ -1888,10 +2013,11 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                         dtmProductos = (DefaultTableModel) tDatosProductos.getModel();
                         lblIdProducto.setText((String) dtmProductos.getValueAt(0, 0));
                         txtNombreProd.setText((String) dtmProductos.getValueAt(0, 1));
-                        txtCodAux.setText((String) dtmProductos.getValueAt(0, 7));
-                        txtDetalleExtra.setText((String) dtmProductos.getValueAt(0, 8));
-                        txtStock.setText((String) dtmProductos.getValueAt(0, 9));
-                        txtPVP.setText((String) dtmProductos.getValueAt(0, 12));
+                        txtCodAux.setText((String) dtmProductos.getValueAt(0, 3));
+                        txtDetalleExtra.setText((String) dtmProductos.getValueAt(0, 4));
+                        txtStock.setText((String) dtmProductos.getValueAt(0, 5));
+                        txtPVP.setText((String) dtmProductos.getValueAt(0, 6));
+                        txtTipoIva.setText((String) dtmProductos.getValueAt(0, 7));
                     }
                 }
             }
@@ -1936,9 +2062,9 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         busqueda = txtCodAux.getText();
         criterio = "PRO_COD_AUX";
         try {
-            rs = daoPro.BUSCAR_PRODUCTO(criterio, busqueda);
+            rs = daoPro.BUSCAR_PRODUCTO_FACTURACION(criterio, busqueda);
             boolean encuentra = false;
-            String Datos[] = new String[14];
+            String Datos[] = new String[8];
             //Eliminar los datos que se encuentran en la tabla
             int f, i;
             f = dtmProductos.getRowCount();
@@ -1950,19 +2076,13 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             //Llenar la tabla con la informacion de acuerdo al criterio y el texto de la busqueda
             while (rs.next()) {
                 Datos[0] = (String) rs.getString(1);
-                Datos[1] = (String) rs.getString(4);
-                Datos[2] = (String) rs.getString(2);
-                Datos[3] = (String) rs.getString(3);
+                Datos[1] = (String) rs.getString(2);
+                Datos[2] = (String) rs.getString(3);
+                Datos[3] = (String) rs.getString(4);
                 Datos[4] = (String) rs.getString(5);
                 Datos[5] = (String) rs.getString(6);
                 Datos[6] = (String) rs.getString(7);
                 Datos[7] = (String) rs.getString(8);
-                Datos[8] = (String) rs.getString(9);
-                Datos[9] = (String) rs.getString(10);
-                Datos[10] = (String) rs.getString(11);
-                Datos[11] = (String) rs.getString(12);
-                Datos[12] = (String) rs.getString(13);
-                Datos[13] = (String) rs.getString(14);
                 dtmProductos.addRow(Datos);
                 encuentra = true;
                 if (encuentra == true) {
@@ -1970,10 +2090,11 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                         dtmProductos = (DefaultTableModel) tDatosProductos.getModel();
                         lblIdProducto.setText((String) dtmProductos.getValueAt(0, 0));
                         txtNombreProd.setText((String) dtmProductos.getValueAt(0, 1));
-                        txtCodPrinc.setText((String) dtmProductos.getValueAt(0, 6));
-                        txtDetalleExtra.setText((String) dtmProductos.getValueAt(0, 8));
-                        txtStock.setText((String) dtmProductos.getValueAt(0, 9));
-                        txtPVP.setText((String) dtmProductos.getValueAt(0, 12));
+                        txtCodPrinc.setText((String) dtmProductos.getValueAt(0, 2));
+                        txtDetalleExtra.setText((String) dtmProductos.getValueAt(0, 4));
+                        txtStock.setText((String) dtmProductos.getValueAt(0, 5));
+                        txtPVP.setText((String) dtmProductos.getValueAt(0, 6));
+                        txtTipoIva.setText((String) dtmProductos.getValueAt(0, 7));
                     }
                 }
             }
@@ -1982,7 +2103,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 panel.showNotification();
                 lblIdProducto.setText("");
                 txtNombreProd.setText("");
-                txtCodPrinc.setText("");
+                txtCodAux.setText("");
                 txtDetalleExtra.setText("");
                 txtStock.setText("");
                 txtPVP.setText("");
@@ -2053,16 +2174,22 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         btnGuardar.setVisible(false);
         btnCancelar.setVisible(false);
         btnImprimir.setVisible(true);
+        try {
+            facturaPdf();
+        } catch (DocumentException ex) {
+            Logger.getLogger(FORM_FACTURAR.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(FORM_FACTURAR.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
         try {
 //            reportepdf();
-            facturaPdf();
+
+            abrirPdf();
 //        enviarEmail();
-        } catch (DocumentException ex) {
-            Logger.getLogger(FORM_FACTURAR.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(FORM_FACTURAR.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -2096,10 +2223,13 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
     private javax.swing.JLabel lblCantidadTabla;
     private javax.swing.JLabel lblClaveAcceso;
     private javax.swing.JLabel lblDescuento;
+    private javax.swing.JLabel lblDescuento1;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblIdCliente;
     private javax.swing.JLabel lblIdProducto;
     private javax.swing.JLabel lblIva;
+    private javax.swing.JLabel lblIva1;
+    private javax.swing.JLabel lblIva2;
     private javax.swing.JLabel lblPdf;
     private javax.swing.JLabel lblSubtotal;
     private javax.swing.JLabel lblTotalPagar;
@@ -2119,6 +2249,9 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
     private com.anthony.swing.RoundPanel roundPanel19;
     private com.anthony.swing.RoundPanel roundPanel2;
     private com.anthony.swing.RoundPanel roundPanel20;
+    private com.anthony.swing.RoundPanel roundPanel21;
+    private com.anthony.swing.RoundPanel roundPanel22;
+    private com.anthony.swing.RoundPanel roundPanel23;
     private com.anthony.swing.RoundPanel roundPanel3;
     private com.anthony.swing.RoundPanel roundPanel4;
     private com.anthony.swing.RoundPanel roundPanel6;
@@ -2137,15 +2270,20 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
     private textfield.TextField txtCodAux;
     private textfield.TextField txtCodPrinc;
     private javax.swing.JLabel txtDescuento;
+    private javax.swing.JLabel txtDescuento1;
     private textfield.TextField txtDetalleExtra;
     private textfield.TextField txtDireccion;
+    private javax.swing.JLabel txtEmail;
     private javax.swing.JLabel txtIva;
+    private javax.swing.JLabel txtIva1;
+    private javax.swing.JLabel txtIva2;
     private textfield.TextField txtNombreProd;
     private textfield.TextField txtPVP;
     private textfield.TextField txtRuc;
     private textfield.TextField txtStock;
     private javax.swing.JLabel txtSubtotal;
     private javax.swing.JLabel txtTelefono;
+    private javax.swing.JLabel txtTipoIva;
     private javax.swing.JLabel txtTotal;
     // End of variables declaration//GEN-END:variables
 
@@ -2547,17 +2685,11 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         }
     }
 
-    private void enviarEmail() {
-
-    }
-
     private void facturaPdf() throws FileNotFoundException, DocumentException, BadElementException, IOException {
         /* ============================
         DATOS PRINCIPALES FECHAS
         ============================ */
-        Calendar fecha = Calendar.getInstance();
-        int year = fecha.get(Calendar.YEAR);
-        int mes = fecha.get(Calendar.MONTH) + 1;
+
         String MES = "";
         switch (mes) {
             case 1:
@@ -2821,18 +2953,6 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
 
         infoAdiCell.setBorder(0);
         infoAdiEspacioCell.setBorder(0);
-//        nombreClienteCell.setBorder(0);
-//        cliNombresAdiCell.setBorder(0);
-//        cliDirCell.setBorder(0);
-//        cliDirAdiCell.setBorder(0);
-//        codClienteCell.setBorder(0);
-//        codClienteAdiCell.setBorder(0);
-//        cliTelefonoCell.setBorder(0);
-//        cliTelefonoAdiCell.setBorder(0);
-//        terminoPagoCell.setBorder(0);
-//        terminoPagoAdiCell.setBorder(0);
-//        fechaVencimientoCell.setBorder(0);
-//        fechaVencimientoAdiCell.setBorder(0);
         //Envio a la tabla datosAdicionales
         datosAdicionales.addCell(infoAdiCell);
         datosAdicionales.addCell(infoAdiEspacioCell);
@@ -2946,7 +3066,6 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         formaFagoMain.addCell(formaValorInfoCell);
         formaFagoMain.addCell(formaPlazoInfoCell);
         formaFagoMain.addCell(formaTiempoInfoCell);
-        
 
         //
         PdfPTable codigoQr = new PdfPTable(1);
@@ -2983,8 +3102,85 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         doc.add(espacio);
         doc.add(formaFago);
         doc.close();
-        archivo.close();
-        Desktop.getDesktop().open(file);
+
+        if (mail.sendMail(
+                txtEmail.getText(),
+                txtApellidosCliente.getText(),
+                emp.getEMP_NOMBRE_COMERCIAL(),
+                "rperez0726@outlook.com",
+                "07262001Aapp",
+                "COMPROBANTE GENERADO",
+                "FACTURA",
+                cedula + "-" + daoFac.fechaNormal() + daoFac.hora(),
+                txtTotal.getText(),
+                "C:\\FACTURING_V1\\/" + year + "/" + MES + "/FACTURAS/" + cedula + "-" + usu.getUSU_USUARIO() + " " + daoFac.fechaNormal() + " (" + daoFac.hora() + ") S" + usu.getFK_SUCURSAL() + ".pdf",
+                cedula + " " + daoFac.fechaNormal() + "(" + daoFac.hora() + ")" + ".pdf")
+                .equals("Email enviado correctamente")) {
+            panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.TOP_CENTER, "Factura enviada!!");
+            panel.showNotification();
+        } else if (mail.sendMail(
+                txtEmail.getText(),
+                txtApellidosCliente.getText(),
+                emp.getEMP_NOMBRE_COMERCIAL(),
+                "rperez0726@outlook.com",
+                "07262001Aapp",
+                "COMPROBANTE GENERADO",
+                "FACTURA",
+                cedula + "-" + usu.getUSU_USUARIO() + " " + daoFac.fechaNormal() + " (" + daoFac.hora() + ") S" + usu.getFK_SUCURSAL(),
+                txtTotal.getText(),
+                "C:\\FACTURING_V1\\/" + year + "/" + MES + "/FACTURAS/" + cedula + "-" + usu.getUSU_USUARIO() + " " + daoFac.fechaNormal() + " (" + daoFac.hora() + ") S" + usu.getFK_SUCURSAL() + ".pdf",
+                cedula + "-" + usu.getUSU_USUARIO() + " " + daoFac.fechaNormal() + " (" + daoFac.hora() + ") S" + usu.getFK_SUCURSAL() + ".pdf")
+                .equals("No se pudo enviar el email")) {
+            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.TOP_CENTER, "No se pudo enviar la factura!!");
+            panel.showNotification();
+        }
+    }
+
+    private void abrirPdf() throws IOException {
+        String MES = "";
+        switch (mes) {
+            case 1:
+                MES = "ENERO";
+                break;
+            case 2:
+                MES = "FEBRERO";
+                break;
+            case 3:
+                MES = "MARZO";
+                break;
+            case 4:
+                MES = "ABRIL";
+                break;
+            case 5:
+                MES = "MAYO";
+                break;
+            case 6:
+                MES = "JUNIO";
+                break;
+            case 7:
+                MES = "JULIO";
+                break;
+            case 8:
+                MES = "AGOSTO";
+                break;
+            case 9:
+                MES = "SEPTIEMRBRE";
+                break;
+            case 10:
+                MES = "OCTUBRE";
+                break;
+            case 11:
+                MES = "NOVIEMBRE";
+                break;
+            case 12:
+                MES = "DICIEMBRE";
+                break;
+            default:
+                throw new AssertionError();
+        }
+        String cedula = txtCedula.getText();
+        File myFile = new File("C:\\FACTURING_V1\\/" + year + "/" + MES + "/FACTURAS/" + cedula + "-" + usu.getUSU_USUARIO() + " " + daoFac.fechaNormal() + " (" + daoFac.hora() + ") S" + usu.getFK_SUCURSAL() + ".pdf");
+        Desktop.getDesktop().open(myFile);
     }
 
 }
