@@ -118,14 +118,25 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                     panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "La factura fue creada con exito!!");
                     panel.showNotification();
                     tablaClientes();
+                    tabbedPane.setSelectedComponent(panelProductos);
                 } else if (daoFac.add(fac) == "La factura no fue creada!") {
                     panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo crear la factura!!");
                     panel.showNotification();
                     tablaClientes();
+                    tabbedPane.setSelectedComponent(panelClientes);
+                    spPanel.getVerticalScrollBar().setValue(panelFormClientes.getY());
+                    txtApellidosCliente.requestFocus();
                 }
             } else if (obj.getMessageType() == MessageDialogDark.MessageType.CANCEL) {
                 panel = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se cancelo el proceso!!");
                 panel.showNotification();
+                txtApellidosCliente.setText("");
+                txtCedula.setText("");
+                txtDireccion.setText("");
+                txtRuc.setText("");
+                spPanel.getVerticalScrollBar().setValue(panelFormClientes.getY());
+                tabbedPane.setSelectedComponent(panelClientes);
+                txtApellidosCliente.requestFocus();
             }
         } catch (Exception ex) {
             panel = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Hubo un error al procesar tu peticion!!");
@@ -182,7 +193,10 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         lblTotalPagar.setText("Total a Pagar");
         lblIva.setText("IVA 12%");
         lblDescuento.setText("Descuento");
-        lblSubtotal.setText("Subtotal");
+        lblExcentoIVA.setText("Excnt. IVA");
+        lblObjIVA.setText("Obj. IVA");
+        lblSubtotal.setText("Subtotal 12%");
+        lblSub0.setText("Subtotal 0%");
         btnGuardar.setVisible(true);
         btnImprimir.setVisible(false);
         btnCancelar.setVisible(false);
@@ -681,8 +695,8 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         txtSubtotal = new javax.swing.JLabel();
         lblSubtotal = new javax.swing.JLabel();
         roundPanel18 = new com.anthony.swing.RoundPanel();
-        txtIva = new javax.swing.JLabel();
-        lblIva = new javax.swing.JLabel();
+        txtDescuento2 = new javax.swing.JLabel();
+        lblObjIVA = new javax.swing.JLabel();
         roundPanel19 = new com.anthony.swing.RoundPanel();
         txtDescuento = new javax.swing.JLabel();
         lblDescuento = new javax.swing.JLabel();
@@ -695,13 +709,13 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         lblTotalPagar = new javax.swing.JLabel();
         roundPanel21 = new com.anthony.swing.RoundPanel();
         txtDescuento1 = new javax.swing.JLabel();
-        lblDescuento1 = new javax.swing.JLabel();
+        lblExcentoIVA = new javax.swing.JLabel();
         roundPanel22 = new com.anthony.swing.RoundPanel();
         txtIva1 = new javax.swing.JLabel();
-        lblIva1 = new javax.swing.JLabel();
+        lblSub0 = new javax.swing.JLabel();
         roundPanel23 = new com.anthony.swing.RoundPanel();
-        txtIva2 = new javax.swing.JLabel();
-        lblIva2 = new javax.swing.JLabel();
+        txtIva = new javax.swing.JLabel();
+        lblIva = new javax.swing.JLabel();
         lblIdCliente = new javax.swing.JLabel();
         lblIdProducto = new javax.swing.JLabel();
         lblPdf = new javax.swing.JLabel();
@@ -1385,14 +1399,14 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
 
         roundPanel18.setBackground(new java.awt.Color(32, 32, 32));
 
-        txtIva.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtIva.setForeground(new java.awt.Color(63, 81, 102));
-        txtIva.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtIva.setText("-- --");
+        txtDescuento2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtDescuento2.setForeground(new java.awt.Color(63, 81, 102));
+        txtDescuento2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtDescuento2.setText("-- --");
 
-        lblIva.setForeground(new java.awt.Color(144, 124, 85));
-        lblIva.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIva.setText("iva");
+        lblObjIVA.setForeground(new java.awt.Color(144, 124, 85));
+        lblObjIVA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblObjIVA.setText("iva");
 
         javax.swing.GroupLayout roundPanel18Layout = new javax.swing.GroupLayout(roundPanel18);
         roundPanel18.setLayout(roundPanel18Layout);
@@ -1401,17 +1415,17 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             .addGroup(roundPanel18Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(roundPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblIva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtIva, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
+                    .addComponent(lblObjIVA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtDescuento2, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
                 .addContainerGap())
         );
         roundPanel18Layout.setVerticalGroup(
             roundPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblIva)
+                .addComponent(lblObjIVA)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtIva, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addComponent(txtDescuento2, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1527,9 +1541,9 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         txtDescuento1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtDescuento1.setText("-- --");
 
-        lblDescuento1.setForeground(new java.awt.Color(144, 124, 85));
-        lblDescuento1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblDescuento1.setText("iva");
+        lblExcentoIVA.setForeground(new java.awt.Color(144, 124, 85));
+        lblExcentoIVA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblExcentoIVA.setText("iva");
 
         javax.swing.GroupLayout roundPanel21Layout = new javax.swing.GroupLayout(roundPanel21);
         roundPanel21.setLayout(roundPanel21Layout);
@@ -1538,7 +1552,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             .addGroup(roundPanel21Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(roundPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDescuento1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblExcentoIVA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtDescuento1, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1546,7 +1560,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             roundPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel21Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblDescuento1)
+                .addComponent(lblExcentoIVA)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtDescuento1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1559,9 +1573,9 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         txtIva1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtIva1.setText("-- --");
 
-        lblIva1.setForeground(new java.awt.Color(144, 124, 85));
-        lblIva1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIva1.setText("iva");
+        lblSub0.setForeground(new java.awt.Color(144, 124, 85));
+        lblSub0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSub0.setText("iva");
 
         javax.swing.GroupLayout roundPanel22Layout = new javax.swing.GroupLayout(roundPanel22);
         roundPanel22.setLayout(roundPanel22Layout);
@@ -1570,7 +1584,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             .addGroup(roundPanel22Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(roundPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblIva1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblSub0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtIva1, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1578,7 +1592,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             roundPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel22Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblIva1)
+                .addComponent(lblSub0)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtIva1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1586,14 +1600,14 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
 
         roundPanel23.setBackground(new java.awt.Color(32, 32, 32));
 
-        txtIva2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtIva2.setForeground(new java.awt.Color(63, 81, 102));
-        txtIva2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtIva2.setText("-- --");
+        txtIva.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtIva.setForeground(new java.awt.Color(63, 81, 102));
+        txtIva.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtIva.setText("-- --");
 
-        lblIva2.setForeground(new java.awt.Color(144, 124, 85));
-        lblIva2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIva2.setText("iva");
+        lblIva.setForeground(new java.awt.Color(144, 124, 85));
+        lblIva.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIva.setText("iva");
 
         javax.swing.GroupLayout roundPanel23Layout = new javax.swing.GroupLayout(roundPanel23);
         roundPanel23.setLayout(roundPanel23Layout);
@@ -1602,17 +1616,17 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             .addGroup(roundPanel23Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(roundPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblIva2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtIva2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblIva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtIva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         roundPanel23Layout.setVerticalGroup(
             roundPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel23Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblIva2)
+                .addComponent(lblIva)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtIva2, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addComponent(txtIva, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1768,7 +1782,6 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         txtCedula.setEditable(false);
         txtRuc.setEditable(false);
         txtDireccion.setEditable(false);
-        tabbedPane.setSelectedComponent(panelProductos);
         txtCodPrinc.requestFocus();
         spPanel.getVerticalScrollBar().setValue(panelFormProductos.getY());
     }//GEN-LAST:event_tDatosClientesMouseClicked
@@ -2223,14 +2236,14 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
     private javax.swing.JLabel lblCantidadTabla;
     private javax.swing.JLabel lblClaveAcceso;
     private javax.swing.JLabel lblDescuento;
-    private javax.swing.JLabel lblDescuento1;
+    private javax.swing.JLabel lblExcentoIVA;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblIdCliente;
     private javax.swing.JLabel lblIdProducto;
     private javax.swing.JLabel lblIva;
-    private javax.swing.JLabel lblIva1;
-    private javax.swing.JLabel lblIva2;
+    private javax.swing.JLabel lblObjIVA;
     private javax.swing.JLabel lblPdf;
+    private javax.swing.JLabel lblSub0;
     private javax.swing.JLabel lblSubtotal;
     private javax.swing.JLabel lblTotalPagar;
     private com.anthony.swing.RoundPanel panelBuscar;
@@ -2271,12 +2284,12 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
     private textfield.TextField txtCodPrinc;
     private javax.swing.JLabel txtDescuento;
     private javax.swing.JLabel txtDescuento1;
+    private javax.swing.JLabel txtDescuento2;
     private textfield.TextField txtDetalleExtra;
     private textfield.TextField txtDireccion;
     private javax.swing.JLabel txtEmail;
     private javax.swing.JLabel txtIva;
     private javax.swing.JLabel txtIva1;
-    private javax.swing.JLabel txtIva2;
     private textfield.TextField txtNombreProd;
     private textfield.TextField txtPVP;
     private textfield.TextField txtRuc;
@@ -3124,7 +3137,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 emp.getEMP_NOMBRE_COMERCIAL(),
                 "rperez0726@outlook.com",
                 "07262001Aapp",
-                "COMPROBANTE GENERADO",
+                emp.getEMP_NOMBRE_COMERCIAL() + " COMPROBANTE GENERADO",
                 "FACTURA",
                 cedula + "-" + usu.getUSU_USUARIO() + " " + daoFac.fechaNormal() + " (" + daoFac.hora() + ") S" + usu.getFK_SUCURSAL(),
                 txtTotal.getText(),

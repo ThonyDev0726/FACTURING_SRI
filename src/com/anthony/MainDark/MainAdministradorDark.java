@@ -11,12 +11,14 @@ import com.anthony.eventDark.EventShowPopupMenuDark;
 import com.anthony.login.Login;
 import com.anthony.toast.Toast;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Frame;
 import java.awt.GraphicsEnvironment;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.*;
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
+import javax.swing.ImageIcon;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
@@ -26,7 +28,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
 
     /*========VARIABLES========*/
     USUARIO usu = new USUARIO();
-    PERMISOS per = new PERMISOS();
     PERMISOS_DAO perDao = new PERMISOS_DAO();
     Integer idUsuario;
     String permiso;
@@ -35,7 +36,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
     private Header header;
     private MainForm main;
     private Animator animator;
-    private MainAdministradorDark admin = this;   
+    private MainAdministradorDark admin = this;
     DecimalFormat formateador = new DecimalFormat("######.##");
     Toast toast;
 
@@ -54,6 +55,8 @@ public class MainAdministradorDark extends javax.swing.JFrame {
         this.usu = usu;
         setTitle("Facturing");
         extender();
+//        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon(getClass().getResource("/com/anthony/icons/cursor.png")).getImage(), new Point(0, 0), "Custom Cursor");
+//        setCursor(cursor);
         init();
         initHeader();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/anthony/icons/IconoFacturing-vf.png")));
@@ -590,7 +593,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
         });
         /*========INICIALIZAMOS LA INTERFAS DE HOME========*/
 //        main.showForm(new FormHomeAdministrador());
-        main.showForm(new FORM_HOME());
+        main.showForm(new FORM_HOME(admin, usu));
 
     }
 
@@ -692,7 +695,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
         idUsuario = usu.getID_USUARIO();
         permiso = perDao.ESTADO_REP_GENERAL(idUsuario);
         if (permiso.equals("CON PERMISO")) {
-//            main.showForm(new FORM_NOT_CREDITO(usu, admin));
+            main.showForm(new FORM_REPORTES_GENERALES(usu, admin));
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en Rept. Generales!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
@@ -778,7 +781,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast.showNotification();
         }
     }
-    
+
     public void Ajustes() {
         idUsuario = usu.getID_USUARIO();
         permiso = perDao.ESTADO_AJUSTES(idUsuario);

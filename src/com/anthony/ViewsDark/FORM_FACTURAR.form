@@ -1480,8 +1480,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblIva" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtIva" alignment="0" pref="65" max="32767" attributes="0"/>
+                              <Component id="lblObjIVA" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtDescuento2" alignment="0" pref="65" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1491,16 +1491,16 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblIva" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblObjIVA" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtIva" pref="44" max="32767" attributes="0"/>
+                          <Component id="txtDescuento2" pref="44" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="txtIva">
+                <Component class="javax.swing.JLabel" name="txtDescuento2">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="24" style="0"/>
@@ -1512,7 +1512,7 @@
                     <Property name="text" type="java.lang.String" value="-- --"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblIva">
+                <Component class="javax.swing.JLabel" name="lblObjIVA">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="55" green="7c" red="90" type="rgb"/>
@@ -1720,7 +1720,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblDescuento1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblExcentoIVA" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtDescuento1" alignment="0" pref="65" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1731,7 +1731,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblDescuento1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblExcentoIVA" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtDescuento1" pref="44" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1752,7 +1752,7 @@
                     <Property name="text" type="java.lang.String" value="-- --"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblDescuento1">
+                <Component class="javax.swing.JLabel" name="lblExcentoIVA">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="55" green="7c" red="90" type="rgb"/>
@@ -1776,7 +1776,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblIva1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblSub0" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtIva1" alignment="0" pref="65" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1787,7 +1787,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblIva1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSub0" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtIva1" pref="44" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1808,7 +1808,7 @@
                     <Property name="text" type="java.lang.String" value="-- --"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblIva1">
+                <Component class="javax.swing.JLabel" name="lblSub0">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="55" green="7c" red="90" type="rgb"/>
@@ -1832,8 +1832,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblIva2" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtIva2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblIva" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtIva" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1843,16 +1843,16 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblIva2" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblIva" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtIva2" pref="44" max="32767" attributes="0"/>
+                          <Component id="txtIva" pref="44" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="txtIva2">
+                <Component class="javax.swing.JLabel" name="txtIva">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="24" style="0"/>
@@ -1864,7 +1864,7 @@
                     <Property name="text" type="java.lang.String" value="-- --"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblIva2">
+                <Component class="javax.swing.JLabel" name="lblIva">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="55" green="7c" red="90" type="rgb"/>
