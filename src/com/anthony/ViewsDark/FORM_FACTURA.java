@@ -28,12 +28,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class FORM_FACTURAR extends javax.swing.JPanel {
+public class FORM_FACTURA extends javax.swing.JPanel {
 
     /* ================================== 
      INSTANCIAS NECESARIAS 
     ================================== */
-    String[] titulosProductos = {"#", "Producto", "Cod. Principal.", "Cod. Auxiliar", "Det. Extra", "Stock", "P.V.P.", "Tipo IVA"};
+    String[] titulosProductos = {"#", "Producto", "Cod. Principal.", "Cod. Auxiliar", "Det. Extra", "Stock", "P.V.P.", "Tipo IVA", "Descuento"};
     DefaultTableModel dtmProductos = new DefaultTableModel(null, titulosProductos);
     String[] titulosClientes = {"#", "Nombres", "Apellidos", "Cedula", "RUC", "Telefono", "Direccion", "Email", "Estado"};
     DefaultTableModel dtmClientes = new DefaultTableModel(null, titulosClientes);
@@ -75,7 +75,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
     double subtotal;
     double total;
 
-    public FORM_FACTURAR() {
+    public FORM_FACTURA() {
         initComponents();
         init();
         this.admin = admin;
@@ -86,7 +86,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         scroll();
     }
 
-    public FORM_FACTURAR(USUARIO usu, MainAdministradorDark admin) {
+    public FORM_FACTURA(USUARIO usu, MainAdministradorDark admin) {
         initComponents();
         init();
         this.admin = admin;
@@ -190,15 +190,14 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
     }
 
     private void init() {
-        lblTotalPagar.setText("Total a Pagar");
+        lblTotal.setText("Total");
         lblIva.setText("IVA 12%");
+        lblSub0.setText("Subt 0%");
+        lblSub12.setText("Subt 12%");
         lblDescuento.setText("Descuento");
-        lblExcentoIVA.setText("Excnt. IVA");
-        lblObjIVA.setText("Obj. IVA");
-        lblSubtotal.setText("Subtotal 12%");
-        lblSub0.setText("Subtotal 0%");
         btnGuardar.setVisible(true);
         btnImprimir.setVisible(false);
+        panelDatos.setVisible(false);
         btnCancelar.setVisible(false);
     }
 
@@ -272,7 +271,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
 
     public void tablaProductos() {
         dtmProductos = new DefaultTableModel(null, titulosProductos);
-        String fila[] = new String[8];
+        String fila[] = new String[9];
         List<PRODUCTO> listCh = daoPro.listarFacturacion();
         Iterator<PRODUCTO> iterCh = listCh.iterator();
         pro = null;
@@ -286,6 +285,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             fila[5] = String.valueOf(pro.getPRO_STOCK());
             fila[6] = String.valueOf(pro.getPRO_PVP());
             fila[7] = pro.getPRO_TIPO_IVA();
+            fila[8] = String.valueOf(pro.getPRO_DESCUENTO());
             dtmProductos.addRow(fila);
         }
         tDatosProductos.setModel(dtmProductos);
@@ -382,7 +382,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         try {
             rs = daoPro.BUSCAR_PRODUCTO_FACTURACION(criterio, busqueda);
             boolean encuentra = false;
-            String Datos[] = new String[8];
+            String Datos[] = new String[9];
             //Eliminar los datos que se encuentran en la tabla
             int f, i;
             f = dtmProductos.getRowCount();
@@ -402,6 +402,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                     Datos[5] = (String) rs.getString(6);
                     Datos[6] = (String) rs.getString(7);
                     Datos[7] = (String) rs.getString(8);
+                    Datos[8] = (String) rs.getString(9);
                     dtmProductos.addRow(Datos);
                     encuentra = true;
                 }
@@ -425,9 +426,10 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         txtCodAux.setText("");
         txtPVP.setText("");
         txtStock.setText("");
-        txtCantidadProducto.setText("");
+        txtCantidad.setText("");
         txtNombreProd.setText("");
         txtDetalleExtra.setText("");
+        txtDescuentoProd.setText("");
         txtCodPrinc.requestFocus();
     }
 
@@ -439,14 +441,15 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             panel.showNotification();
         } else {
             dtmProductos = (DefaultTableModel) tDatosProductos.getModel();
-            lblIdProducto.setText((String) dtmProductos.getValueAt(0, 0));
-            txtNombreProd.setText((String) dtmProductos.getValueAt(0, 1));
-            txtCodPrinc.setText((String) dtmProductos.getValueAt(0, 2));
-            txtCodAux.setText((String) dtmProductos.getValueAt(0, 3));
-            txtDetalleExtra.setText((String) dtmProductos.getValueAt(0, 4));
-            txtStock.setText((String) dtmProductos.getValueAt(0, 5));
-            txtPVP.setText((String) dtmProductos.getValueAt(0, 6));
-            txtTipoIva.setText((String) dtmProductos.getValueAt(0, 7));
+            lblIdProducto.setText((String) dtmProductos.getValueAt(fila, 0));
+            txtNombreProd.setText((String) dtmProductos.getValueAt(fila, 1));
+            txtCodPrinc.setText((String) dtmProductos.getValueAt(fila, 2));
+            txtCodAux.setText((String) dtmProductos.getValueAt(fila, 3));
+            txtDetalleExtra.setText((String) dtmProductos.getValueAt(fila, 4));
+            txtStock.setText((String) dtmProductos.getValueAt(fila, 5));
+            txtPVP.setText((String) dtmProductos.getValueAt(fila, 6));
+            txtTipoIva.setText((String) dtmProductos.getValueAt(fila, 7));
+            txtDescuentoProd.setText((String) dtmProductos.getValueAt(fila, 8));
         }
     }
 
@@ -460,10 +463,13 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         String detalleExtra = txtDetalleExtra.getText();
         String codPrincipal = txtCodPrinc.getText();
         String codAuxiliar = txtCodAux.getText();
+        String descuento = txtDescuentoProd.getText();
+        Double descuentoNum;
         precio = Double.parseDouble(txtPVP.getText());
-        cantidad = Integer.parseInt(txtCantidadProducto.getText());
+        cantidad = Integer.parseInt(txtCantidad.getText());
         int stock = Integer.parseInt(txtStock.getText());
         total = cantidad * precio;
+        descuentoNum = cantidad * Double.parseDouble(descuento);
         total = Double.parseDouble(df.format(total));
         ArrayList listaFactura = new ArrayList();
         if (stock <= 0) {
@@ -475,8 +481,9 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             listaFactura.add(nombreProducto);
             listaFactura.add(detalleExtra);
             listaFactura.add(precio);
+            listaFactura.add(descuentoNum);
             listaFactura.add(total);
-            Object[] ob = new Object[7];
+            Object[] ob = new Object[8];
             ob[0] = listaFactura.get(0);
             ob[1] = listaFactura.get(1);
             ob[2] = listaFactura.get(2);
@@ -484,10 +491,12 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             ob[4] = listaFactura.get(4);
             ob[5] = listaFactura.get(5);
             ob[6] = listaFactura.get(6);
+            ob[7] = listaFactura.get(7);
             dtmDetalleFactura.addRow(ob);
             tDatosFactura.setModel(dtmDetalleFactura);
-            txtDescuento.setText("0");
+            txtSub0.setText("0.0");
             SubTotal();
+            Descuento();
             Iva();
             Total();
             autoajustarColumnas(tDatosFactura);
@@ -517,12 +526,26 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         subtotal = 0;
         for (int i = 0; i < tDatosFactura.getRowCount(); i++) {
             cantidad = Integer.parseInt(tDatosFactura.getValueAt(i, 2).toString());
+            PrecioTotal = Double.parseDouble(tDatosFactura.getValueAt(i, 7).toString());
+            subtotal = subtotal + PrecioTotal;
+        }
+        txtSub12.setText("" + df.format(subtotal));
+//        txtSubtotal12.setText("" + df.format(subtotal));
+        txtSub12.setText("" + subtotal);
+//        txtSubtotal12.setText("" + subtotal);
+    }
+
+    private void Descuento() {
+        iva = 0;
+        subtotal = 0;
+        for (int i = 0; i < tDatosFactura.getRowCount(); i++) {
+            cantidad = Integer.parseInt(tDatosFactura.getValueAt(i, 2).toString());
             PrecioTotal = Double.parseDouble(tDatosFactura.getValueAt(i, 6).toString());
             subtotal = subtotal + PrecioTotal;
         }
-        txtSubtotal.setText("" + df.format(subtotal));
+        txtDescuento.setText("" + df.format(subtotal));
 //        txtSubtotal12.setText("" + df.format(subtotal));
-        txtSubtotal.setText("" + subtotal);
+        txtDescuento.setText("" + subtotal);
 //        txtSubtotal12.setText("" + subtotal);
     }
 
@@ -530,12 +553,12 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         double iva = 0;
         subtotal = 0;
         for (int i = 0; i < tDatosFactura.getRowCount(); i++) {
-            subtotal = Double.parseDouble(txtSubtotal.getText());
+            subtotal = Double.parseDouble(txtSub12.getText());
             iva = 0.12 * subtotal;
             iva = Double.parseDouble(df.format(iva));
         }
 //        lblIva.setText(df.format(iva));
-        txtIva.setText("" + iva);
+        txtIva12.setText("" + iva);
     }
 
     private void Total() {
@@ -544,12 +567,12 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         subtotal = 0;
         Double descuento = Double.parseDouble(txtDescuento.getText());
         for (int i = 0; i < tDatosFactura.getRowCount(); i++) {
-            subtotal = Double.parseDouble(txtSubtotal.getText());
+            subtotal = Double.parseDouble(txtSub12.getText());
             iva = 0.12 * subtotal;
             total = (iva + subtotal) - descuento;
             total = Double.parseDouble(df.format(total));
         }
-        txtTotal.setText("" + total);
+        txtTotal.setText(total + "");
     }
 
     private void verficarTotal() {
@@ -575,7 +598,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
 
     public void actualizarStock() {
         int nuevoStock;
-        int cantidadSolicitada = Integer.parseInt(txtCantidadProducto.getText());
+        int cantidadSolicitada = Integer.parseInt(txtCantidad.getText());
         int stockBaseDatos = Integer.parseInt(txtStock.getText());
         nuevoStock = stockBaseDatos - cantidadSolicitada;
         if (daoPro.actualizar_stock(Integer.parseInt(lblIdProducto.getText()), nuevoStock).equals("El stock fue actualizado con exito!")) {
@@ -589,7 +612,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
 
     public void eliminarProducto() {
         int nuevoStock;
-        int cantidadSolicitada = Integer.parseInt(txtCantidadProducto.getText());
+        int cantidadSolicitada = Integer.parseInt(txtCantidad.getText());
         int stockBaseDatos = Integer.parseInt(txtStock.getText());
         nuevoStock = stockBaseDatos - cantidadSolicitada;
         if (daoPro.actualizar_stock(Integer.parseInt(lblIdProducto.getText()), nuevoStock).equals("El stock fue actualizado con exito!")) {
@@ -624,9 +647,9 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 dtmDetalleFactura.removeRow(0);
             }
         }
-        txtSubtotal.setText("-- --");
         txtDescuento.setText("-- --");
-        txtIva.setText("-- --");
+        txtSub0.setText("-- --");
+        txtIva12.setText("-- --");
         txtTotal.setText("-- --");
     }
 
@@ -637,7 +660,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         spPanel = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
-        panelBuscar = new com.anthony.swing.RoundPanel();
+        panelDatos = new com.anthony.swing.RoundPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
@@ -671,11 +694,12 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         txtCodAux = new textfield.TextField();
         txtPVP = new textfield.TextField();
         btnNuevoDetalle = new com.anthony.swing.Button();
-        txtCantidadProducto = new textfield.TextField();
+        txtCantidad = new textfield.TextField();
         txtStock = new textfield.TextField();
         txtNombreProd = new textfield.TextField();
         txtDetalleExtra = new textfield.TextField();
         txtTipoIva = new javax.swing.JLabel();
+        txtDescuentoProd = new textfield.TextField();
         btnCancelar = new com.anthony.swing.Button();
         btnGuardar = new com.anthony.swing.Button();
         btnImprimir = new com.anthony.swing.Button();
@@ -687,35 +711,25 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         progress6 = new com.anthony.swing.progress.Progress();
         jLabel19 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        roundPanel6 = new com.anthony.swing.RoundPanel();
-        progress8 = new com.anthony.swing.progress.Progress();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        roundPanel17 = new com.anthony.swing.RoundPanel();
-        txtSubtotal = new javax.swing.JLabel();
-        lblSubtotal = new javax.swing.JLabel();
         roundPanel18 = new com.anthony.swing.RoundPanel();
-        txtDescuento2 = new javax.swing.JLabel();
-        lblObjIVA = new javax.swing.JLabel();
-        roundPanel19 = new com.anthony.swing.RoundPanel();
         txtDescuento = new javax.swing.JLabel();
         lblDescuento = new javax.swing.JLabel();
+        roundPanel19 = new com.anthony.swing.RoundPanel();
+        txtSub0 = new javax.swing.JLabel();
+        lblSub0 = new javax.swing.JLabel();
         roundPanel4 = new com.anthony.swing.RoundPanel();
         progress7 = new com.anthony.swing.progress.Progress();
         jLabel21 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        roundPanel20 = new com.anthony.swing.RoundPanel();
-        txtTotal = new javax.swing.JLabel();
-        lblTotalPagar = new javax.swing.JLabel();
         roundPanel21 = new com.anthony.swing.RoundPanel();
-        txtDescuento1 = new javax.swing.JLabel();
-        lblExcentoIVA = new javax.swing.JLabel();
-        roundPanel22 = new com.anthony.swing.RoundPanel();
-        txtIva1 = new javax.swing.JLabel();
-        lblSub0 = new javax.swing.JLabel();
-        roundPanel23 = new com.anthony.swing.RoundPanel();
-        txtIva = new javax.swing.JLabel();
+        txtIva12 = new javax.swing.JLabel();
         lblIva = new javax.swing.JLabel();
+        roundPanel22 = new com.anthony.swing.RoundPanel();
+        txtTotal = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
+        roundPanel23 = new com.anthony.swing.RoundPanel();
+        txtSub12 = new javax.swing.JLabel();
+        lblSub12 = new javax.swing.JLabel();
         lblIdCliente = new javax.swing.JLabel();
         lblIdProducto = new javax.swing.JLabel();
         lblPdf = new javax.swing.JLabel();
@@ -739,7 +753,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
 
         jPanel4.setBackground(new java.awt.Color(22, 23, 23));
 
-        panelBuscar.setBackground(new java.awt.Color(32, 32, 32));
+        panelDatos.setBackground(new java.awt.Color(32, 32, 32));
 
         jLabel2.setForeground(new java.awt.Color(144, 124, 85));
         jLabel2.setText("NUMERO DE COMPROBANTE:");
@@ -765,41 +779,41 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         jLabel9.setForeground(new java.awt.Color(144, 124, 85));
         jLabel9.setText("CLAVE DE ACCESO:");
 
-        javax.swing.GroupLayout panelBuscarLayout = new javax.swing.GroupLayout(panelBuscar);
-        panelBuscar.setLayout(panelBuscarLayout);
-        panelBuscarLayout.setHorizontalGroup(
-            panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBuscarLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelDatosLayout = new javax.swing.GroupLayout(panelDatos);
+        panelDatos.setLayout(panelDatosLayout);
+        panelDatosLayout.setHorizontalGroup(
+            panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDatosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblClaveAcceso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel7)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        panelBuscarLayout.setVerticalGroup(
-            panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBuscarLayout.createSequentialGroup()
+        panelDatosLayout.setVerticalGroup(
+            panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosLayout.createSequentialGroup()
                 .addGap(3, 3, 3)
-                .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBuscarLayout.createSequentialGroup()
+                .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelDatosLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, 0)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addGap(0, 0, 0)
-                        .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblFecha)
                             .addComponent(jLabel6)))
-                    .addGroup(panelBuscarLayout.createSequentialGroup()
+                    .addGroup(panelDatosLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(0, 0, 0)
                         .addComponent(lblClaveAcceso)
@@ -895,12 +909,12 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         panelFormClientesLayout.setVerticalGroup(
             panelFormClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFormClientesLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addGroup(panelFormClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(switchCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addGroup(panelFormClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtApellidosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1046,7 +1060,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Codigo Principal", "Codigo auxiliar", "Cantidad", "Descripcion", "Detalle extra", "P.V.P", "Precio Total"
+                "Codigo Principal", "Codigo auxiliar", "Cantidad", "Descripcion", "Detalle extra", "P.V.P", "Descuento", "Precio Total"
             }
         ));
         tDatosFactura.setAltoHead(30);
@@ -1089,6 +1103,11 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         txtCodPrinc.setBackground(new java.awt.Color(32, 32, 32));
         txtCodPrinc.setForeground(new java.awt.Color(0, 110, 162));
         txtCodPrinc.setLabelText("Codigo principal");
+        txtCodPrinc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCodPrincMouseClicked(evt);
+            }
+        });
         txtCodPrinc.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodPrincKeyPressed(evt);
@@ -1104,6 +1123,11 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         txtCodAux.setBackground(new java.awt.Color(32, 32, 32));
         txtCodAux.setForeground(new java.awt.Color(0, 110, 162));
         txtCodAux.setLabelText("Codigo auxiliar");
+        txtCodAux.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCodAuxMouseClicked(evt);
+            }
+        });
         txtCodAux.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCodAuxKeyReleased(evt);
@@ -1116,18 +1140,20 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         txtPVP.setLabelText("Precio");
 
         btnNuevoDetalle.setBackground(new java.awt.Color(37, 47, 33));
-        btnNuevoDetalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoAgregar.png"))); // NOI18N
+        btnNuevoDetalle.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevoDetalle.setText("AGREGAR PRODUCTO");
         btnNuevoDetalle.setBorderPainted(false);
         btnNuevoDetalle.setFocusPainted(false);
+        btnNuevoDetalle.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnNuevoDetalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoDetalleActionPerformed(evt);
             }
         });
 
-        txtCantidadProducto.setBackground(new java.awt.Color(32, 32, 32));
-        txtCantidadProducto.setForeground(new java.awt.Color(0, 110, 162));
-        txtCantidadProducto.setLabelText("Cantidad");
+        txtCantidad.setBackground(new java.awt.Color(32, 32, 32));
+        txtCantidad.setForeground(new java.awt.Color(0, 110, 162));
+        txtCantidad.setLabelText("Cantidad");
 
         txtStock.setBackground(new java.awt.Color(32, 32, 32));
         txtStock.setForeground(new java.awt.Color(0, 110, 162));
@@ -1137,6 +1163,11 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         txtNombreProd.setBackground(new java.awt.Color(32, 32, 32));
         txtNombreProd.setForeground(new java.awt.Color(0, 110, 162));
         txtNombreProd.setLabelText("Producto");
+        txtNombreProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNombreProdMouseClicked(evt);
+            }
+        });
         txtNombreProd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtNombreProdKeyReleased(evt);
@@ -1149,6 +1180,12 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         txtDetalleExtra.setLabelText("Detalle extra");
 
         txtTipoIva.setForeground(new java.awt.Color(32, 32, 32));
+
+        txtDescuentoProd.setEditable(false);
+        txtDescuentoProd.setBackground(new java.awt.Color(32, 32, 32));
+        txtDescuentoProd.setForeground(new java.awt.Color(0, 110, 162));
+        txtDescuentoProd.setFocusable(false);
+        txtDescuentoProd.setLabelText("Descuento");
 
         javax.swing.GroupLayout panelFormProductosLayout = new javax.swing.GroupLayout(panelFormProductos);
         panelFormProductos.setLayout(panelFormProductosLayout);
@@ -1163,46 +1200,50 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                         .addComponent(txtTipoIva, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelFormProductosLayout.createSequentialGroup()
-                        .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFormProductosLayout.createSequentialGroup()
-                                .addComponent(txtCodPrinc, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                .addComponent(txtCodPrinc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCodAux, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
-                            .addComponent(txtNombreProd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(txtCodAux, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtNombreProd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFormProductosLayout.createSequentialGroup()
-                                .addComponent(txtPVP, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPVP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtStock, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                                .addComponent(txtStock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDescuentoProd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCantidadProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
-                            .addComponent(txtDetalleExtra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNuevoDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panelFormProductosLayout.createSequentialGroup()
+                                .addComponent(txtDetalleExtra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(171, 171, 171)
+                                .addComponent(btnNuevoDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
         panelFormProductosLayout.setVerticalGroup(
             panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFormProductosLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(1, 1, 1)
                 .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTipoIva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtTipoIva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelFormProductosLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(0, 0, 0)))
+                .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodPrinc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodAux, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPVP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDescuentoProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnNuevoDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelFormProductosLayout.createSequentialGroup()
-                        .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCodPrinc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCodAux, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPVP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNombreProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDetalleExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtNombreProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDetalleExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNuevoDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1324,89 +1365,17 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        roundPanel6.setBackground(new java.awt.Color(32, 32, 32));
-
-        progress8.setBorder(null);
-        progress8.setForeground(new java.awt.Color(153, 102, 0));
-        progress8.setMaximum(150);
-        progress8.setValue(95);
-        progress8.setBorderPainted(false);
-
-        jLabel38.setForeground(new java.awt.Color(144, 124, 85));
-        jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel38.setText("SRI procesando");
-
-        jLabel39.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel39.setForeground(new java.awt.Color(0, 162, 81));
-        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel39.setText("REALIZADO");
-
-        javax.swing.GroupLayout roundPanel6Layout = new javax.swing.GroupLayout(roundPanel6);
-        roundPanel6.setLayout(roundPanel6Layout);
-        roundPanel6Layout.setHorizontalGroup(
-            roundPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel6Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(roundPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                    .addComponent(progress8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(6, 6, 6))
-        );
-        roundPanel6Layout.setVerticalGroup(
-            roundPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(progress8, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel38)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel39)
-                .addContainerGap())
-        );
-
-        roundPanel17.setBackground(new java.awt.Color(32, 32, 32));
-
-        txtSubtotal.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        txtSubtotal.setForeground(new java.awt.Color(204, 204, 0));
-        txtSubtotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtSubtotal.setText("-- --");
-
-        lblSubtotal.setForeground(new java.awt.Color(144, 124, 85));
-        lblSubtotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSubtotal.setText("iva");
-
-        javax.swing.GroupLayout roundPanel17Layout = new javax.swing.GroupLayout(roundPanel17);
-        roundPanel17.setLayout(roundPanel17Layout);
-        roundPanel17Layout.setHorizontalGroup(
-            roundPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(roundPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        roundPanel17Layout.setVerticalGroup(
-            roundPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblSubtotal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
         roundPanel18.setBackground(new java.awt.Color(32, 32, 32));
 
-        txtDescuento2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtDescuento2.setForeground(new java.awt.Color(63, 81, 102));
-        txtDescuento2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtDescuento2.setText("-- --");
+        txtDescuento.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtDescuento.setForeground(new java.awt.Color(63, 81, 102));
+        txtDescuento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtDescuento.setText("-- --");
 
-        lblObjIVA.setForeground(new java.awt.Color(144, 124, 85));
-        lblObjIVA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblObjIVA.setText("iva");
+        lblDescuento.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        lblDescuento.setForeground(new java.awt.Color(144, 124, 85));
+        lblDescuento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDescuento.setText("des");
 
         javax.swing.GroupLayout roundPanel18Layout = new javax.swing.GroupLayout(roundPanel18);
         roundPanel18.setLayout(roundPanel18Layout);
@@ -1415,30 +1384,31 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             .addGroup(roundPanel18Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(roundPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblObjIVA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDescuento2, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
+                    .addComponent(lblDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE))
                 .addContainerGap())
         );
         roundPanel18Layout.setVerticalGroup(
             roundPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblObjIVA)
+                .addComponent(lblDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDescuento2, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         roundPanel19.setBackground(new java.awt.Color(32, 32, 32));
 
-        txtDescuento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtDescuento.setForeground(new java.awt.Color(63, 81, 102));
-        txtDescuento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtDescuento.setText("-- --");
+        txtSub0.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtSub0.setForeground(new java.awt.Color(63, 81, 102));
+        txtSub0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtSub0.setText("-- --");
 
-        lblDescuento.setForeground(new java.awt.Color(144, 124, 85));
-        lblDescuento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblDescuento.setText("iva");
+        lblSub0.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        lblSub0.setForeground(new java.awt.Color(144, 124, 85));
+        lblSub0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSub0.setText("sub0");
 
         javax.swing.GroupLayout roundPanel19Layout = new javax.swing.GroupLayout(roundPanel19);
         roundPanel19.setLayout(roundPanel19Layout);
@@ -1447,17 +1417,17 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             .addGroup(roundPanel19Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(roundPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
+                    .addComponent(lblSub0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtSub0, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE))
                 .addContainerGap())
         );
         roundPanel19Layout.setVerticalGroup(
             roundPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel19Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblDescuento)
+                .addComponent(lblSub0, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addComponent(txtSub0, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -1502,48 +1472,17 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        roundPanel20.setBackground(new java.awt.Color(32, 32, 32));
-
-        txtTotal.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        txtTotal.setForeground(new java.awt.Color(204, 204, 0));
-        txtTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtTotal.setText("-- --");
-
-        lblTotalPagar.setForeground(new java.awt.Color(144, 124, 85));
-        lblTotalPagar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTotalPagar.setText("iva");
-
-        javax.swing.GroupLayout roundPanel20Layout = new javax.swing.GroupLayout(roundPanel20);
-        roundPanel20.setLayout(roundPanel20Layout);
-        roundPanel20Layout.setHorizontalGroup(
-            roundPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel20Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(roundPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTotalPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        roundPanel20Layout.setVerticalGroup(
-            roundPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel20Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTotalPagar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
         roundPanel21.setBackground(new java.awt.Color(32, 32, 32));
 
-        txtDescuento1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtDescuento1.setForeground(new java.awt.Color(63, 81, 102));
-        txtDescuento1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtDescuento1.setText("-- --");
+        txtIva12.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtIva12.setForeground(new java.awt.Color(63, 81, 102));
+        txtIva12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtIva12.setText("-- --");
 
-        lblExcentoIVA.setForeground(new java.awt.Color(144, 124, 85));
-        lblExcentoIVA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblExcentoIVA.setText("iva");
+        lblIva.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        lblIva.setForeground(new java.awt.Color(144, 124, 85));
+        lblIva.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIva.setText("iv12");
 
         javax.swing.GroupLayout roundPanel21Layout = new javax.swing.GroupLayout(roundPanel21);
         roundPanel21.setLayout(roundPanel21Layout);
@@ -1552,30 +1491,31 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             .addGroup(roundPanel21Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(roundPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblExcentoIVA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDescuento1, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
+                    .addComponent(lblIva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtIva12, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE))
                 .addContainerGap())
         );
         roundPanel21Layout.setVerticalGroup(
             roundPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel21Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblExcentoIVA)
+                .addComponent(lblIva, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDescuento1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addComponent(txtIva12, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         roundPanel22.setBackground(new java.awt.Color(32, 32, 32));
 
-        txtIva1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtIva1.setForeground(new java.awt.Color(63, 81, 102));
-        txtIva1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtIva1.setText("-- --");
+        txtTotal.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtTotal.setForeground(new java.awt.Color(63, 81, 102));
+        txtTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtTotal.setText("-- --");
 
-        lblSub0.setForeground(new java.awt.Color(144, 124, 85));
-        lblSub0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSub0.setText("iva");
+        lblTotal.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(144, 124, 85));
+        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTotal.setText("t");
 
         javax.swing.GroupLayout roundPanel22Layout = new javax.swing.GroupLayout(roundPanel22);
         roundPanel22.setLayout(roundPanel22Layout);
@@ -1584,30 +1524,31 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             .addGroup(roundPanel22Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(roundPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSub0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtIva1, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+                    .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE))
                 .addContainerGap())
         );
         roundPanel22Layout.setVerticalGroup(
             roundPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel22Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblSub0)
+                .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtIva1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         roundPanel23.setBackground(new java.awt.Color(32, 32, 32));
 
-        txtIva.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtIva.setForeground(new java.awt.Color(63, 81, 102));
-        txtIva.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtIva.setText("-- --");
+        txtSub12.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtSub12.setForeground(new java.awt.Color(63, 81, 102));
+        txtSub12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtSub12.setText("-- --");
 
-        lblIva.setForeground(new java.awt.Color(144, 124, 85));
-        lblIva.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIva.setText("iva");
+        lblSub12.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        lblSub12.setForeground(new java.awt.Color(144, 124, 85));
+        lblSub12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSub12.setText("sub12");
 
         javax.swing.GroupLayout roundPanel23Layout = new javax.swing.GroupLayout(roundPanel23);
         roundPanel23.setLayout(roundPanel23Layout);
@@ -1616,17 +1557,17 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             .addGroup(roundPanel23Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(roundPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblIva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtIva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblSub12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtSub12, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE))
                 .addContainerGap())
         );
         roundPanel23Layout.setVerticalGroup(
             roundPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel23Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblIva)
+                .addComponent(lblSub12, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtIva, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addComponent(txtSub12, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -1639,32 +1580,24 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelFormClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelDatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelFormProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(roundPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(roundPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(roundPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(roundPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(roundPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(roundPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(roundPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(roundPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(roundPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(roundPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(roundPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(roundPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(roundPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(roundPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(roundPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(roundPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1675,13 +1608,13 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addGap(8, 8, 8))
         );
 
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {roundPanel2, roundPanel3, roundPanel4, roundPanel6});
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {roundPanel2, roundPanel3, roundPanel4});
 
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(panelBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelFormClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1689,22 +1622,16 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(roundPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roundPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roundPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roundPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(roundPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roundPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roundPanel23, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(roundPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(roundPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(roundPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(roundPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(roundPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(roundPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1713,7 +1640,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {roundPanel17, roundPanel18, roundPanel19});
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {roundPanel18, roundPanel19, roundPanel21, roundPanel22, roundPanel23, roundPanel4});
 
         spPanel.setViewportView(jPanel4);
 
@@ -1749,7 +1676,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTelefono)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(spPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE)
+            .addComponent(spPanel)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1757,7 +1684,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIdCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblIdProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
                     .addComponent(lblPdf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblCantidadTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -1767,7 +1694,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spPanel))
+                .addComponent(spPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1788,12 +1715,12 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
 
     private void btnNuevoDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoDetalleActionPerformed
         try {
-            if (txtCantidadProducto.getText().length() == 0 || txtCantidadProducto.getText() == null) {
+            if (txtCantidad.getText().length() == 0 || txtCantidad.getText() == null) {
                 panel = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Debe agregar una cantidad!!");
                 panel.showNotification();
-                txtCantidadProducto.requestFocus();
+                txtCantidad.requestFocus();
             }
-            cantidad = Integer.parseInt(txtCantidadProducto.getText());
+            cantidad = Integer.parseInt(txtCantidad.getText());
             stock = Integer.parseInt(txtStock.getText());
             if (cantidad > stock) {
                 panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tenemos sufiente en Stock");
@@ -2000,7 +1927,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         try {
             rs = daoPro.BUSCAR_PRODUCTO_FACTURACION(criterio, busqueda);
             boolean encuentra = false;
-            String Datos[] = new String[8];
+            String Datos[] = new String[9];
             //Eliminar los datos que se encuentran en la tabla
             int f, i;
             f = dtmProductos.getRowCount();
@@ -2019,6 +1946,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 Datos[5] = (String) rs.getString(6);
                 Datos[6] = (String) rs.getString(7);
                 Datos[7] = (String) rs.getString(8);
+                Datos[8] = (String) rs.getString(9);
                 dtmProductos.addRow(Datos);
                 encuentra = true;
                 if (encuentra == true) {
@@ -2031,6 +1959,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                         txtStock.setText((String) dtmProductos.getValueAt(0, 5));
                         txtPVP.setText((String) dtmProductos.getValueAt(0, 6));
                         txtTipoIva.setText((String) dtmProductos.getValueAt(0, 7));
+                        txtDescuentoProd.setText((String) dtmProductos.getValueAt(0, 8));
                     }
                 }
             }
@@ -2042,6 +1971,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 txtCodAux.setText("");
                 txtDetalleExtra.setText("");
                 txtStock.setText("");
+                txtDescuentoProd.setText("");
                 txtPVP.setText("");
             }
         } catch (Exception ex) {
@@ -2077,7 +2007,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         try {
             rs = daoPro.BUSCAR_PRODUCTO_FACTURACION(criterio, busqueda);
             boolean encuentra = false;
-            String Datos[] = new String[8];
+            String Datos[] = new String[9];
             //Eliminar los datos que se encuentran en la tabla
             int f, i;
             f = dtmProductos.getRowCount();
@@ -2096,6 +2026,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 Datos[5] = (String) rs.getString(6);
                 Datos[6] = (String) rs.getString(7);
                 Datos[7] = (String) rs.getString(8);
+                Datos[8] = (String) rs.getString(9);
                 dtmProductos.addRow(Datos);
                 encuentra = true;
                 if (encuentra == true) {
@@ -2103,11 +2034,12 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                         dtmProductos = (DefaultTableModel) tDatosProductos.getModel();
                         lblIdProducto.setText((String) dtmProductos.getValueAt(0, 0));
                         txtNombreProd.setText((String) dtmProductos.getValueAt(0, 1));
-                        txtCodPrinc.setText((String) dtmProductos.getValueAt(0, 2));
+                        txtCodAux.setText((String) dtmProductos.getValueAt(0, 3));
                         txtDetalleExtra.setText((String) dtmProductos.getValueAt(0, 4));
                         txtStock.setText((String) dtmProductos.getValueAt(0, 5));
                         txtPVP.setText((String) dtmProductos.getValueAt(0, 6));
                         txtTipoIva.setText((String) dtmProductos.getValueAt(0, 7));
+                        txtDescuentoProd.setText((String) dtmProductos.getValueAt(0, 8));
                     }
                 }
             }
@@ -2120,6 +2052,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 txtDetalleExtra.setText("");
                 txtStock.setText("");
                 txtPVP.setText("");
+                txtDescuentoProd.setText("");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -2148,6 +2081,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             txtDetalleExtra.setText("");
             txtStock.setText("");
             txtPVP.setText("");
+            txtDescuentoProd.setText("");
         }
     }//GEN-LAST:event_txtNombreProdKeyReleased
 
@@ -2161,13 +2095,13 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         int fk_factura = Integer.parseInt(daoFac.ultimaFactura_id());
-        String subtotal_0 = txtSubtotal.getText();
-        String subtotal_12 = txtSubtotal.getText();
+        String subtotal_0 = txtDescuento.getText();
+        String subtotal_12 = txtDescuento.getText();
 //        String objIva = txtSubtotal.getText();
 //        String excIva = txtSubtotal.getText();
-        String descuentoString = txtDescuento.getText();
+        String descuentoString = txtSub0.getText();
         Double descuento = Double.parseDouble(descuentoString);
-        String iva12 = txtIva.getText();
+        String iva12 = txtIva12.getText();
         String totalPagar = txtTotal.getText();
         facTotalidad.setFK_FACTURA(fk_factura);
         facTotalidad.setFAC_SUB_0(Double.parseDouble(subtotal_0));
@@ -2190,9 +2124,9 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         try {
             facturaPdf();
         } catch (DocumentException ex) {
-            Logger.getLogger(FORM_FACTURAR.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FORM_FACTURA.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(FORM_FACTURAR.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FORM_FACTURA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -2200,9 +2134,21 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         try {
             abrirPdf();
         } catch (IOException ex) {
-            Logger.getLogger(FORM_FACTURAR.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FORM_FACTURA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void txtCodPrincMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodPrincMouseClicked
+        tabbedPane.setSelectedComponent(panelProductos);
+    }//GEN-LAST:event_txtCodPrincMouseClicked
+
+    private void txtCodAuxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodAuxMouseClicked
+        tabbedPane.setSelectedComponent(panelProductos);
+    }//GEN-LAST:event_txtCodAuxMouseClicked
+
+    private void txtNombreProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreProdMouseClicked
+        tabbedPane.setSelectedComponent(panelProductos);
+    }//GEN-LAST:event_txtNombreProdMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2222,8 +2168,6 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2232,18 +2176,16 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
     private javax.swing.JLabel lblCantidadTabla;
     private javax.swing.JLabel lblClaveAcceso;
     private javax.swing.JLabel lblDescuento;
-    private javax.swing.JLabel lblExcentoIVA;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblIdCliente;
     private javax.swing.JLabel lblIdProducto;
     private javax.swing.JLabel lblIva;
-    private javax.swing.JLabel lblObjIVA;
     private javax.swing.JLabel lblPdf;
     private javax.swing.JLabel lblSub0;
-    private javax.swing.JLabel lblSubtotal;
-    private javax.swing.JLabel lblTotalPagar;
-    private com.anthony.swing.RoundPanel panelBuscar;
+    private javax.swing.JLabel lblSub12;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JPanel panelClientes;
+    private com.anthony.swing.RoundPanel panelDatos;
     private javax.swing.JPanel panelFactura;
     private com.anthony.swing.RoundPanel panelFormClientes;
     private com.anthony.swing.RoundPanel panelFormProductos;
@@ -2251,19 +2193,15 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
     private com.anthony.swing.progress.Progress progress3;
     private com.anthony.swing.progress.Progress progress6;
     private com.anthony.swing.progress.Progress progress7;
-    private com.anthony.swing.progress.Progress progress8;
     private com.anthony.swing.RoundPanel roundPanel1;
-    private com.anthony.swing.RoundPanel roundPanel17;
     private com.anthony.swing.RoundPanel roundPanel18;
     private com.anthony.swing.RoundPanel roundPanel19;
     private com.anthony.swing.RoundPanel roundPanel2;
-    private com.anthony.swing.RoundPanel roundPanel20;
     private com.anthony.swing.RoundPanel roundPanel21;
     private com.anthony.swing.RoundPanel roundPanel22;
     private com.anthony.swing.RoundPanel roundPanel23;
     private com.anthony.swing.RoundPanel roundPanel3;
     private com.anthony.swing.RoundPanel roundPanel4;
-    private com.anthony.swing.RoundPanel roundPanel6;
     private javax.swing.JScrollPane spClientes;
     private javax.swing.JScrollPane spFactura;
     private javax.swing.JScrollPane spPanel;
@@ -2274,23 +2212,22 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
     private rojeru_san.complementos.TableMetro tDatosProductos;
     private com.anthony.swing.TabbedPane tabbedPane;
     private textfield.TextField txtApellidosCliente;
-    private textfield.TextField txtCantidadProducto;
+    private textfield.TextField txtCantidad;
     private textfield.TextField txtCedula;
     private textfield.TextField txtCodAux;
     private textfield.TextField txtCodPrinc;
     private javax.swing.JLabel txtDescuento;
-    private javax.swing.JLabel txtDescuento1;
-    private javax.swing.JLabel txtDescuento2;
+    private textfield.TextField txtDescuentoProd;
     private textfield.TextField txtDetalleExtra;
     private textfield.TextField txtDireccion;
     private javax.swing.JLabel txtEmail;
-    private javax.swing.JLabel txtIva;
-    private javax.swing.JLabel txtIva1;
+    private javax.swing.JLabel txtIva12;
     private textfield.TextField txtNombreProd;
     private textfield.TextField txtPVP;
     private textfield.TextField txtRuc;
     private textfield.TextField txtStock;
-    private javax.swing.JLabel txtSubtotal;
+    private javax.swing.JLabel txtSub0;
+    private javax.swing.JLabel txtSub12;
     private javax.swing.JLabel txtTelefono;
     private javax.swing.JLabel txtTipoIva;
     private javax.swing.JLabel txtTotal;
@@ -2531,7 +2468,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             PdfPCell sub2 = new PdfPCell(new Phrase("", negrita));
             PdfPCell sub3 = new PdfPCell(new Phrase("", negrita));
             PdfPCell sub4 = new PdfPCell(new Phrase("Subtotal:", negrita1));
-            PdfPCell sub5 = new PdfPCell(new Phrase("USD " + txtSubtotal.getText()));
+            PdfPCell sub5 = new PdfPCell(new Phrase("USD " + txtDescuento.getText()));
 
             sub1.setBorder(0);
             sub2.setBorder(0);
@@ -2555,7 +2492,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             PdfPCell iva2 = new PdfPCell(new Phrase("", negrita));
             PdfPCell iva3 = new PdfPCell(new Phrase("", negrita));
             PdfPCell iva4 = new PdfPCell(new Phrase("Iva 12%:", negrita1));
-            PdfPCell iva5 = new PdfPCell(new Phrase("USD " + txtIva.getText()));
+            PdfPCell iva5 = new PdfPCell(new Phrase("USD " + txtIva12.getText()));
 
             iva1.setBorder(0);
             iva2.setBorder(0);
@@ -2580,7 +2517,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             PdfPCell ivaC2 = new PdfPCell(new Phrase("", negrita));
             PdfPCell ivaC3 = new PdfPCell(new Phrase("", negrita));
             PdfPCell ivaC4 = new PdfPCell(new Phrase("Descuento %:", negrita1));
-            PdfPCell ivaC5 = new PdfPCell(new Phrase("USD " + txtDescuento.getText()));
+            PdfPCell ivaC5 = new PdfPCell(new Phrase("USD " + txtSub0.getText()));
 
             ivaC1.setBorder(0);
             ivaC2.setBorder(0);
@@ -2762,6 +2699,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         Font negritaSmallBold = new Font(Font.FontFamily.HELVETICA, 6, Font.BOLD, BaseColor.BLACK);
         Font negritaMediuamBold = new Font(Font.FontFamily.HELVETICA, 7, Font.BOLD, BaseColor.BLACK);
         Font normalBold = new Font(Font.FontFamily.HELVETICA, 9, Font.BOLD, BaseColor.BLACK);
+        Font normalBold8 = new Font(Font.FontFamily.HELVETICA, 8, Font.BOLD, BaseColor.BLACK);
         Font normal = new Font(Font.FontFamily.HELVETICA, 9, Font.NORMAL, BaseColor.BLACK);
         //Espacio 
         Paragraph espacio = new Paragraph();
@@ -2863,11 +2801,11 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         /* ============================
         DATOS PRODUCTO
         ============================ */
-        PdfPTable tablaProductos = new PdfPTable(6);
+        PdfPTable tablaProductos = new PdfPTable(7);
         //tablaProductos.setHorizontalAlignment(Element.ALIGN_CENTER);
         tablaProductos.setWidthPercentage(100);
         tablaProductos.getDefaultCell();
-        float[] columnaProductos = new float[]{17f, 17f, 65f, 10f, 11f, 12f};
+        float[] columnaProductos = new float[]{20f, 20f, 60f, 10f, 15f, 15f, 12f};
         tablaProductos.setWidths(columnaProductos);
         tablaProductos.setHorizontalAlignment(Element.ALIGN_CENTER);
         PdfPCell pro1 = new PdfPCell(new Phrase("Codigo", normalBold));
@@ -2875,19 +2813,22 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         PdfPCell pro3 = new PdfPCell(new Phrase("Descripsión", normalBold));
         PdfPCell pro4 = new PdfPCell(new Phrase("Cant.", normalBold));
         PdfPCell pro5 = new PdfPCell(new Phrase("P.V.P", normalBold));
-        PdfPCell pro6 = new PdfPCell(new Phrase("P. Total", normalBold));
+        PdfPCell pro6 = new PdfPCell(new Phrase("Descuento", normalBold));
+        PdfPCell pro7 = new PdfPCell(new Phrase("P. Total", normalBold));
         pro1.setHorizontalAlignment(Element.ALIGN_CENTER);
         pro2.setHorizontalAlignment(Element.ALIGN_CENTER);
         pro3.setHorizontalAlignment(Element.ALIGN_CENTER);
         pro4.setHorizontalAlignment(Element.ALIGN_CENTER);
         pro5.setHorizontalAlignment(Element.ALIGN_CENTER);
         pro6.setHorizontalAlignment(Element.ALIGN_CENTER);
+        pro7.setHorizontalAlignment(Element.ALIGN_CENTER);
         tablaProductos.addCell(pro1);
         tablaProductos.addCell(pro2);
         tablaProductos.addCell(pro3);
         tablaProductos.addCell(pro4);
         tablaProductos.addCell(pro5);
         tablaProductos.addCell(pro6);
+        tablaProductos.addCell(pro7);
         for (int i = 0; i < tDatosFactura.getRowCount(); i++) {
             String codigoPrin = tDatosFactura.getValueAt(i, 0).toString();
             String codigoAux = tDatosFactura.getValueAt(i, 1).toString();
@@ -2895,12 +2836,14 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             String prodDetExtra = tDatosFactura.getValueAt(i, 4).toString();
             String cantidadFact = tDatosFactura.getValueAt(i, 2).toString();
             String precioFact = tDatosFactura.getValueAt(i, 5).toString();
-            String totalFact = tDatosFactura.getValueAt(i, 6).toString();
+            String descuFact = tDatosFactura.getValueAt(i, 6).toString();
+            String totalFact = tDatosFactura.getValueAt(i, 7).toString();
             PdfPCell codigoPrinCell = new PdfPCell(new Phrase(codigoPrin, negrita));
             PdfPCell codigoAuxCell = new PdfPCell(new Phrase(codigoAux, negrita));
             PdfPCell productoCell = new PdfPCell(new Phrase(producto + " - " + prodDetExtra, negrita));
             PdfPCell cantidadCell = new PdfPCell(new Phrase(cantidadFact, negrita));
             PdfPCell precioCell = new PdfPCell(new Phrase(precioFact, negrita));
+            PdfPCell descuentoCell = new PdfPCell(new Phrase(descuFact, negrita));
             PdfPCell totalCell = new PdfPCell(new Phrase(totalFact, negrita));
             codigoPrinCell.setHorizontalAlignment(Element.ALIGN_JUSTIFIED);
             codigoAuxCell.setHorizontalAlignment(Element.ALIGN_JUSTIFIED);
@@ -2913,6 +2856,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             tablaProductos.addCell(productoCell);
             tablaProductos.addCell(cantidadCell);
             tablaProductos.addCell(precioCell);
+            tablaProductos.addCell(descuentoCell);
             tablaProductos.addCell(totalCell);
         }
 
@@ -2987,18 +2931,18 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         calculosMain.setWidths(columnaaCalculosMain);
         //
         Paragraph subTotal12Cell = new Paragraph("Subtotal 12%", negritaMediuamBold);
-        Paragraph subTotal12InfoCell = new Paragraph(txtSubtotal.getText(), normal);
+        Paragraph subTotal12InfoCell = new Paragraph(txtSub12.getText(), normal);
         Paragraph sub0Cell = new Paragraph("Subtotal 0%", negritaMediuamBold);
-        Paragraph sub0InfoCell = new Paragraph("0.00", normal);
+        Paragraph sub0InfoCell = new Paragraph(txtSub0.getText(), normal);
         Paragraph subObjCell = new Paragraph("Subtotal no sujeto de IVA", negritaMediuamBold);
         Paragraph subObjInfoCell = new Paragraph("0.00", normal);
         subObjInfoCell.setAlignment(Element.ALIGN_CENTER);
         Paragraph subImpCell = new Paragraph("Subtotal sin impuestos", negritaMediuamBold);
-        Paragraph subImpInfoCell = new Paragraph(txtSubtotal.getText(), normal);
+        Paragraph subImpInfoCell = new Paragraph(txtDescuento.getText(), normal);
         Paragraph desCell = new Paragraph("Descuento", negritaMediuamBold);
-        Paragraph desInfoCell = new Paragraph("0.00", normal);
+        Paragraph desInfoCell = new Paragraph(txtDescuento.getText(), normal);
         Paragraph ivaCell = new Paragraph("IVA 12%", negritaMediuamBold);
-        Paragraph ivaInfoCell = new Paragraph(txtIva.getText(), normal);
+        Paragraph ivaInfoCell = new Paragraph(txtIva12.getText(), normal);
         Paragraph totalCell = new Paragraph("VALOR A PAGAR", normalBold);
         Paragraph totalInfoCell = new Paragraph(txtTotal.getText(), normalBold);
 
@@ -3112,8 +3056,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         doc.add(formaFago);
         doc.close();
 
-        if (mail.sendMail(
-                txtEmail.getText(),
+        if (mail.sendMail(txtEmail.getText(),
                 txtApellidosCliente.getText(),
                 emp.getEMP_NOMBRE_COMERCIAL(),
                 "rperez0726@outlook.com",
@@ -3127,8 +3070,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 .equals("Email enviado correctamente")) {
             panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.TOP_CENTER, "Factura enviada!!");
             panel.showNotification();
-        } else if (mail.sendMail(
-                txtEmail.getText(),
+        } else if (mail.sendMail(txtEmail.getText(),
                 txtApellidosCliente.getText(),
                 emp.getEMP_NOMBRE_COMERCIAL(),
                 "rperez0726@outlook.com",

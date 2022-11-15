@@ -64,6 +64,7 @@ public class PRODUCTO_DAO implements crud_producto {
                 pro.setPRO_PVP(rs.getDouble(13));
                 pro.setPRO_ESTADO(rs.getString(14));
                 pro.setPRO_TIPO_IVA(rs.getString(15));
+                pro.setPRO_DESCUENTO(rs.getDouble(16));
                 lista.add(pro);
             }
             System.out.println("SE ESTAN LISTANDO TODOS LOS PRODUCTOS");
@@ -89,6 +90,7 @@ public class PRODUCTO_DAO implements crud_producto {
                 pro.setPRO_STOCK(rs.getInt(6));
                 pro.setPRO_PVP(rs.getDouble(7));
                 pro.setPRO_TIPO_IVA(rs.getString(8));
+                pro.setPRO_DESCUENTO(rs.getDouble(9));
                 lista.add(pro);
             }
             System.out.println("SE ESTAN LISTANDO TODOS LOS PRODUCTOS FACTURACION");
@@ -188,6 +190,7 @@ public class PRODUCTO_DAO implements crud_producto {
             cs.setString(13, producto.getPRO_CREACION());
             cs.setString(14, producto.getPRO_ESTADO());
             cs.setString(15, producto.getPRO_TIPO_IVA());
+            cs.setDouble(16, producto.getPRO_DESCUENTO());
             cs.execute();
             System.out.println(CREAR);
         } catch (SQLException ex) {
@@ -218,6 +221,7 @@ public class PRODUCTO_DAO implements crud_producto {
             cs.setDouble(13, pro.getPRO_PVP());
             cs.setString(14, pro.getPRO_ESTADO());
             cs.setString(15, pro.getPRO_TIPO_IVA());
+            cs.setDouble(16, pro.getPRO_DESCUENTO());
             cs.execute();
             System.out.println(ACTUALIZAR);
         } catch (SQLException ex) {

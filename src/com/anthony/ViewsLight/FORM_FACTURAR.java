@@ -2034,7 +2034,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
 //        String objIva = txtSubtotal.getText();
 //        String excIva = txtSubtotal.getText();
         String descuentoString = txtDescuento.getText();
-        Integer descuento = Integer.parseInt(descuentoString);
+        Double descuento = Double.parseDouble(descuentoString);
         String iva12 = txtIva.getText();
         String totalPagar = txtTotal.getText();
         facTotalidad.setFK_FACTURA(fk_factura);

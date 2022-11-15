@@ -38,7 +38,7 @@
               <Component id="txtTelefono" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
-          <Component id="spPanel" alignment="0" pref="762" max="32767" attributes="0"/>
+          <Component id="spPanel" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -47,7 +47,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblIdCliente" max="32767" attributes="0"/>
                   <Component id="lblIdProducto" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jLabel1" alignment="0" pref="51" max="32767" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" pref="64" max="32767" attributes="0"/>
                   <Component id="lblPdf" max="32767" attributes="0"/>
                   <Component id="lblCantidadTabla" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
@@ -60,7 +60,7 @@
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="spPanel" max="32767" attributes="0"/>
+              <Component id="spPanel" pref="824" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -107,35 +107,24 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="roundPanel1" alignment="0" max="32767" attributes="0"/>
                           <Component id="panelFormClientes" alignment="0" max="32767" attributes="0"/>
-                          <Component id="panelBuscar" alignment="1" max="32767" attributes="0"/>
+                          <Component id="panelDatos" alignment="1" max="32767" attributes="0"/>
                           <Component id="panelFormProductos" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="roundPanel2" linkSize="13" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="roundPanel3" linkSize="13" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="roundPanel6" linkSize="13" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="roundPanel4" linkSize="13" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="roundPanel19" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                                      <Component id="roundPanel18" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                                      <Component id="roundPanel21" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                                      <Component id="roundPanel22" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="roundPanel23" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                                      <Component id="roundPanel17" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                                      <Component id="roundPanel20" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="roundPanel23" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="roundPanel19" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="roundPanel18" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="roundPanel21" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="roundPanel22" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -154,7 +143,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="panelBuscar" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelDatos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="panelFormClientes" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -162,25 +151,17 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="roundPanel1" min="-2" pref="230" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="roundPanel18" linkSize="9" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="roundPanel19" linkSize="9" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="roundPanel22" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="roundPanel21" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="roundPanel17" linkSize="9" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="roundPanel20" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="roundPanel23" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="roundPanel18" linkSize="9" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="roundPanel19" linkSize="9" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="roundPanel22" linkSize="9" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="roundPanel21" linkSize="9" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="roundPanel2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="roundPanel4" linkSize="9" alignment="0" max="32767" attributes="0"/>
+                              <Component id="roundPanel3" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="roundPanel2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="roundPanel4" alignment="0" max="32767" attributes="0"/>
-                          <Component id="roundPanel6" alignment="0" max="32767" attributes="0"/>
-                          <Component id="roundPanel3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="roundPanel23" linkSize="9" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -194,7 +175,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="com.anthony.swing.RoundPanel" name="panelBuscar">
+            <Container class="com.anthony.swing.RoundPanel" name="panelDatos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="20" green="20" red="20" type="rgb"/>
@@ -359,13 +340,13 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="switchCliente" max="32767" attributes="0"/>
                               <Component id="jLabel11" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel10" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtApellidosCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtCedula" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -821,13 +802,14 @@
                                   <Color blue="20" green="20" red="20" type="rgb"/>
                                 </Property>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="7" rowCount="0">
+                                  <Table columnCount="8" rowCount="0">
                                     <Column editable="true" title="Codigo Principal" type="java.lang.Object"/>
                                     <Column editable="true" title="Codigo auxiliar" type="java.lang.Object"/>
                                     <Column editable="true" title="Cantidad" type="java.lang.Object"/>
                                     <Column editable="true" title="Descripcion" type="java.lang.Object"/>
                                     <Column editable="true" title="Detalle extra" type="java.lang.Object"/>
                                     <Column editable="true" title="P.V.P" type="java.lang.Object"/>
+                                    <Column editable="true" title="Descuento" type="java.lang.Object"/>
                                     <Column editable="true" title="Precio Total" type="java.lang.Object"/>
                                   </Table>
                                 </Property>
@@ -858,6 +840,11 @@
                                 </Property>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                   <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                       <Title/>
                                       <Editor/>
@@ -953,27 +940,31 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="txtCodPrinc" pref="115" max="32767" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="txtCodAux" pref="116" max="32767" attributes="0"/>
+                                          <Component id="txtCodPrinc" max="32767" attributes="0"/>
+                                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtCodAux" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="txtNombreProd" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtNombreProd" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="txtPVP" min="-2" pref="175" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="txtStock" pref="116" max="32767" attributes="0"/>
+                                          <Component id="txtPVP" max="32767" attributes="0"/>
                                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtCantidadProducto" pref="116" max="32767" attributes="0"/>
+                                          <Component id="txtStock" max="32767" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtDescuentoProd" max="32767" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="txtCantidad" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="txtDetalleExtra" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="txtDetalleExtra" max="32767" attributes="0"/>
+                                          <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
+                                          <Component id="btnNuevoDetalle" min="-2" pref="139" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnNuevoDetalle" min="-2" pref="44" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -983,30 +974,31 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel12" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="txtTipoIva" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnNuevoDetalle" min="-2" pref="42" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtStock" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtCodPrinc" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtCodAux" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtCantidadProducto" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtPVP" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtNombreProd" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtDetalleExtra" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtStock" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCodPrinc" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCodAux" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPVP" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtDescuentoProd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtNombreProd" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtDetalleExtra" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="btnNuevoDetalle" min="-2" pref="42" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1034,6 +1026,7 @@
                     <Property name="labelText" type="java.lang.String" value="Codigo principal"/>
                   </Properties>
                   <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtCodPrincMouseClicked"/>
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCodPrincKeyPressed"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCodPrincKeyReleased"/>
                     <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCodPrincKeyTyped"/>
@@ -1050,6 +1043,7 @@
                     <Property name="labelText" type="java.lang.String" value="Codigo auxiliar"/>
                   </Properties>
                   <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtCodAuxMouseClicked"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCodAuxKeyReleased"/>
                   </Events>
                 </Component>
@@ -1070,17 +1064,21 @@
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="21" green="2f" red="25" type="rgb"/>
                     </Property>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/anthony/icons/iconoAgregar.png"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
+                    <Property name="text" type="java.lang.String" value="AGREGAR PRODUCTO"/>
                     <Property name="borderPainted" type="boolean" value="false"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="12" style="1"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNuevoDetalleActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="textfield.TextField" name="txtCantidadProducto">
+                <Component class="textfield.TextField" name="txtCantidad">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="20" green="20" red="20" type="rgb"/>
@@ -1114,6 +1112,7 @@
                     <Property name="labelText" type="java.lang.String" value="Producto"/>
                   </Properties>
                   <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtNombreProdMouseClicked"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreProdKeyReleased"/>
                   </Events>
                 </Component>
@@ -1134,6 +1133,19 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="20" green="20" red="20" type="rgb"/>
                     </Property>
+                  </Properties>
+                </Component>
+                <Component class="textfield.TextField" name="txtDescuentoProd">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="20" green="20" red="20" type="rgb"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="a2" green="6e" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="labelText" type="java.lang.String" value="Descuento"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -1339,134 +1351,6 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="com.anthony.swing.RoundPanel" name="roundPanel6">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="20" green="20" red="20" type="rgb"/>
-                </Property>
-              </Properties>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jLabel39" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jLabel38" alignment="1" pref="87" max="32767" attributes="0"/>
-                              <Component id="progress8" alignment="1" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="progress8" min="-2" pref="94" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel39" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="com.anthony.swing.progress.Progress" name="progress8">
-                  <Properties>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="null"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="66" red="99" type="rgb"/>
-                    </Property>
-                    <Property name="maximum" type="int" value="150"/>
-                    <Property name="value" type="int" value="95"/>
-                    <Property name="borderPainted" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel38">
-                  <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="55" green="7c" red="90" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="SRI procesando"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel39">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="13" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="51" green="a2" red="0" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="REALIZADO"/>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Container class="com.anthony.swing.RoundPanel" name="roundPanel17">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="20" green="20" red="20" type="rgb"/>
-                </Property>
-              </Properties>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblSubtotal" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtSubtotal" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblSubtotal" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtSubtotal" pref="44" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="javax.swing.JLabel" name="txtSubtotal">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="30" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="cc" red="cc" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="-- --"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="lblSubtotal">
-                  <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="55" green="7c" red="90" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="iva"/>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
             <Container class="com.anthony.swing.RoundPanel" name="roundPanel18">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1480,8 +1364,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblObjIVA" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtDescuento2" alignment="0" pref="65" max="32767" attributes="0"/>
+                              <Component id="lblDescuento" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtDescuento" alignment="0" pref="71" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1491,19 +1375,19 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblObjIVA" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDescuento" pref="44" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtDescuento2" pref="44" max="32767" attributes="0"/>
+                          <Component id="txtDescuento" min="-2" pref="95" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="txtDescuento2">
+                <Component class="javax.swing.JLabel" name="txtDescuento">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="0"/>
+                      <Font name="Segoe UI" size="36" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="51" red="3f" type="rgb"/>
@@ -1512,13 +1396,16 @@
                     <Property name="text" type="java.lang.String" value="-- --"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblObjIVA">
+                <Component class="javax.swing.JLabel" name="lblDescuento">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="20" style="0"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="55" green="7c" red="90" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="iva"/>
+                    <Property name="text" type="java.lang.String" value="des"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -1536,8 +1423,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblDescuento" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtDescuento" alignment="0" pref="65" max="32767" attributes="0"/>
+                              <Component id="lblSub0" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtSub0" alignment="0" pref="71" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1547,19 +1434,19 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblDescuento" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSub0" pref="44" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtDescuento" pref="44" max="32767" attributes="0"/>
+                          <Component id="txtSub0" min="-2" pref="95" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="txtDescuento">
+                <Component class="javax.swing.JLabel" name="txtSub0">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="0"/>
+                      <Font name="Segoe UI" size="36" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="51" red="3f" type="rgb"/>
@@ -1568,13 +1455,16 @@
                     <Property name="text" type="java.lang.String" value="-- --"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblDescuento">
+                <Component class="javax.swing.JLabel" name="lblSub0">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="20" style="0"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="55" green="7c" red="90" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="iva"/>
+                    <Property name="text" type="java.lang.String" value="sub0"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -1651,62 +1541,6 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="com.anthony.swing.RoundPanel" name="roundPanel20">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="20" green="20" red="20" type="rgb"/>
-                </Property>
-              </Properties>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblTotalPagar" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtTotal" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblTotalPagar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtTotal" pref="44" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="javax.swing.JLabel" name="txtTotal">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="30" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="cc" red="cc" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="-- --"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="lblTotalPagar">
-                  <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="55" green="7c" red="90" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="iva"/>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
             <Container class="com.anthony.swing.RoundPanel" name="roundPanel21">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1720,8 +1554,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblExcentoIVA" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtDescuento1" alignment="0" pref="65" max="32767" attributes="0"/>
+                              <Component id="lblIva" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtIva12" alignment="0" pref="71" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1731,19 +1565,19 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblExcentoIVA" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblIva" pref="44" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtDescuento1" pref="44" max="32767" attributes="0"/>
+                          <Component id="txtIva12" min="-2" pref="95" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="txtDescuento1">
+                <Component class="javax.swing.JLabel" name="txtIva12">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="0"/>
+                      <Font name="Segoe UI" size="36" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="51" red="3f" type="rgb"/>
@@ -1752,13 +1586,16 @@
                     <Property name="text" type="java.lang.String" value="-- --"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblExcentoIVA">
+                <Component class="javax.swing.JLabel" name="lblIva">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="20" style="0"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="55" green="7c" red="90" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="iva"/>
+                    <Property name="text" type="java.lang.String" value="iv12"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -1776,8 +1613,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblSub0" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtIva1" alignment="0" pref="67" max="32767" attributes="0"/>
+                              <Component id="lblTotal" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtTotal" alignment="0" pref="72" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1787,19 +1624,19 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblSub0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTotal" pref="44" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtIva1" pref="44" max="32767" attributes="0"/>
+                          <Component id="txtTotal" min="-2" pref="95" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="txtIva1">
+                <Component class="javax.swing.JLabel" name="txtTotal">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="0"/>
+                      <Font name="Segoe UI" size="36" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="51" red="3f" type="rgb"/>
@@ -1808,13 +1645,16 @@
                     <Property name="text" type="java.lang.String" value="-- --"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblSub0">
+                <Component class="javax.swing.JLabel" name="lblTotal">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="20" style="0"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="55" green="7c" red="90" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="iva"/>
+                    <Property name="text" type="java.lang.String" value="t"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -1832,8 +1672,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblIva" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtIva" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblSub12" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtSub12" alignment="0" pref="71" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1843,19 +1683,19 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblIva" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSub12" pref="44" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtIva" pref="44" max="32767" attributes="0"/>
+                          <Component id="txtSub12" min="-2" pref="95" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="txtIva">
+                <Component class="javax.swing.JLabel" name="txtSub12">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="0"/>
+                      <Font name="Segoe UI" size="36" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="51" red="3f" type="rgb"/>
@@ -1864,13 +1704,16 @@
                     <Property name="text" type="java.lang.String" value="-- --"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblIva">
+                <Component class="javax.swing.JLabel" name="lblSub12">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="20" style="0"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="55" green="7c" red="90" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="iva"/>
+                    <Property name="text" type="java.lang.String" value="sub12"/>
                   </Properties>
                 </Component>
               </SubComponents>

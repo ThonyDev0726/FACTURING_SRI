@@ -656,7 +656,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
         idUsuario = usu.getID_USUARIO();
         permiso = perDao.ESTADO_FACTURACION(idUsuario);
         if (permiso.equals("CON PERMISO")) {
-            main.showForm(new FORM_FACTURAR(usu, admin));
+            main.showForm(new FORM_FACTURA(usu, admin));
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Facturacion!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {

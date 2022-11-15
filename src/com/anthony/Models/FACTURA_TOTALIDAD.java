@@ -12,7 +12,7 @@ public class FACTURA_TOTALIDAD {
     private Double FAC_SUB_12;
     private Double FAC_OBJ_IVA;
     private Double FAC_EXC_IVA;
-    private Integer FAC_DESCUENTO;
+    private Double FAC_DESCUENTO;
     private Double FAC_IVA_12;
     private Double FAC_TOTAL_PAGAR;
 
@@ -67,11 +67,11 @@ public class FACTURA_TOTALIDAD {
         this.FAC_EXC_IVA = FAC_EXC_IVA;
     }
 
-    public Integer getFAC_DESCUENTO() {
+    public Double getFAC_DESCUENTO() {
         return FAC_DESCUENTO;
     }
 
-    public void setFAC_DESCUENTO(Integer FAC_DESCUENTO) {
+    public void setFAC_DESCUENTO(Double FAC_DESCUENTO) {
         this.FAC_DESCUENTO = FAC_DESCUENTO;
     }
 

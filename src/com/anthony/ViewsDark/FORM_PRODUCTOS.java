@@ -27,7 +27,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
     /* ==============================
     OBJETOS PRINCIPALES
     ============================== */
-    String[] titulosProductos = {"#", "Producto", "Empresa", "Sucursal", "Detalle", "Categoria", "Cod. Princ.", "Cod. Aux", "Det. Extra", "Stock", "Precio Fabrica", "% Ganancia", "P.V.P.", "Estado", "Tipo Iva"};
+    String[] titulosProductos = {"#", "Producto", "Empresa", "Sucursal", "Detalle", "Categoria", "Cod. Princ.", "Cod. Aux", "Det. Extra", "Stock", "Precio Fabrica", "% Ganancia", "P.V.P.", "Estado", "Tipo Iva","Descuento"};
     DefaultTableModel dtmProductos = new DefaultTableModel(null, titulosProductos);
     String[] titulosProveedores = {"#", "Sucursal", "Empresa", "Contacto", "Ruc", "Telefono", "Email", "Direccion", "Web", "Estado"};
     DefaultTableModel dtmProveedores = new DefaultTableModel(null, titulosProveedores);
@@ -185,7 +185,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
 
     public void tablaProductos() {
         dtmProductos = new DefaultTableModel(null, titulosProductos);
-        String fila[] = new String[15];
+        String fila[] = new String[16];
         List<PRODUCTO> listCh = daoPro.listar();
         Iterator<PRODUCTO> iterCh = listCh.iterator();
         pro = null;
@@ -206,6 +206,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
             fila[12] = String.valueOf(pro.getPRO_PVP());
             fila[13] = pro.getPRO_ESTADO();
             fila[14] = String.valueOf(pro.getPRO_TIPO_IVA());
+            fila[15] = String.valueOf(pro.getPRO_DESCUENTO());
             dtmProductos.addRow(fila);
         }
         tabbedPane.setSelectedComponent(panelProductos);

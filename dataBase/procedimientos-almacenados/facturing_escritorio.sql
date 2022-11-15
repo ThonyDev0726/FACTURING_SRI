@@ -791,7 +791,8 @@ BEGIN
         PRO_GANANCIA,
         PRO_PVP,
         PRODUCTO.PRO_ESTADO,
-        PRO_TIPO_IVA
+        PRO_TIPO_IVA,
+        PRO_DESCUENTO
     FROM PRODUCTO 
     INNER JOIN PROVEEDOR ON PRODUCTO.FK_PROVEEDOR = PROVEEDOR.ID_PROVEEDOR
     INNER JOIN SUCURSAL ON PRODUCTO.FK_SUCURSAL = SUCURSAL.ID_SUCURSAL
@@ -808,7 +809,8 @@ BEGIN
         PRO_DETALLE_EXTRA,
         PRO_STOCK,
         PRO_PVP,
-        PRO_TIPO_IVA
+        PRO_TIPO_IVA,
+        PRO_DESCUENTO
     FROM PRODUCTO 
     ORDER BY ID_PRODUCTO;
 END;
@@ -1124,7 +1126,8 @@ BEGIN
         PRO_DETALLE_EXTRA,
         PRO_STOCK,
         PRO_PVP,
-        PRO_TIPO_IVA
+        PRO_TIPO_IVA,
+        PRO_DESCUENTO
         FROM PRODUCTO 
         WHERE PRODUCTO.PRO_NOMBRE  LIKE CONCAT("%",pbusqueda,"%");  
         
@@ -1137,7 +1140,8 @@ BEGIN
         PRO_DETALLE_EXTRA,
         PRO_STOCK,
         PRO_PVP,
-        PRO_TIPO_IVA
+        PRO_TIPO_IVA,
+        PRO_DESCUENTO
         FROM PRODUCTO 
         WHERE PRO_COD_PRINC  LIKE CONCAT("%",pbusqueda,"%");          
     ELSEIF pcriterio = "PRO_COD_AUX" THEN
@@ -1149,7 +1153,8 @@ BEGIN
         PRO_DETALLE_EXTRA,
         PRO_STOCK,
         PRO_PVP,
-        PRO_TIPO_IVA
+        PRO_TIPO_IVA,
+        PRO_DESCUENTO
         FROM PRODUCTO 
         WHERE PRO_COD_AUX LIKE CONCAT("%",pbusqueda,"%");           
 	ELSE
@@ -1161,7 +1166,8 @@ BEGIN
         PRO_DETALLE_EXTRA,
         PRO_STOCK,
         PRO_PVP,
-        PRO_TIPO_IVA
+        PRO_TIPO_IVA,
+        PRO_DESCUENTO
         FROM PRODUCTO;  
 	END IF; 
 END;
