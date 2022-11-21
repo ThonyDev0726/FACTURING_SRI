@@ -112,7 +112,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                     System.out.println("========================================");
                     System.out.println("Estamos en el Inicio");
                     System.out.println("========================================");
-                    main.showForm(new FORM_HOME());
+                    main.showForm(new FORM_HOME(admin, usu));
                     header.addMenuEvent(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -546,12 +546,13 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent ae) {
                 if (!animator.isRunning()) {
                     animator.start();
-                    header.setCerrarMenu();
                 }
                 menu.setEnableMenu(false);
                 if (menu.isShowMenu()) {
                     header.setAbrirMenu();
                     menu.hideallMenu();
+                }else{
+                    header.setCerrarMenu();                
                 }
             }
         });

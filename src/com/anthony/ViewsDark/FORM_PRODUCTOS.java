@@ -27,7 +27,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
     /* ==============================
     OBJETOS PRINCIPALES
     ============================== */
-    String[] titulosProductos = {"#", "Producto", "Empresa", "Sucursal", "Detalle", "Categoria", "Cod. Princ.", "Cod. Aux", "Det. Extra", "Stock", "Precio Fabrica", "% Ganancia", "P.V.P.", "Estado", "Tipo Iva","Descuento"};
+    String[] titulosProductos = {"#", "Producto", "Empresa", "Sucursal", "Detalle", "Categoria", "Cod. Princ.", "Cod. Aux", "Det. Extra", "Stock", "Precio Fabrica", "% Ganancia", "P.V.P.", "Estado", "Tipo Iva", "Descuento"};
     DefaultTableModel dtmProductos = new DefaultTableModel(null, titulosProductos);
     String[] titulosProveedores = {"#", "Sucursal", "Empresa", "Contacto", "Ruc", "Telefono", "Email", "Direccion", "Web", "Estado"};
     DefaultTableModel dtmProveedores = new DefaultTableModel(null, titulosProveedores);
@@ -73,6 +73,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
     private String PRO_ESTADO;
     private String PRO_TIPO_IVA;
     private String PRO_TIPO_IVA_TEXT;
+    private Double PRO_DESCUENTO;
 
 
     /* ==============================
@@ -105,7 +106,6 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         spPanel.setVerticalScrollBar(new ScrollBarCustom());
         spPanel.setHorizontalScrollBar(new ScrollBarCustom());
         spProductos.setVerticalScrollBar(new ScrollBarCustom());
-        spProductos.setHorizontalScrollBar(new ScrollBarCustom());
         spProductos.setVerticalScrollBar(new ScrollBarCustom());
         spProveedores.setVerticalScrollBar(new ScrollBarCustom());
         spProveedores.setHorizontalScrollBar(new ScrollBarCustom());
@@ -137,7 +137,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
     public void autoajustarColumnas(JTable table) {
         final TableColumnModel columnModel = table.getColumnModel();
         for (int column = 0; column < table.getColumnCount(); column++) {
-            int width = 15; // Min width
+            int width = 30; // Min width
             for (int row = 0; row < table.getRowCount(); row++) {
                 TableCellRenderer renderer = table.getCellRenderer(row, column);
                 Component comp = table.prepareRenderer(renderer, row, column);
@@ -398,6 +398,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
             if (PRO_TIPO_IVA_TEXT.equals("0")) {
                 cbxTipoIva.setSelectedItem((String) dtmProductos.getValueAt(fila, 14) + "% (Excento de iva)");
             }
+            txtDescuento.setText((String) dtmProductos.getValueAt(fila, 15));
         }
     }
 
@@ -425,6 +426,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         roundPanel1 = new com.anthony.swing.RoundPanel();
         tabbedPane = new com.anthony.swing.TabbedPane();
         panelProductos = new javax.swing.JPanel();
+        scrollProductos = new com.anthony.swing.scrollbar.ScrollBarCustom();
         spProductos = new javax.swing.JScrollPane();
         tDatosProductos = new rojeru_san.complementos.TableMetro();
         panelProveedores = new javax.swing.JPanel();
@@ -469,6 +471,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         txtProveedor = new textfield.TextField();
         cbxGanancia = new com.anthony.swing.Combobox();
         cbxEstado = new com.anthony.swing.Combobox();
+        txtDescuento = new textfield.TextField();
         lblIdProveedor = new javax.swing.JLabel();
         lblIdProducto = new javax.swing.JLabel();
 
@@ -526,12 +529,14 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         tabbedPane.setForeground(new java.awt.Color(63, 81, 102));
 
         panelProductos.setBackground(new java.awt.Color(32, 32, 32));
-        panelProductos.setLayout(new java.awt.BorderLayout());
+
+        scrollProductos.setOrientation(javax.swing.JScrollBar.HORIZONTAL);
 
         spProductos.setBackground(new java.awt.Color(32, 32, 32));
         spProductos.setBorder(null);
         spProductos.setForeground(new java.awt.Color(32, 32, 32));
         spProductos.setFocusable(false);
+        spProductos.setHorizontalScrollBar(scrollProductos);
         spProductos.setOpaque(false);
 
         tDatosProductos = new rojeru_san.complementos.TableMetro(){
@@ -575,7 +580,23 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         });
         spProductos.setViewportView(tDatosProductos);
 
-        panelProductos.add(spProductos, java.awt.BorderLayout.CENTER);
+        javax.swing.GroupLayout panelProductosLayout = new javax.swing.GroupLayout(panelProductos);
+        panelProductos.setLayout(panelProductosLayout);
+        panelProductosLayout.setHorizontalGroup(
+            panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(spProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
+            .addGroup(panelProductosLayout.createSequentialGroup()
+                .addComponent(scrollProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        panelProductosLayout.setVerticalGroup(
+            panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelProductosLayout.createSequentialGroup()
+                .addComponent(spProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(scrollProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
 
         tabbedPane.addTab("PRODUCTOS", panelProductos);
 
@@ -748,7 +769,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
             .addGroup(panelProveedoresLayout.createSequentialGroup()
                 .addComponent(roundPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                .addComponent(spProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
                 .addGap(3, 3, 3))
         );
 
@@ -885,7 +906,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
 
         txtValorFabrica.setBackground(new java.awt.Color(32, 32, 32));
         txtValorFabrica.setForeground(new java.awt.Color(0, 153, 204));
-        txtValorFabrica.setLabelText("Valor de fabrica");
+        txtValorFabrica.setLabelText("Valor de fabrica (Costo)");
 
         txtCategoria.setBackground(new java.awt.Color(32, 32, 32));
         txtCategoria.setForeground(new java.awt.Color(0, 153, 204));
@@ -973,6 +994,10 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         cbxEstado.setForeground(new java.awt.Color(0, 153, 204));
         cbxEstado.setLabeText("Estado");
 
+        txtDescuento.setBackground(new java.awt.Color(32, 32, 32));
+        txtDescuento.setForeground(new java.awt.Color(0, 153, 204));
+        txtDescuento.setLabelText("Descuento");
+
         javax.swing.GroupLayout panelFormLayout = new javax.swing.GroupLayout(panelForm);
         panelForm.setLayout(panelFormLayout);
         panelFormLayout.setHorizontalGroup(
@@ -980,15 +1005,23 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
             .addGroup(panelFormLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelarSuc1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelFormLayout.createSequentialGroup()
-                        .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbxTipoIva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtCodPrinc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtCategoria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtDetalleExtra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbxGanancia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtPVP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cbxEstado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbxTipoIva, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCodPrinc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDetalleExtra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbxGanancia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtPVP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -997,14 +1030,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                             .addComponent(txtCodAuxiliar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtStock, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtDetalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbxEstado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelarSuc1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtDescuento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         panelFormLayout.setVerticalGroup(
@@ -1036,8 +1062,10 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                     .addComponent(txtPVP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbxTipoIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxTipoIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1068,7 +1096,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1126,7 +1154,34 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
+        ID_PRODUCTO = Integer.parseInt(lblIdProducto.getText());
+        try {
+            MessageDialogDark obj = new MessageDialogDark(admin);
+            obj.showMessage("¡¡ELIMINAR REGISTRO!!", "¿ Desea eliminar el producto ?");
+            if (obj.getMessageType() == MessageDialogDark.MessageType.OK) {
+                if (daoPro.delete(ID_PRODUCTO) == "El producto fue eliminado con exito!") {
+                    panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "El producto fue eliminado con exito!!");
+                    panel.showNotification();
+                    tablaProveedores();
+                    tablaProductos();
+                    limpiarFormulario();
+                } else if (daoPro.delete(ID_PRODUCTO) == "Error al eliminar el producto!") {
+                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo eliminar el producto!!");
+                    panel.showNotification();
+                    tablaProveedores();
+                    tablaProductos();
+                    limpiarFormulario();
+                }
+            } else if (obj.getMessageType() == MessageDialogDark.MessageType.CANCEL) {
+                panel = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se cancelo el proceso!!");
+                panel.showNotification();
+                limpiarFormulario();
+            }
+        } catch (Exception ex) {
+            panel = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Hubo un error al procesar tu peticion, favor corregirlos!!");
+            panel.showNotification();
+            limpiarFormulario();
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnNuevoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoRegistroActionPerformed
@@ -1197,6 +1252,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
             PRO_CREACION = fecha;
             PRO_ESTADO = "EN LINEA";
             PRO_TIPO_IVA_TEXT = cbxTipoIva.getSelectedItem().toString();
+            PRO_DESCUENTO = Double.parseDouble(txtDescuento.getText());
             if (PRO_TIPO_IVA_TEXT.equals("Objeto de iva")) {
                 PRO_TIPO_IVA_TEXT = "Objeto de iva";
             } else if (PRO_TIPO_IVA_TEXT.equals("Excento de iva")) {
@@ -1218,6 +1274,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                 pro.setPRO_CREACION(PRO_CREACION);
                 pro.setPRO_ESTADO(PRO_ESTADO);
                 pro.setPRO_TIPO_IVA(PRO_TIPO_IVA_TEXT);
+                pro.setPRO_DESCUENTO(PRO_DESCUENTO);
                 if (daoPro.add(pro) == "El producto fue creado con exito!") {
                     panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "El producto fue creado con exito!!");
                     panel.showNotification();
@@ -1283,6 +1340,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
             PRO_PVP = Double.parseDouble(txtPVP.getText());
             PRO_ESTADO = cbxEstado.getSelectedItem().toString();
             PRO_TIPO_IVA_TEXT = cbxTipoIva.getSelectedItem().toString();
+            PRO_DESCUENTO = Double.parseDouble(txtDescuento.getText());
             if (PRO_TIPO_IVA_TEXT.equals("Objeto de iva")) {
                 PRO_TIPO_IVA_TEXT = "Objeto de iva";
             } else if (PRO_TIPO_IVA_TEXT.equals("Excento de iva")) {
@@ -1305,6 +1363,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                 pro.setPRO_CREACION(PRO_CREACION);
                 pro.setPRO_ESTADO(PRO_ESTADO);
                 pro.setPRO_TIPO_IVA(PRO_TIPO_IVA_TEXT);
+                pro.setPRO_DESCUENTO(PRO_DESCUENTO);
                 if (daoPro.update(pro) == "El producto fue actualizado con exito!") {
                     panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "El producto fue actualizado con exito!!");
                     panel.showNotification();
@@ -1383,6 +1442,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
     private com.anthony.swing.RadioButton rdtnRuc;
     private com.anthony.swing.RoundPanel roundPanel1;
     private com.anthony.swing.RoundPanel roundPanel4;
+    private com.anthony.swing.scrollbar.ScrollBarCustom scrollProductos;
     private javax.swing.JScrollPane spPanel;
     private javax.swing.JScrollPane spProductos;
     private javax.swing.JScrollPane spProveedores;
@@ -1394,6 +1454,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
     private textfield.TextField txtCategoria;
     private textfield.TextField txtCodAuxiliar;
     private textfield.TextField txtCodPrinc;
+    private textfield.TextField txtDescuento;
     private textfield.TextField txtDetalle;
     private textfield.TextField txtDetalleExtra;
     private textfield.TextField txtNombre;

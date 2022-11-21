@@ -62,8 +62,10 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
     Font negritaMediuamBold = new Font(Font.FontFamily.HELVETICA, 7, Font.BOLD, BaseColor.BLACK);
     Font ExtraBold = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, BaseColor.BLACK);
     Font normalBold = new Font(Font.FontFamily.HELVETICA, 9, Font.BOLD, BaseColor.BLACK);
+    Font normalBlanco = new Font(Font.FontFamily.HELVETICA, 9, Font.BOLD, BaseColor.WHITE);
     Font normalBoldAzul = new Font(Font.FontFamily.HELVETICA, 9, Font.BOLD, BaseColor.BLUE);
     Font normal = new Font(Font.FontFamily.HELVETICA, 9, Font.NORMAL, BaseColor.BLACK);
+    com.itextpdf.text.Paragraph VACIO = new com.itextpdf.text.Paragraph("RichardPerez", normalBlanco);
 
     /* ============================
         CONSTRUCTORES
@@ -71,11 +73,25 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
     public FORM_REPORTES_GENERALES() {
         initComponents();
         scroll();
+        init();
     }
 
     public FORM_REPORTES_GENERALES(USUARIO usu, MainAdministradorDark admin) {
         initComponents();
         scroll();
+        init();
+    }
+
+    private void init() {
+        pnlReporteGeneral.setVisible(false);
+        pnlReporteEstadisticos.setVisible(false);
+        pnlRevNotasCred.setVisible(false);
+        pnlRevNotasDeb.setVisible(false);
+        pnlCambioClave.setVisible(false);
+        pnlEstadoCaja.setVisible(false);
+        pnlCaja.setVisible(false);
+        pnlAuditoria.setVisible(false);
+//        pnlReporteGeneral.setVisible(false);
     }
 
     /* ============================
@@ -200,7 +216,6 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
         cli = null;
         while (iterCli.hasNext()) {
             cli = iterCli.next();
-            com.itextpdf.text.Paragraph VACIO = new com.itextpdf.text.Paragraph("", normalBold);
             com.itextpdf.text.Paragraph CLI_ID = new com.itextpdf.text.Paragraph("CLIENTE:", normalBoldAzul);
             com.itextpdf.text.Paragraph CLI_ID_DB = new com.itextpdf.text.Paragraph("00" + String.valueOf(cli.getID_CLIENTE()), normalBold);
             com.itextpdf.text.Paragraph CLI_NOMBRES = new com.itextpdf.text.Paragraph("Nombres", normalBold);
@@ -239,6 +254,10 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
             datosClientes.addCell(CLI_EMAIL_DB);
             datosClientes.addCell(CLI_ESTADO);
             datosClientes.addCell(CLI_ESTADO_DB);
+            datosClientes.addCell(VACIO);
+            datosClientes.addCell(VACIO);
+            datosClientes.addCell(VACIO);
+            datosClientes.addCell(VACIO);
         }
 
         //agregarmos a la tabladatosClientesMain
@@ -374,7 +393,6 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
         empleado = null;
         while (iterEmp.hasNext()) {
             empleado = iterEmp.next();
-            com.itextpdf.text.Paragraph VACIO = new com.itextpdf.text.Paragraph("", normalBold);
             com.itextpdf.text.Paragraph EMP_ID = new com.itextpdf.text.Paragraph("EMPLEADO:", normalBoldAzul);
             com.itextpdf.text.Paragraph EMP_ID_DB = new com.itextpdf.text.Paragraph("00" + String.valueOf(empleado.getID_EMPLEADO()), normalBold);
             com.itextpdf.text.Paragraph EMP_NOMBRES = new com.itextpdf.text.Paragraph("Nombres", normalBold);
@@ -413,6 +431,10 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
             datosEmpleados.addCell(EMP_EMAIL_DB);
             datosEmpleados.addCell(EMP_ESTADO);
             datosEmpleados.addCell(EMP_ESTADO_DB);
+            datosEmpleados.addCell(VACIO);
+            datosEmpleados.addCell(VACIO);
+            datosEmpleados.addCell(VACIO);
+            datosEmpleados.addCell(VACIO);
         }
 
         //agregarmos a la tabladatosClientesMain
@@ -548,7 +570,6 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
         prov = null;
         while (iterProv.hasNext()) {
             prov = iterProv.next();
-            com.itextpdf.text.Paragraph VACIO = new com.itextpdf.text.Paragraph("", normalBold);
             com.itextpdf.text.Paragraph PRO_ID = new com.itextpdf.text.Paragraph("PROVEEDOR:", normalBoldAzul);
             com.itextpdf.text.Paragraph PRO_ID_DB = new com.itextpdf.text.Paragraph("00" + String.valueOf(prov.getID_PROVEEDOR()), normalBold);
             com.itextpdf.text.Paragraph PRO_WEB = new com.itextpdf.text.Paragraph("WEB:", normalBold);
@@ -589,6 +610,10 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
             datosProveedor.addCell(PRO_WEB_DB);
             datosProveedor.addCell(PRO_ESTADO);
             datosProveedor.addCell(PRO_ESTADO_DB);
+            datosProveedor.addCell(VACIO);
+            datosProveedor.addCell(VACIO);
+            datosProveedor.addCell(VACIO);
+            datosProveedor.addCell(VACIO);
         }
 
         //agregarmos a la tabladatosClientesMain
@@ -724,14 +749,13 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
         pro = null;
         while (iterPro.hasNext()) {
             pro = iterPro.next();
-            com.itextpdf.text.Paragraph VACIO = new com.itextpdf.text.Paragraph("", normalBold);
             com.itextpdf.text.Paragraph PRO_ID = new com.itextpdf.text.Paragraph("PRODUCTO:", normalBoldAzul);
             com.itextpdf.text.Paragraph PRO_ID_DB = new com.itextpdf.text.Paragraph("00" + String.valueOf(pro.getID_PRODUCTO()), normalBold);
             com.itextpdf.text.Paragraph PRO_NOMBRE = new com.itextpdf.text.Paragraph("Nombre:", normalBold);
             com.itextpdf.text.Paragraph PRO_NOMBRE_DB = new com.itextpdf.text.Paragraph(pro.getPRO_NOMBRE(), normal);
-            com.itextpdf.text.Paragraph PRO_PROVEEDOR = new com.itextpdf.text.Paragraph("Proveedor", normalBold);
+            com.itextpdf.text.Paragraph PRO_SUC = new com.itextpdf.text.Paragraph("Sucursal", normalBold);
             com.itextpdf.text.Paragraph PRO_PROVEEDOR_DB = new com.itextpdf.text.Paragraph(pro.getPRO_EMPRESA(), normal);
-            com.itextpdf.text.Paragraph PRO_SUCURSAL = new com.itextpdf.text.Paragraph("Sucursal", normalBold);
+            com.itextpdf.text.Paragraph PRO_PROVEEDOR = new com.itextpdf.text.Paragraph("Proveedor", normalBold);
             com.itextpdf.text.Paragraph PRO_SUCURSAL_DB = new com.itextpdf.text.Paragraph(pro.getSUC_NOMBRE(), normal);
             com.itextpdf.text.Paragraph PRO_DETALLE = new com.itextpdf.text.Paragraph("Detalle", normalBold);
             com.itextpdf.text.Paragraph PRO_DETALLE_DB = new com.itextpdf.text.Paragraph(pro.getPRO_DETALLE(), normal);
@@ -755,15 +779,17 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
             com.itextpdf.text.Paragraph PRO_ESTADO_DB = new com.itextpdf.text.Paragraph(pro.getPRO_ESTADO(), normal);
             com.itextpdf.text.Paragraph PRO_CATEGO = new com.itextpdf.text.Paragraph("Categoria", normalBold);
             com.itextpdf.text.Paragraph PRO_CATEGO_DB = new com.itextpdf.text.Paragraph(pro.getPRO_CATEGORIA() + "\n", normal);
+            com.itextpdf.text.Paragraph PRO_DESCU = new com.itextpdf.text.Paragraph("Descuento", normalBold);
+            com.itextpdf.text.Paragraph PRO_DESCU_DB = new com.itextpdf.text.Paragraph(pro.getPRO_DESCUENTO() + "\n", normal);
             datosProveedor.addCell(PRO_ID);
             datosProveedor.addCell(PRO_ID_DB);
-            datosProveedor.addCell(VACIO);
-            datosProveedor.addCell(VACIO);
+            datosProveedor.addCell(PRO_ESTADO);
+            datosProveedor.addCell(PRO_ESTADO_DB);
             datosProveedor.addCell(PRO_NOMBRE);
             datosProveedor.addCell(PRO_NOMBRE_DB);
-            datosProveedor.addCell(PRO_PROVEEDOR);
+            datosProveedor.addCell(PRO_SUC);
             datosProveedor.addCell(PRO_PROVEEDOR_DB);
-            datosProveedor.addCell(PRO_SUCURSAL);
+            datosProveedor.addCell(PRO_PROVEEDOR);
             datosProveedor.addCell(PRO_SUCURSAL_DB);
             datosProveedor.addCell(PRO_DETALLE);
             datosProveedor.addCell(PRO_DETALLE_DB);
@@ -785,8 +811,12 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
             datosProveedor.addCell(PRO_PVP_DB);
             datosProveedor.addCell(PRO_TIPO_IVA);
             datosProveedor.addCell(PRO_TIPO_IVA_DB);
-            datosProveedor.addCell(PRO_ESTADO);
-            datosProveedor.addCell(PRO_ESTADO_DB);
+            datosProveedor.addCell(PRO_DESCU);
+            datosProveedor.addCell(PRO_DESCU_DB);
+            datosProveedor.addCell(VACIO);
+            datosProveedor.addCell(VACIO);
+            datosProveedor.addCell(VACIO);
+            datosProveedor.addCell(VACIO);
         }
 
         //agregarmos a la tabladatosClientesMain
@@ -828,70 +858,38 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
         lblNombreArchivo = new javax.swing.JLabel();
         spItems = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        roundPanel11 = new com.anthony.swing.RoundPanel();
+        pnlCliente = new com.anthony.swing.RoundPanel();
         jLabel2 = new javax.swing.JLabel();
-        roundPanel13 = new com.anthony.swing.RoundPanel();
-        lblNombreArchivo3 = new javax.swing.JLabel();
-        roundPanel60 = new com.anthony.swing.RoundPanel();
-        jLabel3 = new javax.swing.JLabel();
-        roundPanel61 = new com.anthony.swing.RoundPanel();
-        lblNombreArchivo35 = new javax.swing.JLabel();
-        roundPanel62 = new com.anthony.swing.RoundPanel();
-        jLabel4 = new javax.swing.JLabel();
-        roundPanel64 = new com.anthony.swing.RoundPanel();
-        lblNombreArchivo37 = new javax.swing.JLabel();
-        roundPanel66 = new com.anthony.swing.RoundPanel();
-        jLabel5 = new javax.swing.JLabel();
-        roundPanel67 = new com.anthony.swing.RoundPanel();
-        lblNombreArchivo39 = new javax.swing.JLabel();
-        roundPanel68 = new com.anthony.swing.RoundPanel();
-        jLabel6 = new javax.swing.JLabel();
-        roundPanel70 = new com.anthony.swing.RoundPanel();
-        lblNombreArchivo41 = new javax.swing.JLabel();
-        roundPanel72 = new com.anthony.swing.RoundPanel();
-        jLabel7 = new javax.swing.JLabel();
-        roundPanel73 = new com.anthony.swing.RoundPanel();
-        lblNombreArchivo43 = new javax.swing.JLabel();
-        roundPanel74 = new com.anthony.swing.RoundPanel();
-        jLabel8 = new javax.swing.JLabel();
-        roundPanel76 = new com.anthony.swing.RoundPanel();
-        lblNombreArchivo45 = new javax.swing.JLabel();
-        roundPanel78 = new com.anthony.swing.RoundPanel();
-        jLabel9 = new javax.swing.JLabel();
-        roundPanel79 = new com.anthony.swing.RoundPanel();
-        lblNombreArchivo47 = new javax.swing.JLabel();
-        roundPanel80 = new com.anthony.swing.RoundPanel();
-        jLabel10 = new javax.swing.JLabel();
-        roundPanel82 = new com.anthony.swing.RoundPanel();
-        lblNombreArchivo49 = new javax.swing.JLabel();
-        roundPanel84 = new com.anthony.swing.RoundPanel();
-        jLabel11 = new javax.swing.JLabel();
-        roundPanel85 = new com.anthony.swing.RoundPanel();
-        lblNombreArchivo51 = new javax.swing.JLabel();
-        roundPanel86 = new com.anthony.swing.RoundPanel();
-        jLabel12 = new javax.swing.JLabel();
-        roundPanel88 = new com.anthony.swing.RoundPanel();
-        lblNombreArchivo53 = new javax.swing.JLabel();
-        roundPanel90 = new com.anthony.swing.RoundPanel();
-        jLabel13 = new javax.swing.JLabel();
-        roundPanel91 = new com.anthony.swing.RoundPanel();
-        lblNombreArchivo55 = new javax.swing.JLabel();
-        roundPanel92 = new com.anthony.swing.RoundPanel();
-        jLabel14 = new javax.swing.JLabel();
-        roundPanel94 = new com.anthony.swing.RoundPanel();
-        lblNombreArchivo57 = new javax.swing.JLabel();
-        roundPanel96 = new com.anthony.swing.RoundPanel();
-        jLabel15 = new javax.swing.JLabel();
-        roundPanel97 = new com.anthony.swing.RoundPanel();
-        lblNombreArchivo59 = new javax.swing.JLabel();
-        roundPanel98 = new com.anthony.swing.RoundPanel();
-        jLabel16 = new javax.swing.JLabel();
-        roundPanel100 = new com.anthony.swing.RoundPanel();
-        lblNombreArchivo61 = new javax.swing.JLabel();
-        roundPanel14 = new com.anthony.swing.RoundPanel();
-        lblNombreArchivo4 = new javax.swing.JLabel();
-        roundPanel12 = new com.anthony.swing.RoundPanel();
+        pnlEmpleados = new com.anthony.swing.RoundPanel();
         jLabel17 = new javax.swing.JLabel();
+        pnlProveedores = new com.anthony.swing.RoundPanel();
+        jLabel3 = new javax.swing.JLabel();
+        pnlProductos = new com.anthony.swing.RoundPanel();
+        jLabel4 = new javax.swing.JLabel();
+        pnlReporteGeneral = new com.anthony.swing.RoundPanel();
+        jLabel5 = new javax.swing.JLabel();
+        pnlReporteEstadisticos = new com.anthony.swing.RoundPanel();
+        jLabel6 = new javax.swing.JLabel();
+        pnlRevFacturas = new com.anthony.swing.RoundPanel();
+        jLabel7 = new javax.swing.JLabel();
+        pnlRevNotasCred = new com.anthony.swing.RoundPanel();
+        jLabel8 = new javax.swing.JLabel();
+        pnlRevNotasDeb = new com.anthony.swing.RoundPanel();
+        jLabel9 = new javax.swing.JLabel();
+        pnlUsuarios = new com.anthony.swing.RoundPanel();
+        jLabel10 = new javax.swing.JLabel();
+        pnlCambioClave = new com.anthony.swing.RoundPanel();
+        jLabel11 = new javax.swing.JLabel();
+        pnlEmpresa = new com.anthony.swing.RoundPanel();
+        jLabel12 = new javax.swing.JLabel();
+        pnlSucursal = new com.anthony.swing.RoundPanel();
+        jLabel13 = new javax.swing.JLabel();
+        pnlEstadoCaja = new com.anthony.swing.RoundPanel();
+        jLabel14 = new javax.swing.JLabel();
+        pnlCaja = new com.anthony.swing.RoundPanel();
+        jLabel15 = new javax.swing.JLabel();
+        pnlAuditoria = new com.anthony.swing.RoundPanel();
+        jLabel16 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(22, 23, 23));
 
@@ -917,7 +915,7 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
         img.setLayout(imgLayout);
         imgLayout.setHorizontalGroup(
             imgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 491, Short.MAX_VALUE)
+            .addGap(0, 493, Short.MAX_VALUE)
         );
         imgLayout.setVerticalGroup(
             imgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -936,7 +934,7 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
                 .addGap(3, 3, 3)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(scrollBarCustom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(sc, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE))
+                    .addComponent(sc, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE))
                 .addGap(3, 3, 3))
         );
         roundPanel2Layout.setVerticalGroup(
@@ -1105,7 +1103,7 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
             roundPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblNombreArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .addComponent(lblNombreArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                 .addContainerGap())
         );
         roundPanel10Layout.setVerticalGroup(
@@ -1119,7 +1117,7 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(22, 23, 23));
 
-        roundPanel11.setBackground(new java.awt.Color(32, 32, 32));
+        pnlCliente.setBackground(new java.awt.Color(32, 32, 32));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 153, 255));
@@ -1131,693 +1129,21 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout roundPanel11Layout = new javax.swing.GroupLayout(roundPanel11);
-        roundPanel11.setLayout(roundPanel11Layout);
-        roundPanel11Layout.setHorizontalGroup(
-            roundPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel11Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlClienteLayout = new javax.swing.GroupLayout(pnlCliente);
+        pnlCliente.setLayout(pnlClienteLayout);
+        pnlClienteLayout.setHorizontalGroup(
+            pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlClienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        roundPanel11Layout.setVerticalGroup(
-            roundPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlClienteLayout.setVerticalGroup(
+            pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
-        roundPanel13.setBackground(new java.awt.Color(32, 32, 32));
-
-        lblNombreArchivo3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreArchivo3.setForeground(new java.awt.Color(102, 153, 255));
-        lblNombreArchivo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreArchivo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoImpresora.png"))); // NOI18N
-        lblNombreArchivo3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNombreArchivo3MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel13Layout = new javax.swing.GroupLayout(roundPanel13);
-        roundPanel13.setLayout(roundPanel13Layout);
-        roundPanel13Layout.setHorizontalGroup(
-            roundPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        roundPanel13Layout.setVerticalGroup(
-            roundPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        roundPanel60.setBackground(new java.awt.Color(32, 32, 32));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel3.setText("Proveedores");
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel60Layout = new javax.swing.GroupLayout(roundPanel60);
-        roundPanel60.setLayout(roundPanel60Layout);
-        roundPanel60Layout.setHorizontalGroup(
-            roundPanel60Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel60Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundPanel60Layout.setVerticalGroup(
-            roundPanel60Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
-        roundPanel61.setBackground(new java.awt.Color(32, 32, 32));
-
-        lblNombreArchivo35.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreArchivo35.setForeground(new java.awt.Color(102, 153, 255));
-        lblNombreArchivo35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreArchivo35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoImpresora.png"))); // NOI18N
-        lblNombreArchivo35.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNombreArchivo35MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel61Layout = new javax.swing.GroupLayout(roundPanel61);
-        roundPanel61.setLayout(roundPanel61Layout);
-        roundPanel61Layout.setHorizontalGroup(
-            roundPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo35, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        roundPanel61Layout.setVerticalGroup(
-            roundPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo35, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        roundPanel62.setBackground(new java.awt.Color(32, 32, 32));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel4.setText("Productos");
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel62Layout = new javax.swing.GroupLayout(roundPanel62);
-        roundPanel62.setLayout(roundPanel62Layout);
-        roundPanel62Layout.setHorizontalGroup(
-            roundPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel62Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundPanel62Layout.setVerticalGroup(
-            roundPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
-        roundPanel64.setBackground(new java.awt.Color(32, 32, 32));
-
-        lblNombreArchivo37.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreArchivo37.setForeground(new java.awt.Color(102, 153, 255));
-        lblNombreArchivo37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreArchivo37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoImpresora.png"))); // NOI18N
-        lblNombreArchivo37.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNombreArchivo37MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel64Layout = new javax.swing.GroupLayout(roundPanel64);
-        roundPanel64.setLayout(roundPanel64Layout);
-        roundPanel64Layout.setHorizontalGroup(
-            roundPanel64Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo37, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        roundPanel64Layout.setVerticalGroup(
-            roundPanel64Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo37, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        roundPanel66.setBackground(new java.awt.Color(32, 32, 32));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel5.setText("Gestion de reportes generales");
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout roundPanel66Layout = new javax.swing.GroupLayout(roundPanel66);
-        roundPanel66.setLayout(roundPanel66Layout);
-        roundPanel66Layout.setHorizontalGroup(
-            roundPanel66Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel66Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundPanel66Layout.setVerticalGroup(
-            roundPanel66Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
-        roundPanel67.setBackground(new java.awt.Color(32, 32, 32));
-
-        lblNombreArchivo39.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreArchivo39.setForeground(new java.awt.Color(102, 153, 255));
-        lblNombreArchivo39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreArchivo39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoImpresora.png"))); // NOI18N
-        lblNombreArchivo39.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNombreArchivo39MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel67Layout = new javax.swing.GroupLayout(roundPanel67);
-        roundPanel67.setLayout(roundPanel67Layout);
-        roundPanel67Layout.setHorizontalGroup(
-            roundPanel67Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo39, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        roundPanel67Layout.setVerticalGroup(
-            roundPanel67Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo39, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        roundPanel68.setBackground(new java.awt.Color(32, 32, 32));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel6.setText("Gestion de reportes estadisticos");
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout roundPanel68Layout = new javax.swing.GroupLayout(roundPanel68);
-        roundPanel68.setLayout(roundPanel68Layout);
-        roundPanel68Layout.setHorizontalGroup(
-            roundPanel68Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel68Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundPanel68Layout.setVerticalGroup(
-            roundPanel68Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
-        roundPanel70.setBackground(new java.awt.Color(32, 32, 32));
-
-        lblNombreArchivo41.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreArchivo41.setForeground(new java.awt.Color(102, 153, 255));
-        lblNombreArchivo41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreArchivo41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoImpresora.png"))); // NOI18N
-        lblNombreArchivo41.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNombreArchivo41MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel70Layout = new javax.swing.GroupLayout(roundPanel70);
-        roundPanel70.setLayout(roundPanel70Layout);
-        roundPanel70Layout.setHorizontalGroup(
-            roundPanel70Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo41, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        roundPanel70Layout.setVerticalGroup(
-            roundPanel70Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo41, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        roundPanel72.setBackground(new java.awt.Color(32, 32, 32));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel7.setText("Gestion de revision de facturas");
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout roundPanel72Layout = new javax.swing.GroupLayout(roundPanel72);
-        roundPanel72.setLayout(roundPanel72Layout);
-        roundPanel72Layout.setHorizontalGroup(
-            roundPanel72Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel72Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundPanel72Layout.setVerticalGroup(
-            roundPanel72Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
-        roundPanel73.setBackground(new java.awt.Color(32, 32, 32));
-
-        lblNombreArchivo43.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreArchivo43.setForeground(new java.awt.Color(102, 153, 255));
-        lblNombreArchivo43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreArchivo43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoImpresora.png"))); // NOI18N
-        lblNombreArchivo43.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNombreArchivo43MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel73Layout = new javax.swing.GroupLayout(roundPanel73);
-        roundPanel73.setLayout(roundPanel73Layout);
-        roundPanel73Layout.setHorizontalGroup(
-            roundPanel73Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo43, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        roundPanel73Layout.setVerticalGroup(
-            roundPanel73Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo43, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        roundPanel74.setBackground(new java.awt.Color(32, 32, 32));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel8.setText("Gestion de revision de notas de credito");
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout roundPanel74Layout = new javax.swing.GroupLayout(roundPanel74);
-        roundPanel74.setLayout(roundPanel74Layout);
-        roundPanel74Layout.setHorizontalGroup(
-            roundPanel74Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel74Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundPanel74Layout.setVerticalGroup(
-            roundPanel74Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
-        roundPanel76.setBackground(new java.awt.Color(32, 32, 32));
-
-        lblNombreArchivo45.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreArchivo45.setForeground(new java.awt.Color(102, 153, 255));
-        lblNombreArchivo45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreArchivo45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoImpresora.png"))); // NOI18N
-        lblNombreArchivo45.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNombreArchivo45MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel76Layout = new javax.swing.GroupLayout(roundPanel76);
-        roundPanel76.setLayout(roundPanel76Layout);
-        roundPanel76Layout.setHorizontalGroup(
-            roundPanel76Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo45, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        roundPanel76Layout.setVerticalGroup(
-            roundPanel76Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo45, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        roundPanel78.setBackground(new java.awt.Color(32, 32, 32));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel9.setText("Gestion de revision de notas de debito");
-        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout roundPanel78Layout = new javax.swing.GroupLayout(roundPanel78);
-        roundPanel78.setLayout(roundPanel78Layout);
-        roundPanel78Layout.setHorizontalGroup(
-            roundPanel78Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel78Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundPanel78Layout.setVerticalGroup(
-            roundPanel78Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
-        roundPanel79.setBackground(new java.awt.Color(32, 32, 32));
-
-        lblNombreArchivo47.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreArchivo47.setForeground(new java.awt.Color(102, 153, 255));
-        lblNombreArchivo47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreArchivo47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoImpresora.png"))); // NOI18N
-        lblNombreArchivo47.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNombreArchivo47MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel79Layout = new javax.swing.GroupLayout(roundPanel79);
-        roundPanel79.setLayout(roundPanel79Layout);
-        roundPanel79Layout.setHorizontalGroup(
-            roundPanel79Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo47, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        roundPanel79Layout.setVerticalGroup(
-            roundPanel79Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo47, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        roundPanel80.setBackground(new java.awt.Color(32, 32, 32));
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel10.setText("Usuarios");
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout roundPanel80Layout = new javax.swing.GroupLayout(roundPanel80);
-        roundPanel80.setLayout(roundPanel80Layout);
-        roundPanel80Layout.setHorizontalGroup(
-            roundPanel80Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel80Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundPanel80Layout.setVerticalGroup(
-            roundPanel80Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
-        roundPanel82.setBackground(new java.awt.Color(32, 32, 32));
-
-        lblNombreArchivo49.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreArchivo49.setForeground(new java.awt.Color(102, 153, 255));
-        lblNombreArchivo49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreArchivo49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoImpresora.png"))); // NOI18N
-        lblNombreArchivo49.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNombreArchivo49MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel82Layout = new javax.swing.GroupLayout(roundPanel82);
-        roundPanel82.setLayout(roundPanel82Layout);
-        roundPanel82Layout.setHorizontalGroup(
-            roundPanel82Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo49, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        roundPanel82Layout.setVerticalGroup(
-            roundPanel82Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo49, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        roundPanel84.setBackground(new java.awt.Color(32, 32, 32));
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel11.setText("Cambio de clave");
-        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout roundPanel84Layout = new javax.swing.GroupLayout(roundPanel84);
-        roundPanel84.setLayout(roundPanel84Layout);
-        roundPanel84Layout.setHorizontalGroup(
-            roundPanel84Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel84Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundPanel84Layout.setVerticalGroup(
-            roundPanel84Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
-        roundPanel85.setBackground(new java.awt.Color(32, 32, 32));
-
-        lblNombreArchivo51.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreArchivo51.setForeground(new java.awt.Color(102, 153, 255));
-        lblNombreArchivo51.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreArchivo51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoImpresora.png"))); // NOI18N
-        lblNombreArchivo51.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNombreArchivo51MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel85Layout = new javax.swing.GroupLayout(roundPanel85);
-        roundPanel85.setLayout(roundPanel85Layout);
-        roundPanel85Layout.setHorizontalGroup(
-            roundPanel85Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo51, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        roundPanel85Layout.setVerticalGroup(
-            roundPanel85Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo51, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        roundPanel86.setBackground(new java.awt.Color(32, 32, 32));
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel12.setText("Empresa");
-        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout roundPanel86Layout = new javax.swing.GroupLayout(roundPanel86);
-        roundPanel86.setLayout(roundPanel86Layout);
-        roundPanel86Layout.setHorizontalGroup(
-            roundPanel86Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel86Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundPanel86Layout.setVerticalGroup(
-            roundPanel86Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
-        roundPanel88.setBackground(new java.awt.Color(32, 32, 32));
-
-        lblNombreArchivo53.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreArchivo53.setForeground(new java.awt.Color(102, 153, 255));
-        lblNombreArchivo53.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreArchivo53.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoImpresora.png"))); // NOI18N
-        lblNombreArchivo53.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNombreArchivo53MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel88Layout = new javax.swing.GroupLayout(roundPanel88);
-        roundPanel88.setLayout(roundPanel88Layout);
-        roundPanel88Layout.setHorizontalGroup(
-            roundPanel88Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo53, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        roundPanel88Layout.setVerticalGroup(
-            roundPanel88Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo53, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        roundPanel90.setBackground(new java.awt.Color(32, 32, 32));
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel13.setText("Sucursales");
-        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout roundPanel90Layout = new javax.swing.GroupLayout(roundPanel90);
-        roundPanel90.setLayout(roundPanel90Layout);
-        roundPanel90Layout.setHorizontalGroup(
-            roundPanel90Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel90Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundPanel90Layout.setVerticalGroup(
-            roundPanel90Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
-        roundPanel91.setBackground(new java.awt.Color(32, 32, 32));
-
-        lblNombreArchivo55.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreArchivo55.setForeground(new java.awt.Color(102, 153, 255));
-        lblNombreArchivo55.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreArchivo55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoImpresora.png"))); // NOI18N
-        lblNombreArchivo55.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNombreArchivo55MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel91Layout = new javax.swing.GroupLayout(roundPanel91);
-        roundPanel91.setLayout(roundPanel91Layout);
-        roundPanel91Layout.setHorizontalGroup(
-            roundPanel91Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo55, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        roundPanel91Layout.setVerticalGroup(
-            roundPanel91Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo55, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        roundPanel92.setBackground(new java.awt.Color(32, 32, 32));
-
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel14.setText("Estado de caja");
-        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout roundPanel92Layout = new javax.swing.GroupLayout(roundPanel92);
-        roundPanel92.setLayout(roundPanel92Layout);
-        roundPanel92Layout.setHorizontalGroup(
-            roundPanel92Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel92Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundPanel92Layout.setVerticalGroup(
-            roundPanel92Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
-        roundPanel94.setBackground(new java.awt.Color(32, 32, 32));
-
-        lblNombreArchivo57.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreArchivo57.setForeground(new java.awt.Color(102, 153, 255));
-        lblNombreArchivo57.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreArchivo57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoImpresora.png"))); // NOI18N
-        lblNombreArchivo57.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNombreArchivo57MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel94Layout = new javax.swing.GroupLayout(roundPanel94);
-        roundPanel94.setLayout(roundPanel94Layout);
-        roundPanel94Layout.setHorizontalGroup(
-            roundPanel94Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo57, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        roundPanel94Layout.setVerticalGroup(
-            roundPanel94Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo57, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        roundPanel96.setBackground(new java.awt.Color(32, 32, 32));
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel15.setText("Apertura y cierre de caja");
-        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout roundPanel96Layout = new javax.swing.GroupLayout(roundPanel96);
-        roundPanel96.setLayout(roundPanel96Layout);
-        roundPanel96Layout.setHorizontalGroup(
-            roundPanel96Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel96Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundPanel96Layout.setVerticalGroup(
-            roundPanel96Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
-        roundPanel97.setBackground(new java.awt.Color(32, 32, 32));
-
-        lblNombreArchivo59.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreArchivo59.setForeground(new java.awt.Color(102, 153, 255));
-        lblNombreArchivo59.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreArchivo59.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoImpresora.png"))); // NOI18N
-        lblNombreArchivo59.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNombreArchivo59MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel97Layout = new javax.swing.GroupLayout(roundPanel97);
-        roundPanel97.setLayout(roundPanel97Layout);
-        roundPanel97Layout.setHorizontalGroup(
-            roundPanel97Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo59, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        roundPanel97Layout.setVerticalGroup(
-            roundPanel97Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo59, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        roundPanel98.setBackground(new java.awt.Color(32, 32, 32));
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel16.setText("Auditoria del sisitema");
-        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout roundPanel98Layout = new javax.swing.GroupLayout(roundPanel98);
-        roundPanel98.setLayout(roundPanel98Layout);
-        roundPanel98Layout.setHorizontalGroup(
-            roundPanel98Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel98Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundPanel98Layout.setVerticalGroup(
-            roundPanel98Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
-        roundPanel100.setBackground(new java.awt.Color(32, 32, 32));
-
-        lblNombreArchivo61.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreArchivo61.setForeground(new java.awt.Color(102, 153, 255));
-        lblNombreArchivo61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreArchivo61.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoImpresora.png"))); // NOI18N
-        lblNombreArchivo61.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNombreArchivo61MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel100Layout = new javax.swing.GroupLayout(roundPanel100);
-        roundPanel100.setLayout(roundPanel100Layout);
-        roundPanel100Layout.setHorizontalGroup(
-            roundPanel100Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo61, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        roundPanel100Layout.setVerticalGroup(
-            roundPanel100Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo61, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        roundPanel14.setBackground(new java.awt.Color(32, 32, 32));
-
-        lblNombreArchivo4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreArchivo4.setForeground(new java.awt.Color(102, 153, 255));
-        lblNombreArchivo4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreArchivo4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoImpresora.png"))); // NOI18N
-        lblNombreArchivo4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNombreArchivo4MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout roundPanel14Layout = new javax.swing.GroupLayout(roundPanel14);
-        roundPanel14.setLayout(roundPanel14Layout);
-        roundPanel14Layout.setHorizontalGroup(
-            roundPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        roundPanel14Layout.setVerticalGroup(
-            roundPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNombreArchivo4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        roundPanel12.setBackground(new java.awt.Color(32, 32, 32));
+        pnlEmpleados.setBackground(new java.awt.Color(32, 32, 32));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(102, 153, 255));
@@ -1829,18 +1155,322 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout roundPanel12Layout = new javax.swing.GroupLayout(roundPanel12);
-        roundPanel12.setLayout(roundPanel12Layout);
-        roundPanel12Layout.setHorizontalGroup(
-            roundPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel12Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlEmpleadosLayout = new javax.swing.GroupLayout(pnlEmpleados);
+        pnlEmpleados.setLayout(pnlEmpleadosLayout);
+        pnlEmpleadosLayout.setHorizontalGroup(
+            pnlEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEmpleadosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        roundPanel12Layout.setVerticalGroup(
-            roundPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlEmpleadosLayout.setVerticalGroup(
+            pnlEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        pnlProveedores.setBackground(new java.awt.Color(32, 32, 32));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel3.setText("Proveedores");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlProveedoresLayout = new javax.swing.GroupLayout(pnlProveedores);
+        pnlProveedores.setLayout(pnlProveedoresLayout);
+        pnlProveedoresLayout.setHorizontalGroup(
+            pnlProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlProveedoresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlProveedoresLayout.setVerticalGroup(
+            pnlProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        pnlProductos.setBackground(new java.awt.Color(32, 32, 32));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel4.setText("Productos");
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlProductosLayout = new javax.swing.GroupLayout(pnlProductos);
+        pnlProductos.setLayout(pnlProductosLayout);
+        pnlProductosLayout.setHorizontalGroup(
+            pnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProductosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlProductosLayout.setVerticalGroup(
+            pnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        pnlReporteGeneral.setBackground(new java.awt.Color(32, 32, 32));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel5.setText("Gestion de reportes generales");
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout pnlReporteGeneralLayout = new javax.swing.GroupLayout(pnlReporteGeneral);
+        pnlReporteGeneral.setLayout(pnlReporteGeneralLayout);
+        pnlReporteGeneralLayout.setHorizontalGroup(
+            pnlReporteGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlReporteGeneralLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlReporteGeneralLayout.setVerticalGroup(
+            pnlReporteGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        pnlReporteEstadisticos.setBackground(new java.awt.Color(32, 32, 32));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel6.setText("Gestion de reportes estadisticos");
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout pnlReporteEstadisticosLayout = new javax.swing.GroupLayout(pnlReporteEstadisticos);
+        pnlReporteEstadisticos.setLayout(pnlReporteEstadisticosLayout);
+        pnlReporteEstadisticosLayout.setHorizontalGroup(
+            pnlReporteEstadisticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlReporteEstadisticosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlReporteEstadisticosLayout.setVerticalGroup(
+            pnlReporteEstadisticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        pnlRevFacturas.setBackground(new java.awt.Color(32, 32, 32));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel7.setText("Ventas generadas");
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout pnlRevFacturasLayout = new javax.swing.GroupLayout(pnlRevFacturas);
+        pnlRevFacturas.setLayout(pnlRevFacturasLayout);
+        pnlRevFacturasLayout.setHorizontalGroup(
+            pnlRevFacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRevFacturasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlRevFacturasLayout.setVerticalGroup(
+            pnlRevFacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        pnlRevNotasCred.setBackground(new java.awt.Color(32, 32, 32));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel8.setText("Gestion de revision de notas de credito");
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout pnlRevNotasCredLayout = new javax.swing.GroupLayout(pnlRevNotasCred);
+        pnlRevNotasCred.setLayout(pnlRevNotasCredLayout);
+        pnlRevNotasCredLayout.setHorizontalGroup(
+            pnlRevNotasCredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRevNotasCredLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlRevNotasCredLayout.setVerticalGroup(
+            pnlRevNotasCredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        pnlRevNotasDeb.setBackground(new java.awt.Color(32, 32, 32));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel9.setText("Gestion de revision de notas de debito");
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout pnlRevNotasDebLayout = new javax.swing.GroupLayout(pnlRevNotasDeb);
+        pnlRevNotasDeb.setLayout(pnlRevNotasDebLayout);
+        pnlRevNotasDebLayout.setHorizontalGroup(
+            pnlRevNotasDebLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRevNotasDebLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlRevNotasDebLayout.setVerticalGroup(
+            pnlRevNotasDebLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        pnlUsuarios.setBackground(new java.awt.Color(32, 32, 32));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel10.setText("Usuarios");
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout pnlUsuariosLayout = new javax.swing.GroupLayout(pnlUsuarios);
+        pnlUsuarios.setLayout(pnlUsuariosLayout);
+        pnlUsuariosLayout.setHorizontalGroup(
+            pnlUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUsuariosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlUsuariosLayout.setVerticalGroup(
+            pnlUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        pnlCambioClave.setBackground(new java.awt.Color(32, 32, 32));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel11.setText("Cambio de clave");
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout pnlCambioClaveLayout = new javax.swing.GroupLayout(pnlCambioClave);
+        pnlCambioClave.setLayout(pnlCambioClaveLayout);
+        pnlCambioClaveLayout.setHorizontalGroup(
+            pnlCambioClaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCambioClaveLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlCambioClaveLayout.setVerticalGroup(
+            pnlCambioClaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        pnlEmpresa.setBackground(new java.awt.Color(32, 32, 32));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel12.setText("Empresa");
+        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout pnlEmpresaLayout = new javax.swing.GroupLayout(pnlEmpresa);
+        pnlEmpresa.setLayout(pnlEmpresaLayout);
+        pnlEmpresaLayout.setHorizontalGroup(
+            pnlEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEmpresaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlEmpresaLayout.setVerticalGroup(
+            pnlEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        pnlSucursal.setBackground(new java.awt.Color(32, 32, 32));
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel13.setText("Sucursales");
+        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout pnlSucursalLayout = new javax.swing.GroupLayout(pnlSucursal);
+        pnlSucursal.setLayout(pnlSucursalLayout);
+        pnlSucursalLayout.setHorizontalGroup(
+            pnlSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSucursalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlSucursalLayout.setVerticalGroup(
+            pnlSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        pnlEstadoCaja.setBackground(new java.awt.Color(32, 32, 32));
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel14.setText("Estado de caja");
+        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout pnlEstadoCajaLayout = new javax.swing.GroupLayout(pnlEstadoCaja);
+        pnlEstadoCaja.setLayout(pnlEstadoCajaLayout);
+        pnlEstadoCajaLayout.setHorizontalGroup(
+            pnlEstadoCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEstadoCajaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlEstadoCajaLayout.setVerticalGroup(
+            pnlEstadoCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        pnlCaja.setBackground(new java.awt.Color(32, 32, 32));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel15.setText("Apertura y cierre de caja");
+        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout pnlCajaLayout = new javax.swing.GroupLayout(pnlCaja);
+        pnlCaja.setLayout(pnlCajaLayout);
+        pnlCajaLayout.setHorizontalGroup(
+            pnlCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCajaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlCajaLayout.setVerticalGroup(
+            pnlCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        pnlAuditoria.setBackground(new java.awt.Color(32, 32, 32));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel16.setText("Auditoria del sisitema");
+        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout pnlAuditoriaLayout = new javax.swing.GroupLayout(pnlAuditoria);
+        pnlAuditoria.setLayout(pnlAuditoriaLayout);
+        pnlAuditoriaLayout.setHorizontalGroup(
+            pnlAuditoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAuditoriaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlAuditoriaLayout.setVerticalGroup(
+            pnlAuditoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1848,128 +1478,61 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel98, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel96, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel92, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel90, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel86, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel84, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel80, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel78, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel74, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel72, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel68, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel66, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel62, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel60, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(roundPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(roundPanel61, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(roundPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                    .addComponent(roundPanel64, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addComponent(roundPanel67, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                            .addComponent(roundPanel70, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addComponent(roundPanel73, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addComponent(roundPanel76, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(roundPanel79, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(roundPanel82, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(roundPanel85, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(roundPanel88, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(roundPanel91, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(roundPanel94, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(roundPanel97, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(roundPanel100, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6))
+                    .addComponent(pnlAuditoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlCaja, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlEstadoCaja, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlSucursal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlEmpresa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlCambioClave, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlUsuarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlRevNotasDeb, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlRevNotasCred, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlRevFacturas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlReporteEstadisticos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlReporteGeneral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlProductos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlProveedores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlEmpleados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(5, 5, 5))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(roundPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(roundPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(roundPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(roundPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(pnlCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel61, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundPanel60, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel64, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundPanel62, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel67, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundPanel66, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel70, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundPanel68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlReporteGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel73, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundPanel72, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlReporteEstadisticos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel76, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundPanel74, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlRevFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel79, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundPanel78, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlRevNotasCred, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel82, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundPanel80, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlRevNotasDeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel85, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundPanel84, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel88, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundPanel86, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlCambioClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel91, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundPanel90, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel94, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundPanel92, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel97, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundPanel96, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlEstadoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel100, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundPanel98, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlCaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlAuditoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {roundPanel11, roundPanel13});
 
         spItems.setViewportView(jPanel1);
 
@@ -1981,8 +1544,8 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(spItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(spItems, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(roundPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2138,70 +1701,6 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_p4MouseClicked
 
-    private void lblNombreArchivo3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreArchivo3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNombreArchivo3MouseClicked
-
-    private void lblNombreArchivo35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreArchivo35MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNombreArchivo35MouseClicked
-
-    private void lblNombreArchivo37MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreArchivo37MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNombreArchivo37MouseClicked
-
-    private void lblNombreArchivo39MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreArchivo39MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNombreArchivo39MouseClicked
-
-    private void lblNombreArchivo41MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreArchivo41MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNombreArchivo41MouseClicked
-
-    private void lblNombreArchivo43MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreArchivo43MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNombreArchivo43MouseClicked
-
-    private void lblNombreArchivo45MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreArchivo45MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNombreArchivo45MouseClicked
-
-    private void lblNombreArchivo47MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreArchivo47MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNombreArchivo47MouseClicked
-
-    private void lblNombreArchivo49MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreArchivo49MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNombreArchivo49MouseClicked
-
-    private void lblNombreArchivo51MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreArchivo51MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNombreArchivo51MouseClicked
-
-    private void lblNombreArchivo53MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreArchivo53MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNombreArchivo53MouseClicked
-
-    private void lblNombreArchivo55MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreArchivo55MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNombreArchivo55MouseClicked
-
-    private void lblNombreArchivo57MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreArchivo57MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNombreArchivo57MouseClicked
-
-    private void lblNombreArchivo59MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreArchivo59MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNombreArchivo59MouseClicked
-
-    private void lblNombreArchivo61MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreArchivo61MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNombreArchivo61MouseClicked
-
-    private void lblNombreArchivo4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreArchivo4MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNombreArchivo4MouseClicked
-
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         try {
             reporteClientes();
@@ -2265,67 +1764,35 @@ public class FORM_REPORTES_GENERALES extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblArchivo;
     private javax.swing.JLabel lblNombreArchivo;
-    private javax.swing.JLabel lblNombreArchivo3;
-    private javax.swing.JLabel lblNombreArchivo35;
-    private javax.swing.JLabel lblNombreArchivo37;
-    private javax.swing.JLabel lblNombreArchivo39;
-    private javax.swing.JLabel lblNombreArchivo4;
-    private javax.swing.JLabel lblNombreArchivo41;
-    private javax.swing.JLabel lblNombreArchivo43;
-    private javax.swing.JLabel lblNombreArchivo45;
-    private javax.swing.JLabel lblNombreArchivo47;
-    private javax.swing.JLabel lblNombreArchivo49;
-    private javax.swing.JLabel lblNombreArchivo51;
-    private javax.swing.JLabel lblNombreArchivo53;
-    private javax.swing.JLabel lblNombreArchivo55;
-    private javax.swing.JLabel lblNombreArchivo57;
-    private javax.swing.JLabel lblNombreArchivo59;
-    private javax.swing.JLabel lblNombreArchivo61;
     private javax.swing.JLabel p;
     private javax.swing.JLabel p1;
     private javax.swing.JLabel p2;
     private javax.swing.JLabel p3;
     private javax.swing.JLabel p4;
+    private com.anthony.swing.RoundPanel pnlAuditoria;
+    private com.anthony.swing.RoundPanel pnlCaja;
+    private com.anthony.swing.RoundPanel pnlCambioClave;
+    private com.anthony.swing.RoundPanel pnlCliente;
+    private com.anthony.swing.RoundPanel pnlEmpleados;
+    private com.anthony.swing.RoundPanel pnlEmpresa;
+    private com.anthony.swing.RoundPanel pnlEstadoCaja;
+    private com.anthony.swing.RoundPanel pnlProductos;
+    private com.anthony.swing.RoundPanel pnlProveedores;
+    private com.anthony.swing.RoundPanel pnlReporteEstadisticos;
+    private com.anthony.swing.RoundPanel pnlReporteGeneral;
+    private com.anthony.swing.RoundPanel pnlRevFacturas;
+    private com.anthony.swing.RoundPanel pnlRevNotasCred;
+    private com.anthony.swing.RoundPanel pnlRevNotasDeb;
+    private com.anthony.swing.RoundPanel pnlSucursal;
+    private com.anthony.swing.RoundPanel pnlUsuarios;
     private com.anthony.swing.RoundPanel roundPanel10;
-    private com.anthony.swing.RoundPanel roundPanel100;
-    private com.anthony.swing.RoundPanel roundPanel11;
-    private com.anthony.swing.RoundPanel roundPanel12;
-    private com.anthony.swing.RoundPanel roundPanel13;
-    private com.anthony.swing.RoundPanel roundPanel14;
     private com.anthony.swing.RoundPanel roundPanel2;
     private com.anthony.swing.RoundPanel roundPanel3;
     private com.anthony.swing.RoundPanel roundPanel5;
     private com.anthony.swing.RoundPanel roundPanel6;
-    private com.anthony.swing.RoundPanel roundPanel60;
-    private com.anthony.swing.RoundPanel roundPanel61;
-    private com.anthony.swing.RoundPanel roundPanel62;
-    private com.anthony.swing.RoundPanel roundPanel64;
-    private com.anthony.swing.RoundPanel roundPanel66;
-    private com.anthony.swing.RoundPanel roundPanel67;
-    private com.anthony.swing.RoundPanel roundPanel68;
     private com.anthony.swing.RoundPanel roundPanel7;
-    private com.anthony.swing.RoundPanel roundPanel70;
-    private com.anthony.swing.RoundPanel roundPanel72;
-    private com.anthony.swing.RoundPanel roundPanel73;
-    private com.anthony.swing.RoundPanel roundPanel74;
-    private com.anthony.swing.RoundPanel roundPanel76;
-    private com.anthony.swing.RoundPanel roundPanel78;
-    private com.anthony.swing.RoundPanel roundPanel79;
     private com.anthony.swing.RoundPanel roundPanel8;
-    private com.anthony.swing.RoundPanel roundPanel80;
-    private com.anthony.swing.RoundPanel roundPanel82;
-    private com.anthony.swing.RoundPanel roundPanel84;
-    private com.anthony.swing.RoundPanel roundPanel85;
-    private com.anthony.swing.RoundPanel roundPanel86;
-    private com.anthony.swing.RoundPanel roundPanel88;
     private com.anthony.swing.RoundPanel roundPanel9;
-    private com.anthony.swing.RoundPanel roundPanel90;
-    private com.anthony.swing.RoundPanel roundPanel91;
-    private com.anthony.swing.RoundPanel roundPanel92;
-    private com.anthony.swing.RoundPanel roundPanel94;
-    private com.anthony.swing.RoundPanel roundPanel96;
-    private com.anthony.swing.RoundPanel roundPanel97;
-    private com.anthony.swing.RoundPanel roundPanel98;
     private javax.swing.JScrollPane sc;
     private com.anthony.swing.scrollbar.ScrollBarCustom scrollBarCustom1;
     private javax.swing.JScrollPane spItems;

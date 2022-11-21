@@ -19,7 +19,7 @@ import javax.swing.text.StyledDocument;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 
-public class MessageDialogDark extends javax.swing.JDialog {
+public class DialogoCaja extends javax.swing.JDialog {
 
     private final JFrame fram;
     private Animator animator;
@@ -28,7 +28,7 @@ public class MessageDialogDark extends javax.swing.JDialog {
     private MessageType messageType = MessageType.CANCEL;
     RoundBorder1 border = new RoundBorder1(0);
 
-    public MessageDialogDark(JFrame fram) {
+    public DialogoCaja(JFrame fram) {
         super(fram, true);
         this.fram = fram;
         initComponents();

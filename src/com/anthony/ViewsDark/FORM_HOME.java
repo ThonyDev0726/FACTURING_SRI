@@ -4,9 +4,18 @@ import com.anthony.Database.Conexion;
 import com.anthony.MainDark.MainAdministradorDark;
 import com.anthony.Models.USUARIO;
 import com.anthony.chart.ModelChart;
-import com.anthony.componentsDark.MessageDialogDark;
+import com.anthony.componentsDark.DialogMail;
+import com.anthony.componentsDark.DialogoCaja;
 import com.anthony.swing.scrollbar.ScrollBarCustom;
 import java.awt.Color;
+import java.awt.Desktop;
+import static java.awt.SystemColor.desktop;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import javax.swing.event.AncestorListener;
 
 /**
  *
@@ -19,10 +28,10 @@ public class FORM_HOME extends javax.swing.JPanel {
 
     public FORM_HOME() {
         initComponents();
-//        setOpaque(false);
         sp.getViewport().setOpaque(false);
         sp.setVerticalScrollBar(new ScrollBarCustom());
         init();
+        button3.setVisible(false);
     }
 
     public FORM_HOME(MainAdministradorDark admin, USUARIO usu) {
@@ -64,13 +73,21 @@ public class FORM_HOME extends javax.swing.JPanel {
         progress4.start();
     }
 
+    public static void URL_ABRIR(String urlString) {
+        try {
+            Desktop.getDesktop().browse(new URL(urlString).toURI());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         sp = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        roundPanel2 = new com.anthony.swing.RoundPanel();
+        pnlClientes = new com.anthony.swing.RoundPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         progress1 = new com.anthony.swing.progress.Progress();
@@ -121,7 +138,7 @@ public class FORM_HOME extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(22, 23, 23));
 
-        roundPanel2.setBackground(new java.awt.Color(32, 32, 32));
+        pnlClientes.setBackground(new java.awt.Color(32, 32, 32));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -135,31 +152,31 @@ public class FORM_HOME extends javax.swing.JPanel {
         progress1.setForeground(new java.awt.Color(102, 153, 255));
         progress1.setValue(50);
 
-        javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
-        roundPanel2.setLayout(roundPanel2Layout);
-        roundPanel2Layout.setHorizontalGroup(
-            roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlClientesLayout = new javax.swing.GroupLayout(pnlClientes);
+        pnlClientes.setLayout(pnlClientesLayout);
+        pnlClientesLayout.setHorizontalGroup(
+            pnlClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlClientesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(progress1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        roundPanel2Layout.setVerticalGroup(
-            roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel2Layout.createSequentialGroup()
+        pnlClientesLayout.setVerticalGroup(
+            pnlClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlClientesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(roundPanel2Layout.createSequentialGroup()
+                .addGroup(pnlClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlClientesLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel14)
                         .addGap(33, 33, 33))
-                    .addGroup(roundPanel2Layout.createSequentialGroup()
+                    .addGroup(pnlClientesLayout.createSequentialGroup()
                         .addComponent(progress1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
@@ -532,6 +549,11 @@ public class FORM_HOME extends javax.swing.JPanel {
         button4.setText("CONTACTARME CON APP-SOFT");
         button4.setFocusPainted(false);
         button4.setFocusable(false);
+        button4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelPricingRound1Layout = new javax.swing.GroupLayout(panelPricingRound1);
         panelPricingRound1.setLayout(panelPricingRound1Layout);
@@ -541,7 +563,7 @@ public class FORM_HOME extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelPricingRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pictureBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelPricingRound1Layout.setVerticalGroup(
@@ -573,7 +595,7 @@ public class FORM_HOME extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(roundPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -591,7 +613,7 @@ public class FORM_HOME extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(roundPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(roundPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pnlClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(roundPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -622,13 +644,18 @@ public class FORM_HOME extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFacturacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturacionActionPerformed
-
+        URL_ABRIR("https://www.google.com");
     }//GEN-LAST:event_btnFacturacionActionPerformed
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
-        MessageDialogDark obj = new MessageDialogDark(admin);
+        DialogoCaja obj = new DialogoCaja(admin);
         obj.showMessage("GENERAR VENTA", "¿ Deseas generar la venta al cliente ?");
     }//GEN-LAST:event_button2ActionPerformed
+
+    private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4ActionPerformed
+        DialogMail d = new DialogMail(admin);
+        d.showMessage("CONTACTAR A APP-SOFT");
+    }//GEN-LAST:event_button4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -661,6 +688,7 @@ public class FORM_HOME extends javax.swing.JPanel {
     private com.anthony.swing.PictureBox pictureBox1;
     private com.anthony.swing.PictureBox pictureBox2;
     private com.anthony.swing.PictureBox pictureBox4;
+    private com.anthony.swing.RoundPanel pnlClientes;
     private com.anthony.swing.progress.Progress progress1;
     private com.anthony.swing.progress.Progress progress2;
     private com.anthony.swing.progress.Progress progress3;
@@ -669,7 +697,6 @@ public class FORM_HOME extends javax.swing.JPanel {
     private com.anthony.swing.RoundPanel roundPanel15;
     private com.anthony.swing.RoundPanel roundPanel16;
     private com.anthony.swing.RoundPanel roundPanel17;
-    private com.anthony.swing.RoundPanel roundPanel2;
     private com.anthony.swing.RoundPanel roundPanel4;
     private com.anthony.swing.RoundPanel roundPanel5;
     private com.anthony.swing.RoundPanel roundPanel6;

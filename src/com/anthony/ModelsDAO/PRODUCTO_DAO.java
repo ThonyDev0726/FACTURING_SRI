@@ -32,8 +32,8 @@ public class PRODUCTO_DAO implements crud_producto {
     String LISTAR_FACTURACION = "CALL SELECT_PRODUCTOS_FACTURACION()";
     String LISTAR_ID = "CALL SELECT_PRODUCTO_ID(?)";
     String LISTAR_ID_COD = "CALL SELECT_PRODUCTO_ID_CODIGO(?)";
-    String CREAR = "CALL INSERT_PRODUCTO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    String ACTUALIZAR = "CALL UPDATE_PRODUCTO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    String CREAR = "CALL INSERT_PRODUCTO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    String ACTUALIZAR = "CALL UPDATE_PRODUCTO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     String ELIMINAR = "CALL DELETE_PRODUCTO(?)";
     String ACTUALIZAR_ESTADO = "CALL UPDATE_PRODUCTO_ESTADO(?,?)";
     String ACTUALIZAR_STOCK = "CALL UPDATE_STOCK_PRODUCTO(?,?)";
