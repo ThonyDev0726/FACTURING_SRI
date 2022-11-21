@@ -19,10 +19,11 @@ public class Conexion {
         String HOST = "192.168.1.3"; //La ip que tenga el cliente
         String PASSWORD = "";
         String PASSWORD_NUBE = "bvOOtZA0qE";
+        String URL = "jdbc:mysql://" + HOST + ":3306/" + DATA_BASE + "?serverTimezone=UTC";
         try {
 //            Class.forName("com.mysql.jdbc.Driver");
             Class.forName("com.mysql.cj.jdbc.Driver");
-            cn = DriverManager.getConnection("jdbc:mysql://" + HOST + ":3306/" + DATA_BASE + "?serverTimezone=UTC", USER, PASSWORD);
+            cn = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error de conexion");
             System.out.println("" + e);

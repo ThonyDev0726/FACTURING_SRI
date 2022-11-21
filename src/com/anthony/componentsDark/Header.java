@@ -27,7 +27,7 @@ public class Header extends javax.swing.JPanel {
     
     public void initJFram(JFrame fram) {
         this.fram = fram;
-        cmdTema.setVisible(false);
+//        cmdTema.setVisible(false);
         resizer = new ComponentResizer();
         resizer.setSnapSize(new Dimension(10, 10));
         resizer.setMinimumSize(new Dimension(970, 700));
