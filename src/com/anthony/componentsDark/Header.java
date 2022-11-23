@@ -89,8 +89,7 @@ public class Header extends javax.swing.JPanel {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 fram.setExtendedState(JFrame.ICONIFIED);
-                btnMinimizar.setToolTipText("Minimizar");
-                
+                btnMinimizar.setToolTipText("Minimizar");                
             }
         });
     }
