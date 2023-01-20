@@ -30,6 +30,16 @@ public class loading extends javax.swing.JFrame implements Runnable {
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         tiempo = new Thread(this);
         tiempo.start();
+        File srcImagenes = new File("C:\\FACTURING_V1\\src\\img");
+        if (!srcImagenes.exists()) {
+            if (srcImagenes.mkdirs()) {
+                System.out.println("Directorio Imagenes creado");
+            } else {
+                System.out.println("Error al crear directorio");
+            }
+        } else {
+            System.out.println("El directorio ya esta creado!!");
+        }
         directorios();
     }
 

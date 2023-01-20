@@ -26,7 +26,6 @@ public class DialogoCaja extends javax.swing.JDialog {
     private Glass_notification glass;
     private boolean show;
     private MessageType messageType = MessageType.CANCEL;
-    RoundBorder1 border = new RoundBorder1(0);
 
     public DialogoCaja(JFrame fram) {
         super(fram, true);
@@ -44,7 +43,7 @@ public class DialogoCaja extends javax.swing.JDialog {
         spPago.setVerticalScrollBar(new ScrollBarCustom());
         spPago.setHorizontalScrollBar(sbh);
         spPago.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        spPago.setBorder(border);
+//        spPago.setBorder(border);
         spPago.getViewport().setOpaque(false);
     }
     private void init() {
@@ -483,28 +482,4 @@ public class DialogoCaja extends javax.swing.JDialog {
     private textfield.TextField textField4;
     private textfield.TextField textField5;
     // End of variables declaration//GEN-END:variables
-}
-class RoundBorder1 implements Border {
-
-    /*        
-        PARA QUITAR EL BORDE POR DEFECTO DE LA TABLA        
-     */
-    private int r;
-
-    RoundBorder1(int r) {
-        this.r = r;
-    }
-
-    public Insets getBorderInsets(Component c) {
-        return new Insets(this.r + 1, this.r + 1, this.r + 2, this.r);
-    }
-
-    public boolean isBorderOpaque() {
-        return true;
-    }
-
-    public void paintBorder(Component c, Graphics g, int x, int y,
-            int width, int height) {
-        g.drawRoundRect(x, y, width - 1, height - 1, r, r);
-    }
 }

@@ -4,7 +4,7 @@ import com.anthony.MainDark.MainAdministradorDark;
 import com.anthony.swing.scrollbar.ScrollBarCustom;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
-import com.anthony.dialog.MessageDialogDark;
+import com.anthony.componentsDark.MessageDialogDark;
 import com.anthony.email.ENVIO_MAIL;
 import com.anthony.toast.Toast;
 import java.awt.Desktop;

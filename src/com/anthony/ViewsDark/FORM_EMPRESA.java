@@ -3,7 +3,8 @@ package com.anthony.ViewsDark;
 import com.anthony.MainDark.MainAdministradorDark;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
-import com.anthony.dialog.MessageDialogDark;
+import com.anthony.componentsDark.MessageDialogDark;
+//import com.anthony.dialog.MessageDialogDark;
 import com.anthony.swing.scrollbar.ScrollBarCustom;
 import com.anthony.toast.Toast;
 import java.awt.Component;
@@ -1039,7 +1040,7 @@ public class FORM_EMPRESA extends javax.swing.JPanel {
         EMP_TOKEN = cbxToken.getSelectedItem().toString();
         try {
             MessageDialogDark obj = new MessageDialogDark(admin);
-            obj.showMessage("¡¡ACTUALIZAR REGISTRO!!", "¿ Desea actualizar los datos de la empresa ?");
+            obj.showMessage("¿ Desea actualizar los datos de la empresa ?", "");
             emp.setID_EMPRESA(ID_EMPRESA);
             emp.setEMP_NOMBRE_COMERCIAL(EMP_NOMBRE_COMERCIAL);
             emp.setEMP_RAZON_SOCIAL(EMP_RAZON_SOCIAL);
@@ -1157,7 +1158,7 @@ public class FORM_EMPRESA extends javax.swing.JPanel {
         SUC_ESTADO = "EN LINEA";
         try {
             MessageDialogDark obj = new MessageDialogDark(admin);
-            obj.showMessage("¡¡CREAR REGISTRO!!", "¿ Desea crear la sucursal ?");
+            obj.showMessage("¿Deseas crear la sucursal?", "Recuerda que los datos que se estan creando no se podran alterar despues de realizar esta operacion, a menos que los actualices manualmete en esta aplicacion.");
             suc.setFK_EMPRESA(FK_EMPRESA);
             suc.setSUC_NOMBRE(SUC_NOMBRE);
             suc.setSUC_TELEFONO(SUC_TELEFONO);

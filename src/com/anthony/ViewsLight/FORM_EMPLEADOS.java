@@ -4,7 +4,7 @@ import com.anthony.Controller.*;
 import com.anthony.MainLight.MainAdministrador;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
-import com.anthony.dialog.MessageDialogLight;
+import com.anthony.componentsLigth.MessageDialogLight;
 import com.anthony.swing.scrollbar.ScrollBarCustomClaro;
 import com.anthony.toast.Toast;
 import java.awt.Component;

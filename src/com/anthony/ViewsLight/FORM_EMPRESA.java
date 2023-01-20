@@ -3,8 +3,7 @@ package com.anthony.ViewsLight;
 import com.anthony.MainLight.MainAdministrador;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
-import com.anthony.dialog.MessageDialogDark;
-import com.anthony.dialog.MessageDialogLight;
+import com.anthony.componentsLigth.MessageDialogLight;
 import com.anthony.swing.scrollbar.ScrollBarCustom;
 import com.anthony.swing.scrollbar.ScrollBarCustomClaro;
 import com.anthony.toast.Toast;
@@ -1166,7 +1165,7 @@ public class FORM_EMPRESA extends javax.swing.JPanel {
         SUC_DIRECCION = txtSucDireccion.getText();
         SUC_ESTADO = "EN LINEA";
         try {
-            MessageDialogDark obj = new MessageDialogDark(admin);
+            MessageDialogLight obj = new MessageDialogLight(admin);
             obj.showMessage("¡¡CREAR REGISTRO!!", "¿ Desea crear la sucursal ?");
             suc.setFK_EMPRESA(FK_EMPRESA);
             suc.setSUC_NOMBRE(SUC_NOMBRE);
@@ -1174,7 +1173,7 @@ public class FORM_EMPRESA extends javax.swing.JPanel {
             suc.setSUC_EMAIL(SUC_EMAIL);
             suc.setSUC_DIRECCION(SUC_DIRECCION);
             suc.setSUC_ESTADO(SUC_ESTADO);
-            if (obj.getMessageType() == MessageDialogDark.MessageType.OK) {
+            if (obj.getMessageType() == MessageDialogLight.MessageType.OK) {
                 if (daoSuc.add(suc) == "La sucursal fue creada con exito!") {
                     panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "La sucursal fue creada con exito!!");
                     panel.showNotification();
@@ -1188,7 +1187,7 @@ public class FORM_EMPRESA extends javax.swing.JPanel {
                     datosEmpresa();
                     limpiarFormulario();
                 }
-            } else if (obj.getMessageType() == MessageDialogDark.MessageType.CANCEL) {
+            } else if (obj.getMessageType() == MessageDialogLight.MessageType.CANCEL) {
                 panel = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se cancelo el proceso!!");
                 panel.showNotification();
                 limpiarFormulario();

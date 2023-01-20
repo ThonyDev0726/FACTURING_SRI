@@ -38,7 +38,7 @@
               <Component id="txtTelefono" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
-          <Component id="spPanel" alignment="0" pref="762" max="32767" attributes="0"/>
+          <Component id="spPanel" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -1074,7 +1074,6 @@
                       <Image iconType="3" name="/com/anthony/icons/iconoAgregar.png"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="false"/>
-                    <Property name="focusPainted" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNuevoDetalleActionPerformed"/>
@@ -1148,7 +1147,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="CANCELAR"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
-                <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
@@ -1167,7 +1165,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="GUARDAR"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
-                <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
@@ -1186,7 +1183,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="IMPRIMIR"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
-                <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>

@@ -4,7 +4,8 @@ import com.anthony.Controller.*;
 import com.anthony.MainDark.MainAdministradorDark;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
-import com.anthony.dialog.MessageDialogDark;
+import com.anthony.componentsDark.MessageDialogDark;
+//import com.anthony.dialog.MessageDialogDark;
 import com.anthony.swing.scrollbar.ScrollBarCustom;
 import com.anthony.toast.Toast;
 import java.awt.Component;
@@ -753,7 +754,7 @@ public class FORM_EMPLEADOS extends javax.swing.JPanel {
         EMP_CREACION = fecha;
         try {
             MessageDialogDark obj = new MessageDialogDark(admin);
-            obj.showMessage("¿ Deseas crear al empleado ?", "");
+            obj.showMessage("¿ Deseas crear al empleado ?", "Recuerda que los datos que se estan creando no se podran alterar despues de realizar esta operacion, a menos que los actualices manualmete en esta aplicacion.");
             emp.setID_EMPLEADO(ID_EMPLEADO);
             emp.setFK_SUCURSAL(FK_SUCURSAL);
             emp.setEMP_NOMBRES(EMP_NOMBRES);

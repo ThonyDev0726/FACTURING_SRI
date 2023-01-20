@@ -4,7 +4,7 @@ import com.anthony.Controller.*;
 import com.anthony.MainDark.MainAdministradorDark;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
-import com.anthony.dialog.MessageDialogLight;
+import com.anthony.componentsLigth.MessageDialogLight;
 import com.anthony.swing.clases.ComponentResizer;
 import com.anthony.toast.Toast;
 import java.awt.Dimension;
@@ -156,7 +156,7 @@ public class Login extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 MessageDialogLight obj = new MessageDialogLight(Login.this);
-                obj.showMessage("¿ Deseas salir de Facturing ?", "");
+                obj.showMessage("¿Deseas salir de Facturing?", "Recuerda que los datos que se estan dentro de la aplicacion solo se podran crear, modificar o eliminar manualmete en esta aplicacion.");
                 if (obj.getMessageType() == MessageDialogLight.MessageType.OK) {
                     System.exit(0);
                 }
@@ -222,10 +222,29 @@ public class Login extends javax.swing.JFrame {
                             usu.setUSU_USUARIO(letraNormal(PRIMER_NOMBRE) + " " + letraNormal(PRIMER_APELLIDO));
                             usu.setUSU_CLAVE(loginAndRegister.addObtenerClave());
                             usu.setUSU_PARAMETRO(usuCargo);
+                            
+                            //DATOS EMPLEADO
+                            USUARIO datEmp = (USUARIO) usuDAO.DATOS_EMPLEADO(usuDAO.ID_EMPLEADO(idUsu));
+                            usu.setEMP_NOMBRES(datEmp.getEMP_NOMBRES());
+                            usu.setEMP_APELLIDOS(datEmp.getEMP_APELLIDOS());
+                            usu.setEMP_CEDULA(datEmp.getEMP_CEDULA());
+                            usu.setEMP_EMAIL(datEmp.getEMP_EMAIL());
+                            usu.setEMP_TELEFONO(datEmp.getEMP_TELEFONO());
+                            usu.setEMP_DIRECCION(datEmp.getEMP_DIRECCION());
+                            usu.setEMP_CREACION(datEmp.getEMP_CREACION());
+                            //
                             System.out.println("=========== ACCESO CORRECTO ===========");
                             System.out.println("USUARIO: " + usu.getUSU_USUARIO());
+                            System.out.println("ID_USUARIO: " + usu.getID_USUARIO());
                             System.out.println("CLAVE: " + usu.getUSU_CLAVE());
                             System.out.println("EMPLEADO: " + usu.getFK_EMPLEADO());
+                            System.out.println("EMP_NOMBRES: " + usu1.getEMP_NOMBRES());
+                            System.out.println("EMP_APELLIDOS: " + usu1.getEMP_APELLIDOS());
+                            System.out.println("CEDULA: " + usu1.getEMP_CEDULA());
+                            System.out.println("EMAIL: " + usu1.getEMP_EMAIL());
+                            System.out.println("TELEFONO: " + usu1.getEMP_TELEFONO());
+                            System.out.println("DIRECCION: " + usu.getEMP_DIRECCION());
+                            System.out.println("CREACION: " + usu.getEMP_CREACION());
                             System.out.println("SUCURSAL: " + usu.getFK_SUCURSAL());
                             System.out.println("PARAMETRO: " + usu.getUSU_PARAMETRO());
                             System.out.println("=======================================");

@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/**SSS
  *
  * @author perez
  */
@@ -53,6 +53,7 @@ public class CLIENTE_DAO implements crud_cliente {
                 lista.add(cli);
             }
             System.out.println("SE ESTA LISTANDO LOS CLIENTES");
+//            System.out.println(lista.toString());
         } catch (SQLException ex) {
             System.out.println("ERROR AL LISTAR LOS CLIENTES" + ex);
         }
@@ -165,7 +166,6 @@ public class CLIENTE_DAO implements crud_cliente {
             CallableStatement cs = con.prepareCall(ACTUALIZAR_ESTADO);
             cs.setInt(1, id);
             cs.setString(2, estado);
-            System.out.println(ACTUALIZAR_ESTADO);
             cs.execute();
         } catch (SQLException ex) {
             System.out.println("ERROR AL DAR DE BAJA AL CLIENTE");

@@ -5,7 +5,7 @@ import com.anthony.MainLight.MainAdministrador;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
 import com.anthony.ModelsDAO.SUCURSAL_DAO;
-import com.anthony.dialog.MessageDialogLight;
+import com.anthony.componentsLigth.MessageDialogLight;
 import com.anthony.swing.scrollbar.ScrollBarCustom;
 import com.anthony.swing.scrollbar.ScrollBarCustomClaro;
 import com.anthony.toast.Toast;

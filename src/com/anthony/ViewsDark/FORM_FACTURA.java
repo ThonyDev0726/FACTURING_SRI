@@ -4,7 +4,7 @@ import com.anthony.MainDark.MainAdministradorDark;
 import com.anthony.swing.scrollbar.ScrollBarCustom;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
-import com.anthony.dialog.MessageDialogDark;
+import com.anthony.componentsDark.MessageDialogDark;
 import com.anthony.email.ENVIO_MAIL;
 import com.anthony.toast.Toast;
 import java.awt.Desktop;
@@ -65,7 +65,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
     /*
     variables detalle factura
      */
-    DecimalFormat df = new DecimalFormat("#.00");
+//    DecimalFormat df = new DecimalFormat("#.00");
     int stock = 0;
     int cantidad = 0;
     double precio;
@@ -102,7 +102,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         lblClaveAcceso.setText(daoFac.generadorNumeroFactura(emp.getEMP_RUC(), txtCedula.getText()));
         try {
             MessageDialogDark obj = new MessageDialogDark(admin);
-            obj.showMessage("GENERAR VENTA", "¿ Deseas generar la venta al cliente ?");
+            obj.showMessage("¿ Deseas generar la venta al cliente ?", "");
             fac.setFK_EMPLEADO(usu.getFK_EMPLEADO());
             fac.setFK_CLIENTE(Integer.parseInt(lblIdCliente.getText()));
             fac.setFK_SUCURSAL(usu.getFK_SUCURSAL());
@@ -134,7 +134,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                 txtCedula.setText("");
                 txtDireccion.setText("");
                 txtRuc.setText("");
-                spPanel.getVerticalScrollBar().setValue(panelFormClientes.getY());
+                spPanel.getVerticalScrollBar().setValue(0);
                 tabbedPane.setSelectedComponent(panelClientes);
                 txtApellidosCliente.requestFocus();
             }
@@ -163,7 +163,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
             fac.setFAC_COD_AUT(daoFac.generadorNumeroFacturaCosumidor(emp.getEMP_RUC(), "0000000001"));
             fac.setFAC_RUTA("C:\\FACTURING_V1\\2022\\NOVIEMBRE\\FACTURAS\\APROBADAS/" + "0000000001" + "(" + daoFac.fecha() + "-" + daoFac.hora() + ").pdf");
             lblPdf.setText("0000000001" + "(" + daoFac.fecha() + "-" + daoFac.hora() + ").pdf");
-            fac.setFAC_ESTADO("PENDIENTE");
+            fac.setFAC_ESTADO("APROBADO");
             if (obj.getMessageType() == MessageDialogDark.MessageType.OK) {
                 if (daoFac.add(fac) == "La factura fue creada con exito!") {
                     panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "La factura fue creada con exito!!");
@@ -470,7 +470,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         int stock = Integer.parseInt(txtStock.getText());
         total = cantidad * precio;
         descuentoNum = cantidad * Double.parseDouble(descuento);
-        total = Double.parseDouble(df.format(total));
+//        total = Double.parseDouble(df.format(total));
         ArrayList listaFactura = new ArrayList();
         if (stock <= 0) {
             System.out.println("Nada");
@@ -529,7 +529,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
             PrecioTotal = Double.parseDouble(tDatosFactura.getValueAt(i, 7).toString());
             subtotal = subtotal + PrecioTotal;
         }
-        txtSub12.setText("" + df.format(subtotal));
+//        txtSub12.setText("" + df.format(subtotal));
 //        txtSubtotal12.setText("" + df.format(subtotal));
         txtSub12.setText("" + subtotal);
 //        txtSubtotal12.setText("" + subtotal);
@@ -543,7 +543,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
             PrecioTotal = Double.parseDouble(tDatosFactura.getValueAt(i, 6).toString());
             subtotal = subtotal + PrecioTotal;
         }
-        txtDescuento.setText("" + df.format(subtotal));
+//        txtDescuento.setText("" + df.format(subtotal));
 //        txtSubtotal12.setText("" + df.format(subtotal));
         txtDescuento.setText("" + subtotal);
 //        txtSubtotal12.setText("" + subtotal);
@@ -555,7 +555,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         for (int i = 0; i < tDatosFactura.getRowCount(); i++) {
             subtotal = Double.parseDouble(txtSub12.getText());
             iva = 0.12 * subtotal;
-            iva = Double.parseDouble(df.format(iva));
+//            iva = Double.parseDouble(df.format(iva));
         }
 //        lblIva.setText(df.format(iva));
         txtIva12.setText("" + iva);
@@ -570,7 +570,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
             subtotal = Double.parseDouble(txtSub12.getText());
             iva = 0.12 * subtotal;
             total = (iva + subtotal) - descuento;
-            total = Double.parseDouble(df.format(total));
+//            total = Double.parseDouble(df.format(total));
         }
         txtTotal.setText(total + "");
     }
@@ -1710,7 +1710,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         txtRuc.setEditable(false);
         txtDireccion.setEditable(false);
         txtCodPrinc.requestFocus();
-        spPanel.getVerticalScrollBar().setValue(panelFormProductos.getY());
+        spPanel.getVerticalScrollBar().setValue(panelFormClientes.getY());
     }//GEN-LAST:event_tDatosClientesMouseClicked
 
     private void btnNuevoDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoDetalleActionPerformed

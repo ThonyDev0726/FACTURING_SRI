@@ -4,7 +4,8 @@ import com.anthony.Controller.Convertidor;
 import com.anthony.MainDark.MainAdministradorDark;
 import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
-import com.anthony.dialog.MessageDialogDark;
+import com.anthony.componentsDark.MessageDialogDark;
+//import com.anthony.dialog.MessageDialogDark;
 import com.anthony.swing.scrollbar.ScrollBarCustom;
 import com.anthony.toast.Toast;
 import java.awt.Component;
@@ -848,7 +849,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
         CLI_CREACION = fecha;
         try {
             MessageDialogDark obj = new MessageDialogDark(admin);
-            obj.showMessage("¿ Deseas crear al cliente ?", "");
+            obj.showMessage("¿ Deseas crear al cliente ?", "Recuerda que los datos que se estan creando no se podran alterar despues de realizar esta operacion, a menos que los actualices manualmete en esta aplicacion.");
             cli.setCLI_NOMBRES(CLI_NOMBRES);
             cli.setCLI_APELLIDOS(CLI_APELLIDOS);
             cli.setCLI_CEDULA(CLI_CEDULA);
@@ -964,7 +965,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
         CLI_ESTADO = cbxEstadoCli.getSelectedItem().toString();
         try {
             MessageDialogDark obj = new MessageDialogDark(admin);
-            obj.showMessage("¿ Deseas actualizar al cliente ?", "");
+            obj.showMessage("¿ Deseas actualizar al cliente ?", "Recuerda que los datos que se estan actualizando se mantendran como los deja actualmente, no se podran regresar a un estado anterior.");
             cli.setID_CLIENTE(ID_CLIENTE);
             cli.setCLI_NOMBRES(CLI_NOMBRES);
             cli.setCLI_APELLIDOS(CLI_APELLIDOS);

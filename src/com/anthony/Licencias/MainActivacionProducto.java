@@ -1,11 +1,8 @@
 package com.anthony.Licencias;
 
 import com.anthony.login.*;
-import com.anthony.Controller.*;
-import com.anthony.MainLight.loading;
-import com.anthony.Models.*;
 import com.anthony.ModelsDAO.*;
-import com.anthony.dialog.MessageDialogLight;
+import com.anthony.componentsLigth.MessageDialogLight;
 import com.anthony.swing.clases.ComponentResizer;
 import com.anthony.toast.Toast;
 import java.awt.Dimension;
@@ -30,7 +27,7 @@ import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 
 public class MainActivacionProducto extends javax.swing.JFrame {
-    
+
     private final DecimalFormat df = new DecimalFormat("##0.###", DecimalFormatSymbols.getInstance(Locale.US));
     private MigLayout layout;
     private PanelCover cover;
@@ -45,7 +42,7 @@ public class MainActivacionProducto extends javax.swing.JFrame {
     private int x;
     private int y;
     LICENCIA_DAO licencia_dao = new LICENCIA_DAO();
-    
+
     public MainActivacionProducto() {
         initComponents();
         extender();
@@ -56,7 +53,7 @@ public class MainActivacionProducto extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/anthony/icons/IconoFacturing-vf.png")));
         //initJFram(this);
     }
-    
+
     public MainActivacionProducto(String cesionCerrada) {
         initComponents();
         extender();
@@ -67,7 +64,7 @@ public class MainActivacionProducto extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/anthony/icons/IconoFacturing-vf.png")));
         Toast panel = new Toast(this, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Sesion cerrada, limite de tiempo finalizado");
         panel.showNotification();
-        
+
     }
 
     // para poder mostrar la barra de tareas
@@ -76,7 +73,7 @@ public class MainActivacionProducto extends javax.swing.JFrame {
         this.setMaximizedBounds(env.getMaximumWindowBounds());
         this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
     }
-    
+
     private void init() {
         layout = new MigLayout("fill, insets 0");
         cover = new PanelCover();
@@ -118,7 +115,7 @@ public class MainActivacionProducto extends javax.swing.JFrame {
                 layout.setComponentConstraints(activacionSoporte, "width " + loginSize + "%, pos " + fractionLogin + "al 0 n 100%");
                 bg.revalidate();
             }
-            
+
             @Override
             public void end() {
                 isLogin = !isLogin;
@@ -148,16 +145,16 @@ public class MainActivacionProducto extends javax.swing.JFrame {
                     System.exit(0);
                 }
             }
-            
+
             public void mousePressed(MouseEvent e) {
             }
-            
+
             public void mouseReleased(MouseEvent e) {
             }
-            
+
             public void mouseEntered(MouseEvent e) {
             }
-            
+
             public void mouseExited(MouseEvent e) {
             }
         });
@@ -169,7 +166,7 @@ public class MainActivacionProducto extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void validarCodigo() {
         String codigo = activacionSoporte.addObtenerClave();
         if (codigo.length() == 0) {
@@ -181,15 +178,15 @@ public class MainActivacionProducto extends javax.swing.JFrame {
                 Toast toast = new Toast(this, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Codigo rechazado!!");
                 toast.showNotification();
             } else if (numClaves == 1) {
-                if (licencia_dao.updateEstado().equals("Licencia actualizada con exito!")) {                                       
+                if (licencia_dao.updateEstado().equals("Licencia actualizada con exito!")) {
                     Toast panel = new Toast(this, Toast.Type.SUCCESS, Toast.Location.TOP_CENTER, "Producto activado, disfrutalo!!");
-                    panel.showNotification();                    
+                    panel.showNotification();
                     dispose();
                     Login l = new Login();
                     l.setVisible(true);
                 } else if (licencia_dao.updateEstado().equals("No se actualizo la licencia!")) {
                     Toast toast = new Toast(this, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se actualizo la licencia!!");
-                    toast.showNotification();                                        
+                    toast.showNotification();
                 }
             } else {
                 Toast toast = new Toast(this, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Error al procesar tu peticion!!");
@@ -198,7 +195,7 @@ public class MainActivacionProducto extends javax.swing.JFrame {
             }
         }
     }
-    
+
     public void initJFram(JFrame fram) {
         this.fram = fram;
         resizer = new ComponentResizer();
@@ -239,7 +236,7 @@ public class MainActivacionProducto extends javax.swing.JFrame {
             }
         });
     }
-    
+
     public static String letraNormal(String str) {
         if (str == null || str.isEmpty()) {
             return str;
@@ -248,7 +245,7 @@ public class MainActivacionProducto extends javax.swing.JFrame {
             return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -289,7 +286,7 @@ public class MainActivacionProducto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public static void main(String args[]) {
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -306,7 +303,7 @@ public class MainActivacionProducto extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainActivacionProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainActivacionProducto().setVisible(true);

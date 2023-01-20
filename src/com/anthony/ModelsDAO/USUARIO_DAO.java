@@ -193,6 +193,27 @@ public class USUARIO_DAO implements crud_usuario {
         return ID_EMPLEADO;
     }
 
+    public USUARIO DATOS_EMPLEADO(int ID_EMPLEADO) {
+        try {
+            con = (Connection) cn.getConexion();
+            cs = con.prepareCall("CALL SELECT_ID_EMPLEADO(?)");
+            cs.setInt(1, ID_EMPLEADO);
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                c.setEMP_NOMBRES(rs.getString(1));
+                c.setEMP_APELLIDOS(rs.getString(2));
+                c.setEMP_CEDULA(rs.getString(3));
+                c.setEMP_EMAIL(rs.getString(4));
+                c.setEMP_TELEFONO(rs.getString(5));
+                c.setEMP_DIRECCION(rs.getString(6));
+                c.setEMP_CREACION(rs.getString(7));
+            }
+        } catch (Exception e) {
+            System.out.println("ULTIMO USUARIO NO ENCONTRADO: " + e);
+        }
+        return c;
+    }
+
     public Integer ID_SUCURSAL(int fk) {
         try {
             con = (Connection) cn.getConexion();

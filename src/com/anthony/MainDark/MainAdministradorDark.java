@@ -5,7 +5,7 @@ import com.anthony.Models.*;
 import com.anthony.ModelsDAO.PERMISOS_DAO;
 import com.anthony.ViewsDark.*;
 import com.anthony.componentsDark.*;
-import com.anthony.dialog.MessageDialogDark;
+//import com.anthony.dialog.MessageDialogDark;
 import com.anthony.eventDark.EventMenuSelectedDark;
 import com.anthony.eventDark.EventShowPopupMenuDark;
 import com.anthony.login.Login;
@@ -19,6 +19,7 @@ import java.awt.Toolkit;
 import java.awt.event.*;
 import java.text.DecimalFormat;
 import javax.swing.ImageIcon;
+import javax.swing.JLayer;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
@@ -89,7 +90,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent ae) {
                 try {
                     MessageDialogDark obj = new MessageDialogDark(admin);
-                    obj.showMessage("¿Deseas salir de Facturing?", "");
+                    obj.showMessage("¿Deseas salir de Facturing?", "Recuerda que los datos que se estan creando, modificando o eliminando no se podran alterar al cerrar Facturing.");
                     if (obj.getMessageType() == MessageDialogDark.MessageType.OK) {
                         System.exit(0);
                     } else {
@@ -107,12 +108,10 @@ public class MainAdministradorDark extends javax.swing.JFrame {
         menu.addEvent(new EventMenuSelectedDark() {
             @Override
             public void menuSelected(int menuIndex, int subMenuIndex) {
-//                System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
                 if (menuIndex == 0) {
-                    System.out.println("========================================");
-                    System.out.println("Estamos en el Inicio");
-                    System.out.println("========================================");
                     main.showForm(new FORM_HOME(admin, usu));
+                    toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Home!!");
+                    toast.showNotification();
                     header.addMenuEvent(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -127,12 +126,9 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                     });
                     menu.hideallMenu();
                 } else if (menuIndex == 1) {
-                    System.out.println("========================================");
-                    System.out.println("ESTAMOS EN EL MENU PARAMETROS");
+
                     if (subMenuIndex == 0) {
                         cliente();
-                        System.out.println("ACCEDISMOS A CLIENTES");
-                        System.out.println("========================================");
                         header.addMenuEvent(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -148,8 +144,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         menu.hideallMenu();
                     } else if (subMenuIndex == 1) {
                         empleados();
-                        System.out.println("ACCEDIMOS A EMPLEADOS");
-                        System.out.println("========================================");
                         header.addMenuEvent(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -164,8 +158,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         });
                         menu.hideallMenu();
                     } else if (subMenuIndex == 2) {
-                        System.out.println("ACCEDIMOS A PROVEEDORES");
-                        System.out.println("========================================");
                         proveedores();
                         header.addMenuEvent(new ActionListener() {
                             @Override
@@ -181,8 +173,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         });
                         menu.hideallMenu();
                     } else if (subMenuIndex == 3) {
-                        System.out.println("ACCEDIMOS A PRODUCTOS");
-                        System.out.println("========================================");
                         productos();
                         header.addMenuEvent(new ActionListener() {
                             @Override
@@ -199,12 +189,8 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         menu.hideallMenu();
                     }
                 } else if (menuIndex == 2) {
-                    System.out.println("========================================");
-                    System.out.println("ACCEDIMOS A FACTURACION");
                     if (subMenuIndex == 0) {
-                        System.out.println("ACCEDIMOS A GENERAR FACTURA");
                         facturacion();
-                        System.out.println("========================================");
                         header.addMenuEvent(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -219,8 +205,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         });
                         menu.hideallMenu();
                     } else if (subMenuIndex == 1) {
-                        System.out.println("ACCEDIMOS A GENERAR NOTA DE CREDITo");
-                        System.out.println("========================================");
                         notaCredito();
                         header.addMenuEvent(new ActionListener() {
                             @Override
@@ -236,8 +220,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         });
                         menu.hideallMenu();
                     } else if (subMenuIndex == 2) {
-                        System.out.println("ACCEDIMOS A GENERAR NOTA DE DEBITO");
-                        System.out.println("========================================");
                         notaDebito();
                         header.addMenuEvent(new ActionListener() {
                             @Override
@@ -254,11 +236,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         menu.hideallMenu();
                     }
                 } else if (menuIndex == 3) {
-                    System.out.println("========================================");
-                    System.out.println("ESTAMOS EN REPORTES");
                     if (subMenuIndex == 0) {
-                        System.out.println("ACCEDIMOS A REPORTES GENERALES");
-                        System.out.println("========================================");
                         reportesGenerales();
                         header.addMenuEvent(new ActionListener() {
                             @Override
@@ -274,8 +252,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         });
                         menu.hideallMenu();
                     } else if (subMenuIndex == 1) {
-                        System.out.println("ACCEDIMOS A REPORTES ESTADISTICOS");
-                        System.out.println("========================================");
                         reportesEstadisticos();
                         header.addMenuEvent(new ActionListener() {
                             @Override
@@ -291,8 +267,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         });
                         menu.hideallMenu();
                     } else if (subMenuIndex == 2) {
-                        System.out.println("ACCEDIMOS A REVISION DE FACTURAS");
-                        System.out.println("========================================");
                         reportesRevFacturas();
                         header.addMenuEvent(new ActionListener() {
                             @Override
@@ -308,8 +282,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         });
                         menu.hideallMenu();
                     } else if (subMenuIndex == 3) {
-                        System.out.println("ACCEDIMOS A REVISION DE NOTAS DE CREDITO");
-                        System.out.println("========================================");
                         reportesRevNotCredito();
                         header.addMenuEvent(new ActionListener() {
                             @Override
@@ -325,8 +297,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         });
                         menu.hideallMenu();
                     } else if (subMenuIndex == 4) {
-                        System.out.println("ACCEDIMOS A REVISION DE NOTAS DE DEBITO");
-                        System.out.println("========================================");
                         reportesRevNotDebito();
                         header.addMenuEvent(new ActionListener() {
                             @Override
@@ -343,8 +313,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         menu.hideallMenu();
                     }
                 } else if (menuIndex == 4) {
-                    System.out.println("====================================");
-                    System.out.println("ESTAMOS EN SEGURIDAD");
                     if (subMenuIndex == 0) {
                         System.out.println("ACCEDIMOS A USUARIOS");
                         System.out.println("====================================");
@@ -363,8 +331,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         });
                         menu.hideallMenu();
                     } else if (subMenuIndex == 1) {
-                        System.out.println("ACCEDIMOS A PERMISOS DE USUARIOS");
-                        System.out.println("====================================");
                         permUsuarios();
                         header.addMenuEvent(new ActionListener() {
                             @Override
@@ -380,8 +346,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         });
                         menu.hideallMenu();
                     } else if (subMenuIndex == 2) {
-                        System.out.println("ACCEDIMOS A CAMBIAR CLAVE");
-                        System.out.println("====================================");
                         main.showForm(new FORM_CLAVE(usu, admin));
                         header.addMenuEvent(new ActionListener() {
                             @Override
@@ -398,11 +362,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         menu.hideallMenu();
                     }
                 } else if (menuIndex == 5) {
-                    System.out.println("====================================");
-                    System.out.println("ESTAMOS EN AYUDA");
                     if (subMenuIndex == 0) {
-                        System.out.println("ACCEDIMOS A MANUAL DE USUARIO");
-                        System.out.println("====================================");
                         main.showForm(new FORM_MANUAL());
                         header.addMenuEvent(new ActionListener() {
                             @Override
@@ -418,8 +378,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         });
                         menu.hideallMenu();
                     } else if (subMenuIndex == 1) {
-                        System.out.println("ACCEDIMOS A SOPORTE TECNICO");
-                        System.out.println("====================================");
                         main.showForm(new FORM_SOPORTE());
                         header.addMenuEvent(new ActionListener() {
                             @Override
@@ -436,11 +394,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         menu.hideallMenu();
                     }
                 } else if (menuIndex == 6) {
-                    System.out.println("====================================");
-                    System.out.println("ESTAMOS EN CONFIGURACION");
                     if (subMenuIndex == 0) {
-                        System.out.println("ACCEDIMOS A AJUSTES");
-                        System.out.println("====================================");
                         Ajustes();
                         header.addMenuEvent(new ActionListener() {
                             @Override
@@ -456,8 +410,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         });
                         menu.hideallMenu();
                     } else if (subMenuIndex == 1) {
-                        System.out.println("ACCEDIMOS A EMPRESA");
-                        System.out.println("====================================");
                         Empresa();
                         header.addMenuEvent(new ActionListener() {
                             @Override
@@ -473,9 +425,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         });
                         menu.hideallMenu();
                     } else if (subMenuIndex == 2) {
-                        System.out.println("ACCEDIMOS A PERFIL");
-                        System.out.println("====================================");
-                        main.showForm(new FORM_PRECIOS());
+                        main.showForm(new FORM_CONFIGURACION());
                         header.addMenuEvent(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -551,8 +501,8 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                 if (menu.isShowMenu()) {
                     header.setAbrirMenu();
                     menu.hideallMenu();
-                }else{
-                    header.setCerrarMenu();                
+                } else {
+                    header.setCerrarMenu();
                 }
             }
         });
@@ -580,7 +530,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 MessageDialogDark obj = new MessageDialogDark(admin);
-                obj.showMessage("¿ " + usu.getUSU_USUARIO() + " deseas cerrar sesion ?", "");
+                obj.showMessage("¿ " + usu.getUSU_USUARIO() + " deseas cerrar sesion ?", "Recuerda que los datos que se estan creando, modificando o eliminando no se podran alterar al cerrar la sesion.");
                 if (obj.getMessageType() == MessageDialogDark.MessageType.OK) {
                     Toast panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, usu.getUSU_USUARIO() + " cerraste sesion!!!");
                     panel.showNotification();
@@ -594,8 +544,8 @@ public class MainAdministradorDark extends javax.swing.JFrame {
         });
         /*========INICIALIZAMOS LA INTERFAS DE HOME========*/
 //        main.showForm(new FormHomeAdministrador());
+//        main.showForm(new FORM_HOME_ADMIN(admin, usu));
         main.showForm(new FORM_HOME(admin, usu));
-
     }
 
 
@@ -696,7 +646,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
         idUsuario = usu.getID_USUARIO();
         permiso = perDao.ESTADO_REP_GENERAL(idUsuario);
         if (permiso.equals("CON PERMISO")) {
-            main.showForm(new FORM_REPORTES_GENERALES(usu, admin));
+            main.showForm(new FORM_REPORTE_GENERAL(usu, admin));
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en Rept. Generales!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
@@ -787,7 +737,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
         idUsuario = usu.getID_USUARIO();
         permiso = perDao.ESTADO_AJUSTES(idUsuario);
         if (permiso.equals("CON PERMISO")) {
-//            main.showForm(new FORM_PERMISOS(usu, admin));
+            main.showForm(new FORM_CONFIGURACION());
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Ajustes!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {

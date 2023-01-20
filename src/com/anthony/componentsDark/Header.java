@@ -27,7 +27,7 @@ public class Header extends javax.swing.JPanel {
     
     public void initJFram(JFrame fram) {
         this.fram = fram;
-//        cmdTema.setVisible(false);
+        cmdTema.setVisible(false);
         resizer = new ComponentResizer();
         resizer.setSnapSize(new Dimension(10, 10));
         resizer.setMinimumSize(new Dimension(970, 700));
@@ -136,10 +136,9 @@ public class Header extends javax.swing.JPanel {
         cmdMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/menu.png"))); // NOI18N
         cmdMenu.setFocusable(false);
 
-        btnCerrar.setBackground(new java.awt.Color(55, 29, 29));
+        btnCerrar.setBackground(new java.awt.Color(153, 13, 13));
         btnCerrar.setToolTipText("Cerrar");
         btnCerrar.setEffectColor(new java.awt.Color(255, 255, 255));
-        btnCerrar.setFocusPainted(false);
         btnCerrar.setFocusable(false);
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,15 +146,13 @@ public class Header extends javax.swing.JPanel {
             }
         });
 
-        btnMinimizar.setBackground(new java.awt.Color(55, 42, 29));
+        btnMinimizar.setBackground(new java.awt.Color(178, 94, 11));
         btnMinimizar.setToolTipText("minimizar");
         btnMinimizar.setEffectColor(new java.awt.Color(255, 255, 255));
-        btnMinimizar.setFocusPainted(false);
         btnMinimizar.setFocusable(false);
 
-        btnNormaizar.setBackground(new java.awt.Color(39, 55, 30));
+        btnNormaizar.setBackground(new java.awt.Color(65, 123, 32));
         btnNormaizar.setEffectColor(new java.awt.Color(255, 255, 255));
-        btnNormaizar.setFocusPainted(false);
         btnNormaizar.setFocusable(false);
 
         cmdTema.setBackground(new java.awt.Color(55, 49, 30));

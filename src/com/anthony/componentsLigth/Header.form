@@ -80,13 +80,12 @@
     <Component class="com.anthony.swing.Button" name="btnCerrar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="3d" green="3d" red="f0" type="rgb"/>
+          <Color blue="0" green="33" red="cc" type="rgb"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Cerrar"/>
         <Property name="effectColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="focusPainted" type="boolean" value="false"/>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Events>
@@ -96,25 +95,23 @@
     <Component class="com.anthony.swing.Button" name="btnMinimizar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="8c" green="d9" red="e3" type="rgb"/>
+          <Color blue="0" green="99" red="ff" type="rgb"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="minimizar"/>
         <Property name="effectColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="focusPainted" type="boolean" value="false"/>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="com.anthony.swing.Button" name="btnNormaizar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="c7" red="43" type="rgb"/>
+          <Color blue="0" green="99" red="0" type="rgb"/>
         </Property>
         <Property name="effectColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="focusPainted" type="boolean" value="false"/>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
     </Component>

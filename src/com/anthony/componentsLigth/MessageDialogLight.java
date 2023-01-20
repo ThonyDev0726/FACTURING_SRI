@@ -1,5 +1,7 @@
-package com.anthony.componentsDark;
+package com.anthony.componentsLigth;
 
+import com.anthony.componentsDark.*;
+import com.anthony.swing.Glass;
 import com.anthony.swing.Glass_notification;
 import com.anthony.swing.scrollbar.ScrollBarCustom;
 import java.awt.Color;
@@ -10,31 +12,34 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 
-public class DialogMail extends javax.swing.JDialog {
+public class MessageDialogLight extends javax.swing.JDialog {
 
     private final JFrame fram;
     private Animator animator;
     private Glass_notification glass;
     private boolean show;
     private MessageType messageType = MessageType.CANCEL;
-    RoundBorder1 border = new RoundBorder1(0);
 
-    public DialogMail(JFrame fram) {
+    public MessageDialogLight(JFrame fram) {
         super(fram, true);
         this.fram = fram;
         initComponents();
         init();
+       
         bordes();
     }
 
     public void bordes() {
         ScrollBarCustom sbh = new ScrollBarCustom();
+        
     }
     private void init() {
         bordes();
@@ -71,10 +76,11 @@ public class DialogMail extends javax.swing.JDialog {
         glass = new Glass_notification();
     }
 
-    public void showMessage(String title) {
+    public void showMessage(String title, String message) {
         fram.setGlassPane(glass);
         glass.setVisible(true);
         lbTitle.setText(title);
+        txt.setText(message);
         setLocationRelativeTo(fram);
         startAnimator(true);
         setVisible(true);
@@ -127,26 +133,20 @@ public class DialogMail extends javax.swing.JDialog {
         lbTitle = new javax.swing.JLabel();
         cmdOK = new com.anthony.swing.Button();
         cmdCancel = new com.anthony.swing.Button();
-        roundPanel4 = new com.anthony.swing.RoundPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        txtNombre = new rojeru_san.rsfield.RSTextFullRound();
-        txtTelefono = new rojeru_san.rsfield.RSTextFullRound();
+        txt = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        roundPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        lbTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbTitle.setForeground(new java.awt.Color(8, 170, 250));
-        lbTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTitle.setText("Titulo");
+        lbTitle.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lbTitle.setForeground(new java.awt.Color(0, 0, 0));
+        lbTitle.setText("TITULO DEL MENSAJE");
 
-        cmdOK.setBackground(new java.awt.Color(0, 102, 51));
+        cmdOK.setBackground(new java.awt.Color(3, 179, 255));
         cmdOK.setForeground(new java.awt.Color(255, 255, 255));
         cmdOK.setText("ACEPTAR");
-        cmdOK.setFocusPainted(false);
         cmdOK.setFocusable(false);
         cmdOK.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cmdOK.addActionListener(new java.awt.event.ActionListener() {
@@ -155,94 +155,52 @@ public class DialogMail extends javax.swing.JDialog {
             }
         });
 
-        cmdCancel.setBackground(new java.awt.Color(102, 51, 0));
-        cmdCancel.setForeground(new java.awt.Color(255, 255, 255));
+        cmdCancel.setBackground(new java.awt.Color(204, 204, 204));
+        cmdCancel.setForeground(new java.awt.Color(65, 51, 51));
         cmdCancel.setText("CANCELAR");
-        cmdCancel.setFocusPainted(false);
         cmdCancel.setFocusable(false);
-        cmdCancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cmdCancel.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         cmdCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdCancelActionPerformed(evt);
             }
         });
 
-        roundPanel4.setBackground(new java.awt.Color(32, 32, 32));
-
-        jScrollPane1.setBackground(new java.awt.Color(32, 32, 32));
-        jScrollPane1.setBorder(null);
-
-        jTextArea1.setBackground(new java.awt.Color(32, 32, 32));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        javax.swing.GroupLayout roundPanel4Layout = new javax.swing.GroupLayout(roundPanel4);
-        roundPanel4.setLayout(roundPanel4Layout);
-        roundPanel4Layout.setHorizontalGroup(
-            roundPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-        );
-        roundPanel4Layout.setVerticalGroup(
-            roundPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        txtNombre.setBackground(new java.awt.Color(32, 32, 32));
-        txtNombre.setBorderColor(new java.awt.Color(32, 32, 32));
-        txtNombre.setPhColor(new java.awt.Color(150, 160, 175));
-        txtNombre.setPlaceholder("Nombres");
-
-        txtTelefono.setBackground(new java.awt.Color(32, 32, 32));
-        txtTelefono.setBorderColor(new java.awt.Color(32, 32, 32));
-        txtTelefono.setPhColor(new java.awt.Color(150, 160, 175));
-        txtTelefono.setPlaceholder("Telefono");
+        txt.setEditable(false);
+        txt.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        txt.setForeground(new java.awt.Color(112, 112, 112));
+        txt.setText("Cuerpo del mensaje\nmensaje");
+        txt.setFocusable(false);
+        txt.setOpaque(false);
 
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
         roundPanel1.setLayout(roundPanel1Layout);
         roundPanel1Layout.setHorizontalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel1Layout.createSequentialGroup()
-                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
-                        .addContainerGap(103, Short.MAX_VALUE)
-                        .addComponent(cmdOK, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(cmdCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 97, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txt)
+                    .addComponent(lbTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
                     .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(roundPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(roundPanel1Layout.createSequentialGroup()
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))))
-                .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(cmdCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmdOK, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18))
         );
         roundPanel1Layout.setVerticalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(lbTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
+                .addComponent(txt, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addComponent(roundPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmdOK, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmdCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12))
+                    .addComponent(cmdOK, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmdCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -276,36 +234,8 @@ public class DialogMail extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.anthony.swing.Button cmdCancel;
     private com.anthony.swing.Button cmdOK;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lbTitle;
     private com.anthony.swing.RoundPanel roundPanel1;
-    private com.anthony.swing.RoundPanel roundPanel4;
-    private rojeru_san.rsfield.RSTextFullRound txtNombre;
-    private rojeru_san.rsfield.RSTextFullRound txtTelefono;
+    private javax.swing.JTextPane txt;
     // End of variables declaration//GEN-END:variables
-}
-class RoundBorder1 implements Border {
-
-    /*        
-        PARA QUITAR EL BORDE POR DEFECTO DE LA TABLA        
-     */
-    private int r;
-
-    RoundBorder1(int r) {
-        this.r = r;
-    }
-
-    public Insets getBorderInsets(Component c) {
-        return new Insets(this.r + 1, this.r + 1, this.r + 2, this.r);
-    }
-
-    public boolean isBorderOpaque() {
-        return true;
-    }
-
-    public void paintBorder(Component c, Graphics g, int x, int y,
-            int width, int height) {
-        g.drawRoundRect(x, y, width - 1, height - 1, r, r);
-    }
 }

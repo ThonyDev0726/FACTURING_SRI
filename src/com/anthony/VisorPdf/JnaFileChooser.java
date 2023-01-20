@@ -19,6 +19,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.sun.jna.Platform;
+import java.io.FileFilter;
 
 /**
  * JnaFileChooser is a wrapper around the native Windows file chooser
@@ -42,6 +43,10 @@ import com.sun.jna.Platform;
  */
 public class JnaFileChooser
 {
+
+    public void addChoosableFileFilter(FileFilter filter) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 	private static enum Action { Open, Save }
 
 	/**
