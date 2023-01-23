@@ -222,7 +222,7 @@ public class Login extends javax.swing.JFrame {
                             usu.setUSU_USUARIO(letraNormal(PRIMER_NOMBRE) + " " + letraNormal(PRIMER_APELLIDO));
                             usu.setUSU_CLAVE(loginAndRegister.addObtenerClave());
                             usu.setUSU_PARAMETRO(usuCargo);
-                            
+
                             //DATOS EMPLEADO
                             USUARIO datEmp = (USUARIO) usuDAO.DATOS_EMPLEADO(usuDAO.ID_EMPLEADO(idUsu));
                             usu.setEMP_NOMBRES(datEmp.getEMP_NOMBRES());
@@ -232,6 +232,7 @@ public class Login extends javax.swing.JFrame {
                             usu.setEMP_TELEFONO(datEmp.getEMP_TELEFONO());
                             usu.setEMP_DIRECCION(datEmp.getEMP_DIRECCION());
                             usu.setEMP_CREACION(datEmp.getEMP_CREACION());
+                            usu.setUSU_FOTO(datEmp.getUSU_FOTO());
                             //
                             System.out.println("=========== ACCESO CORRECTO ===========");
                             System.out.println("USUARIO: " + usu.getUSU_USUARIO());
@@ -247,6 +248,7 @@ public class Login extends javax.swing.JFrame {
                             System.out.println("CREACION: " + usu.getEMP_CREACION());
                             System.out.println("SUCURSAL: " + usu.getFK_SUCURSAL());
                             System.out.println("PARAMETRO: " + usu.getUSU_PARAMETRO());
+                            System.out.println("FOTO: " + usu.getUSU_FOTO());
                             System.out.println("=======================================");
                             MainAdministradorDark miMain = new MainAdministradorDark(usu);
                             miMain.setVisible(true);

@@ -11,7 +11,6 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
-import java.text.DecimalFormat;
 import java.util.*;
 import java.util.List;
 import javax.swing.JTable;
@@ -39,6 +38,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
     DefaultTableModel dtmClientes = new DefaultTableModel(null, titulosClientes);
     DefaultTableModel dtmDetalleFactura = new DefaultTableModel();
     RoundBorder border = new RoundBorder(0);
+    AJUSTES ajustes = new AJUSTES_DAO().listAjustes();
     CLIENTE_DAO daoCli = new CLIENTE_DAO();
     PRODUCTO_DAO daoPro = new PRODUCTO_DAO();
     PRODUCTO pro = new PRODUCTO();
@@ -3059,8 +3059,8 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         if (mail.sendMail(txtEmail.getText(),
                 txtApellidosCliente.getText(),
                 emp.getEMP_NOMBRE_COMERCIAL(),
-                "rperez0726@outlook.com",
-                "07262001Aapp",
+                ajustes.getAJ_EMAIL(),
+                ajustes.getAJ_CLAVE(),
                 "COMPROBANTE GENERADO",
                 "FACTURA",
                 cedula + "-" + daoFac.fechaNormal() + daoFac.hora(),
@@ -3073,8 +3073,8 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         } else if (mail.sendMail(txtEmail.getText(),
                 txtApellidosCliente.getText(),
                 emp.getEMP_NOMBRE_COMERCIAL(),
-                "rperez0726@outlook.com",
-                "07262001Aapp",
+                ajustes.getAJ_EMAIL(),
+                ajustes.getAJ_CLAVE(),
                 emp.getEMP_NOMBRE_COMERCIAL() + " COMPROBANTE GENERADO",
                 "FACTURA",
                 cedula + "-" + usu.getUSU_USUARIO() + " " + daoFac.fechaNormal() + " (" + daoFac.hora() + ") S" + usu.getFK_SUCURSAL(),

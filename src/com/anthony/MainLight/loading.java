@@ -30,16 +30,7 @@ public class loading extends javax.swing.JFrame implements Runnable {
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         tiempo = new Thread(this);
         tiempo.start();
-        File srcImagenes = new File("C:\\FACTURING_V1\\src\\img");
-        if (!srcImagenes.exists()) {
-            if (srcImagenes.mkdirs()) {
-                System.out.println("Directorio Imagenes creado");
-            } else {
-                System.out.println("Error al crear directorio");
-            }
-        } else {
-            System.out.println("El directorio ya esta creado!!");
-        }
+
         directorios();
     }
 
@@ -107,11 +98,32 @@ public class loading extends javax.swing.JFrame implements Runnable {
         File repUsu = new File("C:\\FACTURING_V1\\/" + year + "/" + MES + "/REPORTES GENERALES/USUARIOS");
         File repPerm = new File("C:\\FACTURING_V1\\/" + year + "/" + MES + "/REPORTES GENERALES/PERMISOS");
         File repEmpresa = new File("C:\\FACTURING_V1\\/" + year + "/" + MES + "/REPORTES GENERALES/EMPRESA");
+        File repFactura = new File("C:\\FACTURING_V1\\/" + year + "/" + MES + "/REPORTES GENERALES/FACTURAS");
         File repEstadisticos = new File("C:\\FACTURING_V1\\/" + year + "/" + MES + "/REPORTES ESTADISTICOS");
         File repEstCli = new File("C:\\FACTURING_V1\\/" + year + "/" + MES + "/REPORTES ESTADISTICOS/CLIENTES");
         File repEstEmp = new File("C:\\FACTURING_V1\\/" + year + "/" + MES + "/REPORTES ESTADISTICOS/EMPLEADOS");
         File repEstProv = new File("C:\\FACTURING_V1\\/" + year + "/" + MES + "/REPORTES ESTADISTICOS/PROVEEDORES");
         File repEstProd = new File("C:\\FACTURING_V1\\/" + year + "/" + MES + "/REPORTES ESTADISTICOS/PRODUCTOS");
+        File srcImagenes = new File("C:\\FACTURING_V1\\src\\img\\usuarios");
+        File srcEmpresa = new File("C:\\FACTURING_V1\\src\\img\\empresa");
+        if (!srcEmpresa.exists()) {
+            if (srcEmpresa.mkdirs()) {
+                System.out.println("Directorio empresa creado");
+            } else {
+                System.out.println("Error al crear directorio");
+            }
+        } else {
+            System.out.println("El directorio ya esta creado!!");
+        }
+        if (!srcImagenes.exists()) {
+            if (srcImagenes.mkdirs()) {
+                System.out.println("Directorio Imagenes creado");
+            } else {
+                System.out.println("Error al crear directorio");
+            }
+        } else {
+            System.out.println("El directorio ya esta creado!!");
+        }
         if (!facturas.exists()) {
             if (facturas.mkdirs()) {
                 System.out.println("Directorio FACTURAS creado");
@@ -313,6 +325,15 @@ public class loading extends javax.swing.JFrame implements Runnable {
         if (!repEmpresa.exists()) {
             if (repEmpresa.mkdirs()) {
                 System.out.println("Directorio REPORTES GENERALES EMPRESA creado");
+            } else {
+                System.out.println("Error al crear directorio");
+            }
+        } else {
+            System.out.println("El directorio ya esta creado!!");
+        }
+        if (!repFactura.exists()) {
+            if (repFactura.mkdirs()) {
+                System.out.println("Directorio REPORTES GENERALES FACTURAS creado");
             } else {
                 System.out.println("Error al crear directorio");
             }

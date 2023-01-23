@@ -14,6 +14,7 @@ public class USUARIO extends EMPLEADO {
     private String USU_PARAMETRO;
     private String USU_CREACION;
     private String USU_ESTADO;
+    private String USU_FOTO;
 
     public USUARIO() {
     }
@@ -91,6 +92,12 @@ public class USUARIO extends EMPLEADO {
         this.USU_ESTADO = USU_ESTADO;
     }
 
-    
+    public String getUSU_FOTO() {
+        return USU_FOTO;
+    }
+
+    public void setUSU_FOTO(String USU_FOTO) {
+        this.USU_FOTO = USU_FOTO;
+    }
 
 }

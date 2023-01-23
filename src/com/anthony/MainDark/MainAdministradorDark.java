@@ -5,21 +5,16 @@ import com.anthony.Models.*;
 import com.anthony.ModelsDAO.PERMISOS_DAO;
 import com.anthony.ViewsDark.*;
 import com.anthony.componentsDark.*;
-//import com.anthony.dialog.MessageDialogDark;
 import com.anthony.eventDark.EventMenuSelectedDark;
 import com.anthony.eventDark.EventShowPopupMenuDark;
 import com.anthony.login.Login;
 import com.anthony.toast.Toast;
 import java.awt.Component;
-import java.awt.Cursor;
 import java.awt.Frame;
 import java.awt.GraphicsEnvironment;
-import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.*;
 import java.text.DecimalFormat;
-import javax.swing.ImageIcon;
-import javax.swing.JLayer;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
@@ -38,7 +33,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
     private MainForm main;
     private Animator animator;
     private MainAdministradorDark admin = this;
-    DecimalFormat formateador = new DecimalFormat("######.##");
     Toast toast;
 
     /*========CONSTRUCTOR========*/
@@ -56,8 +50,6 @@ public class MainAdministradorDark extends javax.swing.JFrame {
         this.usu = usu;
         setTitle("Facturing");
         extender();
-//        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon(getClass().getResource("/com/anthony/icons/cursor.png")).getImage(), new Point(0, 0), "Custom Cursor");
-//        setCursor(cursor);
         init();
         initHeader();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/anthony/icons/IconoFacturing-vf.png")));
@@ -346,7 +338,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         });
                         menu.hideallMenu();
                     } else if (subMenuIndex == 2) {
-                        main.showForm(new FORM_CLAVE(usu, admin));
+                        main.showForm(new FORM_CLAVE());
                         header.addMenuEvent(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -737,7 +729,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
         idUsuario = usu.getID_USUARIO();
         permiso = perDao.ESTADO_AJUSTES(idUsuario);
         if (permiso.equals("CON PERMISO")) {
-            main.showForm(new FORM_CONFIGURACION());
+            main.showForm(new FORM_CONFIGURACION(usu, admin));
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Ajustes!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {

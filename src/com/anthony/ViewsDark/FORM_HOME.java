@@ -1,18 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.anthony.ViewsDark;
 
 import com.anthony.MainDark.MainAdministradorDark;
 import com.anthony.Models.USUARIO;
+import com.anthony.ModelsDAO.USUARIO_DAO;
 import com.anthony.VisorPdf.JnaFileChooser;
 import com.anthony.chart.ModelChart;
+import com.anthony.toast.Toast;
 import java.awt.Color;
 import java.io.*;
 import static java.nio.file.StandardCopyOption.*;
 import java.nio.file.Files;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -24,7 +21,9 @@ public class FORM_HOME extends javax.swing.JPanel {
      * Creates new form FORM_HOME
      */
     USUARIO usu = new USUARIO();
+    USUARIO_DAO usuDao = new USUARIO_DAO();
     MainAdministradorDark admin;
+    Toast toast;
 
     public FORM_HOME() {
         initComponents();
@@ -61,11 +60,13 @@ public class FORM_HOME extends javax.swing.JPanel {
         lblCreacion.setText("Te uniste el " + usu.getEMP_CREACION());
         lblCargo.setText("Cargo: " + usu.getUSU_PARAMETRO());
         lblUsuario.setText(usu.getUSU_USUARIO().toUpperCase());
-        lblImg.setImage(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/img/camaraPerfil.png")));
-//        panel1.setImage(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/img/imgHomeInicio.png")));
-//        lblImg.setImage(new javax.swing.ImageIcon("C:\\Users\\perez\\Downloads\\perfilFacturing.jpg"));
+        if (usu.getUSU_FOTO().equals("/com/anthony/img/imgHomeInicio.png")) {
+            lblImg.setImage(new javax.swing.ImageIcon(getClass().getResource(usu.getUSU_FOTO())));
+        } else {
+            USUARIO usuario = (USUARIO) usuDao.list(usu.getID_USUARIO());
+            lblImg.setImage(new javax.swing.ImageIcon(usuario.getUSU_FOTO()));            
+        }
         lblImg.start();
-//        panel1.start();
     }
 
     @SuppressWarnings("unchecked")
@@ -594,11 +595,16 @@ public class FORM_HOME extends javax.swing.JPanel {
             System.out.println("Archivo: " + jnaCh.getSelectedFile().getName());
             lblImg.setImage(new javax.swing.ImageIcon(ruta_archivo));
             String rutaOrigen = ruta_archivo;
-            String rutaDestino = "C:\\FACTURING_V1\\src\\img\\";
+            String rutaDestino = "C:\\FACTURING_V1\\src\\img\\usuarios";
             File archivoCreado = new File(rutaOrigen);
-            File archivoDestino = new File(rutaDestino + archivoCreado.getName());
+            File archivoDestino = new File(rutaDestino + "/" + archivoCreado.getName());
+            System.out.println("Ruta archivo creado: " + archivoDestino.getAbsoluteFile().toString());
             try {
                 Files.copy(archivoCreado.toPath(), archivoDestino.toPath(), REPLACE_EXISTING);
+                usuDao.update_foto_perfil(usu.getID_USUARIO(), archivoDestino.getAbsoluteFile().toString());
+                usu.setUSU_FOTO(archivoDestino.getAbsoluteFile().toString());
+                toast = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Se actualizo la foto de perfil!");
+            toast.showNotification();
             } catch (Exception e) {
                 System.out.println(e);
             }

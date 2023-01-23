@@ -61,6 +61,7 @@ public class FORM_USUARIOS extends javax.swing.JPanel {
     private String USU_PARAMETRO;
     private String USU_CREACION;
     private String USU_ESTADO;
+    private String USU_FOTO;
 
     /* ==============================
     CONSTRUCTORES
@@ -1052,6 +1053,7 @@ public class FORM_USUARIOS extends javax.swing.JPanel {
         USU_PARAMETRO = cbxParametro.getSelectedItem().toString();;
         USU_CREACION = fecha;
         USU_ESTADO = "EN LINEA";
+        USU_FOTO = "/com/anthony/img/imgHomeInicio.png";
         try {
             MessageDialogDark obj = new MessageDialogDark(admin);
             obj.showMessage("¿ Deseas crear al usuario ?", "");
@@ -1062,6 +1064,7 @@ public class FORM_USUARIOS extends javax.swing.JPanel {
             usu.setUSU_PARAMETRO(USU_PARAMETRO);
             usu.setUSU_ESTADO(USU_ESTADO);
             usu.setUSU_CREACION(USU_CREACION);
+            usu.setUSU_FOTO(USU_FOTO);
             if (obj.getMessageType() == MessageDialogDark.MessageType.OK) {
                 if (daoUsu.add(usu) == "El usuario fue creado con exito!") {
                     Integer ultimo_id_usuario = Integer.parseInt(daoUsu.ULTIMO_ID_USUARIO());

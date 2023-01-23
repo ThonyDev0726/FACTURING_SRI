@@ -32,10 +32,11 @@ public class USUARIO_DAO implements crud_usuario {
     String CONSULTAR_ESTADO = "CALL U_S_USU_ESTADO(?)";
     String LISTAR = "CALL SELECT_USUARIO()";
     String LISTAR_ID = "CALL A_S_ID_USUARIO(?)";
-    String CREAR = "CALL INSERT_USUARIO(?,?,?,?,?,?,?)";
+    String CREAR = "CALL INSERT_USUARIO(?,?,?,?,?,?,?,?)";
     String ACTUALIZAR = "CALL UPDATE_USUARIO(?,?,?,?,?)";
     String ACTUALIZAR_ESTADO = "CALL UPDATE_USUARIO_ESTADO(?,?)";
     String ACTUALIZAR_CLAVE = "CALL UPDATE_CLAVE(?,?)";
+    String ACTUALIZAR_FOTO = "CALL UPDATE_FOTO_PERFIL(?,?)";
     String BUSCAR_USUARIO = "CALL SELECT_USUARIO_BUSCAR(?,?)";
     String ELIMINAR = "CALL DELETE_USUARIO(?)";
 
@@ -156,6 +157,7 @@ public class USUARIO_DAO implements crud_usuario {
                 c.setUSU_CLAVE(enc.desencriptar(rs.getString(6)));
                 c.setUSU_PARAMETRO(rs.getString(7));
                 c.setUSU_ESTADO(rs.getString(8));
+                c.setUSU_FOTO(rs.getString(9));
             }
         } catch (SQLException ex) {
             System.out.println("ERROR AL LISTAR LOS EMPLEADOS" + ex);
@@ -241,6 +243,7 @@ public class USUARIO_DAO implements crud_usuario {
             cs.setString(5, mp.getUSU_PARAMETRO());
             cs.setString(6, mp.getUSU_ESTADO());
             cs.setString(7, mp.getUSU_CREACION());
+            cs.setString(8, mp.getUSU_FOTO());
             cs.execute();
         } catch (SQLException ex) {
             System.out.println("ERROR AL CREAR EL USUARIO");
@@ -308,6 +311,21 @@ public class USUARIO_DAO implements crud_usuario {
             CallableStatement cs = con.prepareCall(ACTUALIZAR_CLAVE);
             cs.setInt(1, id);
             cs.setString(2, enc.encriptar(string));
+            cs.execute();
+        } catch (SQLException ex) {
+            System.out.println("ERROR AL CAMBIAR LA CLAVE");
+            System.out.println(ex);
+            return "Error al actualizar la clave!";
+        }
+        return "La clave se actualizo con exito!";
+    }
+
+    public String update_foto_perfil(int id, String string) {
+        try {
+            con = (Connection) cn.getConexion();
+            CallableStatement cs = con.prepareCall(ACTUALIZAR_FOTO);
+            cs.setInt(1, id);
+            cs.setString(2, string);
             cs.execute();
         } catch (SQLException ex) {
             System.out.println("ERROR AL CAMBIAR LA CLAVE");
