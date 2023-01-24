@@ -77,7 +77,7 @@ public class MenuDark extends javax.swing.JPanel {
     public void initMenuItem() {
         addMenu(new ModelMenuDark(new ImageIcon(getClass().getResource("/com/anthony/icons/iconoHome.png")), "Inicio"));
         addMenu(new ModelMenuDark(new ImageIcon(getClass().getResource("/com/anthony/icons/iconoParametros.png")), "Parametros", "Clientes", "Empleados", "Proveedores", "Productos"));
-        addMenu(new ModelMenuDark(new ImageIcon(getClass().getResource("/com/anthony/icons/iconoFacturacion.png")), "Facturación", "Generar factura"));
+        addMenu(new ModelMenuDark(new ImageIcon(getClass().getResource("/com/anthony/icons/iconoFacturacion.png")), "Facturación", "Generar factura","Nota de Venta"));
         addMenu(new ModelMenuDark(new ImageIcon(getClass().getResource("/com/anthony/icons/iconoResporte.png")), "Reportes", "Reportes generales"));
         addMenu(new ModelMenuDark(new ImageIcon(getClass().getResource("/com/anthony/icons/iconoSeguridad.png")), "Seguridad", "Usuarios", "Permisos de usuarios", "Cambiar contraseña"));
         addMenu(new ModelMenuDark(new ImageIcon(getClass().getResource("/com/anthony/icons/iconoInformacion.png")), "Ayuda", "Manual de usuario", "Soporte técnico"));

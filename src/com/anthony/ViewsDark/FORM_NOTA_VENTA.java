@@ -27,7 +27,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class FORM_FACTURA extends javax.swing.JPanel {
+public class FORM_NOTA_VENTA extends javax.swing.JPanel {
 
     /* ================================== 
      INSTANCIAS NECESARIAS 
@@ -75,7 +75,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
     double subtotal;
     double total;
 
-    public FORM_FACTURA() {
+    public FORM_NOTA_VENTA() {
         initComponents();
         init();
         this.admin = admin;
@@ -86,7 +86,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         scroll();
     }
 
-    public FORM_FACTURA(USUARIO usu, MainAdministradorDark admin) {
+    public FORM_NOTA_VENTA(USUARIO usu, MainAdministradorDark admin) {
         initComponents();
         init();
         this.admin = admin;
@@ -1143,7 +1143,6 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         btnNuevoDetalle.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevoDetalle.setText("AGREGAR PRODUCTO");
         btnNuevoDetalle.setBorderPainted(false);
-        btnNuevoDetalle.setFocusPainted(false);
         btnNuevoDetalle.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnNuevoDetalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1228,9 +1227,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                 .addGap(1, 1, 1)
                 .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtTipoIva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelFormProductosLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(0, 0, 0)))
+                    .addComponent(jLabel12))
                 .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCodPrinc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1251,7 +1248,6 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         btnCancelar.setForeground(new java.awt.Color(204, 204, 204));
         btnCancelar.setText("CANCELAR");
         btnCancelar.setBorderPainted(false);
-        btnCancelar.setFocusPainted(false);
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1263,7 +1259,6 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         btnGuardar.setForeground(new java.awt.Color(204, 204, 204));
         btnGuardar.setText("GUARDAR");
         btnGuardar.setBorderPainted(false);
-        btnGuardar.setFocusPainted(false);
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1275,7 +1270,6 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         btnImprimir.setForeground(new java.awt.Color(204, 204, 204));
         btnImprimir.setText("IMPRIMIR");
         btnImprimir.setBorderPainted(false);
-        btnImprimir.setFocusPainted(false);
         btnImprimir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2124,9 +2118,9 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         try {
             facturaPdf();
         } catch (DocumentException ex) {
-            Logger.getLogger(FORM_FACTURA.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FORM_NOTA_VENTA.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(FORM_FACTURA.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FORM_NOTA_VENTA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -2134,7 +2128,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         try {
             abrirPdf();
         } catch (IOException ex) {
-            Logger.getLogger(FORM_FACTURA.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FORM_NOTA_VENTA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnImprimirActionPerformed
 

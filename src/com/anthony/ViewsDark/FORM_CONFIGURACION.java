@@ -6,6 +6,7 @@ import com.anthony.Models.USUARIO;
 import com.anthony.ModelsDAO.AJUSTES_DAO;
 import com.anthony.VisorPdf.JnaFileChooser;
 import com.anthony.componentsDark.MessageDialogDark;
+import com.anthony.login.Login;
 import com.anthony.swing.scrollbar.ScrollBarCustom;
 import com.anthony.toast.Toast;
 import java.awt.Cursor;
@@ -590,7 +591,11 @@ public class FORM_CONFIGURACION extends javax.swing.JPanel {
             ajustes.setAJ_RUTA_FIRMA(AJ_RUTA_FIRMA);
             if (ajDao.updateAjuste(ajustes).equalsIgnoreCase("El ajuste fue actualizado con exito!")) {
                 toast = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Los datos de ajustes se acualizados!!");
-                toast.showNotification();
+                toast.showNotification();               
+                admin.dispose();
+                Login l = new Login();
+                l.setVisible(true);
+                        
             } else if (ajDao.updateAjuste(ajustes).equalsIgnoreCase("El ajuste no fue actualizado!")) {
                 toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar!!");
                 toast.showNotification();
