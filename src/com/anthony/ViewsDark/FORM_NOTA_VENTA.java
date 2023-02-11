@@ -2049,6 +2049,9 @@ public class FORM_NOTA_VENTA extends javax.swing.JPanel {
         ============================ */
         FileOutputStream archivo;
         String cedula = txtCedula.getText();
+        if (cedula.equalsIgnoreCase("N / A")) {
+            cedula = txtRuc.getText();
+        }
         String ruta = "C:\\FACTURING_V1\\/" + year + "/" + MES + "/NOTAS DE DEBITO/" + cedula + "-" + usu.getUSU_USUARIO() + " " + daoFac.fechaNormal() + " (" + daoFac.hora() + ") S" + usu.getFK_SUCURSAL() + ".pdf";
         File file = new File(ruta);//Ruta donde se guarda el archivo:   C:\Facturing\pdfFacturas 
         archivo = new FileOutputStream(file);
@@ -2109,7 +2112,7 @@ public class FORM_NOTA_VENTA extends javax.swing.JPanel {
         AGREGAR CLAVE DE ACCESO
         ============================ */
         PdfPTable claveAccesoTable = new PdfPTable(1);
-        Paragraph claveAcceso = new Paragraph("CLAVE DE ACCESO", negritaSmallBold);
+        Paragraph claveAcceso = new Paragraph("SERIE DE LA NOTA DE VENTA", negritaSmallBold);
         claveAccesoTable.setHorizontalAlignment(Element.ALIGN_RIGHT);
         PdfPCell claveAccesoCell = new PdfPCell();
         claveAccesoCell.setBorder(0);
@@ -2494,6 +2497,9 @@ public class FORM_NOTA_VENTA extends javax.swing.JPanel {
                 throw new AssertionError();
         }
         String cedula = txtCedula.getText();
+        if (cedula.equalsIgnoreCase("N / A")) {
+            cedula = txtRuc.getText();
+        }
         File myFile = new File("C:\\FACTURING_V1\\/" + year + "/" + MES + "/NOTAS DE DEBITO/" + cedula + "-" + usu.getUSU_USUARIO() + " " + daoFac.fechaNormal() + " (" + daoFac.hora() + ") S" + usu.getFK_SUCURSAL() + ".pdf");
         Desktop.getDesktop().open(myFile);
     }

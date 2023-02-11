@@ -2674,6 +2674,9 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         ============================ */
         FileOutputStream archivo;
         String cedula = txtCedula.getText();
+        if (cedula.equalsIgnoreCase("N / A")) {
+            cedula = txtRuc.getText();
+        }
         String ruta = "C:\\FACTURING_V1\\/" + year + "/" + MES + "/FACTURAS/" + cedula + "-" + usu.getUSU_USUARIO() + " " + daoFac.fechaNormal() + " (" + daoFac.hora() + ") S" + usu.getFK_SUCURSAL() + ".pdf";
         File file = new File(ruta);//Ruta donde se guarda el archivo:   C:\Facturing\pdfFacturas 
         archivo = new FileOutputStream(file);
@@ -2727,7 +2730,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                 + "FACTURA N.-  " + "001-001-002905538" + "\n"
                 + "NUMERO DE AUTORIZACION  " + lblClaveAcceso.getText() + "\n"
                 + "FECHA DE AUTORIZACION  " + "\n" + daoFac.fechaNormal() + "  " + daoFac.horaNormal() + "\n"
-                + "AMBIENTE:  " + "PRUEBAS" + "\n"
+                + "AMBIENTE:  " + "PRODUCCION" + "\n"
                 + "EMISION:  " + "NORMAL";
         datosFactura.addCell(datosFacturaCelda);
         Paragraph parrafoFactura = new Paragraph(datosFacturaCelda, negritaSmall);
@@ -3122,6 +3125,9 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                 throw new AssertionError();
         }
         String cedula = txtCedula.getText();
+        if (cedula.equalsIgnoreCase("N / A")) {
+            cedula = txtRuc.getText();
+        }
         File myFile = new File("C:\\FACTURING_V1\\/" + year + "/" + MES + "/FACTURAS/" + cedula + "-" + usu.getUSU_USUARIO() + " " + daoFac.fechaNormal() + " (" + daoFac.hora() + ") S" + usu.getFK_SUCURSAL() + ".pdf");
         Desktop.getDesktop().open(myFile);
     }
