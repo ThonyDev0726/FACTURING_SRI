@@ -112,7 +112,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
             fac.setFAC_COD_AUT(daoFac.generadorNumeroFactura(emp.getEMP_RUC(), txtCedula.getText()));
             fac.setFAC_RUTA("C:\\FACTURING_V1\\2022\\NOVIEMBRE\\FACTURAS\\APROBADAS/" + txtCedula.getText() + "(" + daoFac.fecha() + "-" + daoFac.hora() + ").pdf");
             lblPdf.setText(txtCedula.getText() + "(" + daoFac.fecha() + "-" + daoFac.hora() + ").pdf");
-            fac.setFAC_ESTADO("PENDIENTE");
+            fac.setFAC_ESTADO("APROBADO");
             if (obj.getMessageType() == MessageDialogDark.MessageType.OK) {
                 if (daoFac.add(fac) == "La factura fue creada con exito!") {
                     panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "La factura fue creada con exito!!");
