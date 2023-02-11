@@ -240,7 +240,7 @@ public class FORM_USUARIOS extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Empleado no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Empleado no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -256,7 +256,7 @@ public class FORM_USUARIOS extends javax.swing.JPanel {
         int fila;
         fila = tDatosProveedores.getSelectedRow();
         if (fila == -1) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
             panel.showNotification();
         } else {
             dtmEmpleados = (DefaultTableModel) tDatosProveedores.getModel();
@@ -286,7 +286,7 @@ public class FORM_USUARIOS extends javax.swing.JPanel {
 
         fila = tDatosUsuarios.getSelectedRow();
         if (fila == -1) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
             panel.showNotification();
         } else {
             dtmUsuarios = (DefaultTableModel) tDatosUsuarios.getModel();
@@ -339,7 +339,7 @@ public class FORM_USUARIOS extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Empleado no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Empleado no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -983,7 +983,7 @@ public class FORM_USUARIOS extends javax.swing.JPanel {
                     tablaEmpleados();
                     limpiarFormulario();
                 } else if (daoUsu.delete(ID_USUARIO) == "Error al eliminar el usuario!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo eliminar al usuario!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo eliminar al usuario!!");
                     panel.showNotification();
                     tablaEmpleados();
                     limpiarFormulario();
@@ -1080,7 +1080,7 @@ public class FORM_USUARIOS extends javax.swing.JPanel {
                     }
 
                 } else if (daoUsu.add(usu) == "El usuario no fue creado con exito!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo crear al usuario!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo crear al usuario!!");
                     panel.showNotification();
                     tablaUsuarios();
                     tablaEmpleados();
@@ -1130,7 +1130,7 @@ public class FORM_USUARIOS extends javax.swing.JPanel {
                     limpiarFormulario();
                     ocultar();
                 } else if (daoUsu.update(usu) == "El usuario no fue actualizado con exito!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar al usuario!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar al usuario!!");
                     panel.showNotification();
                     tablaUsuarios();
                     tablaEmpleados();

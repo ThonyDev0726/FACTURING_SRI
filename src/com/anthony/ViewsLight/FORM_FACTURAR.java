@@ -116,7 +116,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                     panel.showNotification();
                     tablaClientes();
                 } else if (daoFac.add(fac) == "La factura no fue creada!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo crear la factura!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo crear la factura!!");
                     panel.showNotification();
                     tablaClientes();
                 }
@@ -156,7 +156,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                     panel.showNotification();
                     tablaClientes();
                 } else if (daoFac.add(fac) == "La factura no fue creada!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo crear la factura!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo crear la factura!!");
                     panel.showNotification();
                     tablaClientes();
                 }
@@ -284,7 +284,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         int fila;
         fila = tDatosClientes.getSelectedRow();
         if (fila == -1) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
             panel.showNotification();
         } else {
             dtmClientes = (DefaultTableModel) tDatosClientes.getModel();
@@ -332,7 +332,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Producto no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Producto no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -347,7 +347,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         int fila;
         fila = tDatosProductos.getSelectedRow();
         if (fila == -1) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
             panel.showNotification();
         } else {
             dtmProductos = (DefaultTableModel) tDatosProductos.getModel();
@@ -402,7 +402,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 System.out.println(e);
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Producto no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Producto no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -428,7 +428,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
         int fila;
         fila = tDatosProductos.getSelectedRow();
         if (fila == -1) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
             panel.showNotification();
         } else {
             dtmProductos = (DefaultTableModel) tDatosProductos.getModel();
@@ -498,7 +498,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             panel.showNotification();
             tablaProductos();
         } else if (desFacDao.add(desFac) == "La factura no fue creada!") {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.TOP_CENTER, "No se pudo agregar el producto!!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.TOP_CENTER, "No se pudo agregar el producto!!");
             panel.showNotification();
             tablaProductos();
         }
@@ -1654,7 +1654,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             cantidad = Integer.parseInt(txtCantidadProducto.getText());
             stock = Integer.parseInt(txtStock.getText());
             if (cantidad > stock) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tenemos sufiente en Stock");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tenemos sufiente en Stock");
                 panel.showNotification();
             } else {
                 agregarProducto();
@@ -1668,7 +1668,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             btnCancelar.setVisible(true);
             btnImprimir.setVisible(false);
         } catch (Exception e) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Error al procesar tu peticion!!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Error al procesar tu peticion!!");
             panel.showNotification();
             System.out.println("Error " + e);
         }
@@ -1718,7 +1718,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Cliente no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Cliente no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -1759,7 +1759,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Cliente no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Cliente no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -1800,7 +1800,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Cliente no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Cliente no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -1898,7 +1898,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 }
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Producto no registrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Producto no registrado!!");
                 panel.showNotification();
                 lblIdProducto.setText("");
                 txtNombreProd.setText("");
@@ -1980,7 +1980,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
                 }
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Producto no registrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Producto no registrado!!");
                 panel.showNotification();
                 lblIdProducto.setText("");
                 txtNombreProd.setText("");
@@ -2049,7 +2049,7 @@ public class FORM_FACTURAR extends javax.swing.JPanel {
             panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.TOP_CENTER, "Factura guardada con exito!!");
             panel.showNotification();
         } else if (facTotDao.add(facTotalidad).equals("La factura no fue creada!")) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.TOP_CENTER, "No se pudo guardar la factura!!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.TOP_CENTER, "No se pudo guardar la factura!!");
             panel.showNotification();
         }
         btnGuardar.setVisible(false);

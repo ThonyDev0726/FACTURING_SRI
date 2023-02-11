@@ -14,7 +14,6 @@ import java.awt.Frame;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.awt.event.*;
-import java.text.DecimalFormat;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
@@ -197,7 +196,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         });
                         menu.hideallMenu();
                     } else if (subMenuIndex == 1) {
-                        notaCredito();
+                        notaVenta();
                         header.addMenuEvent(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -338,7 +337,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
                         });
                         menu.hideallMenu();
                     } else if (subMenuIndex == 2) {
-                        main.showForm(new FORM_CLAVE());
+                        main.showForm(new FORM_CLAVE(usu, admin));
                         header.addMenuEvent(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -551,7 +550,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Clientes!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
-            toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
+            toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
             toast.showNotification();
         }
     }
@@ -564,7 +563,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Empleados!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
-            toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
+            toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
             toast.showNotification();
         }
     }
@@ -577,7 +576,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Proveedores!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
-            toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
+            toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
             toast.showNotification();
         }
     }
@@ -590,7 +589,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Productos!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
-            toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
+            toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
             toast.showNotification();
         }
     }
@@ -603,12 +602,12 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Facturacion!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
-            toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
+            toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
             toast.showNotification();
         }
     }
 
-    public void notaCredito() {
+    public void notaVenta() {
         idUsuario = usu.getID_USUARIO();
         permiso = perDao.ESTADO_NOT_CREDITO(idUsuario);
         if (permiso.equals("CON PERMISO")) {
@@ -616,7 +615,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Nota credito!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
-            toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
+            toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
             toast.showNotification();
         }
     }
@@ -629,7 +628,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Nota debito!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
-            toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
+            toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
             toast.showNotification();
         }
     }
@@ -642,7 +641,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en Rept. Generales!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
-            toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
+            toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
             toast.showNotification();
         }
     }
@@ -655,7 +654,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en Rept. Estadisticos!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
-            toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
+            toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
             toast.showNotification();
         }
     }
@@ -668,7 +667,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en  Rept. Facturas!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
-            toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
+            toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
             toast.showNotification();
         }
     }
@@ -681,7 +680,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en Rept. Nota credito!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
-            toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
+            toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
             toast.showNotification();
         }
     }
@@ -694,7 +693,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en Rept. Nota debito!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
-            toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
+            toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
             toast.showNotification();
         }
     }
@@ -707,7 +706,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Permisos!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
-            toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
+            toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
             toast.showNotification();
         }
     }
@@ -720,7 +719,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Permisos!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
-            toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
+            toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
             toast.showNotification();
         }
     }
@@ -733,7 +732,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Ajustes!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
-            toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
+            toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
             toast.showNotification();
         }
     }
@@ -746,7 +745,7 @@ public class MainAdministradorDark extends javax.swing.JFrame {
             toast = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Se encuentra en la seccion Empresa!!");
             toast.showNotification();
         } else if (permiso.equals("SIN PERMISO")) {
-            toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
+            toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tiene acceso a este modulo!!");
             toast.showNotification();
         }
     }

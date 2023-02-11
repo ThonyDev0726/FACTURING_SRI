@@ -24,10 +24,12 @@ public class Conexion {
 //            Class.forName("com.mysql.jdbc.Driver");
             Class.forName("com.mysql.cj.jdbc.Driver");
             cn = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println(cn.toString());
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error de conexion");
             System.out.println("" + e);
         }
         return cn;
     }
+
 }

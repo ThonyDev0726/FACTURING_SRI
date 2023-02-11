@@ -2,8 +2,10 @@ package com.anthony.ViewsDark;
 
 import com.anthony.MainDark.MainAdministradorDark;
 import com.anthony.Models.AJUSTES;
+import com.anthony.Models.EMPRESA;
 import com.anthony.Models.USUARIO;
 import com.anthony.ModelsDAO.AJUSTES_DAO;
+import com.anthony.ModelsDAO.EMPRESA_DAO;
 import com.anthony.VisorPdf.JnaFileChooser;
 import com.anthony.componentsDark.MessageDialogDark;
 import com.anthony.login.Login;
@@ -54,6 +56,7 @@ public class FORM_CONFIGURACION extends javax.swing.JPanel {
     }
 
     private void init() {
+        EMPRESA empDao = new EMPRESA_DAO().list();
         ajustes = ajDao.listAjustes();
         if (ajustes.getAJ_LOGO_EMPRESA().equals("/com/anthony/img/imgHomeInicio.png")) {
             lblImg.setImage(new javax.swing.ImageIcon(getClass().getResource(usu.getUSU_FOTO())));
@@ -63,9 +66,14 @@ public class FORM_CONFIGURACION extends javax.swing.JPanel {
         lblImg.start();
         txtFirma.setCursor(new Cursor(Cursor.HAND_CURSOR));
         txtEmail.setText(ajustes.getAJ_EMAIL());
+        lblEmail.setText(ajustes.getAJ_EMAIL());
         txtClave.setText(ajustes.getAJ_CLAVE());
         txtFirma.setText(ajustes.getAJ_RUTA_FIRMA());
         txtClaveAcceso.setText(ajustes.getAJ_CLAVE_ACCESO());
+        
+        lblDireccion.setText(empDao.getEMP_MATRIZ());
+        lblRuc.setText(empDao.getEMP_RUC());
+        lblPropietario.setText(empDao.getEMP_RAZON_SOCIAL());
     }
 
     @SuppressWarnings("unchecked")
@@ -84,9 +92,9 @@ public class FORM_CONFIGURACION extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
-        lblNombres = new javax.swing.JLabel();
-        lblApellidos = new javax.swing.JLabel();
-        lblCedula = new javax.swing.JLabel();
+        lblNombreEmpresa = new javax.swing.JLabel();
+        lblPropietario = new javax.swing.JLabel();
+        lblRuc = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
         lblTelefono = new javax.swing.JLabel();
         lblDireccion = new javax.swing.JTextPane();
@@ -126,15 +134,15 @@ public class FORM_CONFIGURACION extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(67, 152, 128));
-        jLabel3.setText("Nombres:");
+        jLabel3.setText("Nombre:");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(67, 152, 128));
-        jLabel4.setText("Apellidos:");
+        jLabel4.setText("Propietario:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(67, 152, 128));
-        jLabel5.setText("Cedula:");
+        jLabel5.setText("Ruc:");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(67, 152, 128));
@@ -157,17 +165,17 @@ public class FORM_CONFIGURACION extends javax.swing.JPanel {
         jLabel9.setForeground(new java.awt.Color(188, 154, 55));
         jLabel9.setText("DATOS DE LA EMPRESA");
 
-        lblNombres.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        lblNombres.setForeground(new java.awt.Color(204, 204, 204));
-        lblNombres.setText("Richard Anthony");
+        lblNombreEmpresa.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblNombreEmpresa.setForeground(new java.awt.Color(204, 204, 204));
+        lblNombreEmpresa.setText("Richard Anthony");
 
-        lblApellidos.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        lblApellidos.setForeground(new java.awt.Color(204, 204, 204));
-        lblApellidos.setText("Pérez Palacios");
+        lblPropietario.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblPropietario.setForeground(new java.awt.Color(204, 204, 204));
+        lblPropietario.setText("Pérez Palacios");
 
-        lblCedula.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        lblCedula.setForeground(new java.awt.Color(204, 204, 204));
-        lblCedula.setText("1723382594");
+        lblRuc.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblRuc.setForeground(new java.awt.Color(204, 204, 204));
+        lblRuc.setText("1723382594");
 
         lblEmail.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(204, 204, 204));
@@ -175,7 +183,7 @@ public class FORM_CONFIGURACION extends javax.swing.JPanel {
 
         lblTelefono.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblTelefono.setForeground(new java.awt.Color(204, 204, 204));
-        lblTelefono.setText("+593 980 868 422");
+        lblTelefono.setText("+593 983 698 513");
 
         lblDireccion.setEditable(false);
         lblDireccion.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
@@ -219,25 +227,19 @@ public class FORM_CONFIGURACION extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblNombres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(12, 12, 12)
-                        .addComponent(lblCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(12, 12, 12)
-                        .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
-                    .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(12, 12, 12)
-                        .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNombreEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblRuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblPropietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(0, 0, 0))
         );
         roundPanel1Layout.setVerticalGroup(
@@ -255,15 +257,15 @@ public class FORM_CONFIGURACION extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(lblNombres))
+                            .addComponent(lblNombreEmpresa))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(lblApellidos))
+                            .addComponent(lblPropietario))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(lblCedula))
+                            .addComponent(lblRuc))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
@@ -520,7 +522,7 @@ public class FORM_CONFIGURACION extends javax.swing.JPanel {
                     toast.showNotification();
                     init();
                 } else if (ajDao.updateLogo(rutaDestino + "/" + archivoCreado.getName()).equalsIgnoreCase("El logo no se actualizo")) {
-                    toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "El logo no se actualizo!!");
+                    toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "El logo no se actualizo!!");
                     toast.showNotification();
                 }
             } catch (Exception e) {
@@ -564,7 +566,7 @@ public class FORM_CONFIGURACION extends javax.swing.JPanel {
                     toast.showNotification();
                     init();
                 } else if (ajDao.updateAjuste(ajustes).equalsIgnoreCase("El ajuste no fue actualizado!")) {
-                    toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar!!");
+                    toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar!!");
                     toast.showNotification();
                 }
             } catch (Exception e) {
@@ -591,13 +593,13 @@ public class FORM_CONFIGURACION extends javax.swing.JPanel {
             ajustes.setAJ_RUTA_FIRMA(AJ_RUTA_FIRMA);
             if (ajDao.updateAjuste(ajustes).equalsIgnoreCase("El ajuste fue actualizado con exito!")) {
                 toast = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Los datos de ajustes se acualizados!!");
-                toast.showNotification();               
+                toast.showNotification();
                 admin.dispose();
                 Login l = new Login();
                 l.setVisible(true);
-                        
+
             } else if (ajDao.updateAjuste(ajustes).equalsIgnoreCase("El ajuste no fue actualizado!")) {
-                toast = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar!!");
+                toast = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar!!");
                 toast.showNotification();
             }
         } else if (obj.getMessageType() == MessageDialogDark.MessageType.CANCEL) {
@@ -628,12 +630,12 @@ public class FORM_CONFIGURACION extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lblApellidos;
-    private javax.swing.JLabel lblCedula;
     private javax.swing.JTextPane lblDireccion;
     private javax.swing.JLabel lblEmail;
     private raven.fbr.Panel lblImg;
-    private javax.swing.JLabel lblNombres;
+    private javax.swing.JLabel lblNombreEmpresa;
+    private javax.swing.JLabel lblPropietario;
+    private javax.swing.JLabel lblRuc;
     private javax.swing.JLabel lblTelefono;
     private com.anthony.swing.PictureBox pictureBox1;
     private com.anthony.swing.RoundPanel roundPanel1;

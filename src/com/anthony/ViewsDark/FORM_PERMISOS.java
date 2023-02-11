@@ -176,7 +176,7 @@ public class FORM_PERMISOS extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Empleado no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Empleado no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -1033,7 +1033,7 @@ public class FORM_PERMISOS extends javax.swing.JPanel {
 //                    limpiarFormulario();
                     ocultar();
                 } else if (daoPer.update(per) == "El permiso no fue actualizado!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar los permisos!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar los permisos!!");
                     panel.showNotification();
 //                    limpiarFormulario();
                     ocultar();

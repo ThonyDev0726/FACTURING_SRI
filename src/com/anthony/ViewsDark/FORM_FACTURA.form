@@ -105,7 +105,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="roundPanel1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="panelDatosTabla" alignment="0" max="32767" attributes="0"/>
                           <Component id="panelFormClientes" alignment="0" max="32767" attributes="0"/>
                           <Component id="panelDatos" alignment="1" max="32767" attributes="0"/>
                           <Component id="panelFormProductos" alignment="0" max="32767" attributes="0"/>
@@ -149,7 +149,7 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="panelFormProductos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="roundPanel1" min="-2" pref="230" max="-2" attributes="0"/>
+                      <Component id="panelDatosTabla" min="-2" pref="230" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -444,7 +444,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="com.anthony.swing.RoundPanel" name="roundPanel1">
+            <Container class="com.anthony.swing.RoundPanel" name="panelDatosTabla">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="20" green="20" red="20" type="rgb"/>
@@ -942,9 +942,9 @@
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="txtCodPrinc" max="32767" attributes="0"/>
+                                          <Component id="txtCodPrinc" pref="118" max="32767" attributes="0"/>
                                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtCodAux" max="32767" attributes="0"/>
+                                          <Component id="txtCodAux" pref="118" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="txtNombreProd" max="32767" attributes="0"/>
                                   </Group>
@@ -954,13 +954,13 @@
                                           <Component id="txtPVP" max="32767" attributes="0"/>
                                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtStock" max="32767" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="txtDescuentoProd" max="32767" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="txtCantidad" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <Component id="txtDetalleExtra" max="32767" attributes="0"/>
+                                          <Component id="txtDetalleExtra" pref="173" max="32767" attributes="0"/>
                                           <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
                                           <Component id="btnNuevoDetalle" min="-2" pref="139" max="-2" attributes="0"/>
                                       </Group>
@@ -1133,14 +1133,12 @@
                 </Component>
                 <Component class="textfield.TextField" name="txtDescuentoProd">
                   <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="20" green="20" red="20" type="rgb"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="a2" green="6e" red="0" type="rgb"/>
                     </Property>
-                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="labelText" type="java.lang.String" value="Descuento"/>
                   </Properties>
                 </Component>

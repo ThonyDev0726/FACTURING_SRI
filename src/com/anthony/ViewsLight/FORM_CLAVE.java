@@ -39,7 +39,7 @@ public class FORM_CLAVE extends javax.swing.JPanel {
     public Boolean confirmarClave() throws SQLException {
         Boolean ban = false;
         if (!txtConfirmar.getText().equals(usu.getUSU_CLAVE())) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Usuario no autorizado");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Usuario no autorizado");
             panel.showNotification();
             txtConfirmar.setText("");
         } else {

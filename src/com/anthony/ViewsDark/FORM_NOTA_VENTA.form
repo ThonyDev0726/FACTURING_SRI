@@ -47,7 +47,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblIdCliente" max="32767" attributes="0"/>
                   <Component id="lblIdProducto" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jLabel1" alignment="0" pref="64" max="32767" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" pref="73" max="32767" attributes="0"/>
                   <Component id="lblPdf" max="32767" attributes="0"/>
                   <Component id="lblCantidadTabla" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
@@ -59,8 +59,9 @@
                       <Component id="txtEmail" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="spPanel" pref="824" max="32767" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Component id="spPanel" pref="687" max="32767" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,7 +75,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="51" red="3f" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="FACTURACION"/>
+        <Property name="text" type="java.lang.String" value="NOTA DE VENTA"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel1MouseClicked"/>
@@ -105,37 +106,41 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="roundPanel1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="panelFormClientes" alignment="0" max="32767" attributes="0"/>
-                          <Component id="panelDatos" alignment="1" max="32767" attributes="0"/>
-                          <Component id="panelFormProductos" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="roundPanel2" linkSize="13" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="roundPanel3" linkSize="13" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="roundPanel4" linkSize="13" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="roundPanel23" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="roundPanel19" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="roundPanel18" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="roundPanel21" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="roundPanel22" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="roundPanel1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="panelFormClientes" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="panelDatos" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="panelFormProductos" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="btnCancelar" min="-2" pref="90" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="roundPanel21" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnImprimir" min="-2" pref="90" max="-2" attributes="0"/>
+                              <Component id="roundPanel23" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnGuardar" min="-2" pref="90" max="-2" attributes="0"/>
+                              <Component id="roundPanel22" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblInfo" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="btnDescTotal" min="-2" pref="90" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="btnImprimir" linkSize="14" min="-2" pref="90" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="btnCancelar" linkSize="14" min="-2" pref="90" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="btnGuardar" linkSize="14" min="-2" pref="90" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -148,26 +153,24 @@
                       <Component id="panelFormClientes" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="panelFormProductos" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="roundPanel1" min="-2" pref="230" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="roundPanel18" linkSize="9" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="roundPanel19" linkSize="9" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="roundPanel22" linkSize="9" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="roundPanel21" linkSize="9" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="roundPanel2" alignment="0" max="32767" attributes="0"/>
-                              <Component id="roundPanel4" linkSize="9" alignment="0" max="32767" attributes="0"/>
-                              <Component id="roundPanel3" alignment="0" max="32767" attributes="0"/>
+                      <Component id="roundPanel1" min="-2" pref="210" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="roundPanel21" alignment="0" max="32767" attributes="0"/>
+                          <Component id="roundPanel22" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnImprimir" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="btnCancelar" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="btnDescTotal" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnGuardar" min="-2" pref="34" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblInfo" min="-2" pref="23" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="roundPanel23" linkSize="9" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnCancelar" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="btnImprimir" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="btnGuardar" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="roundPanel23" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -188,7 +191,11 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblDesuentoTotal" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="jLabel3" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
                               <Component id="lblFecha" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -222,7 +229,10 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblDesuentoTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="lblClaveAcceso" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -297,6 +307,11 @@
                       <Color blue="55" green="7c" red="90" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="CLAVE DE ACCESO:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblDesuentoTotal">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="3"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -760,8 +775,8 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                          <JTabbedPaneConstraints tabName="DETALLE DE LA FACTURA">
-                            <Property name="tabTitle" type="java.lang.String" value="DETALLE DE LA FACTURA"/>
+                          <JTabbedPaneConstraints tabName="DETALLE DE LA NOTA DE VENTA">
+                            <Property name="tabTitle" type="java.lang.String" value="DETALLE DE LA NOTA DE VENTA"/>
                           </JTabbedPaneConstraints>
                         </Constraint>
                       </Constraints>
@@ -954,14 +969,14 @@
                                           <Component id="txtPVP" max="32767" attributes="0"/>
                                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtStock" max="32767" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" max="-2" attributes="0"/>
                                           <Component id="txtDescuentoProd" max="32767" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" max="-2" attributes="0"/>
                                           <Component id="txtCantidad" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Component id="txtDetalleExtra" max="32767" attributes="0"/>
-                                          <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                           <Component id="btnNuevoDetalle" min="-2" pref="139" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -988,12 +1003,10 @@
                               <Component id="txtDescuentoProd" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtNombreProd" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtDetalleExtra" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="btnNuevoDetalle" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtNombreProd" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtDetalleExtra" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnNuevoDetalle" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1133,14 +1146,12 @@
                 </Component>
                 <Component class="textfield.TextField" name="txtDescuentoProd">
                   <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="20" green="20" red="20" type="rgb"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="a2" green="6e" red="0" type="rgb"/>
                     </Property>
-                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="labelText" type="java.lang.String" value="Descuento"/>
                   </Properties>
                 </Component>
@@ -1200,340 +1211,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnImprimirActionPerformed"/>
               </Events>
             </Component>
-            <Container class="com.anthony.swing.RoundPanel" name="roundPanel2">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="20" green="20" red="20" type="rgb"/>
-                </Property>
-              </Properties>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jLabel14" max="32767" attributes="0"/>
-                              <Component id="jLabel13" pref="87" max="32767" attributes="0"/>
-                              <Component id="progress3" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="progress3" min="-2" pref="94" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="com.anthony.swing.progress.Progress" name="progress3">
-                  <Properties>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="null"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="66" red="99" type="rgb"/>
-                    </Property>
-                    <Property name="maximum" type="int" value="150"/>
-                    <Property name="value" type="int" value="95"/>
-                    <Property name="borderPainted" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel13">
-                  <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="55" green="7c" red="90" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Fatura firmada"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel14">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="13" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="51" green="a2" red="0" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="REALIZADA"/>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Container class="com.anthony.swing.RoundPanel" name="roundPanel3">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="20" green="20" red="20" type="rgb"/>
-                </Property>
-              </Properties>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jLabel24" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jLabel19" alignment="1" pref="87" max="32767" attributes="0"/>
-                              <Component id="progress6" alignment="1" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="progress6" min="-2" pref="94" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="com.anthony.swing.progress.Progress" name="progress6">
-                  <Properties>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="null"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="66" red="99" type="rgb"/>
-                    </Property>
-                    <Property name="maximum" type="int" value="150"/>
-                    <Property name="value" type="int" value="95"/>
-                    <Property name="borderPainted" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel19">
-                  <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="55" green="7c" red="90" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Fatura enviada"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel24">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="13" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="51" green="a2" red="0" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="REALIZADA"/>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Container class="com.anthony.swing.RoundPanel" name="roundPanel18">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="20" green="20" red="20" type="rgb"/>
-                </Property>
-              </Properties>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblDescuento" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtDescuento" alignment="0" pref="71" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblDescuento" pref="44" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtDescuento" min="-2" pref="95" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="javax.swing.JLabel" name="txtDescuento">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="36" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="66" green="51" red="3f" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="-- --"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="lblDescuento">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="20" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="55" green="7c" red="90" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="des"/>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Container class="com.anthony.swing.RoundPanel" name="roundPanel19">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="20" green="20" red="20" type="rgb"/>
-                </Property>
-              </Properties>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblSub0" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtSub0" alignment="0" pref="71" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblSub0" pref="44" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtSub0" min="-2" pref="95" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="javax.swing.JLabel" name="txtSub0">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="36" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="66" green="51" red="3f" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="-- --"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="lblSub0">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="20" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="55" green="7c" red="90" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="sub0"/>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Container class="com.anthony.swing.RoundPanel" name="roundPanel4">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="20" green="20" red="20" type="rgb"/>
-                </Property>
-              </Properties>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jLabel27" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jLabel21" alignment="1" pref="87" max="32767" attributes="0"/>
-                              <Component id="progress7" alignment="1" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="progress7" min="-2" pref="94" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="com.anthony.swing.progress.Progress" name="progress7">
-                  <Properties>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="null"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="66" red="99" type="rgb"/>
-                    </Property>
-                    <Property name="maximum" type="int" value="150"/>
-                    <Property name="value" type="int" value="95"/>
-                    <Property name="borderPainted" type="boolean" value="false"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel21">
-                  <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="55" green="7c" red="90" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Respuesta"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel27">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="13" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="51" green="a2" red="0" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="APROBADA"/>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
             <Container class="com.anthony.swing.RoundPanel" name="roundPanel21">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1544,11 +1221,11 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblIva" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtIva12" alignment="0" pref="71" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="txtSub" max="32767" attributes="0"/>
+                              <Component id="lblIva" pref="147" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1557,17 +1234,17 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="lblIva" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblIva" pref="44" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtIva12" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="txtSub" min="-2" pref="58" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="txtIva12">
+                <Component class="javax.swing.JLabel" name="txtSub">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="36" style="0"/>
@@ -1588,7 +1265,7 @@
                       <Color blue="55" green="7c" red="90" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="iv12"/>
+                    <Property name="text" type="java.lang.String" value="Subtotal"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -1607,7 +1284,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lblTotal" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtTotal" alignment="0" pref="72" max="32767" attributes="0"/>
+                              <Component id="txtTotal" alignment="0" pref="129" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1617,9 +1294,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblTotal" pref="44" max="32767" attributes="0"/>
+                          <Component id="lblTotal" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtTotal" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="txtTotal" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1647,7 +1324,7 @@
                       <Color blue="55" green="7c" red="90" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="t"/>
+                    <Property name="text" type="java.lang.String" value="Total"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -1665,8 +1342,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblSub12" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtSub12" alignment="0" pref="71" max="32767" attributes="0"/>
+                              <Component id="lblDescuento" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtDescuento" alignment="0" pref="129" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1676,16 +1353,16 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblSub12" pref="44" max="32767" attributes="0"/>
+                          <Component id="lblDescuento" min="-2" pref="26" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtSub12" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="txtDescuento" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="txtSub12">
+                <Component class="javax.swing.JLabel" name="txtDescuento">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="36" style="0"/>
@@ -1697,7 +1374,7 @@
                     <Property name="text" type="java.lang.String" value="-- --"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblSub12">
+                <Component class="javax.swing.JLabel" name="lblDescuento">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="20" style="0"/>
@@ -1706,11 +1383,37 @@
                       <Color blue="55" green="7c" red="90" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="sub12"/>
+                    <Property name="text" type="java.lang.String" value="Descuento"/>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="com.anthony.swing.Button" name="btnDescTotal">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="48" green="3b" red="2c" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="DES. VENTA"/>
+                <Property name="borderPainted" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDescTotalActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblInfo">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a2" green="6e" red="0" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Informacion: 0% de descuento aplicado en el total."/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

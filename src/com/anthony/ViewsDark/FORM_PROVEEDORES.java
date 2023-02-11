@@ -225,7 +225,7 @@ public class FORM_PROVEEDORES extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Empleado no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Empleado no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -241,7 +241,7 @@ public class FORM_PROVEEDORES extends javax.swing.JPanel {
         int fila;
         fila = tDatosProveedores.getSelectedRow();
         if (fila == -1) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
             panel.showNotification();
         } else {
             dtmProveedores = (DefaultTableModel) tDatosProveedores.getModel();
@@ -711,7 +711,7 @@ public class FORM_PROVEEDORES extends javax.swing.JPanel {
                     tablaProveedores();
                     limpiarFormulario();
                 } else if (daoProv.delete(ID_PROVEEDOR) == "Error al proveedor el empleado!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo eliminar al proveedor!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo eliminar al proveedor!!");
                     panel.showNotification();
                     tablaProveedores();
                     limpiarFormulario();
@@ -779,7 +779,7 @@ public class FORM_PROVEEDORES extends javax.swing.JPanel {
                     limpiarFormulario();
                     ocultar();
                 } else if (daoProv.add(prov) == "El proveedor no fue creado con exito!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo crear al proveedor!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo crear al proveedor!!");
                     panel.showNotification();
                     tablaProveedores();
                     limpiarFormulario();
@@ -833,13 +833,13 @@ public class FORM_PROVEEDORES extends javax.swing.JPanel {
                 prov.setPRO_CREACION(PRO_CREACION);
                 prov.setPRO_ESTADO(PRO_ESTADO);
                 if (daoProv.update(prov) == "El proveedor fue actualizado con exito!") {
-                    panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "El empleado fue actualizado con exito!!");
+                    panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "El proveedor fue actualizado con exito!!");
                     panel.showNotification();
                     tablaProveedores();
                     limpiarFormulario();
                     ocultar();
                 } else if (daoProv.update(prov) == "El proveedor no fue actualizado!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar empleado!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar el proveedor!!");
                     panel.showNotification();
                     tablaProveedores();
                     limpiarFormulario();

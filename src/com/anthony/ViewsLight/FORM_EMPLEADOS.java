@@ -178,7 +178,7 @@ public class FORM_EMPLEADOS extends javax.swing.JPanel {
         int fila;
         fila = tDatosEmpleados.getSelectedRow();
         if (fila == -1) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
             panel.showNotification();
         } else {
             dtmEmpleados = (DefaultTableModel) tDatosEmpleados.getModel();
@@ -237,7 +237,7 @@ public class FORM_EMPLEADOS extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Proveedor no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Proveedor no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -702,7 +702,7 @@ public class FORM_EMPLEADOS extends javax.swing.JPanel {
                     tablaEmpleados();
                     limpiarFormulario();
                 } else if (daoEmp.delete(ID_EMPLEADO) == "Error al eliminar el empleado!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo eliminar al empleado!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo eliminar al empleado!!");
                     panel.showNotification();
                     tablaEmpleados();
                     limpiarFormulario();
@@ -772,7 +772,7 @@ public class FORM_EMPLEADOS extends javax.swing.JPanel {
                     limpiarFormulario();
                     ocultar();
                 } else if (daoEmp.add(emp) == "El empleado no fue creado con exito!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo crear empleado!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo crear empleado!!");
                     panel.showNotification();
                     tablaEmpleados();
                     limpiarFormulario();
@@ -831,7 +831,7 @@ public class FORM_EMPLEADOS extends javax.swing.JPanel {
                     limpiarFormulario();
                     ocultar();
                 } else if (daoEmp.update(emp) == "El Empleado no fue actualizado!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar empleado!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar empleado!!");
                     panel.showNotification();
                     tablaEmpleados();
                     limpiarFormulario();

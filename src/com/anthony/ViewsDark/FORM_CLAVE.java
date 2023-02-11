@@ -1,12 +1,18 @@
 package com.anthony.ViewsDark;
 
+import com.anthony.Controller.Encriptador;
 import com.anthony.MainDark.MainAdministradorDark;
 import com.anthony.Models.USUARIO;
 import com.anthony.ModelsDAO.USUARIO_DAO;
+import com.anthony.login.Login;
+import com.anthony.swing.Button;
+import com.anthony.swing.RoundPanel;
 import com.anthony.toast.Toast;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
+import textfield.PasswordField;
 
 public class FORM_CLAVE extends javax.swing.JPanel {
 
@@ -14,6 +20,20 @@ public class FORM_CLAVE extends javax.swing.JPanel {
     USUARIO usu;
     USUARIO_DAO dao = new USUARIO_DAO();
     Toast panel;
+    Login l;
+
+    public FORM_CLAVE(MainAdministradorDark admin, USUARIO usu, Toast panel, Button btnCambiar, Button btnConfirmar, JLabel jLabel1, JLabel jLabel3, RoundPanel roundPanel1, PasswordField txtCambiar, PasswordField txtConfirmar) {
+        this.admin = admin;
+        this.usu = usu;
+        this.panel = panel;
+        this.btnCambiar = btnCambiar;
+        this.btnConfirmar = btnConfirmar;
+        this.jLabel1 = jLabel1;
+        this.jLabel3 = jLabel3;
+        this.roundPanel1 = roundPanel1;
+        this.txtCambiar = txtCambiar;
+        this.txtConfirmar = txtConfirmar;
+    }
 
     public FORM_CLAVE() {
         this.admin = admin;
@@ -34,10 +54,12 @@ public class FORM_CLAVE extends javax.swing.JPanel {
     public Boolean confirmarClave() throws SQLException {
         Boolean ban = false;
         if (!txtConfirmar.getText().equals(usu.getUSU_CLAVE())) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Usuario no autorizado");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Usuario no autorizado");
             panel.showNotification();
             txtConfirmar.setText("");
         } else {
+            panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Clave aceptada");
+            panel.showNotification();
             txtCambiar.setVisible(true);
             btnCambiar.setVisible(true);
             btnConfirmar.setVisible(false);
@@ -54,6 +76,9 @@ public class FORM_CLAVE extends javax.swing.JPanel {
             panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.BOTTOM_RIGHT, "Clave actualizada!!");
             panel.showNotification();
             txtCambiar.setText("");
+            admin.dispose();
+            l = new Login();
+            l.setVisible(true);
         }
     }
 

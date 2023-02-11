@@ -120,7 +120,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                     tablaClientes();
                     tabbedPane.setSelectedComponent(panelProductos);
                 } else if (daoFac.add(fac) == "La factura no fue creada!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo crear la factura!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo crear la factura!!");
                     panel.showNotification();
                     tablaClientes();
                     tabbedPane.setSelectedComponent(panelClientes);
@@ -170,7 +170,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                     panel.showNotification();
                     tablaClientes();
                 } else if (daoFac.add(fac) == "La factura no fue creada!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo crear la factura!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo crear la factura!!");
                     panel.showNotification();
                     tablaClientes();
                 }
@@ -296,7 +296,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         int fila;
         fila = tDatosClientes.getSelectedRow();
         if (fila == -1) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
             panel.showNotification();
         } else {
             dtmClientes = (DefaultTableModel) tDatosClientes.getModel();
@@ -345,7 +345,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Producto no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Producto no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -360,7 +360,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         int fila;
         fila = tDatosProductos.getSelectedRow();
         if (fila == -1) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
             panel.showNotification();
         } else {
             dtmProductos = (DefaultTableModel) tDatosProductos.getModel();
@@ -410,7 +410,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                 System.out.println(e);
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Producto no registrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Producto no registrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -437,7 +437,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         int fila;
         fila = tDatosProductos.getSelectedRow();
         if (fila == -1) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
             panel.showNotification();
         } else {
             dtmProductos = (DefaultTableModel) tDatosProductos.getModel();
@@ -515,7 +515,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
             panel.showNotification();
             tablaProductos();
         } else if (desFacDao.add(desFac) == "La factura no fue creada!") {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.TOP_CENTER, "No se pudo agregar el producto!!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.TOP_CENTER, "No se pudo agregar el producto!!");
             panel.showNotification();
             tablaProductos();
         }
@@ -677,7 +677,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         switchCliente = new com.anthony.swing.SwitchButton();
         txtRuc = new textfield.TextField();
         txtDireccion = new textfield.TextField();
-        roundPanel1 = new com.anthony.swing.RoundPanel();
+        panelDatosTabla = new com.anthony.swing.RoundPanel();
         tabbedPane = new com.anthony.swing.TabbedPane();
         panelClientes = new javax.swing.JPanel();
         spClientes = new javax.swing.JScrollPane();
@@ -925,8 +925,8 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        roundPanel1.setBackground(new java.awt.Color(32, 32, 32));
-        roundPanel1.setLayout(new java.awt.BorderLayout());
+        panelDatosTabla.setBackground(new java.awt.Color(32, 32, 32));
+        panelDatosTabla.setLayout(new java.awt.BorderLayout());
 
         tabbedPane.setBackground(new java.awt.Color(32, 32, 32));
         tabbedPane.setForeground(new java.awt.Color(63, 81, 102));
@@ -1092,7 +1092,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
 
         tabbedPane.addTab("DETALLE DE LA FACTURA", panelFactura);
 
-        roundPanel1.add(tabbedPane, java.awt.BorderLayout.CENTER);
+        panelDatosTabla.add(tabbedPane, java.awt.BorderLayout.CENTER);
 
         panelFormProductos.setBackground(new java.awt.Color(32, 32, 32));
 
@@ -1143,7 +1143,6 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         btnNuevoDetalle.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevoDetalle.setText("AGREGAR PRODUCTO");
         btnNuevoDetalle.setBorderPainted(false);
-        btnNuevoDetalle.setFocusPainted(false);
         btnNuevoDetalle.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnNuevoDetalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1181,10 +1180,8 @@ public class FORM_FACTURA extends javax.swing.JPanel {
 
         txtTipoIva.setForeground(new java.awt.Color(32, 32, 32));
 
-        txtDescuentoProd.setEditable(false);
         txtDescuentoProd.setBackground(new java.awt.Color(32, 32, 32));
         txtDescuentoProd.setForeground(new java.awt.Color(0, 110, 162));
-        txtDescuentoProd.setFocusable(false);
         txtDescuentoProd.setLabelText("Descuento");
 
         javax.swing.GroupLayout panelFormProductosLayout = new javax.swing.GroupLayout(panelFormProductos);
@@ -1202,9 +1199,9 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                     .addGroup(panelFormProductosLayout.createSequentialGroup()
                         .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFormProductosLayout.createSequentialGroup()
-                                .addComponent(txtCodPrinc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtCodPrinc, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCodAux, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(txtCodAux, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
                             .addComponent(txtNombreProd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1212,12 +1209,12 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                                 .addComponent(txtPVP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtStock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtDescuentoProd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(panelFormProductosLayout.createSequentialGroup()
-                                .addComponent(txtDetalleExtra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtDetalleExtra, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                                 .addGap(171, 171, 171)
                                 .addComponent(btnNuevoDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
@@ -1228,9 +1225,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                 .addGap(1, 1, 1)
                 .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtTipoIva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelFormProductosLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(0, 0, 0)))
+                    .addComponent(jLabel12))
                 .addGroup(panelFormProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCodPrinc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1251,7 +1246,6 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         btnCancelar.setForeground(new java.awt.Color(204, 204, 204));
         btnCancelar.setText("CANCELAR");
         btnCancelar.setBorderPainted(false);
-        btnCancelar.setFocusPainted(false);
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1263,7 +1257,6 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         btnGuardar.setForeground(new java.awt.Color(204, 204, 204));
         btnGuardar.setText("GUARDAR");
         btnGuardar.setBorderPainted(false);
-        btnGuardar.setFocusPainted(false);
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1275,7 +1268,6 @@ public class FORM_FACTURA extends javax.swing.JPanel {
         btnImprimir.setForeground(new java.awt.Color(204, 204, 204));
         btnImprimir.setText("IMPRIMIR");
         btnImprimir.setBorderPainted(false);
-        btnImprimir.setFocusPainted(false);
         btnImprimir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1578,7 +1570,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelDatosTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelFormClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelDatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelFormProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1620,7 +1612,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelFormProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelDatosTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1723,7 +1715,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
             cantidad = Integer.parseInt(txtCantidad.getText());
             stock = Integer.parseInt(txtStock.getText());
             if (cantidad > stock) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No tenemos sufiente en Stock");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No tenemos sufiente en Stock");
                 panel.showNotification();
             } else {
                 agregarProducto();
@@ -1737,7 +1729,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
             btnCancelar.setVisible(true);
             btnImprimir.setVisible(false);
         } catch (Exception e) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Error al procesar tu peticion!!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Error al procesar tu peticion!!");
             panel.showNotification();
             System.out.println("Error " + e);
         }
@@ -1753,7 +1745,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtApellidosClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApellidosClienteMouseClicked
-        spPanel.getVerticalScrollBar().setValue(panelFormClientes.getY());
+        spPanel.getVerticalScrollBar().setValue(panelDatosTabla.getY());
         tabbedPane.setSelectedComponent(panelClientes);
     }//GEN-LAST:event_txtApellidosClienteMouseClicked
 
@@ -1787,7 +1779,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Cliente no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Cliente no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -1828,7 +1820,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Cliente no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Cliente no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -1869,7 +1861,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Cliente no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Cliente no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -1964,7 +1956,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                 }
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Producto no registrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Producto no registrado!!");
                 panel.showNotification();
                 lblIdProducto.setText("");
                 txtNombreProd.setText("");
@@ -2044,7 +2036,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                 }
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Producto no registrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Producto no registrado!!");
                 panel.showNotification();
                 lblIdProducto.setText("");
                 txtNombreProd.setText("");
@@ -2115,7 +2107,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
             panel = new Toast(admin, Toast.Type.SUCCESS, Toast.Location.TOP_CENTER, "Factura guardada con exito!!");
             panel.showNotification();
         } else if (facTotDao.add(facTotalidad).equals("La factura no fue creada!")) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.TOP_CENTER, "No se pudo guardar la factura!!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.TOP_CENTER, "No se pudo guardar la factura!!");
             panel.showNotification();
         }
         btnGuardar.setVisible(false);
@@ -2186,6 +2178,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
     private javax.swing.JLabel lblTotal;
     private javax.swing.JPanel panelClientes;
     private com.anthony.swing.RoundPanel panelDatos;
+    private com.anthony.swing.RoundPanel panelDatosTabla;
     private javax.swing.JPanel panelFactura;
     private com.anthony.swing.RoundPanel panelFormClientes;
     private com.anthony.swing.RoundPanel panelFormProductos;
@@ -2193,7 +2186,6 @@ public class FORM_FACTURA extends javax.swing.JPanel {
     private com.anthony.swing.progress.Progress progress3;
     private com.anthony.swing.progress.Progress progress6;
     private com.anthony.swing.progress.Progress progress7;
-    private com.anthony.swing.RoundPanel roundPanel1;
     private com.anthony.swing.RoundPanel roundPanel18;
     private com.anthony.swing.RoundPanel roundPanel19;
     private com.anthony.swing.RoundPanel roundPanel2;
@@ -3082,7 +3074,7 @@ public class FORM_FACTURA extends javax.swing.JPanel {
                 "C:\\FACTURING_V1\\/" + year + "/" + MES + "/FACTURAS/" + cedula + "-" + usu.getUSU_USUARIO() + " " + daoFac.fechaNormal() + " (" + daoFac.hora() + ") S" + usu.getFK_SUCURSAL() + ".pdf",
                 cedula + "-" + usu.getUSU_USUARIO() + " " + daoFac.fechaNormal() + " (" + daoFac.hora() + ") S" + usu.getFK_SUCURSAL() + ".pdf")
                 .equals("No se pudo enviar el email")) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.TOP_CENTER, "No se pudo enviar la factura!!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.TOP_CENTER, "No se pudo enviar la factura!!");
             panel.showNotification();
         }
     }

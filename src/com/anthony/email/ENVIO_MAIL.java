@@ -79,6 +79,8 @@ public class ENVIO_MAIL {
 //                "0000000000001", "100", "C:\\FACTURING_V1\\2022\\NOVIEMBRE\\FACTURAS/0000000001-Richard Perez 2022-11-4 (234343) S1.pdf",
 //                "0000000001-Richard Perez 2022-11-4 (234343) S1.pdf");
 //    }
+    
+    
     public String sendMail(
             String receptorEmail,
             String receptorNombre,

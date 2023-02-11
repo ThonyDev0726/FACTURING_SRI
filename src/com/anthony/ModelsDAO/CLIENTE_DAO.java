@@ -1,6 +1,6 @@
 package com.anthony.ModelsDAO;
 
-import com.anthony.Database.*;
+import com.anthony.Database.Conexion;
 import com.anthony.Models.*;
 import com.anthony.ModelsInterfaces.*;
 import java.sql.CallableStatement;
@@ -53,6 +53,7 @@ public class CLIENTE_DAO implements crud_cliente {
                 lista.add(cli);
             }
             System.out.println("SE ESTA LISTANDO LOS CLIENTES");
+            System.out.println(con.getCatalog().toString());
 //            System.out.println(lista.toString());
         } catch (SQLException ex) {
             System.out.println("ERROR AL LISTAR LOS CLIENTES" + ex);

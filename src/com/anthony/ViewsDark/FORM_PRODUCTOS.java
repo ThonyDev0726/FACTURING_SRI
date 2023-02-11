@@ -279,7 +279,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Proveedor no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Proveedor no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -339,7 +339,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Producto no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Producto no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -355,7 +355,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         int fila;
         fila = tDatosProveedores.getSelectedRow();
         if (fila == -1) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
             panel.showNotification();
         } else {
             dtmProveedores = (DefaultTableModel) tDatosProveedores.getModel();
@@ -368,7 +368,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         int fila;
         fila = tDatosProductos.getSelectedRow();
         if (fila == -1) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
             panel.showNotification();
         } else {
             dtmProductos = (DefaultTableModel) tDatosProductos.getModel();
@@ -489,7 +489,6 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         btnEliminar.setBackground(new java.awt.Color(55, 29, 29));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoEliminar.png"))); // NOI18N
         btnEliminar.setToolTipText("");
-        btnEliminar.setFocusPainted(false);
         btnEliminar.setFocusable(false);
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -499,7 +498,6 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
 
         btnNuevoRegistro.setBackground(new java.awt.Color(37, 47, 33));
         btnNuevoRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoAgregar.png"))); // NOI18N
-        btnNuevoRegistro.setFocusPainted(false);
         btnNuevoRegistro.setFocusable(false);
         btnNuevoRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -509,7 +507,6 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
 
         btnBuscar1.setBackground(new java.awt.Color(0, 102, 153));
         btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/anthony/icons/iconoBuscar.png"))); // NOI18N
-        btnBuscar1.setFocusPainted(false);
         btnBuscar1.setFocusable(false);
         btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -980,6 +977,11 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         txtProveedor.setBackground(new java.awt.Color(32, 32, 32));
         txtProveedor.setForeground(new java.awt.Color(0, 153, 204));
         txtProveedor.setLabelText("Proveedor");
+        txtProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtProveedorMouseClicked(evt);
+            }
+        });
 
         cbxGanancia.setBackground(new java.awt.Color(32, 32, 32));
         cbxGanancia.setForeground(new java.awt.Color(0, 153, 204));
@@ -1166,7 +1168,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                     tablaProductos();
                     limpiarFormulario();
                 } else if (daoPro.delete(ID_PRODUCTO) == "Error al eliminar el producto!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo eliminar el producto!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo eliminar el producto!!");
                     panel.showNotification();
                     tablaProveedores();
                     tablaProductos();
@@ -1189,6 +1191,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         panelForm.setVisible(true);
         btnGuardar.setVisible(true);
         panelBuscar.setVisible(false);
+        btnActualizar.setVisible(false);
         limpiarFormulario();
     }//GEN-LAST:event_btnNuevoRegistroActionPerformed
 
@@ -1283,7 +1286,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                     limpiarFormulario();
                     ocultar();
                 } else if (daoPro.add(pro) == "El producto no fue creado con exito!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo crear el producto!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo crear el producto!!");
                     panel.showNotification();
                     tablaProductos();
                     tablaProveedores();
@@ -1297,11 +1300,11 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                 ocultar();
             }
         } catch (Exception ex) {
-            panel = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Hubo un error al procesar tu peticion, favor corregirlos!!");
+            panel = new Toast(admin, Toast.Type.INFO, Toast.Location.BOTTOM_RIGHT, "Error al procesar tu peticion, favor corregirlos!!");
             panel.showNotification();
             limpiarFormulario();
             ocultar();
-            System.out.println("Hubo un error al procesar tu peticion, favor corregirlos!!" + ex);
+            System.out.println("Hubo un error al procesar tu peticion, favor corregirlos!! " + ex);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -1372,7 +1375,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                     limpiarFormulario();
                     ocultar();
                 } else if (daoPro.update(pro) == "El producto no fue creado con exito!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar el producto!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar el producto!!");
                     panel.showNotification();
                     tablaProductos();
                     tablaProveedores();
@@ -1400,6 +1403,11 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
     private void txtBuscarProductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarProductoKeyReleased
         buscarProducto();
     }//GEN-LAST:event_txtBuscarProductoKeyReleased
+
+    private void txtProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProveedorMouseClicked
+        spPanel.getVerticalScrollBar().setValue(300);
+        tabbedPane.setSelectedComponent(panelProveedores);
+    }//GEN-LAST:event_txtProveedorMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

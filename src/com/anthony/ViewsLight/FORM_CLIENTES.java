@@ -246,7 +246,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Cliente no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Cliente no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -262,7 +262,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
         int fila;
         fila = tDatosClientes.getSelectedRow();
         if (fila == -1) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
             panel.showNotification();
         } else {
             dtmClientes = (DefaultTableModel) tDatosClientes.getModel();
@@ -755,7 +755,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
                     tablaClientes();
                     limpiarFormulario();
                 } else if (daoCli.delete(ID_CLIENTE) == "Error al eliminar el cliente!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo eliminar al cliente!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo eliminar al cliente!!");
                     panel.showNotification();
                     tablaClientes();
                     limpiarFormulario();
@@ -819,7 +819,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
                     limpiarFormulario();
                     ocultar();
                 } else if (daoCli.add(cli) == "El cliente no fue creado!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo crear al cliente!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo crear al cliente!!");
                     panel.showNotification();
                     tablaClientes();
                     limpiarFormulario();
@@ -935,7 +935,7 @@ public class FORM_CLIENTES extends javax.swing.JPanel {
                     limpiarFormulario();
                     ocultar();
                 } else if (daoCli.update(cli) == "El cliente no fue actualizado!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar al cliente!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar al cliente!!");
                     panel.showNotification();
                     tablaClientes();
                     limpiarFormulario();

@@ -175,7 +175,7 @@ public class MainActivacionProducto extends javax.swing.JFrame {
         } else {
             Integer numClaves = licencia_dao.consultarLicencia(codigo);
             if (numClaves == 0) {
-                Toast toast = new Toast(this, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Codigo rechazado!!");
+                Toast toast = new Toast(this, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Codigo rechazado!!");
                 toast.showNotification();
             } else if (numClaves == 1) {
                 if (licencia_dao.updateEstado().equals("Licencia actualizada con exito!")) {
@@ -185,7 +185,7 @@ public class MainActivacionProducto extends javax.swing.JFrame {
                     Login l = new Login();
                     l.setVisible(true);
                 } else if (licencia_dao.updateEstado().equals("No se actualizo la licencia!")) {
-                    Toast toast = new Toast(this, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se actualizo la licencia!!");
+                    Toast toast = new Toast(this, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se actualizo la licencia!!");
                     toast.showNotification();
                 }
             } else {

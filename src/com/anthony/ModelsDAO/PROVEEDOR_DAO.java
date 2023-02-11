@@ -26,7 +26,7 @@ public class PROVEEDOR_DAO implements crud_proveedor {
     String LISTAR_EN_LINEA = "CALL A_SELECT_ALL_PROVEEDOR_LINEA()";
     String LISTAR = "CALL SELECT_PROVEEDOR()";
     String LISTAR_ID = "CALL A_SELECT_ID_PROVEEDOR(?)";
-    String CREAR = "CALL INSERT_PROVEEDOR(?,?,?,?,?,?,?,?,?)";
+    String CREAR = "CALL INSERT_PROVEEDOR(?,?,?,?,?,?,?,?,?,?)";
     String ACTUALIZAR = "CALL UPDATE_PROVEEDOR(?,?,?,?,?,?,?,?,?,?)";
     String ELIMINAR = "CALL DELETE_PROVEEDOR(?)";
     String ACTUALIZAR_ESTADO = "CALL UPDATE_PROVEEDOR_ESTADO(?,?)";

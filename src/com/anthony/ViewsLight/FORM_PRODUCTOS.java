@@ -272,7 +272,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Proveedor no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Proveedor no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -331,7 +331,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                 encuentra = true;
             }
             if (encuentra == false) {
-                panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Producto no encontrado!!");
+                panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Producto no encontrado!!");
                 panel.showNotification();
             }
         } catch (Exception ex) {
@@ -347,7 +347,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         int fila;
         fila = tDatosProveedores.getSelectedRow();
         if (fila == -1) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
             panel.showNotification();
         } else {
             dtmProveedores = (DefaultTableModel) tDatosProveedores.getModel();
@@ -360,7 +360,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
         int fila;
         fila = tDatosProductos.getSelectedRow();
         if (fila == -1) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
             panel.showNotification();
         } else {
             dtmProductos = (DefaultTableModel) tDatosProductos.getModel();
@@ -1198,7 +1198,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                     limpiarFormulario();
                     ocultar();
                 } else if (daoPro.add(pro) == "El producto no fue creado con exito!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo crear el producto!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo crear el producto!!");
                     panel.showNotification();
                     tablaProductos();
                     tablaProveedores();
@@ -1278,7 +1278,7 @@ public class FORM_PRODUCTOS extends javax.swing.JPanel {
                     limpiarFormulario();
                     ocultar();
                 } else if (daoPro.update(pro) == "El producto no fue creado con exito!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar el producto!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar el producto!!");
                     panel.showNotification();
                     tablaProductos();
                     tablaProveedores();

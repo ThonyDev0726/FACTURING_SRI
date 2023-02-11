@@ -194,7 +194,7 @@ public class Login extends javax.swing.JFrame {
             loginAndRegister.limpiarFormulario();
         } else {
             if (ID_USUARIO_BASE == null || ID_USUARIO_BASE == 0) {
-                Toast panel = new Toast(this, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "El usuario no esta registrado");
+                Toast panel = new Toast(this, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "El usuario no esta registrado");
                 panel.showNotification();
                 loginAndRegister.limpiarFormulario();
             } else {
@@ -258,13 +258,13 @@ public class Login extends javax.swing.JFrame {
                             System.out.println("ESTAMOS EN LA PARTE DEL CAJERO");
                         }
                     } else {
-                        Toast panel = new Toast(this, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "La clave es incorrecta");
+                        Toast panel = new Toast(this, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "La clave es incorrecta");
                         panel.showNotification();
                         loginAndRegister.limpiarContra();
                     }
                 } else if (usuEstado.equals("DE BAJA")) {
 
-                    Toast panel = new Toast(this, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "El usuario esta bloqueado del sistema");
+                    Toast panel = new Toast(this, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "El usuario esta bloqueado del sistema");
                     panel.showNotification();
                     loginAndRegister.limpiarFormulario();
                 }

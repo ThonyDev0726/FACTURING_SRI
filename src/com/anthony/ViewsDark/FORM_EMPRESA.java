@@ -210,7 +210,7 @@ public class FORM_EMPRESA extends javax.swing.JPanel {
         int fila;
         fila = tDatosSucursal.getSelectedRow();
         if (fila == -1) {
-            panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
+            panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "Se debe seleccionar un registro !!");
             panel.showNotification();
         } else {
             dtmSucursal = (DefaultTableModel) tDatosSucursal.getModel();
@@ -1060,7 +1060,7 @@ public class FORM_EMPRESA extends javax.swing.JPanel {
                     panel.showNotification();
                     datosEmpresa();
                 } else if (daoEmpresa.update(emp) == "La empresa no fue actualizada!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar los datos!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar los datos!!");
                     panel.showNotification();
                     datosEmpresa();
                 }
@@ -1110,7 +1110,7 @@ public class FORM_EMPRESA extends javax.swing.JPanel {
                     datosEmpresa();
                     limpiarFormulario();
                 } else if (daoSuc.delete(ID_SUCURSAL) == "Error al eliminar la sucursal!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo eliminar la sucursal!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo eliminar la sucursal!!");
                     panel.showNotification();
                     actualizarTablaSucursal();
                     datosEmpresa();
@@ -1173,7 +1173,7 @@ public class FORM_EMPRESA extends javax.swing.JPanel {
                     datosEmpresa();
                     limpiarFormulario();
                 } else if (daoSuc.add(suc) == "La sucursal no fue creada con exito!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo crear la sucursal!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo crear la sucursal!!");
                     panel.showNotification();
                     actualizarTablaSucursal();
                     datosEmpresa();
@@ -1217,7 +1217,7 @@ public class FORM_EMPRESA extends javax.swing.JPanel {
                     datosEmpresa();
                     limpiarFormulario();
                 } else if (daoSuc.update(suc) == "La sucursal no fue actualizada con exito!") {
-                    panel = new Toast(admin, Toast.Type.WARNING, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar la sucursal!!");
+                    panel = new Toast(admin, Toast.Type.ERROR, Toast.Location.BOTTOM_RIGHT, "No se pudo actualizar la sucursal!!");
                     panel.showNotification();
                     actualizarTablaSucursal();
                     datosEmpresa();

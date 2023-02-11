@@ -233,10 +233,10 @@ public class Toast extends javax.swing.JComponent {
 
         lbMessage.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         lbMessage.setForeground(new java.awt.Color(38, 38, 38));
-        lbMessage.setText("Message");
+        lbMessage.setText("Tipo mensaje");
 
         lbMessageText.setForeground(new java.awt.Color(127, 127, 127));
-        lbMessageText.setText("Message Text");
+        lbMessageText.setText("Cuerpo mensaje");
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -245,9 +245,11 @@ public class Toast extends javax.swing.JComponent {
             .addGroup(panelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbMessage)
-                    .addComponent(lbMessageText))
-                .addContainerGap(167, Short.MAX_VALUE))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addComponent(lbMessage)
+                        .addGap(0, 139, Short.MAX_VALUE))
+                    .addComponent(lbMessageText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,7 +278,7 @@ public class Toast extends javax.swing.JComponent {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lbIcon)
-                .addGap(10, 10, 10)
+                .addGap(0, 0, 0)
                 .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmdClose)
@@ -299,7 +301,7 @@ public class Toast extends javax.swing.JComponent {
     }//GEN-LAST:event_cmdCloseActionPerformed
 
     public static enum Type {
-        SUCCESS, INFO, WARNING
+        SUCCESS, INFO, ERROR
     }
 
     public static enum Location {
